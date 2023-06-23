@@ -1,14 +1,8 @@
-
-import './App.css'
-
-function App() {
+import Home from "./views/Home";
 
 
-  return (
-    <>
-      
-    </>
-  )
-}
+const App = () => {
+  return <Home />;
+};
 
-export default App
+export default App;
