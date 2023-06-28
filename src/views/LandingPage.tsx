@@ -6,7 +6,7 @@ import "./LandingPage.css";
 const LandingPage: React.FC = () => {
   return (
     <div>
-      <header className="navbar">
+      <nav className="navbar">
         <Link className="nav-logo" aria-current="page" to="/">
           Gallay
         </Link>
@@ -28,7 +28,9 @@ const LandingPage: React.FC = () => {
             Login
           </Link>
         </div>
-      </header>
+      </nav>
+
+
       <section className="home">
         <div className="content">
           <h1>
@@ -36,7 +38,7 @@ const LandingPage: React.FC = () => {
             <span>Gallay</span>
           </h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
+            Loremdsadasdaipsum dolor sit amet, consectetur adipisicing elit. Debitis
             unde et autem ipsam voluptates veniam blanditiis adipisci quam
             tempora{" "}
           </p>
