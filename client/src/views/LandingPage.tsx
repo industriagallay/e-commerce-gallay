@@ -29,7 +29,6 @@ const LandingPage: React.FC = () => {
           </Link>
         </div>
       </nav>
-      <div> sdadasds </div>
 
       <section className="home">
         <div className="content">
@@ -38,9 +37,8 @@ const LandingPage: React.FC = () => {
             <span>Gallay</span>
           </h1>
           <p>
-            Loremdsadasdaipsum dolor sit amet, consectetur adipisicing elit. Debitis
-            unde et autem ipsam voluptates veniam blanditiis adipisci quam
-            tempora{" "}
+            Loremd dolor sit amet, consectetur adipisicing elit. Debitis unde et
+            autem ipsam voluptates veniam blanditiis adipisci quam tempora{" "}
           </p>
           <Link aria-current="page" to="/SignUp">
             Iniciar Sesión
