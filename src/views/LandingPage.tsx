@@ -1,34 +1,48 @@
 import React from "react";
 import yunqueHerreroMP4 from "../assets/yunque-herrero.mp4";
-import "./Home.css";
+import { Link } from "react-router-dom";
+import "./LandingPage.css";
 
-const Home: React.FC = () => {
+const LandingPage: React.FC = () => {
   return (
     <div>
-      <header>
-        <a href="" className="brand">
+      <header className="navbar">
+        <Link className="nav-logo" aria-current="page" to="/">
           Gallay
-        </a>
-        <div className="navigation">
-          <div className="navigation-items">
-            <a href="">Home</a>
-            <a href="">Products</a>
-            <a href="">Help</a>
-            <a href="">About</a>
-          </div>
+        </Link>
+
+        <div className="nav-items">
+          <Link aria-current="page" to="/Home">
+            Home
+          </Link>
+
+          <Link aria-current="page" to="/Products">
+            Products
+          </Link>
+
+          <Link aria-current="page" to="/Help">
+            Help
+          </Link>
+
+          <Link aria-current="page" to="/Login">
+            Login
+          </Link>
         </div>
       </header>
       <section className="home">
         <div className="content">
           <h1>
-            Industria<span>Gallay</span>
+            Industria
+            <span>Gallay</span>
           </h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
             unde et autem ipsam voluptates veniam blanditiis adipisci quam
             tempora{" "}
           </p>
-          <a href="#">Iniciar Sesion</a>
+          <Link aria-current="page" to="/SignUp">
+            Iniciar Sesión
+          </Link>
         </div>
         <div className="media-icons">
           <a href=" ">
@@ -40,9 +54,6 @@ const Home: React.FC = () => {
           <a href="">
             <i className="bi bi-youtube"></i>
           </a>
-          {/* <a href=""> <i className="fab fa-facebook"></i></a>
-          <a href=""> <i className="fab fa-youtube"></i></a>
-          <a href=""> <i className="fab fa-instagram"></i></a> */}
         </div>
       </section>
       <div></div>
@@ -54,4 +65,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default LandingPage;
