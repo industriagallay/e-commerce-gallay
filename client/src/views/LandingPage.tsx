@@ -1,17 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import yunqueHerreroMP4 from "../assets/yunque-herrero.mp4";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { GiRocketThruster } from "react-icons/gi";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { IconContext } from "react-icons/lib";
 import "./LandingPage.css";
 
 const LandingPage: React.FC = () => {
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
   return (
     <div>
-      <header className="navbar">
-        <Link className="nav-logo" aria-current="page" to="/">
-          Gallay
-        </Link>
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <nav className="navbar">
+          <div className="navbar-container container">
+            <Link className="navbar-logo" aria-current="page" to="/">
+              <GiRocketThruster
+                className="navbar-icon"
+                onClick={closeMobileMenu}
+              />
+              Gallay
+            </Link>
 
-        <div className="nav-items">
+            <div className="menu-icon" onClick={handleClick}>
+              {click ? <FaTimes /> : <FaBars />}
+            </div>
+
+            <ul className={click ? "nav-menu active" : "nav-menu"}>
+              <li className="nav-item">
+                <NavLink
+                  to="/home"
+                  className={({ isActive }) =>
+                    "nav-links" + (isActive ? " activated" : "")
+                  }
+                  onClick={closeMobileMenu}
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/products"
+                  className={({ isActive }) =>
+                    "nav-links" + (isActive ? " activated" : "")
+                  }
+                  onClick={closeMobileMenu}
+                >
+                  Products
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/help"
+                  className={({ isActive }) =>
+                    "nav-links" + (isActive ? " activated" : "")
+                  }
+                  onClick={closeMobileMenu}
+                >
+                  Help
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    "nav-links" + (isActive ? " activated" : "")
+                  }
+                  onClick={closeMobileMenu}
+                >
+                  Login
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </IconContext.Provider>
+      {/* <div className="nav-items">
           <Link aria-current="page" to="/Home">
             Home
           </Link>
@@ -27,8 +95,8 @@ const LandingPage: React.FC = () => {
           <Link aria-current="page" to="/Login">
             Login
           </Link>
-        </div>
-      </header>
+        </div> */}
+
       <section className="home">
         <div className="content">
           <h1>
