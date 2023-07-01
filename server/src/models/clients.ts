@@ -1,10 +1,11 @@
 import mongoose, { Schema } from "mongoose";
+import { randomUUID } from "crypto";
 
 const clientSchema = new Schema(
   {
     id: {
-      type: String,
-      required: true,
+      type: "UUID",
+      default: () => randomUUID(),
       unique: true,
     },
     firstName: {

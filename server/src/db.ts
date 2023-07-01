@@ -1,11 +1,11 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import mongoose, { Connection } from "mongoose";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const uri = process.env.DB_URI;
 
-let client: MongoClient | undefined;
+let connection: Connection | undefined;
 
 export async function connectToDatabase() {
   try {
@@ -13,15 +13,15 @@ export async function connectToDatabase() {
       throw new Error("DB_URI environment variable is not defined");
     }
 
-    client = new MongoClient(uri, {
-      serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-      },
-    });
+    const options = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      dbName: "e-commerce-gallay",
+    };
 
-    await client.connect();
+    await mongoose.connect(uri, options as any);
+
+    connection = mongoose.connection;
 
     console.log("Connected to the MongoDB database");
   } catch (error) {
@@ -30,17 +30,17 @@ export async function connectToDatabase() {
   }
 }
 
-export function getClient() {
-  if (!client) {
-    throw new Error("Database client is not connected");
+export function getConnection() {
+  if (!connection) {
+    throw new Error("Database connection is not established");
   }
 
-  return client;
+  return connection;
 }
 
 export async function closeConnection() {
-  if (client) {
-    await client.close();
+  if (connection) {
+    await connection.close();
     console.log("Disconnected from the MongoDB database");
   }
 }
