@@ -1,9 +1,11 @@
 import mongoose, { Schema } from "mongoose";
+import { randomUUID } from "crypto";
 
 const purchaseSchema = new Schema(
   {
     id: {
-      type: String,
+      type: "UUID",
+      default: () => randomUUID(),
       required: true,
       unique: true,
     },
