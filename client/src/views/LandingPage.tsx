@@ -79,23 +79,7 @@ const LandingPage: React.FC = () => {
           </div>
         </nav>
       </IconContext.Provider>
-      {/* <div className="nav-items">
-          <Link aria-current="page" to="/Home">
-            Home
-          </Link>
-
-          <Link aria-current="page" to="/Products">
-            Products
-          </Link>
-
-          <Link aria-current="page" to="/Help">
-            Help
-          </Link>
-
-          <Link aria-current="page" to="/Login">
-            Login
-          </Link>
-        </div> */}
+    
 
       <section className="home">
         <div className="content">
