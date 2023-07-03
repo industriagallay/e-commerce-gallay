@@ -19,7 +19,7 @@ export async function connectToDatabase() {
       dbName: "e-commerce-gallay",
     };
 
-    await mongoose.connect(uri, options as any);
+    await mongoose.connect(uri, options);
 
     connection = mongoose.connection;
 
