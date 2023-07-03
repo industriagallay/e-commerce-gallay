@@ -3,11 +3,9 @@ import Clients from "../models/clients";
 
 const authRegisterHandler = async (req: Request, res: Response) => {
   try {
-    const { id, firstName, lastName, email, phone, password, isAdmin } =
-      req.body;
+    const { firstName, lastName, email, phone, password, isAdmin } = req.body;
 
     const newClient = new Clients({
-      id,
       firstName,
       lastName,
       email,
