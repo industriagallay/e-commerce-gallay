@@ -14,7 +14,7 @@ app.set("port", process.env.PORT_NAME ?? 3001);
 app.set("views", path.join(dirname, "views"));
 
 // middlewares
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use((_, res, next) => {

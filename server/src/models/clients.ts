@@ -1,4 +1,17 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
+
+export interface ClientDocument extends Document {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: number;
+  password: string;
+  isAdmin: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export type ClientsModel = Model<ClientDocument>;
 
 const clientSchema = new Schema(
   {
@@ -31,6 +44,9 @@ const clientSchema = new Schema(
   { timestamps: true }
 );
 
-const Clients = mongoose.model("Clients", clientSchema);
+const Clients: ClientsModel = mongoose.model<ClientDocument, ClientsModel>(
+  "Clients",
+  clientSchema
+);
 
 export default Clients;
