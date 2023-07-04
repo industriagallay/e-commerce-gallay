@@ -28,6 +28,11 @@ const clientSchema = new Schema(
       required: true,
       unique: true,
     },
+    dni: {
+      type: Number,
+      require: true,
+      unique: true,
+    },
     phone: {
       type: Number,
       required: true,
@@ -41,7 +46,16 @@ const clientSchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: {
+      virtuals: true,
+      versionKey: false,
+      transform: (_, ret) => {
+        delete ret.password;
+      },
+    },
+  }
 );
 
 const Clients: ClientsModel = mongoose.model<ClientDocument, ClientsModel>(
