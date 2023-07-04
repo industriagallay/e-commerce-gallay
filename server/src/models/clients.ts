@@ -4,9 +4,11 @@ export interface ClientDocument extends Document {
   firstName: string;
   lastName: string;
   email: string;
+  dni: number;
   phone: number;
   password: string;
   isAdmin: boolean;
+  isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -30,7 +32,7 @@ const clientSchema = new Schema(
     },
     dni: {
       type: Number,
-      require: true,
+      required: true,
       unique: true,
     },
     phone: {
@@ -44,6 +46,10 @@ const clientSchema = new Schema(
     isAdmin: {
       type: Boolean,
       required: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
     },
   },
   {
