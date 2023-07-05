@@ -1,5 +1,5 @@
 import { Router } from "express";
-import authLoginHandler from "../handlers/authLoginHandler";
+import authLoginHandler from "../handlers/loginAndRegisterHandler/authLoginHandler";
 
 export const authLoginRouter = Router();
 

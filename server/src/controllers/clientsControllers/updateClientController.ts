@@ -1,4 +1,4 @@
-import Clients from "../models/clients";
+import Clients from "../../models/clients";
 
 const updateClientController = async (
   clientId: string,

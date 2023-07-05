@@ -1,17 +1,17 @@
 import { Request, Response, NextFunction } from "express";
-import getAllClientsController from "../controllers/getAllClientsController";
+import getAllProductsController from "../../controllers/productsControllers/getAllProductsController";
 
-const getAllClientsHandler = async (
+const getAllProductsHandler = async (
   req: Request,
   res: Response,
   _next: NextFunction
 ) => {
   try {
-    await getAllClientsController(req, res);
+    await getAllProductsController(req, res);
   } catch (error) {
     console.error(error);
     res.status(500).send("Error en el controlador");
   }
 };
 
-export default getAllClientsHandler;
+export default getAllProductsHandler;

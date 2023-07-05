@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import getClientByIdController from "../controllers/getClientByIdController";
+import getClientByIdController from "../../controllers/clientsControllers/getClientByIdController";
 
 const getClientByIdHandler = async (
   req: Request,

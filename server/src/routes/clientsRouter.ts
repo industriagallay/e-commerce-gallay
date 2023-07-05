@@ -1,9 +1,9 @@
 import { Router } from "express";
-import getAllClientsHandler from "../handlers/getAllClientsHandler";
-import getClientByIdHandler from "../handlers/getClientByIdHandler";
-import findClientByDniOrEmailHandler from "../handlers/clientByemailOrDniController";
-import updateClientHandler from "../handlers/updateClientHandler";
-import deleteClientHandler from "../handlers/deleteClientHandler";
+import getAllClientsHandler from "../handlers/clientsHandlers/getAllClientsHandler";
+import getClientByIdHandler from "../handlers/clientsHandlers/getClientByIdHandler";
+import findClientByDniOrEmailHandler from "../handlers/clientsHandlers/clientByemailOrDniController";
+import updateClientHandler from "../handlers/clientsHandlers/updateClientHandler";
+import deleteClientHandler from "../handlers/clientsHandlers/deleteClientHandler";
 
 export const clientsRouter = Router();
 
