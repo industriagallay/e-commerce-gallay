@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import Clients from "../models/clients";
+import Clients from "../../models/clients";
 
 const findClientByDniOrEmailHandler = async (
   req: Request,

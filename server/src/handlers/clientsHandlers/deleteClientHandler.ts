@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Clients from "../models/clients";
+import Clients from "../../models/clients";
 
 const deleteClientHandler = async (req: Request, res: Response) => {
   const clientId = req.params.id;
