@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import updateClientController from "../controllers/updateClientController";
+import updateClientController from "../../controllers/clientsControllers/updateClientController";
 
 const updateClientHandler = async (req: Request, res: Response) => {
   const clientId = req.params.id;

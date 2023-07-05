@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Types } from "mongoose";
-import Clients from "../models/clients";
+import Clients from "../../models/clients";
 
 const getClientByIdController = async (req: Request, res: Response) => {
   const clienteId = req.params.id;
