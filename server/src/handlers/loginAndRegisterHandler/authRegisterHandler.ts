@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import Clients from "../models/clients";
+import Clients from "../../models/clients";
 
 const authRegisterHandler = async (req: Request, res: Response) => {
   try {
-    const { id, firstName, lastName, email, phone, password, isAdmin } =
+    const { firstName, lastName, email, dni, phone, password, isAdmin } =
       req.body;
 
     const newClient = new Clients({
-      id,
       firstName,
       lastName,
       email,
+      dni,
       phone,
       password,
       isAdmin,

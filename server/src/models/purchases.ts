@@ -2,11 +2,6 @@ import mongoose, { Schema } from "mongoose";
 
 const purchaseSchema = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     idClient: {
       type: String,
       required: true,
