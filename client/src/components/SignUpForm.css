@@ -1,3 +1,27 @@
+/*head texto*/
+.header2 {
+  position: relative;
+  background-clip: border-box;
+  background-color: #1e88e5;
+  background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
+  margin: 50px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
+    rgba(33, 150, 243, 0.4);
+  height: 7rem;
+  letter-spacing: 0;
+  line-height: 1.375;
+  font-weight: 600;
+  font-size: 1.9rem;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*FORMULARIO*/
 .form {
   position: relative;
   display: flex;
@@ -6,7 +30,7 @@
   background-color: #fff;
   color: rgb(97 97 97);
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
-  width: 50rem;
+  /* width: 100rem; */
   background-clip: border-box;
 }
 
@@ -209,4 +233,183 @@
 }
 .navbar-icon {
   margin-right: 0.1rem;
+}
+
+/*ESTILOS DEL TEXTOANIMACIÓN*/
+.slide-from-right {
+  position: relative;
+  right: -100%;
+  animation: slideRightToLeft 3s ease forwards;
+}
+
+@keyframes slideRightToLeft {
+  0% {
+    right: -100%;
+    opacity: 0;
+  }
+  100% {
+    right: 0;
+    opacity: 2;
+  }
+}
+
+/*estilos de la card*/
+.card {
+  margin-top: 150px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  max-width: 400px;
+  background-color: #fff;
+  color: #212121;
+}
+
+.image {
+  height: 11rem;
+  width: 100%;
+  object-fit: cover;
+  background-color: rgb(98, 0, 255);
+  background-image: linear-gradient(
+    to right,
+    rgb(0, 255, 191),
+    rgb(153, 0, 255)
+  );
+}
+
+.content {
+  padding: 1.1rem;
+  text-align: center;
+}
+
+.text-1 {
+  font-size: 1.1rem;
+  line-height: 3.25rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.text-2 {
+  margin-top: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.text-2 span:first-child {
+  font-size: 2.5rem;
+  line-height: 4.5rem;
+  font-weight: 900;
+}
+
+.text-2 span:last-child {
+  margin-top: 1.5rem;
+  display: block;
+  font-size: 1.1rem;
+  line-height: 2.25rem;
+}
+
+.action {
+  margin-top: 1.19rem;
+  display: inline-block;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  padding-top: 1.15rem;
+  padding-bottom: 1.15rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+
+.date {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  line-height: 1.15rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: rgba(156, 163, 175, 1);
+}
+
+/*card2*/
+
+.card2 {
+  margin-top: 150px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  max-width: 400px;
+  background-color: #fff;
+  color: #212121;
+}
+
+.image2 {
+  height: 11rem;
+  width: 100%;
+  object-fit: cover;
+  background-color: rgb(98, 0, 255);
+  background-image: linear-gradient(
+    to right,
+    rgb(0, 255, 191),
+    rgb(153, 0, 255)
+  );
+}
+
+.content2 {
+  padding: 1.1rem;
+  text-align: center;
+}
+
+.text-2 {
+  font-size: 1.1rem;
+  line-height: 3.25rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.text-3 {
+  margin-top: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.text-3 span:first-child {
+  font-size: 2.5rem;
+  line-height: 4.5rem;
+  font-weight: 900;
+}
+
+.text-3 span:last-child {
+  margin-top: 1.5rem;
+  display: block;
+  font-size: 1.1rem;
+  line-height: 2.25rem;
+}
+
+.action2 {
+  margin-top: 1.19rem;
+  display: inline-block;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  padding-top: 1.15rem;
+  padding-bottom: 1.15rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+
+.date2 {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  line-height: 1.15rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: rgba(156, 163, 175, 1);
 }
