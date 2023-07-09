@@ -1,9 +1,10 @@
 import React from "react";
+import fundicion from "../assets/fundiciónPNG.png"
 
 const Products: React.FC = () => {
     return (
       <div>
-      <h1> productos</h1>
+      <img src={fundicion} className="img-fluid" alt="image-fundicion"></img>
       </div>
     );
   };
