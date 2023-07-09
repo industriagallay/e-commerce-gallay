@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar2 from "./NavBar2";
+import { Link } from "react-router-dom";
 import "./SignUpForm.css";
 
 const SignUpForm: React.FC = () => {
@@ -20,11 +21,11 @@ const SignUpForm: React.FC = () => {
             </label>
           </div>
           <button className="sigin-btn">Submit</button>
-          <a className="forget" href="#">
+          <Link to="/" aria-current="page" className="forget">
             Forget password?
-          </a>
+          </Link>
           <p className="signup-link">
-            Don't have an account? <a href="#">Sign up</a>
+            Don't have an account? <Link to="">Sign up</Link>
           </p>
         </div>
       </form>
