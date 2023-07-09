@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Playfair+Display&family=Poppins:wght@400;500&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap");
-
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: rgb(255 255 255 / 90%);
+}
 body {
   margin: 0;
   padding: 0;
@@ -13,13 +16,9 @@ body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.hr {
-  margin: 4rem 0;
-  color: inherit;
-  border: 0;
-  border-top: var(--bs-border-width) solid;
-  opacity: 0.25;
-}
+
+
+
 .navbar-toggler-icon {
   display: inline-block;
   width: 1.5em;
@@ -99,13 +98,7 @@ body {
   min-height: 100vh;
   position: relative;
 }
-/* .container-fluid {
-  height: 330px;
-} */
 
-.container-fluid-md {
-  height: 900px; /* Ajusta este valor según tus necesidades */
-}
 
 video {
   position: absolute;
@@ -240,23 +233,29 @@ section {
 /*CARROUSEL */
 
 .carousel-image {
-  width: 50rem;
-  height: 50rem; /* Establece el ancho deseado para las imágenes */
+  position: relative;
+  max-width: 50rem;
+  max-height: 50rem;  
 }
 /*carrousel container*/
+.carousel-wrapper {
+  z-index: 1;
+  margin-bottom: 20px; /* Agrega margen inferior según sea necesario */
+}
 .carousel-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60rem;
-  width: 100%;
+  /* width: 100%; */
 }
 
-.carousel-inner {
+/* .carousel-inner {
   max-width: 100%;
-}
+} */
 .carousel-item {
-  transition: transform 0.5s ease;
+  transition-duration: 2s ease;
+  transition-timing-function: 2s ease-in-out;
 }
 
 .carousel-item.active {
@@ -270,10 +269,71 @@ section {
 
 .carousel-item-next,
 .carousel-item-prev {
-  transform: translateX(100%);
+  transform: translateX(0);
+} 
+
+
+.carousel-control-next,
+.carousel-control-prev {
+  transition:1.5s; /* Ajusta la duración de la transición a tu preferencia */
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  opacity: 1.5; /* Ajusta la opacidad inicial a tu preferencia */
+  transition: opacity 1.5s; /* Ajusta la duración de la transición a tu preferencia */
+}
+
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+  opacity: 1; /* Ajusta la opacidad al pasar el cursor por encima a tu preferencia */
 }
 
 /* .carousel-item img {
-  width: 100%;
   height: auto;
 } */
+
+/*texto debajo del carrousel*/
+.h5carrousel {
+  font-size: 1.25rem;
+  color: black;
+}
+.pcarrousel {
+  color: #1c1c1d;
+  margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/*texto arriba carrousel*/
+.text-caption h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  
+  
+}
+
+.text-caption p {
+  font-size: 2.2rem;
+ 
+}
+
+.text-caption {
+  margin-top: 4rem;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #043847;
+}
+
+/*Iconos de Next y Previous*/
+.carousel-control-next-icon {
+  background: rgba(0, 0, 0, 0.486);
+  border-radius: 50%;
+}
+.carousel-control-prev-icon {
+  background: rgba(0, 0, 0, 0.486);
+  border-radius: 50%;
+}
