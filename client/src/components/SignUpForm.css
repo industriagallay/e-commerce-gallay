@@ -244,27 +244,10 @@
 }
 
 .slide-from-right span {
-  background: #fff;
+  color: #fff;
   background-color: transparent;
   display: inline-block;
-}
-
-.slide-from-right span:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.slide-from-right span:nth-child(2) {
-  animation-delay: 10s;
-  opacity: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: slideRightToLeft 10s infinite;
-}
-.slide-from-right span {
-  color: #ffffff; /* Cambia el color del texto a negro o el color deseado */
-  background-color: transparent;
-  display: inline-block;
-  /* opacity: 0; */
+  animation-delay: 3s;
 }
 
 .slide-from-right span:nth-child(1) {
@@ -272,7 +255,7 @@
 }
 
 .slide-from-right span:nth-child(2) {
-  animation-delay: 10s; /* Ajusta el delay según la duración de la animación */
+  animation-delay: 10s;
 }
 
 /* Agregar más selectores para cada texto adicional */
@@ -282,14 +265,11 @@
     transform: translateX(100%);
     opacity: 0;
   }
-  10%, 50% {
+  5%,
+  50% {
     opacity: 1;
   }
-  100% {
-  16%,
-  100% {
-    opacity: 1;
-  }
+
   100% {
     transform: translateX(-100%);
     opacity: 0;
