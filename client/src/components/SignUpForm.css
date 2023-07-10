@@ -238,6 +238,23 @@
 /*ESTILOS DEL TEXTOANIMACIÓN*/
 .slide-from-right {
   position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: slideRightToLeft 9s infinite;
+}
+
+.slide-from-right span {
+  background: #fff;
+  background-color: transparent;
+  display: inline-block;
+}
+
+.slide-from-right span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.slide-from-right span:nth-child(2) {
+  animation-delay: 10s;
   opacity: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -258,11 +275,17 @@
   animation-delay: 10s; /* Ajusta el delay según la duración de la animación */
 }
 
+/* Agregar más selectores para cada texto adicional */
+
 @keyframes slideRightToLeft {
   0% {
     transform: translateX(100%);
     opacity: 0;
   }
+  10%, 50% {
+    opacity: 1;
+  }
+  100% {
   16%,
   100% {
     opacity: 1;

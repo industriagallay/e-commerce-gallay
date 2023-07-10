@@ -6,6 +6,12 @@ import "./SignUpForm.css";
 const SignUpForm: React.FC = () => {
   return (
     <div>
+
+      <div className="header2">
+        <h2 className="slide-from-right">
+          <span>Registrate Y Disfrutá De Nuestras Ofertas{" "}</span>
+        </h2>
+
       <div className="container-fluid-md">
         <div className="header2">
           <h2 className="slide-from-right ">
