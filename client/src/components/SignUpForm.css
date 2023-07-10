@@ -238,18 +238,39 @@
 /*ESTILOS DEL TEXTOANIMACIÓN*/
 .slide-from-right {
   position: relative;
-  right: -100%;
-  animation: slideRightToLeft 3s ease forwards;
+
+  white-space: nowrap;
+  overflow: hidden;
+  animation: slideRightToLeft 9s infinite;
 }
+
+.slide-from-right span {
+  background: #fff;
+  background-color: transparent;
+  display: inline-block;
+}
+
+.slide-from-right span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.slide-from-right span:nth-child(2) {
+  animation-delay: 10s;
+}
+
+/* Agregar más selectores para cada texto adicional */
 
 @keyframes slideRightToLeft {
   0% {
-    right: -100%;
+    transform: translateX(100%);
     opacity: 0;
   }
+  10%, 50% {
+    opacity: 1;
+  }
   100% {
-    right: 0;
-    opacity: 2;
+    transform: translateX(-100%);
+    opacity: 0;
   }
 }
 

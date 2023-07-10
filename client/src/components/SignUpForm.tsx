@@ -8,7 +8,7 @@ const SignUpForm: React.FC = () => {
     <div>
       <div className="header2">
         <h2 className="slide-from-right">
-          Registrate Y Disfrutá De Nuestras Ofertas{" "}
+          <span>Registrate Y Disfrutá De Nuestras Ofertas{" "}</span>
         </h2>
       </div>
       <NavBar2 />

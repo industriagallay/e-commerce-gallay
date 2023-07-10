@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Playfair+Display&family=Poppins:wght@400;500&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap");
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: rgb(255 255 255 / 90%);
+}
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: var(--bs-navbar-toggler-icon-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background: #ffffffd0;
+  border-radius: 20%;
+}
+/*barra de navegacion*/
+.navbar-links-container {
+  margin-left: auto; /*esta propiedad alinea los enlaces a la derecha */
+  margin-right: 4rem;
+}
+.nav-link.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+}
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.navbar-links {
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+.navbar-links li {
+  margin-left: 3rem;
+}
+.navbar-links li:first-child {
+  margin-left: 0;
+}
+.navbar-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.navbar-links a:hover {
+  color: #ffffff;
+}
+/*icono navbar*/
+.navbar-logo {
+  margin-left: 7rem;
+  justify-self: flex-start;
+  color: #ffffff;
+  justify-self: start;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+.navbar-icon {
+  margin-right: 0.1rem;
+}
