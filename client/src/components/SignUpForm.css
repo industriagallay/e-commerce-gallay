@@ -238,18 +238,38 @@
 /*ESTILOS DEL TEXTOANIMACIÓN*/
 .slide-from-right {
   position: relative;
-  right: -100%;
-  animation: slideRightToLeft 3s ease forwards;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: slideRightToLeft 10s infinite;
+}
+.slide-from-right span {
+  color: #ffffff; /* Cambia el color del texto a negro o el color deseado */
+  background-color: transparent;
+  display: inline-block;
+  /* opacity: 0; */
+}
+
+.slide-from-right span:nth-child(1) {
+  animation-delay: 3s;
+}
+
+.slide-from-right span:nth-child(2) {
+  animation-delay: 10s; /* Ajusta el delay según la duración de la animación */
 }
 
 @keyframes slideRightToLeft {
   0% {
-    right: -100%;
+    transform: translateX(100%);
     opacity: 0;
   }
+  16%,
   100% {
-    right: 0;
-    opacity: 2;
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
   }
 }
 
