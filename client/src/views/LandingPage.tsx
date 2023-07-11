@@ -1,15 +1,16 @@
 import React from "react";
 import NavBar1 from "../components/NavBar1";
 import yunqueHerreroMP4 from "../assets/yunque-herrero.mp4";
-import cuchillob1 from "../assets/cuchillob1.webp"
-import cuchilloblanco from "../assets/cuchilloblanco.jpg"
-import cuchilloblanco1 from "../assets/cuchilloblanco1.webp"
+import cuchillob1 from "../assets/cuchillob1.webp";
+import cuchilloblanco from "../assets/cuchilloblanco.jpg";
+import cuchilloblanco1 from "../assets/cuchilloblanco1.webp";
+import "animate.css";
 import "./LandingPage.css";
 
 const LandingPage: React.FC = () => {
   return (
     <div>
-      <NavBar1/>
+      <NavBar1 />
       <div className="container-fluid-md">
         <div className="row">
           <div col-6="true">
@@ -24,12 +25,11 @@ const LandingPage: React.FC = () => {
       <div className="container text-center home">
         <div className="row align-items-center content">
           <div className="col-9 position-relative">
-            <h1>
-              {" "}
+            <h1 className="animate__animated animate__bounceInLeft  ">
               Industria <span> Gallay </span>
             </h1>
           </div>
-          <p>
+          <p className="animate__animated animate__fadeInLeftBig">
             {" "}
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed et
             labore ipsum accusamus beatae. Libero repellendus incidunt provident

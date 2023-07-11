@@ -3,6 +3,7 @@ import fundicion from "../assets/fundiciónPNG.png";
 import NavBar2 from "./NavBar2";
 import "./NavBar2.css";
 import "./Products.css";
+import "animate.css";
 const Products: React.FC = () => {
   return (
     <div>
