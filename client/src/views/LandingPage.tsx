@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar1 from "../components/NavBar1";
+import NavBar1 from "../components/navbar1/NavBar1";
 import yunqueHerreroMP4 from "../assets/yunque-herrero.mp4";
 import cuchillob1 from "../assets/cuchillob1.webp";
 import cuchilloblanco from "../assets/cuchilloblanco.jpg";
@@ -41,9 +41,9 @@ const LandingPage: React.FC = () => {
 
       <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
         <div className="row">
-          <p className="col order-last">ENVIOS A TODO EL PAÍS</p>
-          <h2 className="col">GALLAY LA MEJOR CALIDAD</h2>
-          <p className="col order-first">DESCUENTOS Y PRECIOS ÚNICOS</p>
+          <p className="col order-last animate__animated animate__fadeIn">ENVIOS A TODO EL PAÍS</p>
+          <h2 className="col animate__animated animate__jackInTheBox">GALLAY LA MEJOR CALIDAD</h2>
+          <p className="col order-first animate__animated animate__fadeIn">DESCUENTOS Y PRECIOS ÚNICOS</p>
         </div>
         <hr className="" />
       </div>

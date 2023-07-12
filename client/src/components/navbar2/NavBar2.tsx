@@ -4,7 +4,7 @@ import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import "./NavBar2.css";
 
-const NavBar2: React.FC = () => {
+const NavBar2 = () => {
   return (
     <div className="container-fluid navbar-container">
       <IconContext.Provider value={{ color: "#fff" }}>

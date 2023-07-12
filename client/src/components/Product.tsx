@@ -1,10 +1,11 @@
 import React from "react";
 import fundicion from "../assets/fundiciónPNG.png";
-import NavBar2 from "./NavBar2";
-import "./NavBar2.css";
-import "./Products.css";
+import NavBar2 from "./navbar2/NavBar2";
+import "./navbar2/NavBar2.css";
+import "./Product.css";
 import "animate.css";
-const Products: React.FC = () => {
+
+const Products = () => {
   return (
     <div>
       <NavBar2 />
