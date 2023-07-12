@@ -39,4 +39,16 @@
   }
 }
 
-/*css template*/
+/*css template cards*/
+
+.card-img {
+  height: 210px !important;
+}
+
+.card-title {
+  font-size: 15px !important;
+}
+
+.card-description {
+  font-size: 15px !important;
+}

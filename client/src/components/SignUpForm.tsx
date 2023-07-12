@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar2 from "./NavBar2";
+import NavBar2 from "./navbar2/NavBar2";
 import { Link } from "react-router-dom";
 import "./SignUpForm.css";
 
