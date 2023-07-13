@@ -1,0 +1,196 @@
+/*preguntas frecuentes titulo*/
+.preguntasFrecuentes {
+  font-size: 4.5rem;
+  color: #f1e312d2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 40px;
+}
+/*parrafo/titulo*/
+.parradopreguntasFrecuentes {
+  font-size: 2.1rem;
+  color: #f1e312d2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 40px;
+}
+
+/*Bottones Section--Info*/
+.bottonInfo-container {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: flex-start;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  margin-left: 100px;
+  width: 14rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936b7;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #ffe46ed2;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fffd6f;
+  border-right: 0.125rem solid #ffef61;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 110%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fdff69;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #ffffff;
+}
+
+/*Cart-Horizontal*/
+
+.card1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  padding: 32px;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  color: #000000;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content2 .heading2 {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.content2 .para2 {
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.content2 .btn2 {
+  color: #ebebeb;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(-45deg, #f89b29 0%, #e4d503 100%);
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(-45deg, #b46f1b00 0%, #9c9a03 100%);
+  z-index: -1;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card1:hover::before {
+  height: 100%;
+}
+
+.card1:hover {
+  box-shadow: none;
+}
+
+.card1:hover .btn {
+  color: #ffffff;
+  background: #000000;
+}
+
+.content2 .btn2:hover {
+  outline: 2px solid #ffffff;
+  background: transparent;
+  color: #000000;
+}
+
+.content2 .btn2:active {
+  box-shadow: none;
+}
