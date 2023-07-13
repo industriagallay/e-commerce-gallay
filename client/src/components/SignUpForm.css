@@ -22,7 +22,7 @@
 }
 
 /*FORMULARIO*/
-.form {
+.SignUpform {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -277,162 +277,71 @@
 }
 
 /*estilos de la card*/
-.card {
-  margin-top: 150px;
-  overflow: hidden;
-  border-radius: 0.5rem;
-  max-width: 400px;
-  background-color: #fff;
-  color: #212121;
-}
-
-.image {
-  height: 11rem;
-  width: 100%;
-  object-fit: cover;
-  background-color: rgb(98, 0, 255);
-  background-image: linear-gradient(
-    to right,
-    rgb(0, 255, 191),
-    rgb(153, 0, 255)
-  );
-}
-
-.content {
-  padding: 1.1rem;
+.parrafoProducto {
+  color: #fff;
   text-align: center;
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+.cardOff {
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  background-color: rgba(0, 0, 0, 1);
+  padding: 1.5rem;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
 }
 
-.text-1 {
-  font-size: 1.1rem;
-  line-height: 3.25rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.text-2 {
-  margin-top: 1rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.text-2 span:first-child {
-  font-size: 2.5rem;
-  line-height: 4.5rem;
-  font-weight: 900;
-}
-
-.text-2 span:last-child {
-  margin-top: 1.5rem;
-  display: block;
-  font-size: 1.1rem;
-  line-height: 2.25rem;
-}
-
-.action {
-  margin-top: 1.19rem;
-  display: inline-block;
-  width: 100%;
-  background-color: rgb(0, 0, 0);
-  padding-top: 1.15rem;
-  padding-bottom: 1.15rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.priceOff {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 600;
   color: rgba(255, 255, 255, 1);
-  text-decoration: none;
 }
 
-.date {
+.listsOff {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 0.75rem;
+  row-gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgba(255, 255, 255, 1);
+}
+
+.listOff {
+  display: flex;
+  align-items: center;
+}
+
+.listOff svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.listOff span {
+  margin-left: 1rem;
+}
+
+.actionOff {
   margin-top: 2rem;
-  font-size: 0.9rem;
-  line-height: 1.15rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: rgba(156, 163, 175, 1);
-}
-
-/*card2*/
-
-.card2 {
-  margin-top: 150px;
-  overflow: hidden;
-  border-radius: 0.5rem;
-  max-width: 400px;
-  background-color: #fff;
-  color: #212121;
-}
-
-.image2 {
-  height: 11rem;
   width: 100%;
-  object-fit: cover;
-  background-color: rgb(98, 0, 255);
-  background-image: linear-gradient(
-    to right,
-    rgb(0, 255, 191),
-    rgb(153, 0, 255)
-  );
-}
-
-.content2 {
-  padding: 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 0.625rem 1.5rem;
+  font-weight: 600;
   text-align: center;
-}
-
-.text-2 {
-  font-size: 1.1rem;
-  line-height: 3.25rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.text-3 {
-  margin-top: 1rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.text-3 span:first-child {
-  font-size: 2.5rem;
-  line-height: 4.5rem;
-  font-weight: 900;
-}
-
-.text-3 span:last-child {
-  margin-top: 1.5rem;
-  display: block;
-  font-size: 1.1rem;
-  line-height: 2.25rem;
-}
-
-.action2 {
-  margin-top: 1.19rem;
-  display: inline-block;
-  width: 100%;
-  background-color: rgb(0, 0, 0);
-  padding-top: 1.15rem;
-  padding-bottom: 1.15rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 1);
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 1);
+  outline: none;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.date2 {
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  line-height: 1.15rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: rgba(156, 163, 175, 1);
+.actionOff:hover {
+  color: rgba(255, 255, 255, 1);
+  background-color: transparent;
 }
