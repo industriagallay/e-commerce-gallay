@@ -207,8 +207,8 @@ const Help: React.FC = () => {
         )}
       </section>
 
-      <div className="card1 container-fluid">
-        <div className="content2">
+      <div className="cardregistrarse container-fluid">
+        <div className="contentHelp">
           <p className="heading2">¿Cual es tu Consulta?</p>
           <p className="para2">
             Para realizar una consulta es necesario que inicies sesión en tu

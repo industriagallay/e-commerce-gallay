@@ -117,7 +117,7 @@ button:hover .button-text {
 
 /*Cart-Horizontal*/
 
-.card1 {
+.cardregistrarse {
   position: relative;
   display: flex;
   align-items: center;
@@ -129,7 +129,7 @@ button:hover .button-text {
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.content2 {
+.contentHelp {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -138,17 +138,17 @@ button:hover .button-text {
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.content2 .heading2 {
+.contentHelp .heading2 {
   font-weight: 700;
   font-size: 32px;
 }
 
-.content2 .para2 {
+.contentHelp .para2 {
   line-height: 1.5;
   font-size: 1rem;
 }
 
-.content2 .btn2 {
+.contentHelp .btn2 {
   color: #ebebeb;
   text-decoration: none;
   padding: 10px;
@@ -160,7 +160,7 @@ button:hover .button-text {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.card1::before {
+.cardregistrarse::before {
   content: "";
   position: absolute;
   left: 0;
@@ -172,15 +172,15 @@ button:hover .button-text {
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.card1:hover::before {
+.cardregistrarse:hover::before {
   height: 100%;
 }
 
-.card1:hover {
+.cardregistrarse:hover {
   box-shadow: none;
 }
 
-.card1:hover .btn {
+.cardregistrarse:hover .btn {
   color: #ffffff;
   background: #000000;
 }
