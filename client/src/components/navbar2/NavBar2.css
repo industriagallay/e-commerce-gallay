@@ -91,3 +91,9 @@ body {
   background-color: #000000;
   margin-right: 0.1rem;
 }
+
+/*navbar container*/
+.navbar-container {
+  padding-left: 0;
+  padding-right: 0;
+}
