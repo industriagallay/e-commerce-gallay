@@ -1,19 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap");
-/*----- VARIABLES CSS -----*/
-/*Varibles en general*/
+ @import url("https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap");
+
 :root {
-  /* Colors */
+
   --first-color: #010A43;
   --second-color: #FFC2C2;
   --white-color: #fff;
-  /* Font and typography */
+ 
   --body-font: 'Tinos', serif;
   --h1-font-size: 2.3rem;
   --h2-font-size: 2.3rem;
   --normal-font-size: 0.93rem;
   --big-font-size: 5rem;
   --smaller-font-size: 0.75rem;
-  /* z index */
+
   --z-fixed: 100;
 }
 
@@ -27,43 +26,43 @@
   }
 }
 
-/*----- BASE -----*/
-*, ::before, ::after {
-  box-sizing: border-box;
-}
 
-body {
+/* *, ::before, ::after {
+  box-sizing: border-box;
+}   */
+
+ /* body {
   margin: 3.5rem 0 0 0;
   font-family: var(--body-font);
   font-weight: initial;
   overflow: hidden;
-}
+}  */
 
-h1, h2 {
+/* h1, h2 {
   margin: 0;
   font-weight: initial;
-}
+} */
 
-ul {
+/* ul {
   margin: 0;
   padding: 0;
   list-style: none;
-}
+} */
 
-a {
+/* a {
   text-decoration: none;
-}
+} */
 
-img {
+/* img {
   max-width: 100%;
   height: auto;
-}
+} */
 
-p {
+/* p {
   font-size: var(--normal-font-size);
-}
+} */
 
-/*----- LAYOUT -----*/
+
 .bd-grid {
   max-width: 1200px;
   margin-left: 1rem;
@@ -80,8 +79,8 @@ p {
   z-index: var(--z-fixed);
 }
 
-/*----- PAGES -----*/
-/*Nav*/
+
+
 .nav {
   height: 3.5rem;
   display: flex;
@@ -132,12 +131,12 @@ p {
   text-align: right;
 }
 
-/*Aparecer menu*/
+
 .show {
   left: 0;
 }
 
-/*Home*/
+
 .home {
   position: relative;
   display: grid;
@@ -147,7 +146,7 @@ p {
 
 .home__primary {
   width: 0;
-  /*Animation*/
+
   background-color:#ecb10d;
   display: flex;
   justify-content: space-evenly;
@@ -170,7 +169,7 @@ p {
 
 .home__secondary {
   width: 0;
-  /*Animation*/
+
   background-color: #1d0a00;
   display: flex;
   align-items: center;
@@ -199,7 +198,7 @@ p {
 }
 
 .home__year {
-  font-size: var(--big-font-size);
+  font-size: 5rem;
   -webkit-text-stroke: 2.3px var(--first-color);
   color: transparent;
   color: #fff;
@@ -236,7 +235,7 @@ p {
   }
   .home__img img {
     position: absolute;
-    width: 361px;
+    width: 26rem;
     top: 5%;
     left: 0;
     right: 0;
@@ -263,4 +262,4 @@ p {
   .nav {
     height: calc(3.5rem + 1.5rem);
   }
-}
+} 

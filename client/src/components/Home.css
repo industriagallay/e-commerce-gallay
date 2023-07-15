@@ -1,5 +1,5 @@
-/*imagen home hero*/
-/* #my-custom-row.row {
+/* imagen home hero*/
+ /* #my-custom-row.row {
   padding-right: 0;
   padding-left: 0;
 }
@@ -7,22 +7,17 @@
   width: 100%;
   padding-left: 0;
   padding-right: 0;
-} */
+}  */
 
 
-/* estilos agreegados landingpage stetica queen
-@charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;600&family=Playfair+Display&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap"); */
-/* --VARIABLES CSS-- */
-/* --Variables en General-- */
-/*COLORES*/
- :root {
+
+  :root {
   --first-color: #010a43;
   --second-color: #ffc2c2;
   --white-color: #fff;
 } 
 
-/*FUENTE Y TIPOGRAFÍA*/
+
  :root {
   --body-font: "Inter", serif;
   --h1-font-size: 2.3rem;
@@ -41,7 +36,7 @@
   }
 } 
 
-/*Z-INDEX*/ 
+ 
 :root {
   --z-back: -10;
   --z-normal: 1;
@@ -50,7 +45,7 @@
   --z-modal: 1000;
 } 
 
-/*-----BASE----*/
+/* 
 *,
 ::before,
 ::after {
@@ -87,9 +82,9 @@ img {
 
 p {
   font-size: var(--normal-font-size);
-}
+} */
 
-/*----LAYOUT----*/
+
 .bd-grid {
   max-width: 1200px;
   margin-left: 1rem;
@@ -106,8 +101,7 @@ p {
   z-index: var(--z-fixed);
 }
 
-/*----PAGES----*/
-/*NAV*/
+
 .nav {
   height: 3rem;
   display: flex;
@@ -151,12 +145,12 @@ p {
   text-align: right;
 }
 
-/*APARECER MENU*/
+
 .show {
   left: 0;
 }
 
-/* HOME */
+
 .home {
   position: relative;
   display: grid;
@@ -214,7 +208,7 @@ p {
   color: transparent;
 }
 
-/*----- MEDIA QUERIES -----*/
+
 @media screen and (min-width: 768px) {
   body {
     margin: 0;
@@ -266,4 +260,4 @@ p {
     margin-left: auto;
     margin-right: auto;
   }
-}/*# sourceMappingURL=LandingPage.css.map */
+} 
