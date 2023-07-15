@@ -1,15 +1,13 @@
-@charset "UTF-8";
+/* @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;600&family=Playfair+Display&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap");
-/* --VARIABLES CSS-- */
-/* --Variables en General-- */
-/*COLORES*/
+
 :root {
   --first-color: #010a43;
   --second-color: #ffc2c2;
   --white-color: #fff;
 }
 
-/*FUENTE Y TIPOGRAFÍA*/
+
 :root {
   --body-font: "Inter", serif;
   --h1-font-size: 2.3rem;
@@ -28,7 +26,7 @@
   }
 }
 
-/*Z-INDEX*/
+
 :root {
   --z-back: -10;
   --z-normal: 1;
@@ -37,7 +35,6 @@
   --z-modal: 1000;
 }
 
-/*-----BASE----*/
 *,
 ::before,
 ::after {
@@ -76,7 +73,6 @@ p {
   font-size: var(--normal-font-size);
 }
 
-/*----LAYOUT----*/
 .bd-grid {
   max-width: 100%;
   margin-left: 1rem;
@@ -93,8 +89,7 @@ p {
   z-index: var(--z-fixed);
 }
 
-/*----PAGES----*/
-/*NAV*/
+
 .nav {
   height: 3rem;
   display: flex;
@@ -138,7 +133,7 @@ p {
   text-align: right;
 }
 
-/*APARECER MENU*/
+
 .show {
   left: 0;
-} /*# sourceMappingURL=LandingPage.css.map */
+}  */
