@@ -193,9 +193,9 @@ const SignUpForm: React.FC = () => {
                   <span> Servicio 24/7 </span>
                 </li>
               </ul>
-              <a href="#" className="actionOff">
-                Get started
-              </a>
+              {/* <Link to="/products" >
+                <button className="actionOff">Get started</button> 
+              </Link> */}
             </div>
           </div>
         </div>
