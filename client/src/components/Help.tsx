@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NavBar2 from "./navbar2/NavBar2";
+import { Link } from "react-router-dom";
 import "./navbar2/NavBar2.css";
 import "./Help.css";
 
@@ -41,7 +42,7 @@ const Help: React.FC = () => {
       <h1 className="preguntasFrecuentes animate__animated animate__fadeInTopLeft">
         Preguntas Frecuentes
         <p className="parradopreguntasFrecuentes">
-          Industria Gallay esta a su Servicio ¿En qué podemos Ayudarte?
+          Industria Gallay está a su Servicio ¿En qué podemos Ayudarte?
         </p>
       </h1>
 
@@ -214,7 +215,9 @@ const Help: React.FC = () => {
             Para realizar una consulta es necesario que inicies sesión en tu
             cuenta
           </p>
-          <button className="btn2">Registrarse</button>
+          <Link to="/signup">
+            <button className="btn2">R e g i s t r a r s e</button>
+          </Link>
         </div>
       </div>
     </div>
