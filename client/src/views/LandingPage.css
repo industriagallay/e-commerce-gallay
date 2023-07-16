@@ -1,23 +1,25 @@
- @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Playfair+Display&family=Poppins:wght@400;500&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Playfair+Display&family=Poppins:wght@400;500&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap");
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .show > .nav-link {
   color: rgb(255 255 255 / 90%);
-} 
+}
 body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
   font-family: "Poppins", sans-serif;
-} 
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-} 
-
-
+}
+/*elimina el scroll Horizontal*/
+.container-fluid-md {
+  overflow-x: hidden;
+}
 
 .navbar-toggler-icon {
   display: inline-block;
@@ -99,7 +101,6 @@ body {
   position: relative;
 }
 
-
 video {
   position: absolute;
   top: 0;
@@ -133,21 +134,21 @@ video {
   align-items: center;
   padding: 15px 200px;
   transition: 0.5s ease;
-} 
+}
 
- .navbar .nav-logo {
+.navbar .nav-logo {
   color: #fff;
   font-size: 1.5em;
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
-} 
+}
 
- .navbar .nav-items {
+.navbar .nav-items {
   position: relative;
-} 
+}
 
- .navbar .nav-items a {
+.navbar .nav-items a {
   position: relative;
   color: #fff;
   font-size: 1em;
@@ -155,9 +156,9 @@ video {
   text-decoration: none;
   margin-left: 80px;
   transition: 0.3s ease;
-} 
+}
 
- .navbar .nav-items a:before {
+.navbar .nav-items a:before {
   content: "";
   position: absolute;
   background: #ffff;
@@ -166,36 +167,19 @@ video {
   bottom: 0;
   left: 0;
   transition: 0.3s ease;
-} 
-
- .navbar .nav-items a:hover:before {
-  width: 100%;
-} 
-
-section {
-  padding: 100px 200px;
 }
+
+.navbar .nav-items a:hover:before {
+  width: 100%;
+}
+
+/* section {
+  padding: 100px 200px;
+} */
 
 /* texto de la home */
-
-.home {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  /* background: ; */
-}
-
-.home .content {
-  z-index: 888;
-  color: #fff;
-  width: 70%;
-  margin-top: 50px;
-}
-
-.home .content h1 {
+.industria,
+.gallay {
   font-size: 4em;
   font-weight: 900;
   text-transform: uppercase;
@@ -204,16 +188,51 @@ section {
   margin-bottom: 40px;
 }
 
-.home .content h1 span {
+.industria {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.gallay {
+  display: inline-block;
+  margin-top: 70px;
+}
+
+.homeLanding {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+}
+
+.homeLanding .content {
+  z-index: 888;
+  color: #fff;
+  width: 70%;
+  margin-top: 50px;
+}
+
+.homeLanding .content h1 {
+  font-size: 4em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 75px;
+  margin-bottom: 40px;
+}
+
+.homeLanding .content h1 span {
   font-size: 1.2em;
   font-weight: 600;
 }
 
-.home .content p {
+.homeLanding .content p {
   margin-bottom: 65px;
 }
 
-.home .content a {
+.homeLanding .content a {
   background: #fff;
   padding: 15px 35px;
   color: #3d597e;
@@ -222,7 +241,7 @@ section {
   text-decoration: none;
   border-radius: 2px;
 }
-.home .content {
+.homeLanding .content {
   width: 90%;
   margin-top: 20px;
 }
@@ -235,7 +254,7 @@ section {
 .carousel-image {
   position: relative;
   max-width: 50rem;
-  max-height: 50rem;  
+  max-height: 50rem;
 }
 /*carrousel container*/
 .carousel-wrapper {
@@ -270,12 +289,11 @@ section {
 .carousel-item-next,
 .carousel-item-prev {
   transform: translateX(0);
-} 
-
+}
 
 .carousel-control-next,
 .carousel-control-prev {
-  transition:1.5s; /* Ajusta la duración de la transición a tu preferencia */
+  transition: 1.5s; /* Ajusta la duración de la transición a tu preferencia */
 }
 
 .carousel-control-next-icon,
@@ -301,20 +319,17 @@ section {
 .pcarrousel {
   color: #1c1c1d;
   margin-top: 0;
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 /*texto arriba carrousel*/
 .text-caption h2 {
   font-size: 2.5rem;
   font-weight: bold;
-  
-  
 }
 
 .text-caption p {
   font-size: 2.2rem;
- 
 }
 
 .text-caption {
@@ -326,6 +341,12 @@ section {
   transform: translateX(-50%);
   text-align: center;
   color: #043847;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%; */
 }
 
 /*Iconos de Next y Previous*/
