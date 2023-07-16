@@ -4,6 +4,9 @@ import yunqueHerreroMP4 from "../assets/yunque-herrero.mp4";
 import cuchillob1 from "../assets/cuchillob1.webp";
 import cuchilloblanco from "../assets/cuchilloblanco.jpg";
 import cuchilloblanco1 from "../assets/cuchilloblanco1.webp";
+import arte1 from "../assets/arte1.PNG.png";
+import arte2 from "../assets/arte2.PNG.png";
+import arte3 from "../assets/arte3.PNG.png";
 import "animate.css";
 import "./LandingPage.css";
 
@@ -19,34 +22,53 @@ const LandingPage: React.FC = () => {
             </video>
             <div className="capa"></div>
           </div>
-        </div>
-      </div>
 
-      <div className="container text-center home">
-        <div className="row align-items-center content">
-          <div className="col-9 position-relative">
-            <h1 className="animate__animated animate__bounceInLeft  ">
-              Industria <span> Gallay </span>
-            </h1>
+          <div className="container text-center homeLanding">
+            <div className="row align-items-center content">
+              <div className="col-12 position-relative">
+                <h1 className="textoHome animate__animated animate__zoomIn  ">
+                  <div className="industria">Industria</div>
+                  <div className="gallay">Gallay</div>
+                </h1>
+              </div>
+            </div>
           </div>
-          <p className="animate__animated animate__fadeInLeftBig">
-            {" "}
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed et
-            labore ipsum accusamus beatae. Libero repellendus incidunt provident
-            ea minus magni vero necessitatibus, doloribus rerum quae, temporibus
-            officia laborum quod!
-          </p>
         </div>
       </div>
-
-      <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
+      <section>
+        <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
+          <div className="row">
+            <p className="col order-last animate__animated animate__fadeIn">
+              ENVIOS A TODO EL PAÍS
+            </p>
+            <h2 className="col animate__animated animate__jackInTheBox">
+              GALLAY LA MEJOR CALIDAD
+            </h2>
+            <p className="col order-first animate__animated animate__fadeIn">
+              DESCUENTOS Y PRECIOS ÚNICOS
+            </p>
+          </div>
+          <hr className="" />
+        </div>
+      </section>
+      {/* <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
         <div className="row">
-          <p className="col order-last animate__animated animate__fadeIn">ENVIOS A TODO EL PAÍS</p>
-          <h2 className="col animate__animated animate__jackInTheBox">GALLAY LA MEJOR CALIDAD</h2>
-          <p className="col order-first animate__animated animate__fadeIn">DESCUENTOS Y PRECIOS ÚNICOS</p>
+          <div className="col order-last animate__animated animate__fadeIn">
+            <p>ENVIOS A TODO EL PAÍS</p>
+          </div>
         </div>
-        <hr className="" />
-      </div>
+        <div className="row">
+          <div className="col animate__animated animate__jackInTheBox">
+            <h2>GALLAY LA MEJOR CALIDAD</h2>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col order-first animate__animated animate__fadeIn">
+            <p>DESCUENTOS Y PRECIOS ÚNICOS</p>
+          </div>
+        </div>
+        <hr />
+      </div> */}
 
       <div className="carousel-wrapper my-5">
         <div className="carousel-container col-12">
@@ -80,7 +102,7 @@ const LandingPage: React.FC = () => {
             <div className="carousel-inner" data-bs-interval="5000">
               <div className="carousel-item active">
                 <img
-                  src={cuchillob1}
+                  src={arte1}
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
@@ -93,7 +115,7 @@ const LandingPage: React.FC = () => {
               </div>
               <div className="carousel-item">
                 <img
-                  src={cuchilloblanco}
+                  src={arte2}
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
@@ -107,7 +129,7 @@ const LandingPage: React.FC = () => {
               </div>
               <div className="carousel-item">
                 <img
-                  src={cuchilloblanco1}
+                  src={arte3}
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />

@@ -1,5 +1,5 @@
 /* imagen home hero*/
- /* #my-custom-row.row {
+/* #my-custom-row.row {
   padding-right: 0;
   padding-left: 0;
 }
@@ -9,24 +9,21 @@
   padding-right: 0;
 }  */
 
-
-
-  :root {
+:root {
   --first-color: #010a43;
   --second-color: #ffc2c2;
   --white-color: #fff;
-} 
+}
 
-
- :root {
+:root {
   --body-font: "Inter", serif;
   --h1-font-size: 2.3rem;
   --h2-font-size: 2.3rem;
   --normal-font-size: 0.93rem;
   --big-font-size: 5rem;
   --smaller-font-size: 0.75rem;
-} 
- @media screen and (min-width: 768) {
+}
+@media screen and (min-width: 768) {
   :root {
     --h1-font-size: 4.5rem;
     --h2-font-size: 3.56rem;
@@ -34,16 +31,15 @@
     --big-font-size: 10rem;
     --smaller-font-size: 0.813rem;
   }
-} 
+}
 
- 
 :root {
   --z-back: -10;
   --z-normal: 1;
   --z-tooltip: 10;
   --z-fixed: 100;
   --z-modal: 1000;
-} 
+}
 
 /* 
 *,
@@ -84,7 +80,6 @@ p {
   font-size: var(--normal-font-size);
 } */
 
-
 .bd-grid {
   max-width: 1200px;
   margin-left: 1rem;
@@ -100,7 +95,6 @@ p {
   color: var(--white-color);
   z-index: var(--z-fixed);
 }
-
 
 .nav {
   height: 3rem;
@@ -145,11 +139,9 @@ p {
   text-align: right;
 }
 
-
 .show {
   left: 0;
 }
-
 
 .home {
   position: relative;
@@ -208,7 +200,6 @@ p {
   color: transparent;
 }
 
-
 @media screen and (min-width: 768px) {
   body {
     margin: 0;
@@ -260,4 +251,4 @@ p {
     margin-left: auto;
     margin-right: auto;
   }
-} 
+}

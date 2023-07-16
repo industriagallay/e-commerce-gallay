@@ -46,7 +46,7 @@ const Help: React.FC = () => {
         </p>
       </h1>
 
-      <section className="">
+      <section className="container-md section-preguntas">
         <button
           className="learn-more bottonInfo-container "
           onClick={() => toggleCollapse("pregunta1")}
@@ -207,19 +207,20 @@ const Help: React.FC = () => {
           </div>
         )}
       </section>
-
-      <div className="cardregistrarse container-fluid">
-        <div className="contentHelp">
-          <p className="heading2">¿Cual es tu Consulta?</p>
-          <p className="para2">
-            Para realizar una consulta es necesario que inicies sesión en tu
-            cuenta
-          </p>
-          <Link to="/signup">
-            <button className="btn2">R e g i s t r a r s e</button>
-          </Link>
+      <section className="container-md">
+        <div className="cardregistrarse container-fluid">
+          <div className="contentHelp">
+            <p className="heading2">¿Cual es tu Consulta?</p>
+            <p className="para2">
+              Para realizar una consulta es necesario que inicies sesión en tu
+              cuenta
+            </p>
+            <Link to="/signup">
+              <button className="btn2">R e g i s t r a r s e</button>
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
