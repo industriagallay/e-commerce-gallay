@@ -38,7 +38,7 @@ const SignUpForm: React.FC = () => {
                   Forget password?
                 </Link>
                 <p className="signup-link">
-                  Don't have an account? <Link to="">Sign up</Link>
+                  Don't have an account? <Link to="/login">Sign up</Link>
                 </p>
               </div>
             </form>

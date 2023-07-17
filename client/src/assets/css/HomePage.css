@@ -1,4 +1,4 @@
-/* @charset "UTF-8";
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;600&family=Playfair+Display&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap");
 
 :root {
@@ -35,7 +35,7 @@
   --z-modal: 1000;
 }
 
-*,
+/* *,
 ::before,
 ::after {
   box-sizing: border-box;
@@ -71,7 +71,7 @@ img {
 
 p {
   font-size: var(--normal-font-size);
-}
+} */
 
 .bd-grid {
   max-width: 100%;
@@ -136,4 +136,4 @@ p {
 
 .show {
   left: 0;
-}  */
+} 
