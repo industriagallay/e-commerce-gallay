@@ -17,28 +17,29 @@ const SignUpForm: React.FC = () => {
         <div className="row">
           <div className="col-6">
             <form className="SignUpform ml-auto">
-              <div className="header">Sign In</div>
+              <div className="header">
+                Crea tu cuenta para que puedas acceder a todos los productos que
+                tenemos especialmente para tí
+              </div>
               <div className="inputs">
-                <input placeholder="Email" className="input" type="text" />
+                <input type="text" placeholder="nombre" className="input" />
+                <input type="text" placeholder="apellido" className="input" />
                 <input
-                  placeholder="Password"
+                  placeholder="correo electrónico"
+                  className="input"
+                  type="text"
+                />
+                <input type="number" placeholder="DNI" className="input" />
+                <input type="number" placeholder="telefono" className="input" />
+                <input
+                  placeholder="contraseña"
                   className="input"
                   type="password"
                 />
-                <div className="checkbox-container">
-                  <label className="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                  </label>
-                  <label htmlFor="checkbox" className="checkbox-text">
-                    Remember me
-                  </label>
-                </div>
-                <button className="sigin-btn">Submit</button>
-                <Link to="/" aria-current="page" className="forget">
-                  Forget password?
-                </Link>
+                <div className="checkbox-container"></div>
+                <button className="sigin-btn">Crear Cuenta</button>
                 <p className="signup-link">
-                  Don't have an account? <Link to="/login">Sign up</Link>
+                  ya tenes cuenta? <Link to="/login">Inicia sesión</Link>
                 </p>
               </div>
             </form>

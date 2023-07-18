@@ -120,12 +120,7 @@ const LandingPage: React.FC = () => {
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5 className="h5carrousel">First slide label</h5>
-                  <p className="pcarrousel">
-                    Some representative placeholder content for the first slide.
-                  </p>
-                </div>
+               
               </div>
               <div className="carousel-item">
                 <img
@@ -133,13 +128,7 @@ const LandingPage: React.FC = () => {
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5 className="h5carrousel">Second slide label</h5>
-                  <p className="pcarrousel">
-                    Some representative placeholder content for the second
-                    slide.
-                  </p>
-                </div>
+                
               </div>
               <div className="carousel-item">
                 <img
@@ -147,12 +136,7 @@ const LandingPage: React.FC = () => {
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5 className="h5carrousel">Third slide label</h5>
-                  <p className="pcarrousel">
-                    Some representative placeholder content for the third slide.
-                  </p>
-                </div>
+                
               </div>
             </div>
             <button

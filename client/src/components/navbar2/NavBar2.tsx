@@ -39,7 +39,7 @@ const NavBar2 = () => {
                       className="nav-link active"
                       aria-current="page"
                     >
-                      Home
+                      Inicio
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -48,7 +48,7 @@ const NavBar2 = () => {
                       className="nav-link active"
                       aria-current="page"
                     >
-                      Products
+                      Productos
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -57,7 +57,7 @@ const NavBar2 = () => {
                       className="nav-link active"
                       aria-current="page"
                     >
-                      Help
+                      Ayuda
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -66,7 +66,7 @@ const NavBar2 = () => {
                       className="nav-link active"
                       aria-current="page"
                     >
-                      Signup
+                      Iniciar Sesion
                     </Link>
                   </li>
                 </ul>
