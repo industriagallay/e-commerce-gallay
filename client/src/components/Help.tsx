@@ -4,36 +4,25 @@ import { Link } from "react-router-dom";
 import "./navbar2/NavBar2.css";
 import "./Help.css";
 
-type CollapseStates = {
-  pregunta1: boolean;
-  pregunta2: boolean;
-  pregunta3: boolean;
-  pregunta4: boolean;
-  pregunta5: boolean;
-  pregunta6: boolean;
-  pregunta7: boolean;
-  pregunta8: boolean;
-  pregunta9: boolean;
-};
+// type CollapseStates = {
+//   pregunta1: boolean;
+//   pregunta2: boolean;
+//   pregunta3: boolean;
+//   pregunta4: boolean;
+//   pregunta5: boolean;
+//   pregunta6: boolean;
+//   pregunta7: boolean;
+//   pregunta8: boolean;
+//   pregunta9: boolean;
+// };
 
 const Help: React.FC = () => {
-  const [collapseStates, setCollapseStates] = useState<CollapseStates>({
-    pregunta1: false,
-    pregunta2: false,
-    pregunta3: false,
-    pregunta4: false,
-    pregunta5: false,
-    pregunta6: false,
-    pregunta7: false,
-    pregunta8: false,
-    pregunta9: false,
-  });
-
-  const toggleCollapse = (pregunta: keyof CollapseStates) => {
-    setCollapseStates((prevState) => ({
-      ...prevState,
-      [pregunta]: !prevState[pregunta],
-    }));
+  /*abrir un mensaje a la vez*/
+  const [openMessage, setOpenMessage] = useState<string | null>(null);
+  const toggleCollapse = (pregunta: string) => {
+    setOpenMessage((prevMessage) =>
+      prevMessage === pregunta ? null : pregunta
+    );
   };
 
   return (
@@ -56,7 +45,7 @@ const Help: React.FC = () => {
           </span>
           <span className="button-text">Realizar un Pedido</span>
         </button>
-        {collapseStates.pregunta1 && (
+        {openMessage === "pregunta1" && (
           <div className="collapse show">
             <p className="textoInfo">
               ¿Cómo realizo un pedido? Solo tenés que seleccionar todos los
@@ -83,7 +72,7 @@ const Help: React.FC = () => {
           </span>
           <span className="button-text">Precio</span>
         </button>
-        {collapseStates.pregunta2 && (
+        {openMessage === "pregunta2" && (
           <div className="collapse show">
             <p className="textoInfo">
               ¿El precio que figura en la web es el precio final? Todos los
@@ -102,7 +91,7 @@ const Help: React.FC = () => {
           </span>
           <span className="button-text">Formas de Pago</span>
         </button>
-        {collapseStates.pregunta3 && (
+        {openMessage === "pregunta3" && (
           <div className="collapse show">
             <p className="textoInfo">
               ¿Cuáles son las formas de pago? Contamos con dos formas de pago: a
@@ -124,7 +113,7 @@ const Help: React.FC = () => {
           </span>
           <span className="button-text">Depósito T.Bancaria</span>
         </button>
-        {collapseStates.pregunta4 && (
+        {openMessage === "pregunta4" && (
           <div className="collapse show">
             <p className="textoInfo">
               ¿Cómo abono a través de depósito/transferencia? Una vez se realiza
@@ -143,7 +132,7 @@ const Help: React.FC = () => {
           </span>
           <span className="button-text">Mercadopago</span>
         </button>
-        {collapseStates.pregunta5 && (
+        {openMessage === "pregunta5" && (
           <div className="collapse show">
             <p className="textoInfo">
               ¿Cómo puedo abonar a través de MercadoPago? Podés hacerlo de tres
@@ -165,7 +154,7 @@ const Help: React.FC = () => {
           </span>
           <span className="button-text">Envíos</span>
         </button>
-        {collapseStates.pregunta6 && (
+        {openMessage === "pregunta6" && (
           <div className="collapse show">
             <p className="textoInfo">
               ¿Cómo gestiono el envío de mi pedido? En primer lugar, para
@@ -192,7 +181,7 @@ const Help: React.FC = () => {
           </span>
           <span className="button-text">Facturacíon</span>
         </button>
-        {collapseStates.pregunta7 && (
+        {openMessage === "pregunta7" && (
           <div className="collapse show">
             <p className="textoInfo">
               ¿Cómo tramito la factura de mi compra? En todas las compras
