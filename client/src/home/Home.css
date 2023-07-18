@@ -1,14 +1,3 @@
-/* imagen home hero*/
-/* #my-custom-row.row {
-  padding-right: 0;
-  padding-left: 0;
-}
-#my-custom-row.row img {
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-}  */
-
 :root {
   --first-color: #010a43;
   --second-color: #ffc2c2;
@@ -251,4 +240,14 @@ p {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+/*Filstros*/
+.select-padding.col-md-8 {
+  flex: 0 0 auto;
+  width: 66.66666667%;
+  padding-right: 6rem;
+}
+.transparent-text {
+  color: transparent;
 }

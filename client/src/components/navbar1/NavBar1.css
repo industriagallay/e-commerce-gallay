@@ -16,9 +16,10 @@ body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-
-
-
+/*color hover del logo*/
+a:hover {
+  color: #d7e745;
+}
 .navbar-toggler-icon {
   display: inline-block;
   width: 1.5em;
@@ -62,6 +63,7 @@ body {
   align-items: center;
   list-style: none;
 }
+
 .navbar-links li {
   margin-left: 3rem;
 }

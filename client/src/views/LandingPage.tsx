@@ -22,11 +22,28 @@ const LandingPage: React.FC = () => {
 
           <div className="container text-center homeLanding">
             <div className="row align-items-center content">
-              <div className="col-12 position-relative">
-                <h1 className="textoHome animate__animated animate__zoomIn  ">
-                  <div className="industria">Industria</div>
-                  <div className="gallay">Gallay</div>
-                </h1>
+              <div className="texto-Industria1">
+                <ul className="UL-blur">
+                  <li className="LI-blur">I</li>
+                  <li className="LI-blur">N</li>
+                  <li className="LI-blur">D</li>
+                  <li className="LI-blur">U</li>
+                  <li className="LI-blur">S</li>
+                  <li className="LI-blur">T</li>
+                  <li className="LI-blur">R</li>
+                  <li className="LI-blur">I</li>
+                  <li className="LI-blur">A</li>
+                </ul>
+              </div>
+              <div className="texto-Gallay2">
+                <ul className="UL-blur">
+                  <li className="LI-blur">G</li>
+                  <li className="LI-blur">A</li>
+                  <li className="LI-blur">L</li>
+                  <li className="LI-blur">L</li>
+                  <li className="LI-blur">A</li>
+                  <li className="LI-blur">Y</li>
+                </ul>
               </div>
             </div>
           </div>
