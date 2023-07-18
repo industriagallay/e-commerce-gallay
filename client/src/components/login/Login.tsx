@@ -19,38 +19,34 @@ const Login = () => {
             />
 
             <form className="Loginform ml-auto">
-              <div className="Loginheader">Login</div>
+              <div className="Loginheader">Bienvenido a Industria Gallay</div>
               <div className="Logininputs">
-                <label htmlFor="username"></label>
+                <label htmlFor="Nombre de Usuario"></label>
                 <input
                   type="text"
                   name="username"
                   id="username"
-                  placeholder="Username"
+                  placeholder="Nombre de Usuario"
                   className="Logininput"
                 />
 
-                <label htmlFor="password"></label>
+                <label htmlFor="Contraseña"></label>
                 <input
                   type="password"
                   name="password"
                   id="password"
-                  placeholder="password"
+                  placeholder="Contraseña"
                   className="Logininput"
                 />
 
-                <div className="Logincheckbox-container">
-                  <label className="Logincheckbox">
-                    <input type="checkbox" id="checkbox" />
-                  </label>
-                  <label htmlFor="checkbox" className="Logincheckbox-text">
-                    Remember me
-                  </label>
-                </div>
-                <button className="Loginsigin-btn">Registrarse</button>
+                <div className="Logincheckbox-container"></div>
+                <button className="Loginsigin-btn">Iniciar Sesión</button>
                 <Link to="/" aria-current="page" className="Loginforget">
-                  Forget password?
+                  Olvidaste tu contraseña?
                 </Link>
+                <p className="signup-link">
+                  aún no tenes cuenta? <Link to="/signup">registrate</Link>
+                </p>
               </div>
             </form>
           </div>

@@ -38,7 +38,7 @@ const NavBar1: React.FC = () => {
                       className="nav-link active"
                       aria-current="page"
                     >
-                      Home
+                      Inicio
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -47,7 +47,7 @@ const NavBar1: React.FC = () => {
                       className="nav-link active"
                       aria-current="page"
                     >
-                      Products
+                      Productos
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -56,16 +56,16 @@ const NavBar1: React.FC = () => {
                       className="nav-link active"
                       aria-current="page"
                     >
-                      Help
+                      Ayuda
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link
-                      to="/signup"
+                      to="/login"
                       className="nav-link active"
                       aria-current="page"
                     >
-                      Signup
+                      Iniciar Sesión
                     </Link>
                   </li>
                 </ul>
