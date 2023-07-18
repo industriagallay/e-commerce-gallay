@@ -16,6 +16,10 @@ const purchaseSchema = new Schema(
           type: Number,
           required: true,
         },
+        price: {
+          type: Number,
+          required: true,
+        },
       },
     ],
     totalPrice: {
@@ -32,15 +36,7 @@ const purchaseSchema = new Schema(
     },
     status: {
       type: String,
-      enum: [
-        "inCart",
-        "reserved",
-        "pending pay",
-        "paid",
-        "sent",
-        "submitted",
-        "canceled",
-      ],
+      enum: ["inCart", "pending pay", "paid", "sent", "submitted", "canceled"],
       default: "inCart",
     },
   },
