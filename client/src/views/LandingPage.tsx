@@ -1,84 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { GiRocketThruster } from "react-icons/gi";
-import { IconContext } from "react-icons/lib";
+import NavBar1 from "../components/navbar1/NavBar1";
 import yunqueHerreroMP4 from "../assets/yunque-herrero.mp4";
-import cuchillob1 from "../assets/cuchillob1.webp"
-import cuchilloblanco from "../assets/cuchilloblanco.jpg"
-import cuchilloblanco1 from "../assets/cuchilloblanco1.webp"
+import arte1 from "../assets/arte1.PNG.png";
+import arte2 from "../assets/arte2.PNG.png";
+import arte3 from "../assets/arte3.PNG.png";
+import "animate.css";
 import "./LandingPage.css";
 
 const LandingPage: React.FC = () => {
   return (
     <div>
-      <div className="container-fluid navbar-container">
-        <IconContext.Provider value={{ color: "#fff" }}>
-          <nav className="navbar navbar-expand-md navbar-light">
-            <Link className="navbar-logo" aria-current="page" to="/">
-              <GiRocketThruster className="navbar-icon" />
-              Gallay
-            </Link>
-
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
-            <div className="navbar-links-container">
-              <div
-                className="collapse navbar-collapse"
-                id="navbarSupportedContent"
-              >
-                <ul className="navbar-links navbar-nav ms-auto me-auto mb-2 mb-lg-0">
-                  <li className="nav-item">
-                    <Link
-                      to="/home"
-                      className="nav-link active"
-                      aria-current="page"
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      to="/products"
-                      className="nav-link active"
-                      aria-current="page"
-                    >
-                      Products
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      to="/help"
-                      className="nav-link active"
-                      aria-current="page"
-                    >
-                      Help
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      to="/signup"
-                      className="nav-link active"
-                      aria-current="page"
-                    >
-                      Signup
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </IconContext.Provider>
-      </div>
+      <NavBar1 />
       <div className="container-fluid-md">
         <div className="row">
           <div col-6="true">
@@ -87,35 +19,70 @@ const LandingPage: React.FC = () => {
             </video>
             <div className="capa"></div>
           </div>
-        </div>
-      </div>
 
-      <div className="container text-center home">
-        <div className="row align-items-center content">
-          <div className="col-9 position-relative">
-            <h1>
-              {" "}
-              Industria <span> Gallay </span>
-            </h1>
+          <div className="container text-center homeLanding">
+            <div className="row align-items-center content">
+              <div className="texto-Industria1">
+                <ul className="UL-blur">
+                  <li className="LI-blur">I</li>
+                  <li className="LI-blur">N</li>
+                  <li className="LI-blur">D</li>
+                  <li className="LI-blur">U</li>
+                  <li className="LI-blur">S</li>
+                  <li className="LI-blur">T</li>
+                  <li className="LI-blur">R</li>
+                  <li className="LI-blur">I</li>
+                  <li className="LI-blur">A</li>
+                </ul>
+              </div>
+              <div className="texto-Gallay2">
+                <ul className="UL-blur">
+                  <li className="LI-blur">G</li>
+                  <li className="LI-blur">A</li>
+                  <li className="LI-blur">L</li>
+                  <li className="LI-blur">L</li>
+                  <li className="LI-blur">A</li>
+                  <li className="LI-blur">Y</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <p>
-            {" "}
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed et
-            labore ipsum accusamus beatae. Libero repellendus incidunt provident
-            ea minus magni vero necessitatibus, doloribus rerum quae, temporibus
-            officia laborum quod!
-          </p>
         </div>
       </div>
-
-      <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
+      <section>
+        <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
+          <div className="row">
+            <p className="col order-last animate__animated animate__fadeIn">
+              ENVIOS A TODO EL PAÍS
+            </p>
+            <h2 className="col animate__animated animate__jackInTheBox">
+              GALLAY LA MEJOR CALIDAD
+            </h2>
+            <p className="col order-first animate__animated animate__fadeIn">
+              DESCUENTOS Y PRECIOS ÚNICOS
+            </p>
+          </div>
+          <hr className="" />
+        </div>
+      </section>
+      {/* <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
         <div className="row">
-          <p className="col order-last">ENVIOS A TODO EL PAÍS</p>
-          <h2 className="col">GALLAY LA MEJOR CALIDAD</h2>
-          <p className="col order-first">DESCUENTOS Y PRECIOS ÚNICOS</p>
+          <div className="col order-last animate__animated animate__fadeIn">
+            <p>ENVIOS A TODO EL PAÍS</p>
+          </div>
         </div>
-        <hr className="" />
-      </div>
+        <div className="row">
+          <div className="col animate__animated animate__jackInTheBox">
+            <h2>GALLAY LA MEJOR CALIDAD</h2>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col order-first animate__animated animate__fadeIn">
+            <p>DESCUENTOS Y PRECIOS ÚNICOS</p>
+          </div>
+        </div>
+        <hr />
+      </div> */}
 
       <div className="carousel-wrapper my-5">
         <div className="carousel-container col-12">
@@ -149,43 +116,27 @@ const LandingPage: React.FC = () => {
             <div className="carousel-inner" data-bs-interval="5000">
               <div className="carousel-item active">
                 <img
-                  src={cuchillob1}
+                  src={arte1}
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5 className="h5carrousel">First slide label</h5>
-                  <p className="pcarrousel">
-                    Some representative placeholder content for the first slide.
-                  </p>
-                </div>
+               
               </div>
               <div className="carousel-item">
                 <img
-                  src={cuchilloblanco}
+                  src={arte2}
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5 className="h5carrousel">Second slide label</h5>
-                  <p className="pcarrousel">
-                    Some representative placeholder content for the second
-                    slide.
-                  </p>
-                </div>
+                
               </div>
               <div className="carousel-item">
                 <img
-                  src={cuchilloblanco1}
+                  src={arte3}
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5 className="h5carrousel">Third slide label</h5>
-                  <p className="pcarrousel">
-                    Some representative placeholder content for the third slide.
-                  </p>
-                </div>
+                
               </div>
             </div>
             <button
