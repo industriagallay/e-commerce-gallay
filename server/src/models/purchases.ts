@@ -2,11 +2,6 @@ import mongoose, { Schema } from "mongoose";
 
 const purchaseSchema = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     idClient: {
       type: String,
       required: true,
@@ -18,6 +13,10 @@ const purchaseSchema = new Schema(
           required: true,
         },
         quantity: {
+          type: Number,
+          required: true,
+        },
+        price: {
           type: Number,
           required: true,
         },
@@ -37,15 +36,7 @@ const purchaseSchema = new Schema(
     },
     status: {
       type: String,
-      enum: [
-        "inCart",
-        "reserved",
-        "pending pay",
-        "paid",
-        "sent",
-        "submitted",
-        "canceled",
-      ],
+      enum: ["inCart", "pending pay", "paid", "sent", "submitted", "canceled"],
       default: "inCart",
     },
   },
