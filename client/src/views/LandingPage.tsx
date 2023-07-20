@@ -1,134 +1,171 @@
-import React, { useState } from "react";
+import React from "react";
+import NavBar1 from "../components/navbar1/NavBar1";
 import yunqueHerreroMP4 from "../assets/yunque-herrero.mp4";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import { GiRocketThruster } from "react-icons/gi";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { IconContext } from "react-icons/lib";
+import arte1 from "../assets/arte1.PNG.png";
+import arte2 from "../assets/arte2.PNG.png";
+import arte3 from "../assets/arte3.PNG.png";
+import "animate.css";
 import "./LandingPage.css";
 
 const LandingPage: React.FC = () => {
-  const [click, setClick] = useState(false);
-
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
-
   return (
     <div>
-      <IconContext.Provider value={{ color: "#fff" }}>
-        <nav className="navbar">
-          <div className="navbar-container container">
-            <Link className="navbar-logo" aria-current="page" to="/">
-              <GiRocketThruster
-                className="navbar-icon"
-                onClick={closeMobileMenu}
-              />
-              Gallay
-            </Link>
-
-            <div className="menu-icon" onClick={handleClick}>
-              {click ? <FaTimes /> : <FaBars />}
-            </div>
-
-            <ul className={click ? "nav-menu active" : "nav-menu"}>
-              <li className="nav-item">
-                <NavLink
-                  to="/home"
-                  className={({ isActive }) =>
-                    "nav-links" + (isActive ? " activated" : "")
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/products"
-                  className={({ isActive }) =>
-                    "nav-links" + (isActive ? " activated" : "")
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Products
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/help"
-                  className={({ isActive }) =>
-                    "nav-links" + (isActive ? " activated" : "")
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Help
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    "nav-links" + (isActive ? " activated" : "")
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Login
-                </NavLink>
-              </li>
-            </ul>
+      <NavBar1 />
+      <div className="container-fluid-md">
+        <div className="row">
+          <div col-6="true">
+            <video muted autoPlay loop>
+              <source src={yunqueHerreroMP4} type="video/mp4" />
+            </video>
+            <div className="capa"></div>
           </div>
-        </nav>
-      </IconContext.Provider>
-      {/* <div className="nav-items">
-          <Link aria-current="page" to="/Home">
-            Home
-          </Link>
 
-          <Link aria-current="page" to="/Products">
-            Products
-          </Link>
-
-          <Link aria-current="page" to="/Help">
-            Help
-          </Link>
-
-          <Link aria-current="page" to="/Login">
-            Login
-          </Link>
-        </div> */}
-
-      <section className="home">
-        <div className="content">
-          <h1>
-            Industria
-            <span>Gallay</span>
-          </h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
-            unde et autem ipsam voluptates veniam blanditiis adipisci quam
-            tempora{" "}
-          </p>
-          <Link aria-current="page" to="/SignUp">
-            Iniciar Sesión
-          </Link>
+          <div className="container text-center homeLanding">
+            <div className="row align-items-center content">
+              <div className="texto-Industria1">
+                <ul className="UL-blur">
+                  <li className="LI-blur">I</li>
+                  <li className="LI-blur">N</li>
+                  <li className="LI-blur">D</li>
+                  <li className="LI-blur">U</li>
+                  <li className="LI-blur">S</li>
+                  <li className="LI-blur">T</li>
+                  <li className="LI-blur">R</li>
+                  <li className="LI-blur">I</li>
+                  <li className="LI-blur">A</li>
+                </ul>
+              </div>
+              <div className="texto-Gallay2">
+                <ul className="UL-blur">
+                  <li className="LI-blur">G</li>
+                  <li className="LI-blur">A</li>
+                  <li className="LI-blur">L</li>
+                  <li className="LI-blur">L</li>
+                  <li className="LI-blur">A</li>
+                  <li className="LI-blur">Y</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="media-icons">
-          <a href=" ">
-            <i className="bi bi-facebook"></i>
-          </a>
-          <a href="">
-            <i className="bi bi-instagram"></i>
-          </a>
-          <a href="">
-            <i className="bi bi-youtube"></i>
-          </a>
+      </div>
+      <section>
+        <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
+          <div className="row">
+            <p className="col order-last animate__animated animate__fadeIn">
+              ENVIOS A TODO EL PAÍS
+            </p>
+            <h2 className="col animate__animated animate__jackInTheBox">
+              GALLAY LA MEJOR CALIDAD
+            </h2>
+            <p className="col order-first animate__animated animate__fadeIn">
+              DESCUENTOS Y PRECIOS ÚNICOS
+            </p>
+          </div>
+          <hr className="" />
         </div>
       </section>
-      <div></div>
-      <video muted autoPlay loop>
-        <source src={yunqueHerreroMP4} type="video/mp4" />
-      </video>
-      <div className="capa"></div>
+      {/* <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
+        <div className="row">
+          <div className="col order-last animate__animated animate__fadeIn">
+            <p>ENVIOS A TODO EL PAÍS</p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col animate__animated animate__jackInTheBox">
+            <h2>GALLAY LA MEJOR CALIDAD</h2>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col order-first animate__animated animate__fadeIn">
+            <p>DESCUENTOS Y PRECIOS ÚNICOS</p>
+          </div>
+        </div>
+        <hr />
+      </div> */}
+
+      <div className="carousel-wrapper my-5">
+        <div className="carousel-container col-12">
+          <div
+            id="carouselExampleCaptions"
+            className="carousel slide"
+            data-bs-wrap="false"
+          >
+            <div className="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="0"
+                className="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div className="carousel-inner" data-bs-interval="5000">
+              <div className="carousel-item active">
+                <img
+                  src={arte1}
+                  className="d-block w-100 carousel-image"
+                  alt="image-cuchillo"
+                />
+               
+              </div>
+              <div className="carousel-item">
+                <img
+                  src={arte2}
+                  className="d-block w-100 carousel-image"
+                  alt="image-cuchillo"
+                />
+                
+              </div>
+              <div className="carousel-item">
+                <img
+                  src={arte3}
+                  className="d-block w-100 carousel-image"
+                  alt="image-cuchillo"
+                />
+                
+              </div>
+            </div>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

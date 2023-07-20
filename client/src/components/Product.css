@@ -1,0 +1,47 @@
+/*texto animad-imagen*/
+
+.animated-text h1 {
+  color: azure;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.animated-text h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: azure;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 70px;
+}
+
+.image-container {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animated-text {
+  animation: fade-in 3s ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*css template cards*/
