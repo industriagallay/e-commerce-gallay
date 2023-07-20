@@ -1,9 +1,70 @@
 import React from "react";
+import axios from "axios";
+import { useForm, Resolver } from "react-hook-form";
+import swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import NavBar2 from "./navbar2/NavBar2";
 import { Link } from "react-router-dom";
 import "./SignUpForm.css";
 
+type FormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  dni: number;
+  phone: number;
+  password: string;
+};
+
+// const {
+//   register,
+//   handleSubmit,
+//   formState: { errors },
+// } = useForm<FormValues>({ resolver });
+
 const SignUpForm: React.FC = () => {
+  const navigate = useNavigate();
+  const {
+    register,
+    watch,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormValues>();
+
+  const submit = async (data: FormValues) => {
+    try {
+      const response = await axios.post("http://localhost:3001/clients", data);
+      swal.fire({
+        position: "center",
+        icon: "success",
+        title: "clients creado correctamente!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/products");
+    } catch (error) {
+      swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Oops...",
+        text: "Ocurrio un error inesperado!",
+      });
+      console.error(error);
+    }
+  };
+  const resolver: Resolver<FormValues> = async (values) => {
+    return {
+      values: values.firstName ? values : {},
+      errors: !values.firstName
+        ? {
+            firstName: {
+              type: "required",
+              message: "This is required.",
+            },
+          }
+        : {},
+    };
+  };
   return (
     <div>
       <div className="header2">
@@ -22,20 +83,78 @@ const SignUpForm: React.FC = () => {
                 tenemos especialmente para tí
               </div>
               <div className="inputs">
-                <input type="text" placeholder="nombre" className="input" />
-                <input type="text" placeholder="apellido" className="input" />
+                <input
+                  type="text"
+                  placeholder="nombre"
+                  className="input"
+                  {...register("firstName", {
+                    required: true,
+                  })}
+                />
+                {errors.firstName?.type === "required" && (
+                  <p className="text-danger">El campo nombre es requerido</p>
+                )}
+                {""}
+                <input
+                  type="text"
+                  placeholder="apellido"
+                  className="input"
+                  {...register("lastName", {
+                    required: true,
+                  })}
+                />{" "}
+                {errors.lastName?.type === "required" && (
+                  <p className="text-danger">El campo nombre es requerido</p>
+                )}
+                {""}
                 <input
                   placeholder="correo electrónico"
                   className="input"
                   type="text"
-                />
-                <input type="number" placeholder="DNI" className="input" />
-                <input type="number" placeholder="telefono" className="input" />
+                  {...register("email", {
+                    required: true,
+                  })}
+                />{" "}
+                {errors.email?.type === "required" && (
+                  <p className="text-danger">El campo nombre es requerido</p>
+                )}
+                {""}
+                <input
+                  type="number"
+                  placeholder="DNI"
+                  className="input"
+                  {...register("dni", {
+                    required: true,
+                  })}
+                />{" "}
+                {errors.dni?.type === "required" && (
+                  <p className="text-danger">El campo nombre es requerido</p>
+                )}
+                {""}
+                <input
+                  type="number"
+                  placeholder="telefono"
+                  className="input"
+                  {...register("phone", {
+                    required: true,
+                  })}
+                />{" "}
+                {errors.phone?.type === "required" && (
+                  <p className="text-danger">El campo nombre es requerido</p>
+                )}
+                {""}
                 <input
                   placeholder="contraseña"
                   className="input"
                   type="password"
-                />
+                  {...register("password", {
+                    required: true,
+                  })}
+                />{" "}
+                {errors.password?.type === "required" && (
+                  <p className="text-danger">El campo nombre es requerido</p>
+                )}
+                {""}
                 <div className="checkbox-container"></div>
                 <button className="sigin-btn">Crear Cuenta</button>
                 <p className="signup-link">
