@@ -6,24 +6,25 @@ const authLoginHandler = async (
   res: Response,
   _next: NextFunction
 ) => {
-  const { email, password }: { email?: string; password?: string } = req.query;
+  console.log({ a: req.body });
+  const { email, password }: { email?: string; password?: string } = req.body;
 
   try {
     if (!email && !password) {
       return res.status(400).send("Debes proporcionar un email y contraseña");
     }
 
-    const query: { email?: string; password?: string } = {};
+    const body: { email?: string; password?: string } = {};
 
     if (email) {
-      query.email = email;
+      body.email = email;
     }
 
     if (password) {
-      query.password = password;
+      body.password = password;
     }
 
-    const existingClient = await Clients.findOne(query);
+    const existingClient = await Clients.findOne(body);
 
     if (!existingClient) {
       return res.status(404).send("Cliente no encontrado");
