@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./home/Home";
-import SignUpForm from "./views/signUpForm/SignUpForm"
+import SignUpForm from "./views/signUpForm/SignUpForm";
 import Products from "./components/Product";
 import Help from "./components/Help";
 import LandingPage from "./views/LandingPage";
-import Login from "./components/login/Login";
+import Login from "./views/login/Login";
 import Footer from "./components/Footer";
 import "./app.css";
 
