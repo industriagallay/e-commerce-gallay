@@ -3,7 +3,7 @@ import axios from "axios";
 import { useForm, Resolver } from "react-hook-form";
 import swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import NavBar2 from "./navbar2/NavBar2";
+import NavBar2 from "../../components/navbar2/NavBar2";
 import { Link } from "react-router-dom";
 import "./SignUpForm.css";
 
@@ -22,26 +22,29 @@ type FormValues = {
 //   formState: { errors },
 // } = useForm<FormValues>({ resolver });
 
-const SignUpForm: React.FC = () => {
+const SignUpForm = () => {
   const navigate = useNavigate();
   const {
     register,
-    watch,
     formState: { errors },
     handleSubmit,
   } = useForm<FormValues>();
 
-  const submit = async (data: FormValues) => {
+  const crearCuenta = async (data: FormValues) => {
     try {
-      const response = await axios.post("http://localhost:3001/clients", data);
+      const response = await axios.post(
+        "http://localhost:3001/api/register",
+        data
+      );
       swal.fire({
         position: "center",
         icon: "success",
-        title: "clients creado correctamente!",
+        title: "cliente creado correctamente!",
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/products");
+
+      navigate("/login");
     } catch (error) {
       swal.fire({
         position: "center",
@@ -52,19 +55,7 @@ const SignUpForm: React.FC = () => {
       console.error(error);
     }
   };
-  const resolver: Resolver<FormValues> = async (values) => {
-    return {
-      values: values.firstName ? values : {},
-      errors: !values.firstName
-        ? {
-            firstName: {
-              type: "required",
-              message: "This is required.",
-            },
-          }
-        : {},
-    };
-  };
+
   return (
     <div>
       <div className="header2">
@@ -77,7 +68,10 @@ const SignUpForm: React.FC = () => {
       <div className="container-md">
         <div className="row">
           <div className="col-6">
-            <form className="SignUpform ml-auto">
+            <form
+              className="SignUpform ml-auto"
+              onSubmit={handleSubmit(crearCuenta)}
+            >
               <div className="header">
                 Crea tu cuenta para que puedas acceder a todos los productos que
                 tenemos especialmente para tí
@@ -104,7 +98,7 @@ const SignUpForm: React.FC = () => {
                   })}
                 />{" "}
                 {errors.lastName?.type === "required" && (
-                  <p className="text-danger">El campo nombre es requerido</p>
+                  <p className="text-danger">El campo apellido es requerido</p>
                 )}
                 {""}
                 <input
@@ -116,7 +110,7 @@ const SignUpForm: React.FC = () => {
                   })}
                 />{" "}
                 {errors.email?.type === "required" && (
-                  <p className="text-danger">El campo nombre es requerido</p>
+                  <p className="text-danger">El campo email es requerido</p>
                 )}
                 {""}
                 <input
@@ -128,7 +122,7 @@ const SignUpForm: React.FC = () => {
                   })}
                 />{" "}
                 {errors.dni?.type === "required" && (
-                  <p className="text-danger">El campo nombre es requerido</p>
+                  <p className="text-danger">El campo dni es requerido</p>
                 )}
                 {""}
                 <input
@@ -140,7 +134,7 @@ const SignUpForm: React.FC = () => {
                   })}
                 />{" "}
                 {errors.phone?.type === "required" && (
-                  <p className="text-danger">El campo nombre es requerido</p>
+                  <p className="text-danger">El campo telefono es requerido</p>
                 )}
                 {""}
                 <input
@@ -152,11 +146,15 @@ const SignUpForm: React.FC = () => {
                   })}
                 />{" "}
                 {errors.password?.type === "required" && (
-                  <p className="text-danger">El campo nombre es requerido</p>
+                  <p className="text-danger">
+                    El campo contraseña es requerido
+                  </p>
                 )}
                 {""}
                 <div className="checkbox-container"></div>
-                <button className="sigin-btn">Crear Cuenta</button>
+                <button className="sigin-btn" type="submit">
+                  Crear Cuenta
+                </button>
                 <p className="signup-link">
                   ya tenes cuenta? <Link to="/login">Inicia sesión</Link>
                 </p>
