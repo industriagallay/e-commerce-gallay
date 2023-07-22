@@ -1,9 +1,9 @@
 import React from "react";
-import NavBar1 from "../components/navbar1/NavBar1";
-import yunqueHerreroMP4 from "../assets/yunque-herrero.mp4";
-import arte1 from "../assets/arte1.PNG.png";
-import arte2 from "../assets/arte2.PNG.png";
-import arte3 from "../assets/arte3.PNG.png";
+import NavBar1 from "../../components/navbar1/NavBar1";
+import yunqueHerreroMP4 from "../../assets/yunque-herrero.mp4";
+import arte1 from "../../assets/arte1.PNG.png";
+import arte2 from "../../assets/arte2.PNG.png";
+import arte3 from "../../assets/arte3.PNG.png";
 import "animate.css";
 import "./LandingPage.css";
 
@@ -120,7 +120,6 @@ const LandingPage: React.FC = () => {
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-               
               </div>
               <div className="carousel-item">
                 <img
@@ -128,7 +127,6 @@ const LandingPage: React.FC = () => {
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-                
               </div>
               <div className="carousel-item">
                 <img
@@ -136,7 +134,6 @@ const LandingPage: React.FC = () => {
                   className="d-block w-100 carousel-image"
                   alt="image-cuchillo"
                 />
-                
               </div>
             </div>
             <button
