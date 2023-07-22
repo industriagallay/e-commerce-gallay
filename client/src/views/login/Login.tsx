@@ -32,7 +32,7 @@ const Login = () => {
       /*usamos el localstorage para guardar el nombre del usuario y renderizarlo en el compopnente products*/
       localStorage.setItem("username", response.data.firstName);
 
-      navigate("/products");
+      navigate("/creatucuchullo");
     } catch (error) {
       swal.fire({
         position: "center",
@@ -103,7 +103,7 @@ const Login = () => {
                   Olvidaste tu contraseña?
                 </Link>
                 <p className="signup-link">
-                  aún no tenes cuenta? <Link to="/signup">registrate</Link>
+                  aún no tenes cuenta? <Link to="/signup">regístrate</Link>
                 </p>
               </div>
             </form>
