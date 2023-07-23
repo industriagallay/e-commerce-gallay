@@ -1,15 +1,51 @@
 import React from "react";
+import Slider from "react-slick";
 import NavBar1 from "../../components/navbar1/NavBar1";
 import yunqueHerreroMP4 from "../../assets/yunque-herrero.mp4";
-import arte1 from "../../assets/arte1.PNG.png";
-import arte2 from "../../assets/arte2.PNG.png";
-import arte3 from "../../assets/arte3.PNG.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
 import "./LandingPage.css";
+import { dataDigitalBestSeller } from "./data";
 
 const LandingPage: React.FC = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div>
+    <div className="background-color">
       <NavBar1 />
       <div className="container-fluid-md">
         <div className="row">
@@ -49,120 +85,27 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <section>
-        <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
-          <div className="row">
-            <p className="col order-last animate__animated animate__fadeIn">
-              ENVIOS A TODO EL PAÍS
-            </p>
-            <h2 className="col animate__animated animate__jackInTheBox">
-              GALLAY LA MEJOR CALIDAD
-            </h2>
-            <p className="col order-first animate__animated animate__fadeIn">
-              DESCUENTOS Y PRECIOS ÚNICOS
-            </p>
+      <section className="container">
+        <div className="container-slider">
+          <div className="row ">
+            <Slider {...settings}>
+              {dataDigitalBestSeller.map((item) => (
+                <div className="card-landing-carousel">
+                  <div className="card-top-landing">
+                    <img src={item.linkImg} alt={item.title} />
+                    <h1>{item.title}</h1>
+                  </div>
+                  <div className="card-bottom-landing">
+                    <h3>{item.price}</h3>
+                    <p className="categoria">{item.category}</p>
+                  </div>
+                  <button className="bottom-card-landing">BOTTON</button>
+                </div>
+              ))}
+            </Slider>
           </div>
-          <hr className="" />
         </div>
       </section>
-      {/* <div className="text-caption position-absolute top-100 start-50 translate-middle-x">
-        <div className="row">
-          <div className="col order-last animate__animated animate__fadeIn">
-            <p>ENVIOS A TODO EL PAÍS</p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col animate__animated animate__jackInTheBox">
-            <h2>GALLAY LA MEJOR CALIDAD</h2>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col order-first animate__animated animate__fadeIn">
-            <p>DESCUENTOS Y PRECIOS ÚNICOS</p>
-          </div>
-        </div>
-        <hr />
-      </div> */}
-
-      <div className="carousel-wrapper my-5">
-        <div className="carousel-container col-12">
-          <div
-            id="carouselExampleCaptions"
-            className="carousel slide"
-            data-bs-wrap="false"
-          >
-            <div className="carousel-indicators">
-              <button
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide-to="0"
-                className="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
-            </div>
-            <div className="carousel-inner" data-bs-interval="5000">
-              <div className="carousel-item active">
-                <img
-                  src={arte1}
-                  className="d-block w-100 carousel-image"
-                  alt="image-cuchillo"
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  src={arte2}
-                  className="d-block w-100 carousel-image"
-                  alt="image-cuchillo"
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  src={arte3}
-                  className="d-block w-100 carousel-image"
-                  alt="image-cuchillo"
-                />
-              </div>
-            </div>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Next</span>
-            </button>
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

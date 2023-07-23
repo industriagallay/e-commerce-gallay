@@ -43,7 +43,7 @@ const NavBar1: React.FC = () => {
                   </li>
                   <li className="nav-item">
                     <Link
-                      to="/products"
+                      to="/creatucuchillo"
                       className="nav-link active"
                       aria-current="page"
                     >

@@ -32,7 +32,7 @@ const Login = () => {
       /*usamos el localstorage para guardar el nombre del usuario y renderizarlo en el compopnente products*/
       localStorage.setItem("username", response.data.firstName);
 
-      navigate("/creatucuchullo");
+      navigate("/creatucuchillo");
     } catch (error) {
       swal.fire({
         position: "center",
