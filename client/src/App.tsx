@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./home/Home";
 import SignUpForm from "./views/signUpForm/SignUpForm";
-import CreaTuCuchillo from "./components/crea-tu-cuchillo/CreaTuCuchillo";
+import CreaTuCuchillo from "./components/crea-tu-cuchillo/CreaTuCuchillo"
 import Help from "./components/help/Help";
 import LandingPage from "./views/landingPage/LandingPage";
 import Login from "./views/login/Login";
