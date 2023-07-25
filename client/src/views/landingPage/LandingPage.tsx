@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import NavBar1 from "../../components/navbar1/NavBar1";
 import yunqueHerreroMP4 from "../../assets/yunque-herrero.mp4";
@@ -8,7 +8,30 @@ import "animate.css";
 import "./LandingPage.css";
 import { dataDigitalBestSeller } from "./data";
 
+// interface Products {
+//   _id: string;
+//   title: string;
+//   backgroundImage: string;
+//   price: number;
+//   category: string;
+//   name: string;
+//   desciption: string;
+//   stock: number;
+// }
+
 const LandingPage: React.FC = () => {
+  // const [products, setProducts] = useState<Products[]>([]);
+
+  // useEffect(() => {
+  // Hacemos la solicitud GET a la API para obtener los productos
+  //   fetch("/api/getAllProductsHandler")
+  //     .then((response) => response.json())
+  //     .then((data) => setProducts(data))
+  //     .catch((error) =>
+  //       console.error("Error al obtener los productos:", error)
+  //     );
+  // }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -90,7 +113,7 @@ const LandingPage: React.FC = () => {
           <div className="row ">
             <Slider {...settings}>
               {dataDigitalBestSeller.map((item) => (
-                <div className="card-landing-carousel">
+                <div className="card-landing-carousel" key={item.id}>
                   <div className="card-top-landing">
                     <img src={item.linkImg} alt={item.title} />
                     <h1>{item.title}</h1>
