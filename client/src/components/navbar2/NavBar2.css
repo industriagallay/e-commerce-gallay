@@ -60,9 +60,16 @@ body {
   align-items: center;
   list-style: none;
 }
-.navbar2-links li {
-  margin-left: 3rem;
+
+.nav-item {
+  /* Ajusta el padding según tu preferencia para la distancia horizontal */
+  padding-left: 6px;
+  padding-right: 2rem;
 }
+
+/* .navbar2-links li {
+  margin-left: 3rem;
+}  */
 .navbar2-links li:first-child {
   margin-left: 0;
 }
@@ -96,4 +103,124 @@ body {
 .navbar-container {
   padding-left: 0;
   padding-right: 0;
+}
+
+/****botton del login*****/
+.button-iniciar2-sesion {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  color: #0f1923;
+  cursor: pointer;
+  position: relative;
+  padding: 8px;
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.button-iniciar2-sesion::before,
+.button-iniciar2-sesion::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: calc(50% - 5px);
+  border: 1px solid #7d8082;
+  transition: all 0.15s ease;
+}
+
+.button-iniciar2-sesion::before {
+  top: 0;
+  border-bottom-width: 0;
+}
+
+.button-iniciar2-sesion::after {
+  bottom: 0;
+  border-top-width: 0;
+}
+
+.button-iniciar2-sesion:active,
+.button-iniciar2-sesion:focus {
+  outline: none;
+}
+
+.button-iniciar2-sesion:active::before,
+.button-iniciar2-sesion:active::after {
+  right: 3px;
+  left: 3px;
+}
+
+.button-iniciar2-sesion:active::before {
+  top: 3px;
+}
+
+.button-iniciar2-sesion:active::after {
+  bottom: 3px;
+}
+
+.button_lg_iniciar2-sesion {
+  position: relative;
+  display: block;
+  padding: 5px 5px;
+  color: #fff;
+  background-color: #0f1923;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.button_lg_iniciar2-sesion::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: #0f1923;
+}
+
+.button_lg_iniciar2-sesion::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background-color: #0f1923;
+  transition: all 0.2s ease;
+}
+
+.button_sl_iniciar2-sesion {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: -8px;
+  width: 0;
+  background-color: #a2b11a;
+  transform: skew(-15deg);
+  transition: all 0.2s ease;
+}
+
+.button_text_iniciar2-sesion {
+  position: relative;
+}
+
+.button-iniciar2-sesion:hover {
+  color: #0f1923;
+}
+
+.button-iniciar2-sesion:hover .button_sl_iniciar2-sesion {
+  width: calc(100% + 15px);
+}
+
+.button-iniciar2-sesion:hover .button_lg_iniciar2-sesion::after {
+  background-color: #fff;
 }

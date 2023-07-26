@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { gsap, Expo } from "gsap";
-import axios from "axios";
+// import axios from "axios";
 import mano1 from "../assets/img/mano1.jpeg";
 import NavBar1 from "../components/navbar1/NavBar1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+// import ProductCard from "../components/cardsProductos/ProductCard.jsx"
+// import { dataProducts } from "./dataProducts.js";
+// import { Product } from "./dataProducts.js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Home.css";
 import "../assets/css/style.css";
 import "../components/navbar1/NavBar1.css";
 
 const Home = () => {
+  //   const [products, setProducts] = useState<Product[]>([]);
+  // };
+
   const [categories, setCategories] = useState<Category[]>([]);
   interface Category {
     name: string;
@@ -147,41 +153,82 @@ const Home = () => {
         </div>
       </main>
 
-      <div>
-        <div className="filter-container">
-          <div className="vertical-filter">
-            <div className="search-container">
-              <input
-                className="input-filtrado-vertical"
-                type="text"
-                placeholder="Buscar productos..."
-              />
-            </div>
-
-            <div className="categories-container">
-              {categories.map((category, index) => (
-                <div key={category.name} className="category-filter">
-                  <h3
-                    className={`h3-filtro-vertical ${
-                      category.showSubcategories ? "active" : ""
-                    }`}
-                    onClick={() => toggleSubcategories(index)}
-                  >
-                    {category.name}
-                    <FontAwesomeIcon
-                      icon={faChevronDown}
-                      className={category.showSubcategories ? "arrow-down" : ""}
-                    />
-                  </h3>
-                  {category.showSubcategories && (
-                    <ul className="ul-filtrado-vertical">
-                      {category.subcategories.map((subcat) => (
-                        <li key={subcat}>{subcat}</li>
-                      ))}
-                    </ul>
-                  )}
+      <div className="container-justify-content-start">
+        <div className="row-scroll">
+          <div className="col-3">
+            <div className="filter-container ">
+              <div className="vertical-filter">
+                <div className="search-container">
+                  <input
+                    className="input-filtrado-vertical"
+                    type="text"
+                    placeholder="Buscar productos..."
+                  />
                 </div>
-              ))}
+                {/* <div className="col">
+                  <div className="row row-cols-2 row-cols-md-4 g-4">
+                    {products.map((item) => (
+                      <div className="col" key={item.id}>
+                        <ProductCard product={item} />
+                      </div>
+                    ))}
+                  </div>
+                </div> */}
+                <div>
+                  <select
+                    className="form-select-filtro form-select-sm"
+                    aria-label=".form-select-sm example"
+                    style={{ width: "94%" }}
+                  >
+                    <input
+                      className="option-filter-vertical"
+                      type="texto"
+                      placeholder="Ordenar Por.."
+                    ></input>
+
+                    <option className="option-filter-vertical" value="1">
+                      Todos
+                    </option>
+                    <option className="option-filter-vertical" value="2">
+                      Destacados
+                    </option>
+                    <option className="option-filter-vertical" value="3">
+                      Mayor Precio
+                    </option>
+                    <option className="option-filter-vertical" value="3">
+                      Menor Precio
+                    </option>
+                  </select>
+                </div>
+                <div className="categories-container">
+                  {categories.map((category, index) => (
+                    <div key={category.name} className="category-filter">
+                      <h3
+                        className={`h3-filtro-vertical ${
+                          category.showSubcategories ? "active" : ""
+                        }`}
+                        onClick={() => toggleSubcategories(index)}
+                      >
+                        {category.name}
+                        <FontAwesomeIcon
+                          icon={faChevronDown}
+                          className={
+                            category.showSubcategories ? "arrow-down" : ""
+                          }
+                        />
+                      </h3>
+
+                      {category.showSubcategories && (
+                        <ul className="ul-filtrado-vertical">
+                          {category.subcategories.map((subcat) => (
+                            <li key={subcat}>{subcat}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
