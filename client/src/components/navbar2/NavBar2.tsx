@@ -60,15 +60,21 @@ const NavBar2 = () => {
                       Ayuda
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <Link
-                      to="/signup"
-                      className="nav-link active"
-                      aria-current="page"
-                    >
-                      Iniciar Sesion
-                    </Link>
-                  </li>
+                  <div className="btn-iniciar-sesion2-landing">
+                    <button className="button-iniciar2-sesion">
+                      <span className="button_lg_iniciar2-sesion">
+                        <span className="button_sl_iniciar2-sesion"></span>
+
+                        <Link
+                          to="/login"
+                          className="button_text_iniciar2-sesion"
+                          aria-current="page"
+                        >
+                          Iniciar Sesión
+                        </Link>
+                      </span>
+                    </button>
+                  </div>
                 </ul>
               </div>
             </div>

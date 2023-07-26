@@ -70,9 +70,11 @@ p {
 } */
 
 .bd-grid {
-  max-width: 1200px;
+  /* max-width: 1200px;
   margin-left: 1rem;
-  margin-right: 1rem;
+  margin-right: 1rem; */
+  max-width: 1200px;
+  margin: 0 auto; /* Centramos el contenido */
 }
 
 .l-header {
@@ -154,7 +156,9 @@ p {
   color: var(--white-color);
 }
 .home__img {
-  width: 235px;
+  /* width: 235px;
+  height: auto; */
+  width: 100%;
   height: auto;
 }
 .home__secondary {
@@ -252,16 +256,20 @@ p {
   color: transparent;
 }
 
-/*css Filtro lateral izquierdo*/
+/*********css Filtro lateral izquierdo*********/
 
 /* Estilos para el contenedor de categorías */
 .categories-container {
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
 }
 
 .filter-container {
-  padding: 20px;
+  padding-left: 1.9rem;
+  padding-top: 4rem;
+  overflow-x: hidden;
+  /* display: flex;  */
 }
 .vertical-filter {
   background-color: #f1f1f1;
@@ -269,11 +277,12 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  max-width: 20rem;
   height: 50rem;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .search-container {
@@ -288,6 +297,13 @@ p {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+.input-filtrado-vertical:focus {
+  border-color: #007bff !important; /* Cambia el color del borde cuando el input está enfocado */
+  outline: none;
+  box-shadow: 0 0 10px rgba(57, 80, 211, 0.2);
+}
+
 /* Estilos para el icono de flecha */
 .arrow-down {
   /* margin-left: auto; */
@@ -298,8 +314,7 @@ p {
 
 .input-filtrado-vertical[type="text"] {
   width: 100%;
-  /* padding: 5px; */
-  border: 1px solid #ccc;
+  border: 1px solid #dbdbdb;
   border-radius: 4px;
 }
 
@@ -307,7 +322,6 @@ p {
   padding: 10px;
   cursor: pointer;
   align-items: center;
-  /* display: flex; */
 }
 /* Estilos para el botón de categorías */
 .h3-filtro-vertical {
@@ -391,4 +405,77 @@ p {
   height: 0.6em;
   overflow: visible;
   vertical-align: -0.125em;
+}
+/*quitamos el scroll horizontal*/
+.row-scroll {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  /* margin-right: calc(-.5 * var(--bs-gutter-x)); */
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+
+/********boton filtrado general******/
+/* Estilos para el botón desplegable */
+.form-select-filtro {
+  /* Establecer un tamaño de fuente y un color de texto */
+  font-size: 16px;
+  color: #333;
+
+  /* Ajustar el ancho y alto del select */
+  width: 80%;
+  height: 40px;
+
+  /* Establecer los colores de fondo y borde */
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  /* Personalizar el cursor al pasar sobre el select */
+  cursor: pointer;
+
+  /* Ajustar el relleno (padding) interno para dar espacio al texto */
+  padding: 8px;
+}
+
+/* Estilo para los options dentro del select */
+.form-select-filtro option {
+  /* Establecer un tamaño de fuente y color de texto */
+  font-size: 16px;
+  color: #333;
+}
+
+/* Cambiar el color del texto cuando el select está desactivado */
+.form-select-filtro:disabled {
+  color: #999;
+}
+
+/* Cambiar el color de fondo cuando el select está desactivado */
+.form-select-filtro:disabled option {
+  background-color: #f1f1f1;
+  color: #999;
+}
+
+/* Establecer los colores de fondo y texto cuando el select está enfocado */
+.form-select-filtro:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-select-sm {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  font-size: 0.875rem;
+  border-radius: var(--bs-border-radius-sm);
+  margin-left: 9px;
+}
+
+/****** estilo para las cards de los productso*******/
+.card-productos-inicio {
+  width: 18rem;
 }
