@@ -125,14 +125,14 @@ video {
 
 .navbar {
   z-index: 999;
-  position: absolute;
+  /* position: absolute; */ /*exccede el larrgo del viewport*/
   top: 0;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 200px;
+  /* padding: 15px 200px; */
   transition: 0.5s ease;
 }
 
@@ -248,7 +248,7 @@ video {
   opacity: 0;
 }
 
-/*CARROUSEL*/
+/***CARROUSEL*/
 section.container-slider {
   /* width: 70%; */
   width: 90%;

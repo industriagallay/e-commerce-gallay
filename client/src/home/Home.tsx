@@ -5,13 +5,15 @@ import mano1 from "../assets/img/mano1.jpeg";
 import NavBar1 from "../components/navbar1/NavBar1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-// import ProductCard from "../components/cardsProductos/ProductCard.jsx"
 // import { dataProducts } from "./dataProducts.js";
 // import { Product } from "./dataProducts.js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Home.css";
 import "../assets/css/style.css";
 import "../components/navbar1/NavBar1.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { dataProducts } from "./dataProducts";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   //   const [products, setProducts] = useState<Product[]>([]);
@@ -139,8 +141,8 @@ const Home = () => {
               Industria <br />
               Gallay
             </h1>
-            <div className="home__img">
-              <img src={mano1} alt="image-home" />
+            <div className="home__img ">
+              <img src={mano1} alt="image-home " />
             </div>
           </div>
 
@@ -155,7 +157,7 @@ const Home = () => {
 
       <div className="container-justify-content-start">
         <div className="row-scroll">
-          <div className="col-3">
+          <div className="col-2">
             <div className="filter-container ">
               <div className="vertical-filter">
                 <div className="search-container">
@@ -165,15 +167,7 @@ const Home = () => {
                     placeholder="Buscar productos..."
                   />
                 </div>
-                {/* <div className="col">
-                  <div className="row row-cols-2 row-cols-md-4 g-4">
-                    {products.map((item) => (
-                      <div className="col" key={item.id}>
-                        <ProductCard product={item} />
-                      </div>
-                    ))}
-                  </div>
-                </div> */}
+
                 <div>
                   <select
                     className="form-select-filtro form-select-sm"
@@ -229,6 +223,30 @@ const Home = () => {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="col-10">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 me-auto g-4">
+              {dataProducts.map((item) => (
+                <div className="col-inicio-sesion" key={item.id}>
+                  <div className="card-inicio-productos h-100">
+                    <img
+                      src={item.linkImg}
+                      className="card-img-top-inicio"
+                      alt={item.title}
+                    />
+                    <div className="card-body-inicio-productos">
+                      <h5 className="card-title-inicio">{item.title}</h5>
+                      <p className="card-text-inicio">{item.price}</p>
+                      <Link to="/" aria-current="page" className="">
+                        <button className="add-to-cart-btn justify-content-start">
+                          Sumar al carrito
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
