@@ -10,6 +10,7 @@ import "./Login.css";
 import "../../components/navbar2/NavBar2.css";
 
 type FormValues = {
+  firstName: string;
   email: string;
   password: string;
 };
@@ -28,8 +29,10 @@ const Login = () => {
         "http://localhost:3001/api/login",
         formData
       );
+      /*usamos el localstorage para guardar el nombre del usuario y renderizarlo en el compopnente products*/
+      localStorage.setItem("username", response.data.firstName);
 
-      navigate("/products");
+      navigate("/creatucuchillo");
     } catch (error) {
       swal.fire({
         position: "center",
@@ -100,7 +103,7 @@ const Login = () => {
                   Olvidaste tu contraseña?
                 </Link>
                 <p className="signup-link">
-                  aún no tenes cuenta? <Link to="/signup">registrate</Link>
+                  aún no tenes cuenta? <Link to="/signup">regístrate</Link>
                 </p>
               </div>
             </form>
