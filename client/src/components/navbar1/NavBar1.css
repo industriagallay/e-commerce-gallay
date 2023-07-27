@@ -53,10 +53,11 @@ a:hover {
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  position: sticky;
-  top: 0;
+  /* position: sticky; */
+  /* top: 0; */
   z-index: 999;
 }
+
 .navbar-links {
   position: relative;
   color: #fff;
