@@ -68,7 +68,7 @@ const NavBar2 = () => {
                         <Link
                           to="/login"
                           className="button_text_iniciar2-sesion"
-                          aria-current="page"
+                    
                         >
                           Iniciar Sesión
                         </Link>
