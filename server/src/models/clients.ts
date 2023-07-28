@@ -46,6 +46,7 @@ const clientSchema = new Schema(
     isAdmin: {
       type: Boolean,
       required: true,
+      default: false,
     },
     isActive: {
       type: Boolean,
