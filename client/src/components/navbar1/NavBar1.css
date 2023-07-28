@@ -37,6 +37,9 @@ a:hover {
   margin-left: auto; /*esta propiedad alinea los enlaces a la derecha */
   margin-right: 4rem;
 }
+.navbar-links li {
+  margin-left: 0 !important;
+}
 .nav-link.active {
   display: flex;
   align-items: center;
@@ -50,10 +53,11 @@ a:hover {
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  position: sticky;
-  top: 0;
+  /* position: sticky; */
+  /* top: 0; */
   z-index: 999;
 }
+
 .navbar-links {
   position: relative;
   color: #fff;
@@ -63,10 +67,11 @@ a:hover {
   align-items: center;
   list-style: none;
 }
-
-.navbar-links li {
-  margin-left: 3rem;
+.nav-item li {
+  padding-left: 6px;
+  padding-right: 2rem;
 }
+
 .navbar-links li:first-child {
   margin-left: 0;
 }
@@ -93,4 +98,124 @@ a:hover {
 }
 .navbar-icon {
   margin-right: 0.1rem;
+}
+
+/****botton del login*****/
+.button-iniciar-sesion {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  padding: 8px;
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.button-iniciar-sesion::before,
+.button-iniciar-sesion::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: calc(50% - 5px);
+  border: 1px solid #ffffff;
+  transition: all 0.15s ease;
+}
+
+.button-iniciar-sesion::before {
+  top: 0;
+  border-bottom-width: 0;
+}
+
+.button-iniciar-sesion::after {
+  bottom: 0;
+  border-top-width: 0;
+}
+
+.button-iniciar-sesion:active,
+.button-iniciar-sesion:focus {
+  outline: none;
+}
+
+.button-iniciar-sesion:active::before,
+.button-iniciar-sesion:active::after {
+  right: 3px;
+  left: 3px;
+}
+
+.button-iniciar-sesion:active::before {
+  top: 3px;
+}
+
+.button-iniciar-sesion:active::after {
+  bottom: 3px;
+}
+
+.button_lg_iniciar-sesion {
+  position: relative;
+  display: block;
+  padding: 5px 5px;
+  color: #ffffff;
+  /* background-color: #0f1923; */
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.button_lg_iniciar-sesion::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+.button_lg_iniciar-sesion::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.button_sl_iniciar-sesion {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: -8px;
+  width: 0;
+  background-color: #a2b11a;
+  transform: skew(-15deg);
+  transition: all 0.2s ease;
+}
+
+.button_text_iniciar-sesion {
+  position: relative;
+}
+
+.button-iniciar-sesion:hover {
+  color: #ffffff;
+}
+
+.button-iniciar-sesion:hover .button_sl_iniciar-sesion {
+  width: calc(100% + 15px);
+}
+
+.button-iniciar-sesion:hover .button_lg_iniciar-sesion::after {
+  background-color: #fff;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import NavBar2 from "./navbar2/NavBar2";
+import NavBar2 from "../navbar2/NavBar2";
 import { Link } from "react-router-dom";
-import "./navbar2/NavBar2.css";
+import "../navbar2/NavBar2.css";
 import "./Help.css";
 
 // type CollapseStates = {
