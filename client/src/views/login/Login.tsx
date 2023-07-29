@@ -29,16 +29,20 @@ const Login = () => {
         "http://localhost:3001/api/login",
         formData
       );
-      /*usamos el localstorage para guardar el nombre del usuario y renderizarlo en el compopnente products*/
-      localStorage.setItem("username", response.data.firstName);
 
-      navigate("/creatucuchillo");
+      localStorage.setItem("user", JSON.stringify(response.data));
+
+      if (response.data.isAdmin === true) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       swal.fire({
         position: "center",
         icon: "error",
         title: "Oops...",
-        text: "Ocurrio un error al iniciar sesión!",
+        text: "Ocurrió un error al iniciar sesión!",
       });
       console.error(error);
     }
@@ -79,7 +83,7 @@ const Login = () => {
                 )}
                 {""}
 
-                <label htmlFor="password">Contraseña</label>
+                <label htmlFor="password"></label>
                 <input
                   type="password"
                   id="password"
