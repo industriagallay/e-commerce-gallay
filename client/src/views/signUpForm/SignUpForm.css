@@ -1,0 +1,347 @@
+/*head texto*/
+.header2 {
+  position: relative;
+  background-clip: border-box;
+  background-color: #1e88e5;
+  background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
+  margin: 50px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
+    rgba(33, 150, 243, 0.4);
+  height: 7rem;
+  letter-spacing: 0;
+  line-height: 1.375;
+  font-weight: 600;
+  font-size: 1.9rem;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*FORMULARIO*/
+.SignUpform {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  color: rgb(97 97 97);
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
+  /* width: 100rem; */
+  background-clip: border-box;
+}
+
+.header {
+  position: relative;
+  background-clip: border-box;
+  background-color: #1e88e5;
+  background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
+  margin: 50px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
+    rgba(33, 150, 243, 0.4);
+  height: 7rem;
+  letter-spacing: 0;
+  line-height: 1.375;
+  font-weight: 600;
+  font-size: 1.9rem;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputs {
+  padding: 3.5rem;
+  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  min-width: 200px;
+  width: 100%;
+  height: 2.75rem;
+  position: relative;
+}
+
+.input {
+  border: 1px solid rgba(128, 128, 128, 0.61);
+  outline: 0;
+  color: rgb(69 90 100);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  padding: 1rem;
+  background-color: transparent;
+  border-radius: 0.375rem;
+  width: 100%;
+  height: 100%;
+}
+
+.input:focus {
+  border: 1px solid #1e88e5;
+}
+
+.checkbox-container {
+  margin-left: -0.625rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkbox {
+  position: relative;
+  overflow: hidden;
+  padding: 0.55rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.027);
+  height: 35px;
+  width: 50px;
+}
+
+.checkbox input {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.checkbox-text {
+  cursor: pointer;
+}
+
+.sigin-btn {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  background-color: #1e88e5;
+  background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
+  border-radius: 0.5rem;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  color: #fff;
+}
+
+.signup-link {
+  line-height: 2.5;
+  font-weight: 300;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-link a,
+.forget {
+  line-height: 2.5;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-left: 1.25rem;
+  color: #1e88e5;
+}
+
+.forget {
+  text-align: right;
+  font-weight: 600;
+}
+
+/*NavBar2*/
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: var(--bs-navbar-toggler-icon-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background: #ffffffd0;
+  border-radius: 20%;
+}
+/*barra de navegacion*/
+.navbar-links-container {
+  margin-left: auto; /*esta propiedad alinea los enlaces a la derecha */
+  margin-right: 4rem;
+}
+.nav-link.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+}
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.navbar-links {
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+.navbar-links li {
+  margin-left: 3rem;
+}
+.navbar-links li:first-child {
+  margin-left: 0;
+}
+.navbar-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.navbar-links a:hover {
+  color: #ffffff;
+}
+/*icono navbar*/
+.navbar-logo {
+  margin-left: 7rem;
+  justify-self: flex-start;
+  color: #ffffff;
+  justify-self: start;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+.navbar-icon {
+  margin-right: 0.1rem;
+}
+
+/*ESTILOS DEL TEXTOANIMACIÓN*/
+.slide-from-right {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: slideRightToLeft 9s infinite;
+}
+
+.slide-from-right span {
+  color: #fff;
+  background-color: transparent;
+  display: inline-block;
+  animation-delay: 3s;
+}
+
+.slide-from-right span:nth-child(1) {
+  animation-delay: 3s;
+}
+
+.slide-from-right span:nth-child(2) {
+  animation-delay: 10s;
+}
+
+/* Agregar más selectores para cada texto adicional */
+
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  5%,
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/*estilos de la card*/
+.parrafoProducto {
+  color: #fff;
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+.cardOff {
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  background-color: rgba(0, 0, 0, 1);
+  padding: 1.5rem;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+}
+
+.priceOff {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+}
+
+.listsOff {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 0.75rem;
+  row-gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgba(255, 255, 255, 1);
+}
+
+.listOff {
+  display: flex;
+  align-items: center;
+}
+
+.listOff svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.listOff span {
+  margin-left: 1rem;
+}
+
+.actionOff {
+  margin-top: 2rem;
+  width: 100%;
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 0.625rem 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 1);
+  outline: none;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.actionOff:hover {
+  color: rgba(255, 255, 255, 1);
+  background-color: transparent;
+}
