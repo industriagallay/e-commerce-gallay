@@ -23,11 +23,12 @@
 
 /*FORMULARIO*/
 .SignUpform {
+  border: 1px solid #ccc;
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 0.75rem;
-  background-color: #fff;
+  border-radius: 1.75rem;
+  background-color: #ffffff;
   color: rgb(97 97 97);
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
   /* width: 100rem; */
