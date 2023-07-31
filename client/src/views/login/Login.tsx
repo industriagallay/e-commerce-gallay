@@ -1,13 +1,14 @@
-import React from "react";
-import NavBar2 from "../../components/navbar2/NavBar2";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import herramientas from "../../assets/herramientas.png";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
 import "./Login.css";
 import "../../components/navbar2/NavBar2.css";
+import NavBar1 from "../../components/navbar1/NavBar1";
+import "../../components/navbar1/NavBar1.css";
+import NavBar2 from "../../components/navbar2/NavBar2";
 
 type FormValues = {
   firstName: string;
@@ -16,6 +17,10 @@ type FormValues = {
 };
 
 const Login = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const navigate = useNavigate();
   const {
     register,
@@ -33,9 +38,16 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(response.data));
 
       if (response.data.isAdmin === true) {
+        setIsLoggedIn(true);
+        setIsAdmin(true);
         navigate("/admin");
       } else {
-        navigate("/");
+        // Almacena el nombre de usuario en el localStorage
+        localStorage.setItem("username", response.data.firstName);
+        setIsLoggedIn(true);
+        navigate("/creatucuchillo", {
+          state: { username: response.data.firstName },
+        });
       }
     } catch (error) {
       swal.fire({
@@ -48,9 +60,28 @@ const Login = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("username");
+    setIsLoggedIn(false);
+    setIsAdmin(false); // Asegurarse de que isAdmin esté configurado como false al cerrar sesión
+    navigate("/", { replace: true }); // Redirige a la landing ("/")
+  };
+
+  useEffect(() => {
+    // Verifica si hay un usuario almacenado en el local storage
+    const user = localStorage.getItem("user");
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      setIsLoggedIn(true);
+      setIsAdmin(parsedUser.isAdmin); // Setea el valor de isAdmin según el usuario almacenado
+    }
+  }, []);
+
   return (
     <div>
-      <NavBar2 />
+      {isLoggedIn ? <NavBar2 handleLogout={handleLogout} /> : <NavBar1 />}
+
       <div className="container-md login">
         <div className="row">
           <div className="col-6">

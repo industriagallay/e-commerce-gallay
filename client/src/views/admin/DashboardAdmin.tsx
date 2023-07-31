@@ -1,11 +1,11 @@
 import React from "react";
-import NavBar1 from "../../components/navbar1/NavBar1";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
 import larryTexto from "../../assets/larry-texto.png";
 import "../../components/navbar1/NavBar1.css";
 import "./DashboardAdmin.css";
+import NavBar2 from "../../components/navbar2/NavBar2";
 
 type FormValues = {
   name: string;
@@ -47,7 +47,11 @@ const DashboardAdmin = () => {
 
   return (
     <div className="perrito-admin">
-      <NavBar1 />
+      <NavBar2
+        handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
 
       <div className="container formAdmin-container">
         <div className="row">
