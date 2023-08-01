@@ -21,6 +21,9 @@ const authLoginHandler = async (
     if (!isMatch)
       return res.status(400).json({ message: "contraseña incorrecta" });
 
+
+  
+
     const token = await createAccessToken({
       email: clientFound.email,
     });
@@ -28,6 +31,7 @@ const authLoginHandler = async (
     return res.json({
       email,
     });
+
   } catch (error) {
     console.error(error);
     return res.status(500).send("Error en el servidor");
