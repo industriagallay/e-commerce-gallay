@@ -30,7 +30,7 @@ const SignUpForm = () => {
         "http://localhost:3001/api/register",
         data
       );
-            /*usamos el localstorage para guardar el nombre del usuario*/ 
+      /*usamos el localstorage para guardar el nombre del usuario*/
       localStorage.setItem("username", response.data.firstName);
 
       swal.fire({

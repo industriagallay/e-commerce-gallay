@@ -1,10 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import "./NavBar2.css";
 
-const NavBar2 = () => {
+interface NavBar2Props {
+  handleLogout: () => void; // Define la prop handleLogout como una función sin parámetros y sin valor de retorno
+}
+
+const NavBar2: React.FC<NavBar2Props> = ({ handleLogout }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate();
+  const cerrarSesion = () => {
+    // Remove user data from local storage when logging out
+    localStorage.removeItem("user");
+    localStorage.removeItem("username");
+    setIsLoggedIn(false);
+    navigate("/", { replace: true });
+  };
+
   return (
     <div>
       <div className="navbar-container">
@@ -60,7 +74,7 @@ const NavBar2 = () => {
                       Ayuda
                     </Link>
                   </li>
-                  <div className="btn-iniciar-sesion2-landing">
+                  {/* <div className="btn-iniciar-sesion2-landing">
                     <button className="button-iniciar2-sesion">
                       <span className="button_lg_iniciar2-sesion">
                         <span className="button_sl_iniciar2-sesion"></span>
@@ -68,13 +82,15 @@ const NavBar2 = () => {
                         <Link
                           to="/login"
                           className="button_text_iniciar2-sesion"
-                          aria-current="page"
+                    
                         >
                           Iniciar Sesión
                         </Link>
                       </span>
                     </button>
-                  </div>
+                  </div> */}
+
+                  <button onClick={cerrarSesion}>Cerrar Sesión</button>
                 </ul>
               </div>
             </div>
