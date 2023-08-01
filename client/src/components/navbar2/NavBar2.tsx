@@ -5,10 +5,12 @@ import { IconContext } from "react-icons/lib";
 import "./NavBar2.css";
 
 interface NavBar2Props {
-  handleLogout: () => void; // Define la prop handleLogout como una función sin parámetros y sin valor de retorno
+  onClick: () => void;
+  handleLogout: () => void;
+  // Otras propiedades que NavBar2 pueda necesitar
 }
 
-const NavBar2: React.FC<NavBar2Props> = ({ handleLogout }) => {
+const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
   const cerrarSesion = () => {
@@ -90,7 +92,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ handleLogout }) => {
                     </button>
                   </div> */}
 
-                  <button onClick={cerrarSesion}>Cerrar Sesión</button>
+                  <button onClick={handleLogout}>Cerrar sesión</button>
                 </ul>
               </div>
             </div>

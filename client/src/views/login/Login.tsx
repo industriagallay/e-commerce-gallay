@@ -34,7 +34,7 @@ const Login = () => {
         "http://localhost:3001/api/login",
         formData
       );
-
+      console.log({a:response.data});
       localStorage.setItem("user", JSON.stringify(response.data));
 
       if (response.data.isAdmin === true) {
@@ -69,18 +69,36 @@ const Login = () => {
   };
 
   useEffect(() => {
-    // Verifica si hay un usuario almacenado en el local storage
-    const user = localStorage.getItem("user");
-    if (user) {
-      const parsedUser = JSON.parse(user);
+    const token = localStorage.getItem("token");
+    // Leer la información de autenticación del localStorage o sesión
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log({ a: token });
+    if (token) {
+      // Si el token existe, el usuario está loggeado
       setIsLoggedIn(true);
-      setIsAdmin(parsedUser.isAdmin); // Setea el valor de isAdmin según el usuario almacenado
+    } else {
+      setIsLoggedIn(false);
     }
   }, []);
 
   return (
     <div>
-      {isLoggedIn ? <NavBar2 handleLogout={handleLogout} /> : <NavBar1 />}
+      <div>
+        {isLoggedIn ? (
+          <NavBar2
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            onClick={() => {}} // Proporciona cualquier función para onClick
+            handleLogout={handleLogout} // Asignar la función handleLogout al botón de cerrar sesión
+          />
+        ) : (
+          <NavBar1 />
+        )}
+      </div>
 
       <div className="container-md login">
         <div className="row">

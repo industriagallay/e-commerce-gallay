@@ -3,9 +3,10 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
 import larryTexto from "../../assets/larry-texto.png";
+import NavBar2 from "../../components/navbar2/NavBar2";
+import CloudinaryImageUpload from "../../components/cloudinary/CloudinaryImageUpload";
 import "../../components/navbar1/NavBar1.css";
 import "./DashboardAdmin.css";
-import NavBar2 from "../../components/navbar2/NavBar2";
 
 type FormValues = {
   name: string;
@@ -16,6 +17,7 @@ type FormValues = {
 };
 
 const DashboardAdmin = () => {
+  const cloudinaryName = process.env.CLOUDINARY_NAME || "";
   const {
     register,
     formState: { errors },
@@ -45,10 +47,18 @@ const DashboardAdmin = () => {
     }
   };
 
+  const handleImageUpload = (imageUrl: string) => {
+    // Aquí puedes manejar la URL de la imagen, como almacenarla en el estado del componente padre o enviarla al servidor, etc.
+    console.log("Imagen subida:", imageUrl);
+  };
+
   return (
     <div className="perrito-admin">
       <NavBar2
         handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        onClick={function (): void {
           throw new Error("Function not implemented.");
         }}
       />
@@ -90,18 +100,10 @@ const DashboardAdmin = () => {
                   </p>
                 )}
                 {""}
-                <input
-                  placeholder="backgroundImage"
-                  className="input-admin"
-                  type="text"
-                  {...register("backgroundImage", {
-                    required: true,
-                  })}
-                />{" "}
-                {errors.backgroundImage?.type === "required" && (
-                  <p className="text-danger">El campo email es requerido</p>
-                )}
-                {""}
+                <CloudinaryImageUpload
+                  onImageUpload={handleImageUpload}
+                  cloudinaryName={cloudinaryName} // Pasa la variable de entorno como prop
+                />
                 <input
                   type="number"
                   placeholder="stock"

@@ -37,7 +37,7 @@ const authLoginHandler = async (
     );
 
     // Enviar el token como parte de la respuesta
-    return res.status(200).json({ token });
+    return res.status(200).json({ token: token });
   } catch (error) {
     console.error(error);
     return res.status(500).send("Error en el servidor");
