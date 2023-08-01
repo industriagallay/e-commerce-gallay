@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/morgan": "^1.9.4",
     "npm-check-updates": "^16.10.12",
