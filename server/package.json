@@ -4,9 +4,8 @@
   "description": "",
   "main": "db.ts",
   "scripts": {
-    "start": "ts-node src/index.ts && dotenv -e .env updateEnvSecret.ts",
-    "dev": "nodemon src/index.ts",
-    "prestart": "node updateEnv.js"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "",

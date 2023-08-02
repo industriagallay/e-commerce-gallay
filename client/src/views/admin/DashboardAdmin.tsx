@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
@@ -7,6 +7,7 @@ import NavBar2 from "../../components/navbar2/NavBar2";
 import CloudinaryImageUpload from "../../components/cloudinary/CloudinaryImageUpload";
 import "../../components/navbar1/NavBar1.css";
 import "./DashboardAdmin.css";
+import { VITE_CLOUDINARY_NAME } from "../../variable";
 
 type FormValues = {
   name: string;
@@ -17,7 +18,8 @@ type FormValues = {
 };
 
 const DashboardAdmin = () => {
-  const cloudinaryName = process.env.CLOUDINARY_NAME || "";
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const cloudinaryName = VITE_CLOUDINARY_NAME || "";
   const {
     register,
     formState: { errors },
@@ -26,7 +28,14 @@ const DashboardAdmin = () => {
 
   const crearProducto = async (data: FormValues) => {
     try {
-      const response = await axios.post("http://localhost:3001/products", data);
+      const dataWithImage = {
+        ...data,
+        backgroundImage: imageUrl, // Asigna la URL de la imagen subida al campo 'backgroundImage'
+      };
+      const response = await axios.post(
+        "http://localhost:3001/products",
+        dataWithImage
+      );
       console.log(response);
 
       swal.fire({
@@ -41,15 +50,15 @@ const DashboardAdmin = () => {
         position: "center",
         icon: "error",
         title: "Oops...",
-        text: "Ocurrio un error inesperado!",
+        text: "Ocurrió un error inesperado!",
       });
       console.error(error);
     }
   };
 
+  // Asegúrate de llamar a la función onImageUpload con la URL de la imagen.
   const handleImageUpload = (imageUrl: string) => {
-    // Aquí puedes manejar la URL de la imagen, como almacenarla en el estado del componente padre o enviarla al servidor, etc.
-    console.log("Imagen subida:", imageUrl);
+    setImageUrl(imageUrl); // Actualizamos el estado imageUrl con la URL de la imagen subida.
   };
 
   return (
@@ -65,12 +74,11 @@ const DashboardAdmin = () => {
 
       <div className="container formAdmin-container">
         <div className="row">
-          {/* <h1 className="h1-admin">Crea tu Producto</h1>
-          <h2 className="h2-admin"></h2> */}
           <div className="col-8">
             <form
               className="admin ml-auto"
               onSubmit={handleSubmit(crearProducto)}
+              encType="multipart/form-data"
             >
               <div className="header-admin">crea tu producto</div>
               <div className="inputs-admin">
@@ -85,7 +93,6 @@ const DashboardAdmin = () => {
                 {errors.name?.type === "required" && (
                   <p className="text-danger">El campo nombre es requerido</p>
                 )}
-                {""}
                 <input
                   type="text"
                   placeholder="descripcion"
@@ -93,16 +100,15 @@ const DashboardAdmin = () => {
                   {...register("description", {
                     required: true,
                   })}
-                />{" "}
+                />
                 {errors.description?.type === "required" && (
                   <p className="text-danger">
                     El campo descripcion es requerido
                   </p>
                 )}
-                {""}
                 <CloudinaryImageUpload
                   onImageUpload={handleImageUpload}
-                  cloudinaryName={cloudinaryName} // Pasa la variable de entorno como prop
+                  cloudinaryName={cloudinaryName}
                 />
                 <input
                   type="number"
@@ -111,11 +117,10 @@ const DashboardAdmin = () => {
                   {...register("stock", {
                     required: true,
                   })}
-                />{" "}
+                />
                 {errors.stock?.type === "required" && (
                   <p className="text-danger">El campo stock es requerido</p>
                 )}
-                {""}
                 <input
                   type="number"
                   placeholder="precio"
@@ -123,13 +128,16 @@ const DashboardAdmin = () => {
                   {...register("price", {
                     required: true,
                   })}
-                />{" "}
+                />
                 {errors.price?.type === "required" && (
                   <p className="text-danger">El campo precio es requerido</p>
                 )}
-                {""}
                 <div className="checkbox-container-admin"></div>
-                <button className="sigin-btn-admin" type="submit">
+                <button
+                  className="sigin-btn-admin"
+                  type="submit"
+                  disabled={!imageUrl}
+                >
                   Crear Producto
                 </button>
               </div>
@@ -138,7 +146,7 @@ const DashboardAdmin = () => {
           <div className="col-4">
             <h3 className="es-lo-maximo"></h3>
             <img
-              className="larry animate__animated animate__backInRight"
+              className="larry animate_animated animate_backInRight"
               src={larryTexto}
               alt="larry-bob-esponja"
             />

@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { gsap, Expo } from "gsap";
-// import axios from "axios";
 import mano1 from "../assets/img/mano1.jpeg";
 import NavBar1 from "../components/navbar1/NavBar1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-// import { dataProducts } from "./dataProducts.js";
-// import { Product } from "./dataProducts.js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Home.css";
 import "../assets/css/style.css";
 import "../components/navbar1/NavBar1.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { dataProducts } from "./dataProducts";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Home = () => {
-  //   const [products, setProducts] = useState<Product[]>([]);
-  // };
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  backgroundImage: string;
+  stock: number;
+  price: number;
 
+  // Add other properties of the product if needed
+}
+
+const Home: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   interface Category {
     name: string;
     subcategories: string[];
@@ -46,6 +52,19 @@ const Home = () => {
       // Agrega más categorías según tus necesidades
     ];
     setCategories(fetchedCategories);
+  }, []);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+      } catch (error) {
+        // Handle error, e.g., show an error message
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   const toggleSubcategories = (index: number) => {
@@ -127,6 +146,18 @@ const Home = () => {
       setAnimationsCompleted(true);
     }
   }, [animationsCompleted]);
+
+  const getProducts = async (): Promise<Product[]> => {
+    try {
+      const response = await axios.get<Product[]>(
+        "http://localhost:3001/products"
+      );
+      return response.data; // Assuming the server returns an array of products
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
 
   return (
     <div>
@@ -227,17 +258,21 @@ const Home = () => {
           </div>
           <div className="col-10">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 me-auto g-4">
-              {dataProducts.map((item) => (
-                <div className="col-inicio-sesion" key={item.id}>
+              {products.map((product) => (
+                <div className="col-inicio-sesion" key={product.id}>
                   <div className="card-inicio-productos h-100">
                     <img
-                      src={item.linkImg}
+                      src={product.backgroundImage}
                       className="card-img-top-inicio"
-                      alt={item.title}
+                      alt={product.name}
                     />
                     <div className="card-body-inicio-productos">
-                      <h5 className="card-title-inicio">{item.title}</h5>
-                      <p className="card-text-inicio">{item.price}</p>
+                      <h5 className="card-title-inicio">{product.name}</h5>
+                      <p className="card-title-inicio">{product.description}</p>
+                      <p className="card-text-inicio">
+                        precio: ${product.price}
+                      </p>
+                      <p className="card-text-inicio">stock: {product.stock}</p>
                       <Link to="/" aria-current="page" className="">
                         <button className="add-to-cart-btn justify-content-start">
                           Sumar al carrito
