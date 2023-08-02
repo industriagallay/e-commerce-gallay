@@ -3,6 +3,7 @@ import mainRouter from "../src/routes/mainRouter";
 import morgan from "morgan";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
+import cookieParser from "cookie-parser";
 import "dotenv/config";
 import "./db";
 
@@ -22,6 +23,7 @@ app.set("views", path.join(dirname, "views"));
 
 // middlewares
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
 app.use((_, res, next) => {
