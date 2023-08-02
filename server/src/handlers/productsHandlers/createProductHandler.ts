@@ -4,7 +4,7 @@ import Products from "../../models/products";
 const createProductHandler = async (req: Request, res: Response) => {
   try {
     const { name, description, backgroundImage, stock, price } = req.body;
-
+    console.log({ a: req.body });
     const newProduct = new Products({
       name,
       description,
