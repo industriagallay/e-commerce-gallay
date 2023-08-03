@@ -6,31 +6,46 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
 import "./LandingPage.css";
-import { dataDigitalBestSeller } from "./data";
+// import { dataDigitalBestSeller } from "./data";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-// interface Products {
-//   _id: string;
-//   title: string;
-//   backgroundImage: string;
-//   price: number;
-//   category: string;
-//   name: string;
-//   desciption: string;
-//   stock: number;
-// }
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  backgroundImage: string;
+  stock: number;
+  price: number;
+}
 
 const LandingPage: React.FC = () => {
-  // const [products, setProducts] = useState<Products[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
-  // useEffect(() => {
-  // Hacemos la solicitud GET a la API para obtener los productos
-  //   fetch("/api/getAllProductsHandler")
-  //     .then((response) => response.json())
-  //     .then((data) => setProducts(data))
-  //     .catch((error) =>
-  //       console.error("Error al obtener los productos:", error)
-  //     );
-  // }, []);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+      } catch (error) {
+        // Handle error, e.g., show an error message
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const getProducts = async (): Promise<Product[]> => {
+    try {
+      const response = await axios.get<Product[]>(
+        "http://localhost:3001/products"
+      );
+      return response.data; // Assuming the server returns an array of products
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
 
   const settings = {
     dots: true,
@@ -112,17 +127,23 @@ const LandingPage: React.FC = () => {
         <div className="container-slider">
           <div className="row ">
             <Slider {...settings}>
-              {dataDigitalBestSeller.map((item) => (
-                <div className="card-landing-carousel" key={item.id}>
-                  <div className="card-top-landing">
-                    <img src={item.linkImg} alt={item.title} />
-                    <h1>{item.title}</h1>
+              {products.map((product) => (
+                <div className="card-landing-carousel" key={product.id}>
+                  <div className="tpb">
+                    <div className="card-top-landing">
+                      <img src={product.backgroundImage} alt={product.name} />
+                      <h1>{product.name}</h1>
+                    </div>
+                    <div className="card-bottom-landing">
+                      <h3>{product.price}</h3>
+                      <p className="categoria">{product.stock}</p>
+                    </div>
+                    <Link to="/" className="">
+                      <button className="bottom-card-landing justify-content-start">
+                        Sumar al Carrito
+                      </button>
+                    </Link>
                   </div>
-                  <div className="card-bottom-landing">
-                    <h3>{item.price}</h3>
-                    <p className="categoria">{item.category}</p>
-                  </div>
-                  <button className="bottom-card-landing">BOTTON</button>
                 </div>
               ))}
             </Slider>
