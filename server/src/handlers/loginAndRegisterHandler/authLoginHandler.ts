@@ -26,6 +26,12 @@ const authLoginHandler = async (
 
     const token = await createAccessToken({
       email: clientFound.email,
+      _id: clientFound._id,
+      firstName: clientFound.firstName,
+      lastName: clientFound.lastName,
+      dni: clientFound.dni,
+      createdAt: clientFound.createdAt,
+      updatedAt: clientFound.updatedAt,
     });
     res.cookie("token", token);
     return res.json({
