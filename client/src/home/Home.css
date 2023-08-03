@@ -594,6 +594,18 @@ p {
   margin-left: 8px; /* Ajustar el espacio entre el precio y el texto adicional */
 }
 
+.price-off {
+  font-size: 15px;
+  color: #008300;
+  margin-left: 8px;
+}
+.free-shipping {
+  color: #008300;
+}
+.free-shipping::after {
+  /* content: " ⚡"; */
+}
+
 .img-container {
   position: relative;
 }
