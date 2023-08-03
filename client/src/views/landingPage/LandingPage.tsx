@@ -6,9 +6,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
 import "./LandingPage.css";
-// import { dataDigitalBestSeller } from "./data";
+import ProductCard from "../../components/cardsProductos/ProductCard";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -128,23 +128,15 @@ const LandingPage: React.FC = () => {
           <div className="row ">
             <Slider {...settings}>
               {products.map((product) => (
-                <div className="card-landing-carousel" key={product.id}>
-                  <div className="tpb">
-                    <div className="card-top-landing">
-                      <img src={product.backgroundImage} alt={product.name} />
-                      <h1>{product.name}</h1>
-                    </div>
-                    <div className="card-bottom-landing">
-                      <h3>{product.price}</h3>
-                      <p className="categoria">{product.stock}</p>
-                    </div>
-                    <Link to="/" className="">
-                      <button className="bottom-card-landing justify-content-start">
-                        Sumar al Carrito
-                      </button>
-                    </Link>
-                  </div>
-                </div>
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  hovered={false} // No se utiliza el hover en el carousel
+                  // eslint-disable-next-line @typescript-eslint/no-empty-function
+                  onMouseEnter={() => {}} // No se utiliza el hover en el carousel
+                  // eslint-disable-next-line @typescript-eslint/no-empty-function
+                  onMouseLeave={() => {}} // No se utiliza el hover en el carousel
+                />
               ))}
             </Slider>
           </div>
