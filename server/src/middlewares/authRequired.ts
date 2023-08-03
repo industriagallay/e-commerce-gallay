@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import Jwt, { JwtPayload } from "jsonwebtoken";
-import { TOKEN_SECRET } from "../config/secret";
+import Jwt from "jsonwebtoken";
 import { ObjectId } from "mongoose";
 
 interface DecodedToken {

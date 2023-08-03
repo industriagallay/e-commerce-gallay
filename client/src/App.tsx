@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./home/Home";
 import SignUpForm from "./views/signUpForm/SignUpForm";
 import CreaTuCuchillo from "./components/crea-tu-cuchillo/CreaTuCuchillo";
