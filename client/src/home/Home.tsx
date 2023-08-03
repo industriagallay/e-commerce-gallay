@@ -1,25 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { gsap, Expo } from "gsap";
-// import axios from "axios";
 import mano1 from "../assets/img/mano1.jpeg";
 import NavBar1 from "../components/navbar1/NavBar1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-// import { dataProducts } from "./dataProducts.js";
-// import { Product } from "./dataProducts.js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Home.css";
 import "../assets/css/style.css";
 import "../components/navbar1/NavBar1.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { dataProducts } from "./dataProducts";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Home = () => {
-  //   const [products, setProducts] = useState<Product[]>([]);
-  // };
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  backgroundImage: string;
+  stock: number;
+  price: number;
+  additionalText?: string; // Nuevo campo para texto adicional
+  // Add other properties of the product if needed
+}
+
+const Home: React.FC = () => {
+  //hover de las cards > 2500
+
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  useEffect(() => {
+    const handleMouseEnter = (index: number) => {
+      setHoveredCard(index);
+    };
+
+    const handleMouseLeave = () => {
+      setHoveredCard(null);
+    };
+
+    const cards = document.querySelectorAll(".col-inicio-sesion");
+    cards.forEach((card, index) => {
+      card.addEventListener("mouseenter", () => handleMouseEnter(index));
+      card.addEventListener("mouseleave", handleMouseLeave);
+    });
+
+    return () => {
+      cards.forEach((card, index) => {
+        card.removeEventListener("mouseenter", () => handleMouseEnter(index));
+        card.removeEventListener("mouseleave", () => handleMouseLeave());
+      });
+    };
+  }, []);
+  const handleMouseEnter = (index: number) => {
+    setHoveredCard(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
+  };
 
   const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   interface Category {
     name: string;
     subcategories: string[];
@@ -46,6 +85,19 @@ const Home = () => {
       // Agrega más categorías según tus necesidades
     ];
     setCategories(fetchedCategories);
+  }, []);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+      } catch (error) {
+        // Handle error, e.g., show an error message
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   const toggleSubcategories = (index: number) => {
@@ -127,6 +179,18 @@ const Home = () => {
       setAnimationsCompleted(true);
     }
   }, [animationsCompleted]);
+
+  const getProducts = async (): Promise<Product[]> => {
+    try {
+      const response = await axios.get<Product[]>(
+        "http://localhost:3001/products"
+      );
+      return response.data; // Assuming the server returns an array of products
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
 
   return (
     <div>
@@ -227,18 +291,52 @@ const Home = () => {
           </div>
           <div className="col-10">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 me-auto g-4">
-              {dataProducts.map((item) => (
-                <div className="col-inicio-sesion" key={item.id}>
+              {products.map((product, index) => (
+                <div
+                  className={`col-inicio-sesion ${
+                    product.price > 2500 && index === hoveredCard
+                      ? "hovered"
+                      : ""
+                  } ${product.price > 2500 ? "discounted-hover" : ""}`} // Aplicar la clase "discounted-hover" cuando el precio es mayor a 2500 y se hace hover
+                  key={product.id}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={() => handleMouseLeave()}
+                >
                   <div className="card-inicio-productos h-100">
-                    <img
-                      src={item.linkImg}
-                      className="card-img-top-inicio"
-                      alt={item.title}
-                    />
-                    <div className="card-body-inicio-productos">
-                      <h5 className="card-title-inicio">{item.title}</h5>
-                      <p className="card-text-inicio">{item.price}</p>
-                      <Link to="/" aria-current="page" className="">
+                    <div className="img-container">
+                      <img
+                        src={product.backgroundImage}
+                        className="card-img-top-inicio"
+                        alt={product.name}
+                      />
+                      <div className="line-horizontal"></div>
+                    </div>
+                    <div className="card-body-inicio-productos ">
+                      <div className="price-container">
+                        <p className="card-text-inicio price">
+                          $ {product.price}
+                          {product.price > 50 && (
+                            <span className="additional-text">
+                              {" "}
+                              Mismo precio en 3 cuotas de 31199 pesos con 67
+                              centavos $ 31.199 , 67 Envío gratis
+                            </span>
+                          )}
+                        </p>
+                        {product.price > 2500 && index === hoveredCard && (
+                          <p className="card-text-inicio discount-price">
+                            $ {(product.price * 0.9).toFixed(2)}
+                          </p>
+                        )}
+                      </div>
+                      <h5 className="card-title-inicio">{product.name}</h5>
+                      <h6 className="card-description-inicio">
+                        {product.description}
+                      </h6>
+                      <p className="card-stock-inicio">
+                        stock: {product.stock}
+                      </p>
+                      <Link to="/" className="">
                         <button className="add-to-cart-btn justify-content-start">
                           Sumar al carrito
                         </button>
