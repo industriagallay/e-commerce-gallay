@@ -51,7 +51,7 @@ const LandingPage: React.FC = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -87,37 +87,39 @@ const LandingPage: React.FC = () => {
       <NavBar1 />
       <div className="container-fluid-md">
         <div className="row">
-          <div col-6="true">
+          {/* <div col-md-6="true"> */}
+          <div className="col-md-6">
             <video muted autoPlay loop>
               <source src={yunqueHerreroMP4} type="video/mp4" />
             </video>
             <div className="capa"></div>
           </div>
-
-          <div className="container text-center homeLanding">
-            <div className="row align-items-center content">
-              <div className="texto-Industria1">
-                <ul className="UL-blur">
-                  <li className="LI-blur">I</li>
-                  <li className="LI-blur">N</li>
-                  <li className="LI-blur">D</li>
-                  <li className="LI-blur">U</li>
-                  <li className="LI-blur">S</li>
-                  <li className="LI-blur">T</li>
-                  <li className="LI-blur">R</li>
-                  <li className="LI-blur">I</li>
-                  <li className="LI-blur">A</li>
-                </ul>
-              </div>
-              <div className="texto-Gallay2">
-                <ul className="UL-blur">
-                  <li className="LI-blur">G</li>
-                  <li className="LI-blur">A</li>
-                  <li className="LI-blur">L</li>
-                  <li className="LI-blur">L</li>
-                  <li className="LI-blur">A</li>
-                  <li className="LI-blur">Y</li>
-                </ul>
+          <div className="col-md-12">
+            <div className="container text-center homeLanding ">
+              <div className=" align-items-center content">
+                <div className="texto-Industria1">
+                  <ul className="UL-blur">
+                    <li className="LI-blur">I</li>
+                    <li className="LI-blur">N</li>
+                    <li className="LI-blur">D</li>
+                    <li className="LI-blur">U</li>
+                    <li className="LI-blur">S</li>
+                    <li className="LI-blur">T</li>
+                    <li className="LI-blur">R</li>
+                    <li className="LI-blur">I</li>
+                    <li className="LI-blur">A</li>
+                  </ul>
+                </div>
+                <div className="texto-Gallay2">
+                  <ul className="UL-blur">
+                    <li className="LI-blur">G</li>
+                    <li className="LI-blur">A</li>
+                    <li className="LI-blur">L</li>
+                    <li className="LI-blur">L</li>
+                    <li className="LI-blur">A</li>
+                    <li className="LI-blur">Y</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -126,19 +128,21 @@ const LandingPage: React.FC = () => {
       <section className="container">
         <div className="container-slider">
           <div className="row ">
-            <Slider {...settings}>
-              {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  hovered={false} // No se utiliza el hover en el carousel
-                  // eslint-disable-next-line @typescript-eslint/no-empty-function
-                  onMouseEnter={() => {}} // No se utiliza el hover en el carousel
-                  // eslint-disable-next-line @typescript-eslint/no-empty-function
-                  onMouseLeave={() => {}} // No se utiliza el hover en el carousel
-                />
-              ))}
-            </Slider>
+            <div className="col">
+              <Slider {...settings}>
+                {products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    hovered={false} // No se utiliza el hover en el carousel
+                    // eslint-disable-next-line @typescript-eslint/no-empty-function
+                    onMouseEnter={() => {}} // No se utiliza el hover en el carousel
+                    // eslint-disable-next-line @typescript-eslint/no-empty-function
+                    onMouseLeave={() => {}} // No se utiliza el hover en el carousel
+                  />
+                ))}
+              </Slider>
+            </div>
           </div>
         </div>
       </section>
