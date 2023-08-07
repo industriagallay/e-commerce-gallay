@@ -4,7 +4,7 @@
   color: #f1e312d2;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 10rem;
   margin-bottom: 9rem;
 }
 /*parrafo/titulo*/
@@ -197,4 +197,7 @@ button:hover .button-text {
 
 .content2 .btn2:active {
   box-shadow: none;
+}
+.backgound-color-ayuda {
+  background-color: #ebebeb;
 }

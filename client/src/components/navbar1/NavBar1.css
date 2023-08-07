@@ -58,6 +58,12 @@ a:hover {
     margin-right: -35px;
     gap: 200px;
   }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -86,6 +92,12 @@ a:hover {
     margin-right: -50px;
     gap: 200px;
   }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
 }
 @media (max-width: 576px) {
   .navbar-links a {
@@ -112,6 +124,12 @@ a:hover {
     top: 80px;
     margin-right: -10px;
     gap: 10px;
+  }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
   }
 }
 
@@ -195,6 +213,7 @@ a:hover {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
+  margin: 20px;
 }
 .navbar-links a {
   display: block;
@@ -202,7 +221,7 @@ a:hover {
 
 .navbar-links a:hover {
   /* color: #ffffff; */
-  color: #d7e745;
+  color: #ffffff;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
 }
@@ -266,8 +285,8 @@ a:hover {
   border-top-width: 0;
 }
 
-.button-iniciar-sesion:active,
-.button-iniciar-sesion:focus {
+.button-cerrar-sesion:active,
+.button-cerrar-sesion:focus {
   outline: none;
 }
 
@@ -288,7 +307,7 @@ a:hover {
 .button_lg_iniciar-sesion {
   position: relative;
   display: block;
-  padding: 5px 5px;
+
   color: #ffffff;
   /* background-color: #0f1923; */
   overflow: hidden;
@@ -332,6 +351,14 @@ a:hover {
 
 .button_text_iniciar-sesion {
   position: relative;
+}
+.button-iniciar-sesion-custom {
+  /* Agrega los estilos que desees personalizar */
+  margin: 10px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
 }
 
 .button-iniciar-sesion:hover {

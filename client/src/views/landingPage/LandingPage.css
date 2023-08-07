@@ -22,7 +22,18 @@ body {
 }
 
 /*barra de navegacion*/
-
+.navbar {
+  z-index: 999;
+  /*position: absolute; exccede el larrgo del viewport*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 15px 200px; */
+  transition: 0.5s ease;
+}
 /* video hero loop */
 #hero {
   min-height: 100vh;
@@ -51,24 +62,6 @@ video {
 
 /*Nav-Bar*/
 
-.navbar {
-  z-index: 999;
-  position: absolute; /*exccede el larrgo del viewport*/
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* padding: 15px 200px; */
-  transition: 0.5s ease;
-}
-
-/* section {
-  padding: 100px 200px;
-} */
-
-/* texto de la home contenedores*/
 /* texto de la home contenedores */
 .homeLanding {
   position: relative;

@@ -61,7 +61,14 @@ const SignUpForm = () => {
         </h2>
       </div>
 
-      <NavBar2 />
+      <NavBar2
+        onClick={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <div className="container-md">
         <div className="row">
           <div className="col-6">

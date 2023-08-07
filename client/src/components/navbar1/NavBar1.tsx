@@ -85,22 +85,21 @@ const NavBar1: React.FC = () => {
                       Ayuda
                     </Link>
                   </li>
-
-                  <div className="btn-iniciar-sesion-landing">
-                    <button className="button-iniciar-sesion">
-                      <span className="button_lg_iniciar-sesion">
-                        <span className="button_sl_iniciar-sesion"></span>
-
-                        <Link
-                          to="/login"
-                          className="button_text_iniciar-sesion"
-                        >
-                          Iniciar Sesión
-                        </Link>
-                      </span>
-                    </button>
-                  </div>
                 </ul>
+                <div className="btn-iniciar-sesion-landing">
+                  <button className="button-iniciar-sesion">
+                    <span className="button_lg_iniciar-sesion">
+                      <span className="button_sl_iniciar-sesion"></span>
+
+                      <Link
+                        to="/login"
+                        className="button_text_iniciar-sesion button-iniciar-sesion-custom"
+                      >
+                        Iniciar Sesión
+                      </Link>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </nav>
