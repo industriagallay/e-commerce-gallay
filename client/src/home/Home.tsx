@@ -4,14 +4,14 @@ import mano1 from "../assets/img/mano1.jpeg";
 import NavBar1 from "../components/navbar1/NavBar1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+// import { Link } from "react-router-dom";
+import axios from "axios";
+import ProductCard from "../components/cardsProductos/ProductCard";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Home.css";
 import "../assets/css/style.css";
 import "../components/navbar1/NavBar1.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import ProductCard from "../components/cardsProductos/ProductCard";
 
 interface Product {
   id: number;
@@ -170,7 +170,7 @@ const Home: React.FC = () => {
 
       <main className="main-bg">
         <div className="home">
-          <div className="home__primary">
+          <div className="home__primary col-lg-6 col-md-12">
             <h1 className="home__title">
               Industria <br />
               Gallay
@@ -180,7 +180,7 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="home__secondary">
+          <div className="home__secondary col-lg-6 col-md-12">
             <a className="home__scroll" href="#about">
               SCROLLDOWN
             </a>
@@ -190,8 +190,8 @@ const Home: React.FC = () => {
       </main>
 
       <div className="container-justify-content-start">
-        <div className="row-scroll">
-          <div className="col-2">
+        <div className="row-scroll row">
+          <div className="col-12 col-md-4 col-lg-3">
             <div className="filter-container ">
               <div className="vertical-filter">
                 <div className="search-container">
@@ -259,8 +259,9 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="col-10">
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 me-auto g-4">
+
+          <div className="col-12 col-md-8 col-lg-8">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">
               {products.map((product, index) => (
                 <ProductCard
                   key={product.id}
