@@ -26,7 +26,7 @@ const Help: React.FC = () => {
   };
 
   return (
-    <div className="backgound-color-ayuda">
+    <div>
       <NavBar2
         onClick={function (): void {
           throw new Error("Function not implemented.");
