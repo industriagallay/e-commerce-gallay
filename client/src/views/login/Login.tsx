@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import herramientas from "../../assets/herramientas.png";
+// import herramientas from "../../assets/herramientas.png";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
+import NavBar1 from "../../components/navbar1/NavBar1";
+import NavBar2 from "../../components/navbar2/NavBar2";
 import "./Login.css";
 import "../../components/navbar2/NavBar2.css";
-import NavBar1 from "../../components/navbar1/NavBar1";
 import "../../components/navbar1/NavBar1.css";
-import NavBar2 from "../../components/navbar2/NavBar2";
 
 type FormValues = {
   firstName: string;
@@ -34,7 +34,7 @@ const Login = () => {
         "http://localhost:3001/api/login",
         formData
       );
-      console.log({a:response.data});
+      console.log({ a: response.data });
       localStorage.setItem("user", JSON.stringify(response.data));
 
       if (response.data.isAdmin === true) {
@@ -87,7 +87,7 @@ const Login = () => {
   }, []);
 
   return (
-    <div>
+    <div className="background-herramientas">
       <div>
         {isLoggedIn ? (
           <NavBar2
@@ -101,19 +101,10 @@ const Login = () => {
       </div>
 
       <div className="container-md login">
-        <div className="row">
-          <div className="col-6">
-            <img
-              src={herramientas}
-              className="imgbackground"
-              alt="fondo-image"
-            />
-
-            <form
-              className="Loginform ml-auto"
-              onSubmit={handleSubmit(iniciarSesion)}
-            >
-              <div className="Loginheader">Bienvenido a Industria Gallay</div>
+        <div className="row justify-content-center align-items-center">
+          <div className="col-lg-12 col-md-12 col-sm-12 mx-auto">
+            <form className="Loginform " onSubmit={handleSubmit(iniciarSesion)}>
+              <div className="Loginheader Loginform">Bienvenido</div>
               <div className="Logininputs">
                 <label htmlFor="email"></label>
                 <input

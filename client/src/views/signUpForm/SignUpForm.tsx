@@ -61,10 +61,17 @@ const SignUpForm = () => {
         </h2>
       </div>
 
-      <NavBar2 />
-      <div className="container-md">
-        <div className="row">
-          <div className="col-6">
+      <NavBar2
+        onClick={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-6 col-md-8 col-sm-10">
             <form
               className="SignUpform ml-auto"
               onSubmit={handleSubmit(crearCuenta)}
@@ -158,7 +165,7 @@ const SignUpForm = () => {
               </div>
             </form>
           </div>
-          <div className="col-6 d-flex align-items-center justify-content-center">
+          <div className="col-lg-6 col-md-4 col-sm-2 d-flex align-items-center justify-content-center">
             <div className="cardOff">
               <p className="parrafoProducto">Productos a partir De</p>
               <p className="priceOff text-center">$5.000</p>
