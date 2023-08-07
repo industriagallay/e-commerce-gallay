@@ -13,6 +13,11 @@ import "../assets/css/style.css";
 import "../components/navbar1/NavBar1.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { Link } from "react-router-dom";
+import axios from "axios";
+import ProductCard from "../components/cardsProductos/ProductCard";
+
+
 interface Product {
   id: number;
   name: string;
