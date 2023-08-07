@@ -7,19 +7,132 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 /*color hover del logo*/
 a:hover {
   color: #d7e745;
 }
+
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+  margin-right: 20px; /* Espacio entre el botón y el borde derecho */
+  transition: transform 0.3s ease-in-out; /* Efecto de transición */
+}
+
+.navbar-toggler.collapsed {
+  transform: rotate(0deg); /* Rotación del botón en estado colapsado */
+}
+
+@media (max-width: 992px) {
+  .navbar-links a {
+    /* Agregamos espaciado vertical entre los enlaces */
+    padding: 10px 0;
+    margin: 0px 0px 0px 0px;
+  }
+  .navbar-links-container {
+    display: none;
+    max-height: 0;
+    top: 80px;
+  }
+
+  .navbar-toggler {
+    margin-top: 10px;
+  }
+
+  .collapsed .navbar-toggler-icon {
+    background: #ccccccd0;
+  }
+  .navbar-links-container.active {
+    display: none;
+    max-height: 0;
+    top: 80px;
+    margin-right: -35px;
+    gap: 200px;
+  }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-links a {
+    /* Agregamos espaciado vertical entre los enlaces */
+    padding: 10px 0;
+  }
+  /* Estilos para ocultar los enlaces y mostrar solo el botón */
+  .navbar-links-container {
+    display: none;
+    max-height: 0;
+    top: 80px;
+  }
+  /* Asegura que el botón aparezca debajo de la barra de navegación */
+  .navbar-toggler {
+    margin-top: 10px;
+  }
+  /* Estilos para mostrar el botón */
+  .collapsed .navbar-toggler-icon {
+    background: #d3d3d3d0;
+  }
+  .navbar-links-container.active {
+    display: none;
+    max-height: 0;
+    top: 80px;
+    margin-right: -50px;
+    gap: 200px;
+  }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 576px) {
+  .navbar-links a {
+    /* Agregamos espaciado vertical entre los enlaces */
+    padding: 10px 0;
+  }
+  /* Estilos para ocultar los enlaces y mostrar solo el botón */
+  .navbar-links-container {
+    display: none;
+    max-height: 0;
+    top: 80px;
+  }
+  /* Asegura que el botón aparezca debajo de la barra de navegación */
+  .navbar-toggler {
+    margin-top: 10px;
+  }
+  /* Estilos para mostrar el botón */
+  .collapsed .navbar-toggler-icon {
+    background: #a8a8a8d0;
+  }
+  .navbar-links-container.active {
+    display: none;
+    max-height: 0;
+    top: 80px;
+    margin-right: -10px;
+    gap: 10px;
+  }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
 .navbar-toggler-icon {
   display: inline-block;
   width: 1.5em;
@@ -34,9 +147,29 @@ a:hover {
 }
 /*barra de navegacion*/
 .navbar-links-container {
-  margin-left: auto; /*esta propiedad alinea los enlaces a la derecha */
+  position: absolute;
+  right: 0;
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden; /* Oculta el contenido cuando está colapsado */
+  margin-left: auto;
   margin-right: 4rem;
 }
+
+.navbar-links-container.active {
+  display: flex; /* Muestra los enlaces cuando la clase 'active' está presente */
+  flex-direction: column; /* Alinea los enlaces verticalmente */
+  max-height: 100vh;
+
+  position: absolute;
+  top: 80px;
+  right: 0;
+  padding: 1rem;
+  width: 100%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  overflow-y: auto;
+}
+
 .navbar-links li {
   margin-left: 0 !important;
 }
@@ -80,9 +213,17 @@ a:hover {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
+  margin: 20px;
 }
+.navbar-links a {
+  display: block;
+}
+
 .navbar-links a:hover {
+  /* color: #ffffff; */
   color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
 }
 /*icono navbar*/
 .navbar-logo {
@@ -98,6 +239,10 @@ a:hover {
 }
 .navbar-icon {
   margin-right: 0.1rem;
+}
+
+.container-fluid {
+  padding: 0;
 }
 
 /****botton del login*****/
@@ -140,8 +285,8 @@ a:hover {
   border-top-width: 0;
 }
 
-.button-iniciar-sesion:active,
-.button-iniciar-sesion:focus {
+.button-cerrar-sesion:active,
+.button-cerrar-sesion:focus {
   outline: none;
 }
 
@@ -162,7 +307,7 @@ a:hover {
 .button_lg_iniciar-sesion {
   position: relative;
   display: block;
-  padding: 5px 5px;
+
   color: #ffffff;
   /* background-color: #0f1923; */
   overflow: hidden;
@@ -206,6 +351,14 @@ a:hover {
 
 .button_text_iniciar-sesion {
   position: relative;
+}
+.button-iniciar-sesion-custom {
+  /* Agrega los estilos que desees personalizar */
+  margin: 10px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
 }
 
 .button-iniciar-sesion:hover {

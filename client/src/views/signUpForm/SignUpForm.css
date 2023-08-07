@@ -8,8 +8,7 @@
   border-radius: 0.75rem;
   overflow: hidden;
   color: #fff;
-  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
-    rgba(33, 150, 243, 0.4);
+  box-shadow: 30px 25px 15px rgba(0, 0, 0, 0.2); /* Sombra personalizada */
   height: 7rem;
   letter-spacing: 0;
   line-height: 1.375;
@@ -19,6 +18,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000; /* Asegura que el encabezado aparezca por encima de la barra de navegación */
+  margin-top: 80px; /* Crea espacio entre el encabezado y la barra de navegación */
 }
 
 /*FORMULARIO*/
@@ -33,6 +34,7 @@
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
   /* width: 100rem; */
   background-clip: border-box;
+  margin-bottom: 3rem;
 }
 
 .header {
@@ -345,4 +347,10 @@
 .actionOff:hover {
   color: rgba(255, 255, 255, 1);
   background-color: transparent;
+}
+
+@media (min-width: 390px) {
+  .cardOff {
+    margin-bottom: 50px;
+  }
 }

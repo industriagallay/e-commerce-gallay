@@ -1,23 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Playfair+Display&family=Poppins:wght@400;500&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap");
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .show > .nav-link {
-  color: rgb(255, 255, 255);
+  color: rgb(255 255 255 / 90%);
 }
-
 body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
+}
+/*color hover del logo*/
+a:hover {
+  color: #d7e745;
+}
+.navbar2 {
+  z-index: 999;
+  position: absolute; /*exccede el larrgo del viewport*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 15px 200px; */
+  transition: 0.5s ease;
+  background-color: currentColor;
+}
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+  margin-right: 20px; /* Espacio entre el botón y el borde derecho */
+  transition: transform 0.3s ease-in-out; /* Efecto de transición */
 }
 
-.navbar2-toggler-icon {
+.navbar-toggler.collapsed {
+  transform: rotate(0deg); /* Rotación del botón en estado colapsado */
+}
+
+@media (max-width: 992px) {
+  .navbar-links a {
+    /* Agregamos espaciado vertical entre los enlaces */
+    padding: 10px 0;
+    margin: 0px 0px 0px 0px;
+  }
+  .navbar-links-container {
+    display: none;
+    max-height: 0;
+    top: 80px;
+  }
+
+  .navbar-toggler {
+    margin-top: 10px;
+  }
+
+  .collapsed .navbar-toggler-icon {
+    background: #ccccccd0;
+  }
+  .navbar-links-container.active {
+    display: none;
+    max-height: 0;
+    top: 80px;
+    margin-right: -35px;
+    gap: 200px;
+  }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-links a {
+    /* Agregamos espaciado vertical entre los enlaces */
+    padding: 10px 0;
+  }
+  /* Estilos para ocultar los enlaces y mostrar solo el botón */
+  .navbar-links-container {
+    display: none;
+    max-height: 0;
+    top: 80px;
+  }
+  /* Asegura que el botón aparezca debajo de la barra de navegación */
+  .navbar-toggler {
+    margin-top: 10px;
+  }
+  /* Estilos para mostrar el botón */
+  .collapsed .navbar-toggler-icon {
+    background: #d3d3d3d0;
+  }
+  .navbar-links-container.active {
+    display: none;
+    max-height: 0;
+    top: 80px;
+    margin-right: -50px;
+    gap: 200px;
+  }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 576px) {
+  .navbar-links a {
+    /* Agregamos espaciado vertical entre los enlaces */
+    padding: 10px 0;
+  }
+  /* Estilos para ocultar los enlaces y mostrar solo el botón */
+  .navbar-links-container {
+    display: none;
+    max-height: 0;
+    top: 80px;
+  }
+  /* Asegura que el botón aparezca debajo de la barra de navegación */
+  .navbar-toggler {
+    margin-top: 10px;
+  }
+  /* Estilos para mostrar el botón */
+  .collapsed .navbar-toggler-icon {
+    background: #a8a8a8d0;
+  }
+  .navbar-links-container.active {
+    display: none;
+    max-height: 0;
+    top: 80px;
+    margin-right: -10px;
+    gap: 10px;
+  }
+  .btn-iniciar-sesion-landing {
+    /* Alinea el botón al centro y agrega margen superior */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+.navbar-toggler-icon {
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
@@ -30,9 +159,32 @@ body {
   border-radius: 20%;
 }
 /*barra de navegacion*/
-.navbar2-links-container {
-  margin-left: auto; /*esta propiedad alinea los enlaces a la derecha */
+.navbar-links-container {
+  position: absolute;
+  right: 0;
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden; /* Oculta el contenido cuando está colapsado */
+  margin-left: auto;
   margin-right: 4rem;
+}
+
+.navbar-links-container.active {
+  display: flex; /* Muestra los enlaces cuando la clase 'active' está presente */
+  flex-direction: column; /* Alinea los enlaces verticalmente */
+  max-height: 100vh;
+
+  position: absolute;
+  top: 80px;
+  right: 0;
+  padding: 1rem;
+  width: 100%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.navbar-links li {
+  margin-left: 0 !important;
 }
 .nav-link.active {
   display: flex;
@@ -41,7 +193,7 @@ body {
   justify-content: flex-end;
   font-size: 1.2rem;
 }
-.navbar2 {
+.navbar {
   height: 80px;
   display: flex;
   justify-content: center;
@@ -51,42 +203,45 @@ body {
   /* top: 0; */
   z-index: 999;
 }
-.navbar2-links {
+
+.navbar-links {
   position: relative;
-  color: #ffffff;
+  color: #fff;
   font-weight: 500;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   list-style: none;
 }
-
-.nav-item {
-  /* Ajusta el padding según tu preferencia para la distancia horizontal */
+.nav-item li {
   padding-left: 6px;
   padding-right: 2rem;
 }
 
-/* .navbar2-links li {
-  margin-left: 3rem;
-}  */
-.navbar2-links li:first-child {
+.navbar-links li:first-child {
   margin-left: 0;
 }
-.navbar2-links a {
+.navbar-links a {
   color: #ffffff;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
 }
-.navbar2-links a:hover {
-  color: #ffffff;
+.navbar-links a {
+  display: block;
+}
+
+.navbar-links a:hover {
+  /* color: #ffffff; */
+  color: #d7e745;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
 }
 /*icono navbar*/
-.navbar2-logo {
+.navbar-logo {
   margin-left: 7rem;
   justify-self: flex-start;
-  color: #cfcdcd;
+  color: #ffffff;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
@@ -94,25 +249,22 @@ body {
   display: flex;
   align-items: center;
 }
-.navbar2-icon {
-  background-color: #000000;
+.navbar-icon {
   margin-right: 0.1rem;
 }
 
-/*navbar container*/
-.navbar-container {
-  padding-left: 0;
-  padding-right: 0;
+.container-fluid {
+  padding: 0;
 }
 
 /****botton del login*****/
-.button-iniciar2-sesion {
+.button-cerrar-sesion {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
   border: none;
   background: none;
-  color: #0f1923;
+  color: #ffffff;
   cursor: pointer;
   position: relative;
   padding: 8px;
@@ -123,58 +275,58 @@ body {
   transition: all 0.15s ease;
 }
 
-.button-iniciar2-sesion::before,
-.button-iniciar2-sesion::after {
+.button-cerrar-sesion::before,
+.button-cerrar-sesion::after {
   content: "";
   display: block;
   position: absolute;
   right: 0;
   left: 0;
   height: calc(50% - 5px);
-  border: 1px solid #7d8082;
+  border: 1px solid #ffffff;
   transition: all 0.15s ease;
 }
 
-.button-iniciar2-sesion::before {
+.button-cerrar-sesion::before {
   top: 0;
   border-bottom-width: 0;
 }
 
-.button-iniciar2-sesion::after {
+.button-cerrar-sesion::after {
   bottom: 0;
   border-top-width: 0;
 }
 
-.button-iniciar2-sesion:active,
-.button-iniciar2-sesion:focus {
+.button-cerrar-sesion:active,
+.button-cerrar-sesion:focus {
   outline: none;
 }
 
-.button-iniciar2-sesion:active::before,
-.button-iniciar2-sesion:active::after {
+.button-cerrar-sesion:active::before,
+.button-cerrar-sesion:active::after {
   right: 3px;
   left: 3px;
 }
 
-.button-iniciar2-sesion:active::before {
+.button-cerrar-sesion:active::before {
   top: 3px;
 }
 
-.button-iniciar2-sesion:active::after {
+.button-cerrar-sesion:active::after {
   bottom: 3px;
 }
 
-.button_lg_iniciar2-sesion {
+.button_lg_cerrar-sesion {
   position: relative;
   display: block;
-  padding: 5px 5px;
-  color: #fff;
-  background-color: #0f1923;
+
+  color: #ffffff;
+  /* background-color: #0f1923; */
   overflow: hidden;
   box-shadow: inset 0px 0px 0px 1px transparent;
 }
 
-.button_lg_iniciar2-sesion::before {
+.button_lg_cerrar-sesion::before {
   content: "";
   display: block;
   position: absolute;
@@ -182,10 +334,10 @@ body {
   left: 0;
   width: 2px;
   height: 2px;
-  background-color: #0f1923;
+  background-color: #ffffff;
 }
 
-.button_lg_iniciar2-sesion::after {
+.button_lg_cerrar-sesion::after {
   content: "";
   display: block;
   position: absolute;
@@ -193,34 +345,46 @@ body {
   bottom: 0;
   width: 4px;
   height: 4px;
-  background-color: #0f1923;
+  background-color: #ffffff;
   transition: all 0.2s ease;
 }
 
-.button_sl_iniciar2-sesion {
+.button_sl_cerrar-sesion {
   display: block;
   position: absolute;
   top: 0;
   bottom: -1px;
   left: -8px;
   width: 0;
-  background-color: #a2b11a;
+  background-color: #a7c522;
   transform: skew(-15deg);
   transition: all 0.2s ease;
 }
 
-.button_text_iniciar2-sesion {
+.button_text_cerrar-sesion {
   position: relative;
 }
+.button-cerrar-sesion-custom {
+  /* Agrega los estilos que desees personalizar */
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+}
+/* .button-cerrarSesion{
 
-.button-iniciar2-sesion:hover {
-  color: #0f1923;
+  font-size: 1.1rem;
+} */
+
+.button-cerrar-sesion:hover {
+  color: #ffffff;
 }
 
-.button-iniciar2-sesion:hover .button_sl_iniciar2-sesion {
+.button-cerrar-sesion:hover .button_sl_cerrar-sesion {
   width: calc(100% + 15px);
 }
 
-.button-iniciar2-sesion:hover .button_lg_iniciar2-sesion::after {
+.button-cerrar-sesion:hover .button_lg_cerrar-sesion::after {
   background-color: #fff;
 }

@@ -11,10 +11,23 @@ interface NavBar2Props {
 }
 
 const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  const closeNav = () => {
+    setIsNavOpen(false);
+  };
+
+  const handleLinkClick = () => {
+    closeNav(); // Cerrar el menú al hacer clic en un enlace
+  };
+
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
   const cerrarSesion = () => {
-    // Remove user data from local storage when logging out
     localStorage.removeItem("user");
     localStorage.removeItem("username");
     setIsLoggedIn(false);
@@ -23,37 +36,46 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
 
   return (
     <div>
-      <div className="navbar-container">
+      <div className="container-fluid navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
-          <nav className=" navbar2 bg-dark navbar-expand-md navbar-light container-fluid">
-            <Link className="navbar2-logo" aria-current="page" to="/">
-              <GiRocketThruster className="navbar2-icon" />
+          <nav className="navbar2 navbar-expand-lg navbar-light">
+            <Link
+              className="navbar-logo"
+              aria-current="page"
+              to="/"
+              onClick={closeNav}
+            >
+              <GiRocketThruster className="navbar-icon" />
               Gallay
             </Link>
 
             <button
-              className="navbar-toggler"
+              className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
+              onClick={toggleNav}
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent"
-              aria-expanded="false"
+              aria-expanded={isNavOpen ? "true" : "false"}
               aria-label="Toggle navigation"
             >
-              <span className="navbar2-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="navbar2-links-container">
+            <div
+              className={`navbar-links-container ${isNavOpen ? "active" : ""}`}
+            >
               <div
                 className="collapse navbar-collapse"
                 id="navbarSupportedContent"
               >
-                <ul className="navbar2-links navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+                <ul className="navbar-links navbar-nav ms-auto me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
                     <Link
                       to="/home"
                       className="nav-link active"
                       aria-current="page"
+                      onClick={handleLinkClick}
                     >
                       Inicio
                     </Link>
@@ -63,6 +85,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
                       to="/creatucuchillo"
                       className="nav-link active"
                       aria-current="page"
+                      onClick={handleLinkClick}
                     >
                       Crea Tu Cuchillo
                     </Link>
@@ -72,28 +95,28 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
                       to="/help"
                       className="nav-link active"
                       aria-current="page"
+                      onClick={handleLinkClick}
                     >
                       Ayuda
                     </Link>
                   </li>
-                  {/* <div className="btn-iniciar-sesion2-landing">
-                    <button className="button-iniciar2-sesion">
-                      <span className="button_lg_iniciar2-sesion">
-                        <span className="button_sl_iniciar2-sesion"></span>
-
-                        <Link
-                          to="/login"
-                          className="button_text_iniciar2-sesion"
-                    
-                        >
-                          Iniciar Sesión
-                        </Link>
-                      </span>
-                    </button>
-                  </div> */}
-
-                  <button onClick={handleLogout}>Cerrar sesión</button>
                 </ul>
+                <div className="btn-iniciar-sesion-landing">
+                  <button className="button-cerrar-sesion">
+                    <span className="button_lg_cerrar-sesion">
+                      <span className="button_sl_cerrar-sesion"></span>
+
+                      <Link to="/" className="button_text_cerrar-sesion">
+                        <button
+                          className=" button-cerrar-sesion-custom"
+                          onClick={handleLogout}
+                        >
+                          Cerrar Sesión
+                        </button>
+                      </Link>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </nav>
@@ -104,3 +127,4 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
 };
 
 export default NavBar2;
+
