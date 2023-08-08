@@ -1,32 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
+import "./NavBar1.css";
 
 const NavBar1: React.FC = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  const closeNav = () => {
+    setIsNavOpen(false);
+  };
+
+  const handleLinkClick = () => {
+    closeNav(); // Cerrar el menú al hacer clic en un enlace
+  };
+
   return (
     <div>
       <div className="container-fluid navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
-          <nav className="navbar navbar-expand-md navbar-light">
-            <Link className="navbar-logo" aria-current="page" to="/">
+          <nav className="navbar navbar-expand-lg navbar-light">
+            <Link
+              className="navbar-logo"
+              aria-current="page"
+              to="/"
+              onClick={closeNav}
+            >
               <GiRocketThruster className="navbar-icon" />
               Gallay
             </Link>
 
             <button
-              className="navbar-toggler"
+              className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
+              onClick={toggleNav}
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent"
-              aria-expanded="false"
+              aria-expanded={isNavOpen ? "true" : "false"}
               aria-label="Toggle navigation"
             >
               <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="navbar-links-container">
+            <div
+              className={`navbar-links-container ${isNavOpen ? "active" : ""}`}
+            >
               <div
                 className="collapse navbar-collapse"
                 id="navbarSupportedContent"
@@ -37,6 +60,7 @@ const NavBar1: React.FC = () => {
                       to="/home"
                       className="nav-link active"
                       aria-current="page"
+                      onClick={handleLinkClick}
                     >
                       Inicio
                     </Link>
@@ -46,6 +70,7 @@ const NavBar1: React.FC = () => {
                       to="/creatucuchillo"
                       className="nav-link active"
                       aria-current="page"
+                      onClick={handleLinkClick}
                     >
                       Crea Tu Cuchillo
                     </Link>
@@ -55,27 +80,26 @@ const NavBar1: React.FC = () => {
                       to="/help"
                       className="nav-link active"
                       aria-current="page"
+                      onClick={handleLinkClick}
                     >
                       Ayuda
                     </Link>
                   </li>
-
-                  <div className="btn-iniciar-sesion-landing">
-                    <button className="button-iniciar-sesion">
-                      <span className="button_lg_iniciar-sesion">
-                        <span className="button_sl_iniciar-sesion"></span>
-
-                        <Link
-                          to="/login"
-                          className="button_text_iniciar-sesion"
-                          aria-current="page"
-                        >
-                          Iniciar Sesión
-                        </Link>
-                      </span>
-                    </button>
-                  </div>
                 </ul>
+                <div className="btn-iniciar-sesion-landing">
+                  <button className="button-iniciar-sesion">
+                    <span className="button_lg_iniciar-sesion">
+                      <span className="button_sl_iniciar-sesion"></span>
+
+                      <Link
+                        to="/login"
+                        className="button_text_iniciar-sesion button-iniciar-sesion-custom"
+                      >
+                        Iniciar Sesión
+                      </Link>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </nav>

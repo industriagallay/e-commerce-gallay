@@ -27,7 +27,14 @@ const Help: React.FC = () => {
 
   return (
     <div>
-      <NavBar2 />
+      <NavBar2
+        onClick={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        handleLogout={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <h1 className="preguntasFrecuentes animate__animated animate__fadeInTopLeft">
         Preguntas Frecuentes
         <p className="parradopreguntasFrecuentes">
