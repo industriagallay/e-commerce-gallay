@@ -4,6 +4,7 @@ import Products from "../../models/products";
 
 const getProductByIdController = async (req: Request, res: Response) => {
   const productId = req.params.id;
+  console.log("productId:", req.params.id);
 
   try {
     const filtro = { _id: new Types.ObjectId(productId) };

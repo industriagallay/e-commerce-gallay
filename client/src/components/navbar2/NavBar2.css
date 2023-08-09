@@ -21,8 +21,7 @@ a:hover {
   color: #d7e745;
 }
 .navbar2 {
-  z-index: 999;
-  position: absolute; /*exccede el larrgo del viewport*/
+  position: relative; /*exccede el larrgo del viewport*/
   top: 0;
   left: 0;
   width: 100%;
@@ -33,6 +32,7 @@ a:hover {
   /* padding: 15px 200px; */
   transition: 0.5s ease;
   background-color: currentColor;
+  padding: 1.2em;
 }
 .navbar-toggler {
   border: none;
