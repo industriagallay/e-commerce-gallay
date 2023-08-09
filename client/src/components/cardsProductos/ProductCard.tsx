@@ -1,7 +1,7 @@
 import React from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import ObjectIDProps from "bson-objectid";
+
 import "./ProdctCard.css";
 
 interface ProductCardProps {
@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 interface Product {
-  id: number;
+  _id: ObjectIDProps;
   name: string;
   description: string;
   backgroundImage: string;
@@ -27,8 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onMouseLeave,
 }) => {
   return (
-    //col-12 col-md-6 col-lg-4 col-xl-3 mb-4
-    <div className="container ">
+    <div className="container">
       <div
         className={`col-inicio-sesion ${
           product.price > 2500 && hovered ? "hovered" : ""
@@ -45,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             />
             <div className="line-horizontal"></div>
           </div>
-          <div className="card-body-inicio-productos ">
+          <div className="card-body-inicio-productos">
             <div className="price-container">
               {product.price > 2500 && hovered && (
                 <p className="card-text-inicio discount-price">
@@ -68,7 +67,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </p>
             </div>
             <h5 className="card-title-inicio">{product.name}</h5>
-            <h6 className="card-description-inicio">{product.description}</h6>
             <p className="card-stock-inicio">stock: {product.stock}</p>
             <Link to="/" className="">
               <button className="add-to-cart-btn justify-content-start">
