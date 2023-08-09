@@ -4,29 +4,23 @@ import mano1 from "../assets/img/mano1.jpeg";
 import NavBar1 from "../components/navbar1/NavBar1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/cardsProductos/ProductCard";
+import ObjectId from "bson-objectid";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Home.css";
 import "../assets/css/style.css";
 import "../components/navbar1/NavBar1.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Link } from "react-router-dom";
-import axios from "axios";
-import ProductCard from "../components/cardsProductos/ProductCard";
-
-
 interface Product {
-  id: number;
+  _id: ObjectId;
   name: string;
   description: string;
   backgroundImage: string;
   stock: number;
   price: number;
-  additionalText?: string; // Nuevo campo para texto adicional
-  // Add other properties of the product if needed
 }
 
 const Home: React.FC = () => {
@@ -40,8 +34,6 @@ const Home: React.FC = () => {
     showSubcategories: boolean;
   }
   useEffect(() => {
-    // Aquí puedes realizar la llamada a la API para obtener las categorías y subcategorías
-    // y luego asignarlas al estado de "categories" usando setCategories
     const fetchedCategories: Category[] = [
       {
         name: "Categoría 1",
@@ -57,7 +49,6 @@ const Home: React.FC = () => {
         subcategories: ["Subcategoría 2.1", "Subcategoría 2.2"],
         showSubcategories: false,
       },
-      // Agrega más categorías según tus necesidades
     ];
     setCategories(fetchedCategories);
   }, []);
@@ -68,7 +59,6 @@ const Home: React.FC = () => {
         const products = await getProducts();
         setProducts(products);
       } catch (error) {
-        // Handle error, e.g., show an error message
       }
     };
 
@@ -160,7 +150,7 @@ const Home: React.FC = () => {
       const response = await axios.get<Product[]>(
         "http://localhost:3001/products"
       );
-      return response.data; // Assuming the server returns an array of products
+      return response.data;
     } catch (error) {
       console.error(error);
       throw error;
@@ -268,13 +258,18 @@ const Home: React.FC = () => {
           <div className="col-12 col-md-8 col-lg-8">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">
               {products.map((product, index) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  hovered={product.price > 2500 && index === hoveredCard}
-                  onMouseEnter={() => setHoveredCard(index)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                />
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/product/id/${product._id}`}
+                  key={`product-${index}`}
+                >
+                  <ProductCard
+                    product={product}
+                    hovered={product.price > 2500 && index === hoveredCard}
+                    onMouseEnter={() => setHoveredCard(index)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  />
+                </Link>
               ))}
             </div>
           </div>
