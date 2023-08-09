@@ -1,33 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { gsap, Expo } from "gsap";
-// import axios from "axios";
 import mano1 from "../assets/img/mano1.jpeg";
 import NavBar1 from "../components/navbar1/NavBar1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-// import { dataProducts } from "./dataProducts.js";
-// import { Product } from "./dataProducts.js";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import ProductCard from "../components/cardsProductos/ProductCard";
+import ObjectId from "bson-objectid";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Home.css";
 import "../assets/css/style.css";
 import "../components/navbar1/NavBar1.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { dataProducts } from "./dataProducts";
-import { Link } from "react-router-dom";
 
-const Home = () => {
-  //   const [products, setProducts] = useState<Product[]>([]);
-  // };
+interface Product {
+  _id: ObjectId;
+  name: string;
+  description: string;
+  backgroundImage: string;
+  stock: number;
+  price: number;
+}
+
+const Home: React.FC = () => {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   interface Category {
     name: string;
     subcategories: string[];
     showSubcategories: boolean;
   }
   useEffect(() => {
-    // Aquí puedes realizar la llamada a la API para obtener las categorías y subcategorías
-    // y luego asignarlas al estado de "categories" usando setCategories
     const fetchedCategories: Category[] = [
       {
         name: "Categoría 1",
@@ -43,9 +49,20 @@ const Home = () => {
         subcategories: ["Subcategoría 2.1", "Subcategoría 2.2"],
         showSubcategories: false,
       },
-      // Agrega más categorías según tus necesidades
     ];
     setCategories(fetchedCategories);
+  }, []);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+      } catch (error) {
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   const toggleSubcategories = (index: number) => {
@@ -128,6 +145,18 @@ const Home = () => {
     }
   }, [animationsCompleted]);
 
+  const getProducts = async (): Promise<Product[]> => {
+    try {
+      const response = await axios.get<Product[]>(
+        "http://localhost:3001/products"
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
   return (
     <div>
       <header className="l-header">
@@ -136,7 +165,7 @@ const Home = () => {
 
       <main className="main-bg">
         <div className="home">
-          <div className="home__primary">
+          <div className="home__primary col-lg-6 col-md-12">
             <h1 className="home__title">
               Industria <br />
               Gallay
@@ -146,7 +175,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="home__secondary">
+          <div className="home__secondary col-lg-6 col-md-12">
             <a className="home__scroll" href="#about">
               SCROLLDOWN
             </a>
@@ -156,8 +185,8 @@ const Home = () => {
       </main>
 
       <div className="container-justify-content-start">
-        <div className="row-scroll">
-          <div className="col-2">
+        <div className="row-scroll row">
+          <div className="col-12 col-md-4 col-lg-3">
             <div className="filter-container ">
               <div className="vertical-filter">
                 <div className="search-container">
@@ -225,27 +254,22 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-10">
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 me-auto g-4">
-              {dataProducts.map((item) => (
-                <div className="col-inicio-sesion" key={item.id}>
-                  <div className="card-inicio-productos h-100">
-                    <img
-                      src={item.linkImg}
-                      className="card-img-top-inicio"
-                      alt={item.title}
-                    />
-                    <div className="card-body-inicio-productos">
-                      <h5 className="card-title-inicio">{item.title}</h5>
-                      <p className="card-text-inicio">{item.price}</p>
-                      <Link to="/" aria-current="page" className="">
-                        <button className="add-to-cart-btn justify-content-start">
-                          Sumar al carrito
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+
+          <div className="col-12 col-md-8 col-lg-8">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">
+              {products.map((product, index) => (
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/product/id/${product._id}`}
+                  key={`product-${index}`}
+                >
+                  <ProductCard
+                    product={product}
+                    hovered={product.price > 2500 && index === hoveredCard}
+                    onMouseEnter={() => setHoveredCard(index)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  />
+                </Link>
               ))}
             </div>
           </div>

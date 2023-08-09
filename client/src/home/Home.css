@@ -11,6 +11,7 @@
   --normal-font-size: 0.93rem;
   --big-font-size: 5rem;
   --smaller-font-size: 0.75rem;
+  --bs-card-height: 350px;
 }
 @media screen and (min-width: 768) {
   :root {
@@ -277,7 +278,7 @@ p {
   display: flex;
   flex-direction: column;
   max-width: 20rem;
-  height: 50rem;
+  height: 38rem;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -506,7 +507,7 @@ p {
   height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
 
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
@@ -514,6 +515,8 @@ p {
 }
 
 .card-inicio-productos {
+  width: 20rem; /* Ancho fijo de las cards */
+  height: var(--bs-card-height); /* Altura fija de las cards */
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -522,22 +525,28 @@ p {
   box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
+/* Agregar la clase "discounted-hover" a la tarjeta cuando se hace hover en el precio descontado */
+.card-inicio-productos.hovered.discounted-hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
 
 .card-inicio-productos:hover {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card-img-top-inicio {
-  border-radius: 8px;
+  width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
+
   height: 200px;
-  object-fit: cover;
+  border-radius: 8px;
+  object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
 }
 
-.card-title-inicio {
+/* .card-title-inicio {
   font-size: 24px;
   margin-bottom: 15px;
   margin-top: 1rem;
-}
+} */
 
 /* Estilos para centrar las cards */
 .row-cols-1 {
@@ -562,27 +571,88 @@ p {
 /* Estilos para centrar las cards y separarlas del filtro */
 .col-inicio-sesion {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
   margin-bottom: 13px;
-  /* margin-right: 10px;  */
 }
+
+/* .col-inicio-sesion.hovered .card-text-inicio {
+  text-decoration: line-through;
+  color: red;
+} */
 
 /* Estilos para el botón "sumar al carrito" */
 .card-body-inicio-productos {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+}
+
+.additional-text {
+  color: #00a650; /* Puedes agregar otros estilos según tus preferencias */
+  font-size: 1.1rem;
+  margin-left: 8px; /* Ajustar el espacio entre el precio y el texto adicional */
+}
+
+.price-off {
+  font-size: 15px;
+  color: #008300;
+  margin-left: 8px;
+}
+.free-shipping {
+  color: #008300;
+}
+.free-shipping::after {
+  /* content: " ⚡"; */
+}
+
+.img-container {
+  position: relative;
+}
+
+.line-horizontal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #ccc; /* Color de la línea horizontal */
+}
+.card-stock-inicio {
+  font-size: 1rem; /* Tamaño del texto del stock */
+  margin-bottom: 16px; /* Ajustar el espacio entre el texto adicional y el stock */
 }
 
 .card-text-inicio {
-  font-size: 2rem;
-  color: #0f5ecc;
-  margin-bottom: 20px; /* Ajusta este valor según el espaciado deseado */
+  display: flex; /* Mostrar el precio y el texto adicional en la misma línea */
+  align-items: center; /* Centrar verticalmente los elementos */
+  margin-bottom: 8px; /* Separación entre el precio y el stock */
 }
 
+.price-container {
+  position: relative;
+  font-size: 2rem; /* Tamaño de fuente para el precio, ajusta el valor según tus necesidades */
+  /* font-weight: bold;  */
+  margin-bottom: 8px; /* Espacio inferior para separar del texto adicional */
+}
+
+.discount-price {
+  font-size: 16px; /* Tamaño de fuente para el precio tachado, ajusta según tus necesidades */
+  text-decoration: line-through; /* Tachar el texto */
+  margin-left: auto; /* Alinea el precio tachado a la derecha del contenedor */
+}
+
+.price {
+  display: flex; /* Para mostrar el precio y el texto adicional en la misma línea */
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap; /* Centrar verticalmente los elementos */
+}
+.card-description-inicio {
+  font-size: 1rem;
+  color: #999;
+}
 .add-to-cart-btn {
   /* position: absolute; */
 

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import herramientas from "../../assets/herramientas.png";
+// import herramientas from "../../assets/herramientas.png";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
+import NavBar1 from "../../components/navbar1/NavBar1";
+import NavBar2 from "../../components/navbar2/NavBar2";
 import "./Login.css";
 import "../../components/navbar2/NavBar2.css";
-import NavBar1 from "../../components/navbar1/NavBar1";
 import "../../components/navbar1/NavBar1.css";
-import NavBar2 from "../../components/navbar2/NavBar2";
 
 type FormValues = {
   firstName: string;
@@ -34,7 +34,7 @@ const Login = () => {
         "http://localhost:3001/api/login",
         formData
       );
-
+      console.log({ a: response.data });
       localStorage.setItem("user", JSON.stringify(response.data));
 
       if (response.data.isAdmin === true) {
@@ -69,33 +69,42 @@ const Login = () => {
   };
 
   useEffect(() => {
-    // Verifica si hay un usuario almacenado en el local storage
-    const user = localStorage.getItem("user");
-    if (user) {
-      const parsedUser = JSON.parse(user);
+    const token = localStorage.getItem("token");
+    // Leer la información de autenticación del localStorage o sesión
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log({ a: token });
+    if (token) {
+      // Si el token existe, el usuario está loggeado
       setIsLoggedIn(true);
-      setIsAdmin(parsedUser.isAdmin); // Setea el valor de isAdmin según el usuario almacenado
+    } else {
+      setIsLoggedIn(false);
     }
   }, []);
 
   return (
-    <div>
-      {isLoggedIn ? <NavBar2 handleLogout={handleLogout} /> : <NavBar1 />}
+    <div className="background-herramientas">
+      <div>
+        {isLoggedIn ? (
+          <NavBar2
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            onClick={() => {}} // Proporciona cualquier función para onClick
+            handleLogout={handleLogout} // Asignar la función handleLogout al botón de cerrar sesión
+          />
+        ) : (
+          <NavBar1 />
+        )}
+      </div>
 
       <div className="container-md login">
-        <div className="row">
-          <div className="col-6">
-            <img
-              src={herramientas}
-              className="imgbackground"
-              alt="fondo-image"
-            />
-
-            <form
-              className="Loginform ml-auto"
-              onSubmit={handleSubmit(iniciarSesion)}
-            >
-              <div className="Loginheader">Bienvenido a Industria Gallay</div>
+        <div className="row justify-content-center align-items-center">
+          <div className="col-lg-12 col-md-12 col-sm-12 mx-auto">
+            <form className="Loginform " onSubmit={handleSubmit(iniciarSesion)}>
+              <div className="Loginheader Loginform">Bienvenido</div>
               <div className="Logininputs">
                 <label htmlFor="email"></label>
                 <input

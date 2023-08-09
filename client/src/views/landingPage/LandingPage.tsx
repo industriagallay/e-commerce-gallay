@@ -6,37 +6,52 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
 import "./LandingPage.css";
-import { dataDigitalBestSeller } from "./data";
+import ProductCard from "../../components/cardsProductos/ProductCard";
+import axios from "axios";
+// import { Link } from "react-router-dom";
 
-// interface Products {
-//   _id: string;
-//   title: string;
-//   backgroundImage: string;
-//   price: number;
-//   category: string;
-//   name: string;
-//   desciption: string;
-//   stock: number;
-// }
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  backgroundImage: string;
+  stock: number;
+  price: number;
+}
 
 const LandingPage: React.FC = () => {
-  // const [products, setProducts] = useState<Products[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
-  // useEffect(() => {
-  // Hacemos la solicitud GET a la API para obtener los productos
-  //   fetch("/api/getAllProductsHandler")
-  //     .then((response) => response.json())
-  //     .then((data) => setProducts(data))
-  //     .catch((error) =>
-  //       console.error("Error al obtener los productos:", error)
-  //     );
-  // }, []);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await getProducts();
+        setProducts(products);
+      } catch (error) {
+        // Handle error, e.g., show an error message
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const getProducts = async (): Promise<Product[]> => {
+    try {
+      const response = await axios.get<Product[]>(
+        "http://localhost:3001/products"
+      );
+      return response.data; // Assuming the server returns an array of products
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -72,37 +87,39 @@ const LandingPage: React.FC = () => {
       <NavBar1 />
       <div className="container-fluid-md">
         <div className="row">
-          <div col-6="true">
+          {/* <div col-md-6="true"> */}
+          <div className="col-md-6">
             <video muted autoPlay loop>
               <source src={yunqueHerreroMP4} type="video/mp4" />
             </video>
             <div className="capa"></div>
           </div>
-
-          <div className="container text-center homeLanding">
-            <div className="row align-items-center content">
-              <div className="texto-Industria1">
-                <ul className="UL-blur">
-                  <li className="LI-blur">I</li>
-                  <li className="LI-blur">N</li>
-                  <li className="LI-blur">D</li>
-                  <li className="LI-blur">U</li>
-                  <li className="LI-blur">S</li>
-                  <li className="LI-blur">T</li>
-                  <li className="LI-blur">R</li>
-                  <li className="LI-blur">I</li>
-                  <li className="LI-blur">A</li>
-                </ul>
-              </div>
-              <div className="texto-Gallay2">
-                <ul className="UL-blur">
-                  <li className="LI-blur">G</li>
-                  <li className="LI-blur">A</li>
-                  <li className="LI-blur">L</li>
-                  <li className="LI-blur">L</li>
-                  <li className="LI-blur">A</li>
-                  <li className="LI-blur">Y</li>
-                </ul>
+          <div className="col-md-12">
+            <div className="container text-center homeLanding ">
+              <div className=" align-items-center content">
+                <div className="texto-Industria1">
+                  <ul className="UL-blur">
+                    <li className="LI-blur">I</li>
+                    <li className="LI-blur">N</li>
+                    <li className="LI-blur">D</li>
+                    <li className="LI-blur">U</li>
+                    <li className="LI-blur">S</li>
+                    <li className="LI-blur">T</li>
+                    <li className="LI-blur">R</li>
+                    <li className="LI-blur">I</li>
+                    <li className="LI-blur">A</li>
+                  </ul>
+                </div>
+                <div className="texto-Gallay2">
+                  <ul className="UL-blur">
+                    <li className="LI-blur">G</li>
+                    <li className="LI-blur">A</li>
+                    <li className="LI-blur">L</li>
+                    <li className="LI-blur">L</li>
+                    <li className="LI-blur">A</li>
+                    <li className="LI-blur">Y</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -111,21 +128,21 @@ const LandingPage: React.FC = () => {
       <section className="container">
         <div className="container-slider">
           <div className="row ">
-            <Slider {...settings}>
-              {dataDigitalBestSeller.map((item) => (
-                <div className="card-landing-carousel" key={item.id}>
-                  <div className="card-top-landing">
-                    <img src={item.linkImg} alt={item.title} />
-                    <h1>{item.title}</h1>
-                  </div>
-                  <div className="card-bottom-landing">
-                    <h3>{item.price}</h3>
-                    <p className="categoria">{item.category}</p>
-                  </div>
-                  <button className="bottom-card-landing">BOTTON</button>
-                </div>
-              ))}
-            </Slider>
+            <div className="col">
+              <Slider {...settings}>
+                {products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    hovered={false} // No se utiliza el hover en el carousel
+                    // eslint-disable-next-line @typescript-eslint/no-empty-function
+                    onMouseEnter={() => {}} // No se utiliza el hover en el carousel
+                    // eslint-disable-next-line @typescript-eslint/no-empty-function
+                    onMouseLeave={() => {}} // No se utiliza el hover en el carousel
+                  />
+                ))}
+              </Slider>
+            </div>
           </div>
         </div>
       </section>
