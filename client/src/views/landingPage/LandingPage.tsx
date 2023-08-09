@@ -6,9 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
 import "./LandingPage.css";
-import ProductCard from "../../components/cardsProductos/ProductCard";
+// import ProductCard from "../../components/cardsProductos/ProductCard";
 import axios from "axios";
-// import { Link } from "react-router-dom";
+import CardProductLanding from "../../components/cardsProductos/cardProductsLanding/CardProductLanding";
+import { Container, Row, Col } from "react-bootstrap";
 
 interface Product {
   id: number;
@@ -85,16 +86,16 @@ const LandingPage: React.FC = () => {
   return (
     <div className="background-color">
       <NavBar1 />
-      <div className="container-fluid-md">
+      <section className="container-fluid-md">
         <div className="row">
           {/* <div col-md-6="true"> */}
           <div className="col-md-6">
-            <video muted autoPlay loop>
+            <video muted autoPlay loop className="w-100">
               <source src={yunqueHerreroMP4} type="video/mp4" />
             </video>
             <div className="capa"></div>
           </div>
-          <div className="col-md-12">
+          <div className="col-sm-12 col-md-12 col-lg-12 justify-content-center">
             <div className="container text-center homeLanding ">
               <div className=" align-items-center content">
                 <div className="texto-Industria1">
@@ -124,24 +125,26 @@ const LandingPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-      <section className="container">
+      </section>
+      <section className="container-md">
         <div className="container-slider">
-          <div className="row ">
+          <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 justify-content-center">
             <div className="col">
-              <Slider {...settings}>
-                {products.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    hovered={false} // No se utiliza el hover en el carousel
-                    // eslint-disable-next-line @typescript-eslint/no-empty-function
-                    onMouseEnter={() => {}} // No se utiliza el hover en el carousel
-                    // eslint-disable-next-line @typescript-eslint/no-empty-function
-                    onMouseLeave={() => {}} // No se utiliza el hover en el carousel
-                  />
-                ))}
-              </Slider>
+              <div className="">
+                <Slider {...settings} className=" justify-content-center">
+                  {products.map((product) => (
+                    <CardProductLanding
+                      key={product.id}
+                      product={product}
+                      hovered={false} // No se utiliza el hover en el carousel
+                      // eslint-disable-next-line @typescript-eslint/no-empty-function
+                      onMouseEnter={() => {}} // No se utiliza el hover en el carousel
+                      // eslint-disable-next-line @typescript-eslint/no-empty-function
+                      onMouseLeave={() => {}} // No se utiliza el hover en el carousel
+                    />
+                  ))}
+                </Slider>
+              </div>
             </div>
           </div>
         </div>
