@@ -59,6 +59,7 @@ const Home: React.FC = () => {
         const products = await getProducts();
         setProducts(products);
       } catch (error) {
+        console.log(error);
       }
     };
 

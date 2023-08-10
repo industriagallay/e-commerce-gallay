@@ -6,11 +6,12 @@
   justify-content: center;
   position: relative;
   align-items: center;
-  height: 40em;
-  width: 45em;
+  max-height: 100%;
+  max-width: 100%;
   padding: 32px;
   border-radius: 10px;
   background: #ffffff;
+  text-decoration: none;
 }
 
 .plan-card {
@@ -24,12 +25,14 @@
   border-bottom: 4px solid #000446;
   box-shadow: 0 6px 30px rgba(207, 212, 222, 0.3);
   font-family: "Poppins", sans-serif;
+  text-decoration: none;
 }
 
 .plan-card h2 {
   margin-bottom: 15px;
   font-size: 27px;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .plan-card h2 span {
@@ -38,6 +41,11 @@
   color: #4d4d4d;
   font-size: 12px;
   font-weight: 400;
+}
+
+.plan-card h2:hover {
+  /* Eliminar el efecto de hover */
+  text-decoration: none;
 }
 
 .etiquet-price {
