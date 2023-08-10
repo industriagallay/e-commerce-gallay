@@ -8,10 +8,14 @@ import "animate.css";
 import "./LandingPage.css";
 // import ProductCard from "../../components/cardsProductos/ProductCard";
 import axios from "axios";
-import CardProductLanding from "../../components/cardsProductos/cardProductsLanding/CardProductLanding";
-import { Container, Row, Col } from "react-bootstrap";
+import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
+import { Link } from "react-router-dom";
+
+
 
 interface Product {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _id: any;
   id: number;
   name: string;
   description: string;
@@ -133,15 +137,21 @@ const LandingPage: React.FC = () => {
               <div className="">
                 <Slider {...settings} className=" justify-content-center">
                   {products.map((product) => (
-                    <CardProductLanding
-                      key={product.id}
-                      product={product}
-                      hovered={false} // No se utiliza el hover en el carousel
-                      // eslint-disable-next-line @typescript-eslint/no-empty-function
-                      onMouseEnter={() => {}} // No se utiliza el hover en el carousel
-                      // eslint-disable-next-line @typescript-eslint/no-empty-function
-                      onMouseLeave={() => {}} // No se utiliza el hover en el carousel
-                    />
+                    <Link
+                      className="no-text-decoration"
+                      to={`/product/id/${product._id}`}
+                      key={`product-${product._id}`}
+                    >
+                      <CardProductLanding
+                        key={product.id}
+                        product={product}
+                        hovered={false} // No se utiliza el hover en el carousel
+                        // eslint-disable-next-line @typescript-eslint/no-empty-function
+                        onMouseEnter={() => {}} // No se utiliza el hover en el carousel
+                        // eslint-disable-next-line @typescript-eslint/no-empty-function
+                        onMouseLeave={() => {}} // No se utiliza el hover en el carousel
+                      />
+                    </Link>
                   ))}
                 </Slider>
               </div>

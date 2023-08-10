@@ -347,3 +347,7 @@ section.container-slider {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.no-text-decoration {
+  text-decoration: none !important;
+}
