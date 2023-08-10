@@ -11,6 +11,8 @@ import axios from "axios";
 import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
 import { Link } from "react-router-dom";
 
+
+
 interface Product {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _id: any;
