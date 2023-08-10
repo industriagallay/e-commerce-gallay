@@ -6,9 +6,6 @@ import "./CardProductLanding.css";
 
 interface CardProductLandingProps {
   product: Product;
-  hovered: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
 }
 
 interface Product {
@@ -20,24 +17,13 @@ interface Product {
   price: number;
 }
 
-const CardProductLanding: React.FC<CardProductLandingProps> = ({
-  product,
-  hovered,
-  onMouseEnter,
-  onMouseLeave,
-}) => {
+const CardProductLanding: React.FC<CardProductLandingProps> = ({ product }) => {
   return (
     //col-12 col-md-6 col-lg-4 col-xl-3 mb-4
     <div>
       <div className="container">
         <div className="row ">
-          <div
-            className={`col-landing ${
-              product.price > 2500 && hovered ? "hovered" : ""
-            }`}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
+          <div className="col-landing">
             <div className="card-landing-productos ">
               <div className="img-container-landing">
                 <img
@@ -49,7 +35,7 @@ const CardProductLanding: React.FC<CardProductLandingProps> = ({
               </div>
               <div className="card-body-landing-productos ">
                 <div className="price-container-landing">
-                  {product.price > 2500 && hovered && (
+                  {product.price > 2500 && (
                     <p className="card-text-landing discount-price-landing">
                       $ {(product.price * 0.9).toFixed(2)}
                     </p>
