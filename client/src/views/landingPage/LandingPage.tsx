@@ -10,6 +10,7 @@ import "./LandingPage.css";
 import axios from "axios";
 import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
 import { Link } from "react-router-dom";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 
 
@@ -130,32 +131,76 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
-      <section className="container-md">
+
+      {/* <div className="container-md">
+        <div className="row">
+          <div className="col-12-md">
+            <h2 className="h2Productosdestacados-Landing">
+              Productos Destacados
+            </h2>
+            <hr className="h2Productosdestacados-Landing" />
+          </div>
+        </div>
+      </div> */}
+
+      {/* <section className="container-md">
         <div className="container-slider">
           <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 justify-content-center">
             <div className="col">
-              <div className="">
-                <Slider {...settings} className=" justify-content-center">
-                  {products.map((product) => (
-                    <Link
-                      className="no-text-decoration"
-                      to={`/product/id/${product._id}`}
-                      key={`product-${product._id}`}
-                    >
-                      <CardProductLanding
-                        key={product.id}
-                        product={product}
-                        hovered={false} // No se utiliza el hover en el carousel
-                        // eslint-disable-next-line @typescript-eslint/no-empty-function
-                        onMouseEnter={() => {}} // No se utiliza el hover en el carousel
-                        // eslint-disable-next-line @typescript-eslint/no-empty-function
-                        onMouseLeave={() => {}} // No se utiliza el hover en el carousel
-                      />
-                    </Link>
-                  ))}
-                </Slider>
-              </div>
+              <Slider {...settings} className=" justify-content-center">
+                {products.map((product) => (
+                  <Link
+                    className="no-text-decoration"
+                    to={`/product/id/${product._id}`}
+                    key={`product-${product._id}`}
+                  >
+                    <CardProductLanding key={product.id} product={product} />
+                  </Link>
+                ))}
+              </Slider>
             </div>
+          </div>
+        </div>
+      </section> */}
+
+      <div className="container-md">
+        <div className="row">
+          <div className="col-12-md">
+            <section className="container-md">
+              <div className="container-slider">
+                <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 justify-content-center">
+                  <div className="col">
+                    <Slider {...settings} className="justify-content-center">
+                      {products.map((product) => (
+                        <Link
+                          className="no-text-decoration"
+                          to={`/product/id/${product._id}`}
+                          key={`product-${product._id}`}
+                        >
+                          <CardProductLanding
+                            key={product.id}
+                            product={product}
+                          />
+                        </Link>
+                      ))}
+                    </Slider>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <section className="container-md">
+        <div className="row">
+          <div className="col-12-md">
+            <h2 className="h2Productosdestacados-Landing">
+              <span className="producto-span-color-amarillo">Productos </span>{" "}
+              <span className="yellow-half">Destacados</span>{" "}
+              <FaArrowCircleRight className="icon-rounded" />
+            </h2>
+            <hr className="h2Productosdestacados-Landing" />
           </div>
         </div>
       </section>
