@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar2 from "../navbar2/NavBar2";
 import { Link } from "react-router-dom";
 import "../navbar2/NavBar2.css";
 import "./Help.css";
@@ -27,14 +26,6 @@ const Help: React.FC = () => {
 
   return (
     <div>
-      <NavBar2
-        onClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        handleLogout={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
       <h1 className="preguntasFrecuentes animate__animated animate__fadeInTopLeft">
         Preguntas Frecuentes
         <p className="parradopreguntasFrecuentes">

@@ -1,6 +1,4 @@
 import React from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "./CardProductLanding.css";
 
@@ -62,7 +60,8 @@ const CardProductLanding: React.FC<CardProductLandingProps> = ({ product }) => {
                   {product.description}
                 </h6>
                 <p className="card-stock-landing">stock: {product.stock}</p>
-                <Link to="/" className="">
+                <Link to="/" className="add-to-cart-link">
+                  {" "}
                   <button className="add-to-cart-btn-landing justify-content-start">
                     Sumar al carrito
                   </button>

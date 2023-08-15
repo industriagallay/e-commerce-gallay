@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
-import "./NavBar2.css";
+import "./navbar3.css";
 
 interface NavBar2Props {
   onClick: () => void;
-  cerrarSesionProp: () => void;
+  handleLogout: () => void;
+  // Otras propiedades que NavBar2 pueda necesitar
 }
 
-const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
+const NavBar3: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const toggleNav = () => {
@@ -27,8 +28,10 @@ const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
   const cerrarSesion = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("username");
     setIsLoggedIn(false);
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   return (
@@ -97,6 +100,16 @@ const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
                       Ayuda
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link
+                      to="/admin"
+                      className="nav-link active"
+                      aria-current="page"
+                      onClick={handleLinkClick}
+                    >
+                      Panel de administrador{" "}
+                    </Link>
+                  </li>
                 </ul>
                 <div className="btn-iniciar-sesion-landing">
                   <button className="button-cerrar-sesion">
@@ -106,7 +119,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
                       <Link to="/" className="button_text_cerrar-sesion">
                         <button
                           className=" button-cerrar-sesion-custom"
-                          onClick={cerrarSesionProp}
+                          onClick={handleLogout}
                         >
                           Cerrar Sesión
                         </button>
@@ -123,4 +136,4 @@ const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
   );
 };
 
-export default NavBar2;
+export default NavBar3;
