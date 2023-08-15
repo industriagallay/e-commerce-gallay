@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { gsap, Expo } from "gsap";
 import mano1 from "../assets/img/mano1.jpeg";
-import NavBar1 from "../components/navbar1/NavBar1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -161,7 +160,6 @@ const Home: React.FC = () => {
   return (
     <div>
       <header className="l-header">
-        <NavBar1 />
       </header>
 
       <main className="main-bg">

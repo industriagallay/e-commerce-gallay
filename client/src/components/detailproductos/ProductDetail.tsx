@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
 import "./ProductosDetail.css";
-import NavBar2 from "../navbar2/NavBar2";
 
 interface Product {
   _id: ObjectId;
@@ -38,14 +37,6 @@ const ProductDetail: React.FC = () => {
 
   return (
     <>
-      <NavBar2
-        onClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        handleLogout={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
       {product ? (
         <div className="container mt-5">
           <div className="row">

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ObjectIDProps from "bson-objectid";
-
 import "./ProdctCard.css";
 
 interface ProductCardProps {
@@ -27,10 +26,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onMouseLeave,
 }) => {
   return (
-
-
-
-
     //col-12 col-md-6 col-lg-4 col-xl-3 mb-4
     <div className="container ">
       <div
@@ -73,9 +68,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
             <h5 className="card-title-inicio">{product.name}</h5>
             <p className="card-stock-inicio">stock: {product.stock}</p>
-            <Link to="/" className="add-to-cart-btn justify-content-start">
-              <button className="button-inside-link">Sumar al carrito</button>
-            </Link>
+            <div className="botonCarrito">
+              {" "}
+              <Link to="/" className="justify-content-center">
+                <button className="textoBoton mx-auto">
+                  Agregar al carrito
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

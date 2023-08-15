@@ -6,11 +6,10 @@ import "./NavBar2.css";
 
 interface NavBar2Props {
   onClick: () => void;
-  handleLogout: () => void;
-  // Otras propiedades que NavBar2 pueda necesitar
+  cerrarSesionProp: () => void;
 }
 
-const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
+const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const toggleNav = () => {
@@ -28,10 +27,8 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
   const cerrarSesion = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("username");
     setIsLoggedIn(false);
-    navigate("/", { replace: true });
+    navigate("/");
   };
 
   return (
@@ -109,7 +106,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
                       <Link to="/" className="button_text_cerrar-sesion">
                         <button
                           className=" button-cerrar-sesion-custom"
-                          onClick={handleLogout}
+                          onClick={cerrarSesionProp}
                         >
                           Cerrar Sesión
                         </button>
