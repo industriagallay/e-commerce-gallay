@@ -175,25 +175,21 @@
   font-size: 1rem;
   color: #999;
 }
-.add-to-cart-btn {
-  /* position: absolute; */
-
-  font-size: 18px;
-  bottom: 0.1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #bdba18;
-  color: #fff;
+.botonCarrito {
+  margin-top: auto;
+  margin-bottom: 10px;
+  background-color: #d1d93c;
+  color: #ffffff;
   border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 14px;
+  border-radius: 8px;
+  padding: 16px 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-align: center;
 }
 
-.add-to-cart-btn:hover {
-  background-color: #948e37ce;
+.botonCarrito:hover {
+  background-color: #fce703;
 }
 .row-scroll {
   margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
@@ -207,4 +203,8 @@
 }
 .container {
   margin-top: 100px;
+}
+
+.textoBoton {
+  font-size: 1em;
 }

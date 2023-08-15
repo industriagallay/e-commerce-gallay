@@ -1,10 +1,7 @@
-import React from "react";
 import axios from "axios";
-import { useForm, Resolver } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-import NavBar2 from "../../components/navbar2/NavBar2";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./SignUpForm.css";
 
 type FormValues = {
@@ -26,12 +23,7 @@ const SignUpForm = () => {
 
   const crearCuenta = async (data: FormValues) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api/register",
-        data
-      );
-      /*usamos el localstorage para guardar el nombre del usuario*/
-      localStorage.setItem("username", response.data.firstName);
+      await axios.post("http://localhost:3001/api/register", data);
 
       swal.fire({
         position: "center",
@@ -60,15 +52,6 @@ const SignUpForm = () => {
           <span>Registrate Y Disfrutá De Nuestras Ofertas </span>
         </h2>
       </div>
-
-      <NavBar2
-        onClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        handleLogout={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-6 col-md-8 col-sm-10">
@@ -92,7 +75,6 @@ const SignUpForm = () => {
                 {errors.firstName?.type === "required" && (
                   <p className="text-danger">El campo nombre es requerido</p>
                 )}
-                {""}
                 <input
                   type="text"
                   placeholder="apellido"
@@ -100,11 +82,10 @@ const SignUpForm = () => {
                   {...register("lastName", {
                     required: true,
                   })}
-                />{" "}
+                />
                 {errors.lastName?.type === "required" && (
                   <p className="text-danger">El campo apellido es requerido</p>
                 )}
-                {""}
                 <input
                   placeholder="correo electrónico"
                   className="input"
@@ -112,11 +93,10 @@ const SignUpForm = () => {
                   {...register("email", {
                     required: true,
                   })}
-                />{" "}
+                />
                 {errors.email?.type === "required" && (
                   <p className="text-danger">El campo email es requerido</p>
                 )}
-                {""}
                 <input
                   type="number"
                   placeholder="DNI"
@@ -124,11 +104,10 @@ const SignUpForm = () => {
                   {...register("dni", {
                     required: true,
                   })}
-                />{" "}
+                />
                 {errors.dni?.type === "required" && (
                   <p className="text-danger">El campo dni es requerido</p>
                 )}
-                {""}
                 <input
                   type="number"
                   placeholder="telefono"
@@ -136,11 +115,10 @@ const SignUpForm = () => {
                   {...register("phone", {
                     required: true,
                   })}
-                />{" "}
+                />
                 {errors.phone?.type === "required" && (
                   <p className="text-danger">El campo telefono es requerido</p>
                 )}
-                {""}
                 <input
                   placeholder="contraseña"
                   className="input"
@@ -148,13 +126,12 @@ const SignUpForm = () => {
                   {...register("password", {
                     required: true,
                   })}
-                />{" "}
+                />
                 {errors.password?.type === "required" && (
                   <p className="text-danger">
                     El campo contraseña es requerido
                   </p>
                 )}
-                {""}
                 <div className="checkbox-container"></div>
                 <button className="sigin-btn" type="submit">
                   Crear Cuenta
@@ -315,9 +292,6 @@ const SignUpForm = () => {
                   <span> Servicio 24/7 </span>
                 </li>
               </ul>
-              {/* <Link to="/products" >
-                <button className="actionOff">Get started</button> 
-              </Link> */}
             </div>
           </div>
         </div>
