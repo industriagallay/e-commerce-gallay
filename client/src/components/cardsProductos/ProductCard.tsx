@@ -27,7 +27,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onMouseLeave,
 }) => {
   return (
-    <div className="container">
+
+
+
+
+    //col-12 col-md-6 col-lg-4 col-xl-3 mb-4
+    <div className="container ">
       <div
         className={`col-inicio-sesion ${
           product.price > 2500 && hovered ? "hovered" : ""
