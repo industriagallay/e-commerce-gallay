@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
-import "./productosDetail.css";
+import "./ProductosDetail.css";
 import NavBar2 from "../navbar2/NavBar2";
 
 interface Product {

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import herramientas from "../../assets/herramientas.png";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
@@ -9,6 +8,7 @@ import NavBar2 from "../../components/navbar2/NavBar2";
 import "./Login.css";
 import "../../components/navbar2/NavBar2.css";
 import "../../components/navbar1/NavBar1.css";
+import NavBar3 from "../../components/navbar3/NavBar3";
 
 type FormValues = {
   firstName: string;
@@ -18,9 +18,7 @@ type FormValues = {
 
 const Login = () => {
   const [isAdmin, setIsAdmin] = useState(false);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const navigate = useNavigate();
   const {
     register,
@@ -34,18 +32,20 @@ const Login = () => {
         "http://localhost:3001/api/login",
         formData
       );
-      console.log({ a: response.data });
+      console.log("Response data:", response.data);
       localStorage.setItem("user", JSON.stringify(response.data));
 
-      if (response.data.isAdmin === true) {
+      if (
+        response.data.hasOwnProperty("isAdmin") &&
+        response.data.isAdmin === true
+      ) {
         setIsLoggedIn(true);
         setIsAdmin(true);
         navigate("/admin");
       } else {
-        // Almacena el nombre de usuario en el localStorage
         localStorage.setItem("username", response.data.firstName);
         setIsLoggedIn(true);
-        navigate("/creatucuchillo", {
+        navigate("/home", {
           state: { username: response.data.firstName },
         });
       }
@@ -64,40 +64,42 @@ const Login = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("username");
     setIsLoggedIn(false);
-    setIsAdmin(false); // Asegurarse de que isAdmin esté configurado como false al cerrar sesión
-    navigate("/", { replace: true }); // Redirige a la landing ("/")
+    setIsAdmin(false);
+    navigate("/", { replace: true });
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    // Leer la información de autenticación del localStorage o sesión
+    const userJson = localStorage.getItem("user");
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    console.log({ a: token });
-    if (token) {
-      // Si el token existe, el usuario está loggeado
+    if (userJson) {
+      const user = JSON.parse(userJson);
+
+      // Verificar si el usuario es admin
+      if (user.isAdmin === true) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+
+      // El usuario está autenticado
       setIsLoggedIn(true);
     } else {
+      // El usuario no está autenticado
       setIsLoggedIn(false);
+      setIsAdmin(false);
     }
   }, []);
 
   return (
     <div className="background-herramientas">
       <div>
-        {isLoggedIn ? (
-          <NavBar2
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            onClick={() => {}} // Proporciona cualquier función para onClick
-            handleLogout={handleLogout} // Asignar la función handleLogout al botón de cerrar sesión
-          />
+        {isLoggedIn && isAdmin ? (
+          <NavBar3 onClick={() => {}} handleLogout={handleLogout} />
+        ) : isLoggedIn ? (
+          <NavBar2 onClick={() => {}} handleLogout={handleLogout} />
         ) : (
           <NavBar1 />
-        )}
+        )}{" "}
       </div>
 
       <div className="container-md login">
