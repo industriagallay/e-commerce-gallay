@@ -199,30 +199,31 @@ const Home: React.FC = () => {
                 </div>
 
                 <div>
-                  <select
-                    className="form-select-filtro form-select-sm"
-                    aria-label=".form-select-sm example"
-                    style={{ width: "94%" }}
-                  >
+                  <div className="form-select-filtro-container">
                     <input
                       className="option-filter-vertical"
                       type="texto"
                       placeholder="Ordenar Por.."
-                    ></input>
-
-                    <option className="option-filter-vertical" value="1">
-                      Todos
-                    </option>
-                    <option className="option-filter-vertical" value="2">
-                      Destacados
-                    </option>
-                    <option className="option-filter-vertical" value="3">
-                      Mayor Precio
-                    </option>
-                    <option className="option-filter-vertical" value="3">
-                      Menor Precio
-                    </option>
-                  </select>
+                    />
+                    <select
+                      className="form-select-filtro form-select-sm"
+                      aria-label=".form-select-sm example"
+                      style={{ width: "94%" }}
+                    >
+                      <option className="option-filter-vertical" value="1">
+                        Todos
+                      </option>
+                      <option className="option-filter-vertical" value="2">
+                        Destacados
+                      </option>
+                      <option className="option-filter-vertical" value="3">
+                        Mayor Precio
+                      </option>
+                      <option className="option-filter-vertical" value="3">
+                        Menor Precio
+                      </option>
+                    </select>
+                  </div>
                 </div>
                 <div className="categories-container">
                   {categories.map((category, index) => (

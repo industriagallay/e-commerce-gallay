@@ -68,10 +68,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
             <h5 className="card-title-inicio">{product.name}</h5>
             <p className="card-stock-inicio">stock: {product.stock}</p>
-            <Link to="/" className="">
-              <button className="add-to-cart-btn justify-content-start">
-                Sumar al carrito
-              </button>
+            <Link to="/" className="add-to-cart-btn justify-content-start">
+              <button className="button-inside-link">Sumar al carrito</button>
             </Link>
           </div>
         </div>

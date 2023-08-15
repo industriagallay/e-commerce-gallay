@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
-import "./NavBar2.css";
+import "./navbar3.css";
 
 interface NavBar2Props {
   onClick: () => void;
@@ -10,7 +10,7 @@ interface NavBar2Props {
   // Otras propiedades que NavBar2 pueda necesitar
 }
 
-const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
+const NavBar3: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const toggleNav = () => {
@@ -100,6 +100,16 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
                       Ayuda
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link
+                      to="/admin"
+                      className="nav-link active"
+                      aria-current="page"
+                      onClick={handleLinkClick}
+                    >
+                      Panel de administrador{" "}
+                    </Link>
+                  </li>
                 </ul>
                 <div className="btn-iniciar-sesion-landing">
                   <button className="button-cerrar-sesion">
@@ -126,4 +136,4 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
   );
 };
 
-export default NavBar2;
+export default NavBar3;
