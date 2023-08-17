@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./home/Home";
 import SignUpForm from "./views/signUpForm/SignUpForm";
 import CreaTuCuchillo from "./components/crea-tu-cuchillo/CreaTuCuchillo";
@@ -12,49 +12,50 @@ import ProductDetail from "./components/detailproductos/ProductDetail";
 import NavBar3 from "../src/components/navbar3/NavBar3";
 import NavBar1 from "../src/components/navbar1/NavBar1";
 import NavBar2 from "../src/components/navbar2/NavBar2";
+import Cookies from "js-cookie";
+import { decodeToken } from "react-jwt";
 
 const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const userToken = Cookies.get("token");
+    return !!userToken; // Convierte el token en un valor booleano
+  });
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setIsAdmin(false);
-    navigate("/");
-  };
+  const verificarAutenticacion = async (token: string | undefined) => {
+    console.log({ token });
+    if (token) {
+      try {
+        console.log("1111111111");
+        const decoded = decodeToken(token) as { isAdmin: boolean };
 
-  useEffect(() => {
-    const userJson = localStorage.getItem("user");
-
-    if (userJson) {
-      const user = JSON.parse(userJson);
-
-      // Verificar si el usuario es admin
-      if (user.isAdmin === true) {
-        setIsAdmin(true);
-      } else {
+        console.log({ decoded });
+        setIsLoggedIn(true);
+        setIsAdmin(decoded.isAdmin);
+      } catch (error) {
+        console.error("Error parsing token:", error);
+        setIsLoggedIn(false);
         setIsAdmin(false);
       }
-
-      // El usuario está autenticado
-      setIsLoggedIn(true);
     } else {
-      // El usuario no está autenticado
       setIsLoggedIn(false);
       setIsAdmin(false);
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    const userToken = Cookies.get("token");
+    console.log({ userToken });
+    verificarAutenticacion(userToken);
+  }, [location]);
 
   return (
     <>
-      {isLoggedIn && isAdmin ? (
-        <NavBar3 onClick={() => {}} handleLogout={handleLogout} />
-      ) : isLoggedIn ? (
-        <NavBar2 onClick={() => {}} cerrarSesionProp={handleLogout} />
-      ) : (
-        <NavBar1 />
-      )}
+      {isLoggedIn && isAdmin && <NavBar3 />}
+      {isLoggedIn && !isAdmin && <NavBar2 />}
+      {!isLoggedIn && <NavBar1 />}
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
