@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import "./NavBar2.css";
+import Cookies from "js-cookie";
 
-interface NavBar2Props {
-  onClick: () => void;
-  cerrarSesionProp: () => void;
-}
-
-const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
+const NavBar2 = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate();
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -24,10 +22,9 @@ const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
     closeNav(); // Cerrar el menú al hacer clic en un enlace
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const navigate = useNavigate();
-  const cerrarSesion = () => {
+  const handleLogout = () => {
     setIsLoggedIn(false);
+    Cookies.remove("token"); // Elimina el token de las cookies
     navigate("/");
   };
 
@@ -99,19 +96,11 @@ const NavBar2: React.FC<NavBar2Props> = ({ cerrarSesionProp, onClick }) => {
                   </li>
                 </ul>
                 <div className="btn-iniciar-sesion-landing">
-                  <button className="button-cerrar-sesion">
-                    <span className="button_lg_cerrar-sesion">
-                      <span className="button_sl_cerrar-sesion"></span>
-
-                      <Link to="/" className="button_text_cerrar-sesion">
-                        <button
-                          className=" button-cerrar-sesion-custom"
-                          onClick={cerrarSesionProp}
-                        >
-                          Cerrar Sesión
-                        </button>
-                      </Link>
-                    </span>
+                  <button
+                    className="button-cerrar-sesion"
+                    onClick={handleLogout}
+                  >
+                    Cerrar Sesión
                   </button>
                 </div>
               </div>
