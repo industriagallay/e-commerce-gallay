@@ -676,3 +676,148 @@ p {
 .row-scroll {
   margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
 }
+
+/******Precio Seleccionado*******/
+
+/* Agrega esta clase para resaltar el filtro seleccionado */
+.selected {
+  font-weight: bold;
+  color: #007bff; /* Color azul, puedes ajustar esto según tus estilos */
+  cursor: pointer;
+}
+
+.precioContainer {
+  cursor: pointer;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+/* Agrega cursor pointer a todos los elementos de precio */
+.precioContainer p {
+  cursor: pointer;
+  /* Agrega otros estilos si es necesario */
+}
+
+/* Ajusta los estilos de selección */
+.precioContainer p.selected {
+  font-weight: bold;
+  color: #007bff; /* Color azul, puedes ajustar esto según tus estilos */
+  /* Otros estilos si es necesario */
+}
+
+.precioFiltroA-B {
+  font-size: 1.5rem; /* Tamaño de fuente más grande */
+  font-weight: bold; /* Texto en negrita */
+  margin-bottom: 20px; /* Espacio inferior */
+}
+
+/*****Busqueda de precio por rango******/
+
+.MIN_MAX_Container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.Min-number,
+.Max-number {
+  width: 50%; /* Ancho más corto */
+  height: 40px; /* Altura más alta */
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 7px;
+  border: groove;
+}
+
+.Min-number:focus,
+.Max-number:focus {
+  outline: none;
+  border: 1px solid #007bff;
+}
+
+.bi::before,
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-left: 65px;
+}
+
+.Arrow-icon {
+  font-size: 1.8rem; /* Tamaño más grande */
+  color: #007bff;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.Arrow-icon:hover {
+  color: #d5d818; /* Color azul más claro en hover */
+}
+
+.Arrow-icon {
+  position: relative;
+}
+
+.Arrow-icon::after {
+  content: "";
+  position: absolute;
+  left: 27%;
+  transform: translateX(-50%);
+  top: -4px;
+  width: 1px;
+  height: 32px;
+  background-color: #b6b6b6;
+}
+
+/*******Eliminar flechas inc-dec input********/
+/* Agrega este estilo a tu archivo de estilos CSS */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Opcional: Cambia el estilo del cursor cuando pasas el mouse por encima */
+input[type="number"] {
+  cursor: text;
+}
+
+/******Estilos pra el boron mostrar todos******/
+
+.show-all-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-top: 1.2rem;
+}
+
+.show-all-button:hover {
+  background-color: #0056b3;
+}

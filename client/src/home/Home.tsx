@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { gsap, Expo } from "gsap";
 import mano1 from "../assets/img/mano1.jpeg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/cardsProductos/ProductCard";
 import ObjectId from "bson-objectid";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Home.css";
-import "../assets/css/style.css";
-import "../components/navbar1/NavBar1.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 interface Product {
   _id: ObjectId;
@@ -24,39 +18,92 @@ interface Product {
 
 const Home: React.FC = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
-  interface Category {
-    name: string;
-    subcategories: string[];
-    showSubcategories: boolean;
-  }
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPriceFilter, setSelectedPriceFilter] = useState<string>("");
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [selectedFilter, setSelectedFilter] = useState<string>(""); // Default filter value
+  const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+
+  const handleMinPriceChange = (value: string) => {
+    setMinPrice(Number(value));
+  };
+
+  const handleMaxPriceChange = (value: string) => {
+    setMaxPrice(Number(value));
+  };
+
+  const handleRangeSearch = () => {
+    if (minPrice !== undefined && maxPrice !== undefined) {
+      const filtered = products.filter(
+        (product) => product.price >= minPrice && product.price <= maxPrice
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const filterValue = event.target.value;
+
+    setSelectedFilter(filterValue);
+
+    // Resetear el filtro de precio al cambiar el filtro general
+    // setSelectedPriceFilter("");
+
+    if (filterValue === "1") {
+      showAllProducts();
+    } else if (filterValue === "3") {
+      const filtered = products.filter((product) => product.price > 2500);
+      setFilteredProducts(filtered);
+    } else if (filterValue === "4") {
+      const filtered = products.filter((product) => product.price <= 2500);
+      setFilteredProducts(filtered);
+    }
+  };
+
+  //filtro por precio seleccionado
+  const handlePriceFilterChange = (filter: string) => {
+    setSelectedPriceFilter(filter);
+
+    if (filter === "hasta") {
+      const filtered = products.filter((product) => product.price <= 2500);
+      setFilteredProducts(filtered);
+    } else if (filter === "rango") {
+      const filtered = products.filter(
+        (product) => product.price > 2500 && product.price <= 4500
+      );
+      setFilteredProducts(filtered);
+    } else if (filter === "mas") {
+      const filtered = products.filter((product) => product.price > 4500);
+      setFilteredProducts(filtered);
+    }
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = event.target.value.toLowerCase();
+    setSearchTerm(searchTerm);
+  };
+
   useEffect(() => {
-    const fetchedCategories: Category[] = [
-      {
-        name: "Categoría 1",
-        subcategories: [
-          "Subcategoría 1.1",
-          "Subcategoría 1.2",
-          "Subcategoría 1.3",
-        ],
-        showSubcategories: false,
-      },
-      {
-        name: "Categoría 2",
-        subcategories: ["Subcategoría 2.1", "Subcategoría 2.2"],
-        showSubcategories: false,
-      },
-    ];
-    setCategories(fetchedCategories);
-  }, []);
+    if (searchTerm.trim() === "") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchTerm, products]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const products = await getProducts();
-        setProducts(products);
+        const response = await axios.get<Product[]>(
+          "http://localhost:3001/products"
+        );
+        setProducts(response.data);
+        setFilteredProducts(response.data); // Mostrar todos los productos al principio
       } catch (error) {
         console.log(error);
       }
@@ -65,14 +112,16 @@ const Home: React.FC = () => {
     fetchProducts();
   }, []);
 
-  const toggleSubcategories = (index: number) => {
-    setCategories((prevCategories) => {
-      const updatedCategories = prevCategories.map((category, i) => ({
-        ...category,
-        showSubcategories: i === index ? !category.showSubcategories : false,
-      }));
-      return updatedCategories;
-    });
+  useEffect(() => {
+    // Solo muestra un total de 8 productos por defecto
+    const defaultProducts = products.slice(0, 8);
+    setFilteredProducts(defaultProducts);
+  }, [products]);
+
+  //mostrar todos los productos
+  const showAllProducts = () => {
+    const allProducts = products.slice(0, 8); // Obtener los primeros 8 productos
+    setFilteredProducts(allProducts);
   };
 
   const [animationsCompleted, setAnimationsCompleted] = useState(false);
@@ -145,22 +194,9 @@ const Home: React.FC = () => {
     }
   }, [animationsCompleted]);
 
-  const getProducts = async (): Promise<Product[]> => {
-    try {
-      const response = await axios.get<Product[]>(
-        "http://localhost:3001/products"
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  };
-
   return (
     <div>
-      <header className="l-header">
-      </header>
+      <header className="l-header"></header>
 
       <main className="main-bg">
         <div className="home">
@@ -193,63 +229,88 @@ const Home: React.FC = () => {
                     className="input-filtrado-vertical"
                     type="text"
                     placeholder="Buscar productos..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
                   />
                 </div>
 
                 <div>
                   <div className="form-select-filtro-container">
-                    <input
-                      className="option-filter-vertical"
-                      type="texto"
-                      placeholder="Ordenar Por.."
-                    />
                     <select
                       className="form-select-filtro form-select-sm"
                       aria-label=".form-select-sm example"
                       style={{ width: "94%" }}
+                      value={selectedFilter}
+                      onChange={handleFilterChange}
                     >
-                      <option className="option-filter-vertical" value="1">
-                        Todos
+                      <option value="" disabled>
+                        Filtrar por...
                       </option>
-                      <option className="option-filter-vertical" value="2">
-                        Destacados
-                      </option>
+
                       <option className="option-filter-vertical" value="3">
                         Mayor Precio
                       </option>
-                      <option className="option-filter-vertical" value="3">
+                      <option className="option-filter-vertical" value="4">
                         Menor Precio
                       </option>
                     </select>
+                    <button
+                      onClick={showAllProducts}
+                      className="show-all-button"
+                    >
+                      Mostrar Todos
+                    </button>
                   </div>
                 </div>
-                <div className="categories-container">
-                  {categories.map((category, index) => (
-                    <div key={category.name} className="category-filter">
-                      <h3
-                        className={`h3-filtro-vertical ${
-                          category.showSubcategories ? "active" : ""
-                        }`}
-                        onClick={() => toggleSubcategories(index)}
-                      >
-                        {category.name}
-                        <FontAwesomeIcon
-                          icon={faChevronDown}
-                          className={
-                            category.showSubcategories ? "arrow-down" : ""
-                          }
-                        />
-                      </h3>
-
-                      {category.showSubcategories && (
-                        <ul className="ul-filtrado-vertical">
-                          {category.subcategories.map((subcat) => (
-                            <li key={subcat}>{subcat}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  ))}
+                <div className="precioContainer">
+                  <span className="precioFiltroA-B">Precio</span>
+                  <p
+                    className={`Hasta ${
+                      selectedPriceFilter === "hasta" ? "selected" : ""
+                    }`}
+                    onClick={() => handlePriceFilterChange("hasta")}
+                  >
+                    Hasta $2.500
+                  </p>
+                  <p
+                    className={`precio A ${
+                      selectedPriceFilter === "rango" ? "selected" : ""
+                    }`}
+                    onClick={() => handlePriceFilterChange("rango")}
+                  >
+                    $2.500 a $4.500
+                  </p>
+                  <p
+                    className={`Mas_deprecio_B ${
+                      selectedPriceFilter === "mas" ? "selected" : ""
+                    }`}
+                    onClick={() => handlePriceFilterChange("mas")}
+                  >
+                    Más de $4.500
+                  </p>
+                </div>
+                <div className="MIN_MAX_Container">
+                  <input
+                    inputMode="numeric"
+                    placeholder="Mínimo"
+                    className="Min-number"
+                    type="number"
+                    onChange={(event) =>
+                      handleMinPriceChange(event.target.value)
+                    }
+                  />
+                  <div className="Arrow-icon" onClick={handleRangeSearch}>
+                    <i className="bi bi-arrow-right-circle"></i>
+                  </div>
+                  <input
+                    inputMode="numeric"
+                    placeholder="Máximo"
+                    className="Max-number"
+                    type="number"
+                    onChange={(event) =>
+                      handleMaxPriceChange(event.target.value)
+                    }
+                  />
                 </div>
               </div>
             </div>
@@ -257,7 +318,7 @@ const Home: React.FC = () => {
 
           <div className="col-12 col-md-8 col-lg-8">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">
-              {products.map((product, index) => (
+              {filteredProducts.map((product, index) => (
                 <Link
                   style={{ textDecoration: "none" }}
                   to={`/product/id/${product._id}`}
