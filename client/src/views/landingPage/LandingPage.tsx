@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import NavBar1 from "../../components/navbar1/NavBar1";
 import yunqueHerreroMP4 from "../../assets/yunque-herrero.mp4";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "animate.css";
 import "./LandingPage.css";
-// import ProductCard from "../../components/cardsProductos/ProductCard";
 import axios from "axios";
 import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
 import { Link } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
-
-
 
 interface Product {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,7 +30,7 @@ const LandingPage: React.FC = () => {
         const products = await getProducts();
         setProducts(products);
       } catch (error) {
-        // Handle error, e.g., show an error message
+        console.log(error);
       }
     };
 
@@ -46,7 +42,7 @@ const LandingPage: React.FC = () => {
       const response = await axios.get<Product[]>(
         "http://localhost:3001/products"
       );
-      return response.data; // Assuming the server returns an array of products
+      return response.data;
     } catch (error) {
       console.error(error);
       throw error;
@@ -90,10 +86,8 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="background-color">
-      <NavBar1 />
       <section className="container-fluid-md">
         <div className="row">
-          {/* <div col-md-6="true"> */}
           <div className="col-md-6">
             <video muted autoPlay loop className="w-100">
               <source src={yunqueHerreroMP4} type="video/mp4" />
@@ -164,7 +158,25 @@ const LandingPage: React.FC = () => {
       </section> */}
 
       <div className="container-md">
-        <div className="row">
+        <div className="productosDestacados row">
+          <div className="container-md">
+            <div className="row">
+              <div className="col-8">
+                {" "}
+                <h2 className="h2Productosdestacados-Landing">
+                  <span className="producto-span-color-amarillo">
+                    Productos{" "}
+                  </span>{" "}
+                  <span className="yellow-half">Destacados</span>{" "}
+                  <FaArrowCircleRight className="icon-rounded" />
+                </h2>
+              </div>
+            </div>
+            <div className="col-12-md">
+              <hr className="h2Productosdestacados-Landing mt-5" />
+            </div>
+          </div>
+
           <div className="col-12-md">
             <section className="container-md">
               <div className="container-slider">
@@ -191,19 +203,6 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <section className="container-md">
-        <div className="row">
-          <div className="col-12-md">
-            <h2 className="h2Productosdestacados-Landing">
-              <span className="producto-span-color-amarillo">Productos </span>{" "}
-              <span className="yellow-half">Destacados</span>{" "}
-              <FaArrowCircleRight className="icon-rounded" />
-            </h2>
-            <hr className="h2Productosdestacados-Landing" />
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

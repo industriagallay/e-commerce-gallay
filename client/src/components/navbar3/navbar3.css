@@ -20,7 +20,20 @@ body {
 a:hover {
   color: #d7e745;
 }
-
+.navbar2 {
+  position: relative; /*exccede el larrgo del viewport*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 15px 200px; */
+  transition: 0.5s ease;
+  background-color: currentColor;
+  padding: 1.2em;
+}
 .navbar-toggler {
   border: none;
   background-color: transparent;
@@ -159,6 +172,7 @@ a:hover {
   display: flex; /* Muestra los enlaces cuando la clase 'active' está presente */
   flex-direction: column; /* Alinea los enlaces verticalmente */
   max-height: 100vh;
+
   position: absolute;
   top: 80px;
   right: 0;
@@ -182,20 +196,17 @@ a:hover {
 .navbar {
   height: 80px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   font-size: 1.2rem;
   /* position: sticky; */
   /* top: 0; */
   z-index: 999;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  background-color: #000000;
 }
 
 .navbar-links {
   position: relative;
-  color: #ffffff;
+  color: #fff;
   font-weight: 500;
   display: flex;
   justify-content: flex-end;
@@ -215,7 +226,6 @@ a:hover {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
-  margin: 20px;
 }
 .navbar-links a {
   display: block;
@@ -223,7 +233,7 @@ a:hover {
 
 .navbar-links a:hover {
   /* color: #ffffff; */
-  color: #ffffff;
+  color: #d7e745;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
 }
@@ -248,7 +258,7 @@ a:hover {
 }
 
 /****botton del login*****/
-.button-iniciar-sesion {
+.button-cerrar-sesion {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -265,8 +275,8 @@ a:hover {
   transition: all 0.15s ease;
 }
 
-.button-iniciar-sesion::before,
-.button-iniciar-sesion::after {
+.button-cerrar-sesion::before,
+.button-cerrar-sesion::after {
   content: "";
   display: block;
   position: absolute;
@@ -277,12 +287,12 @@ a:hover {
   transition: all 0.15s ease;
 }
 
-.button-iniciar-sesion::before {
+.button-cerrar-sesion::before {
   top: 0;
   border-bottom-width: 0;
 }
 
-.button-iniciar-sesion::after {
+.button-cerrar-sesion::after {
   bottom: 0;
   border-top-width: 0;
 }
@@ -292,21 +302,21 @@ a:hover {
   outline: none;
 }
 
-.button-iniciar-sesion:active::before,
-.button-iniciar-sesion:active::after {
+.button-cerrar-sesion:active::before,
+.button-cerrar-sesion:active::after {
   right: 3px;
   left: 3px;
 }
 
-.button-iniciar-sesion:active::before {
+.button-cerrar-sesion:active::before {
   top: 3px;
 }
 
-.button-iniciar-sesion:active::after {
+.button-cerrar-sesion:active::after {
   bottom: 3px;
 }
 
-.button_lg_iniciar-sesion {
+.button_lg_cerrar-sesion {
   position: relative;
   display: block;
 
@@ -316,7 +326,7 @@ a:hover {
   box-shadow: inset 0px 0px 0px 1px transparent;
 }
 
-.button_lg_iniciar-sesion::before {
+.button_lg_cerrar-sesion::before {
   content: "";
   display: block;
   position: absolute;
@@ -327,7 +337,7 @@ a:hover {
   background-color: #ffffff;
 }
 
-.button_lg_iniciar-sesion::after {
+.button_lg_cerrar-sesion::after {
   content: "";
   display: block;
   position: absolute;
@@ -339,38 +349,42 @@ a:hover {
   transition: all 0.2s ease;
 }
 
-.button_sl_iniciar-sesion {
+.button_sl_cerrar-sesion {
   display: block;
   position: absolute;
   top: 0;
   bottom: -1px;
   left: -8px;
   width: 0;
-  background-color: #a2b11a;
+  background-color: #a7c522;
   transform: skew(-15deg);
   transition: all 0.2s ease;
 }
 
-.button_text_iniciar-sesion {
+.button_text_cerrar-sesion {
   position: relative;
 }
-.button-iniciar-sesion-custom {
+.button-cerrar-sesion-custom {
   /* Agrega los estilos que desees personalizar */
-  margin: 10px;
-  color: #fff;
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #ffffff;
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  text-decoration: none;
+  font-size: 1.1rem;
 }
+/* .button-cerrarSesion{
 
-.button-iniciar-sesion:hover {
+  font-size: 1.1rem;
+} */
+
+.button-cerrar-sesion:hover {
   color: #ffffff;
 }
 
-.button-iniciar-sesion:hover .button_sl_iniciar-sesion {
+.button-cerrar-sesion:hover .button_sl_cerrar-sesion {
   width: calc(100% + 15px);
 }
 
-.button-iniciar-sesion:hover .button_lg_iniciar-sesion::after {
+.button-cerrar-sesion:hover .button_lg_cerrar-sesion::after {
   background-color: #fff;
 }

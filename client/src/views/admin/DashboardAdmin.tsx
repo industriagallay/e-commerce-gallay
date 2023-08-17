@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
 import larryTexto from "../../assets/larry-texto.png";
-import NavBar2 from "../../components/navbar2/NavBar2";
 import CloudinaryImageUpload from "../../components/cloudinary/CloudinaryImageUpload";
 import "../../components/navbar1/NavBar1.css";
 import "./DashboardAdmin.css";
@@ -56,21 +55,12 @@ const DashboardAdmin = () => {
     }
   };
 
-  // Asegúrate de llamar a la función onImageUpload con la URL de la imagen.
   const handleImageUpload = (imageUrl: string) => {
     setImageUrl(imageUrl); // Actualizamos el estado imageUrl con la URL de la imagen subida.
   };
 
   return (
     <div className="perrito-admin">
-      <NavBar2
-        handleLogout={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        onClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
 
       <div className="container formAdmin-container">
         <div className="row">
