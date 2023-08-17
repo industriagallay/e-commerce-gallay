@@ -700,14 +700,17 @@ p {
 /* Agrega cursor pointer a todos los elementos de precio */
 .precioContainer p {
   cursor: pointer;
+
   /* Agrega otros estilos si es necesario */
 }
-
+.Mas_deprecio_B {
+  margin-bottom: 0;
+}
 /* Ajusta los estilos de selección */
 .precioContainer p.selected {
   font-weight: bold;
   color: #007bff; /* Color azul, puedes ajustar esto según tus estilos */
-  /* Otros estilos si es necesario */
+  
 }
 
 .precioFiltroA-B {
@@ -720,21 +723,22 @@ p {
 
 .MIN_MAX_Container {
   display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  margin-top: 20px;
-  margin-left: 10px;
+  align-items: center;
+  justify-content: space-between;
+  /* border-bottom: 1px solid #ccc;  */
+  /* padding-bottom: 10px;  */
 }
 
 .Min-number,
 .Max-number {
-  width: 50%; /* Ancho más corto */
-  height: 40px; /* Altura más alta */
+  width: 40%;
+  height: 35px; 
   margin: 5px;
   padding: 5px;
   text-align: center;
   border-radius: 7px;
   border: groove;
+
 }
 
 .Min-number:focus,
@@ -760,7 +764,7 @@ p {
   flex-direction: row;
   justify-content: center;
   flex-wrap: nowrap;
-  margin-left: 65px;
+  margin-left: 1rem;
 }
 
 .Arrow-icon {
@@ -778,16 +782,13 @@ p {
   position: relative;
 }
 
-.Arrow-icon::after {
-  content: "";
-  position: absolute;
-  left: 27%;
-  transform: translateX(-50%);
-  top: -4px;
-  width: 1px;
-  height: 32px;
-  background-color: #b6b6b6;
+.line-between-inputs {
+  width: 5%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0;
 }
+
 
 /*******Eliminar flechas inc-dec input********/
 /* Agrega este estilo a tu archivo de estilos CSS */
@@ -802,7 +803,7 @@ input[type="number"] {
   cursor: text;
 }
 
-/******Estilos pra el boron mostrar todos******/
+/******Estilos pra el boton mostrar todos******/
 
 .show-all-button {
   display: block;

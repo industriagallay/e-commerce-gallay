@@ -263,7 +263,7 @@ const Home: React.FC = () => {
                   </div>
                 </div>
                 <div className="precioContainer">
-                  <span className="precioFiltroA-B">Precio</span>
+                  <span className="precioFiltroA-B">Rango de Precio</span>
                   <p
                     className={`Hasta ${
                       selectedPriceFilter === "hasta" ? "selected" : ""
@@ -299,9 +299,7 @@ const Home: React.FC = () => {
                       handleMinPriceChange(event.target.value)
                     }
                   />
-                  <div className="Arrow-icon" onClick={handleRangeSearch}>
-                    <i className="bi bi-arrow-right-circle"></i>
-                  </div>
+                  <div className="line-between-inputs"></div> {/* Línea horizontal */}
                   <input
                     inputMode="numeric"
                     placeholder="Máximo"
@@ -311,13 +309,16 @@ const Home: React.FC = () => {
                       handleMaxPriceChange(event.target.value)
                     }
                   />
+                  <div className="Arrow-icon" onClick={handleRangeSearch}>
+                    <i className="bi bi-arrow-right-circle"></i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="col-12 col-md-8 col-lg-8">
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
               {filteredProducts.map((product, index) => (
                 <Link
                   style={{ textDecoration: "none" }}
