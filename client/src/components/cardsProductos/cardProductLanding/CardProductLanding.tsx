@@ -60,12 +60,7 @@ const CardProductLanding: React.FC<CardProductLandingProps> = ({ product }) => {
                   {product.description}
                 </h6>
                 <p className="card-stock-landing">stock: {product.stock}</p>
-                <Link to="/" className="add-to-cart-link">
-                  {" "}
-                  <button className="add-to-cart-btn-landing justify-content-start">
-                    Sumar al carrito
-                  </button>
-                </Link>
+               
               </div>
             </div>
           </div>

@@ -70,11 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <p className="card-stock-inicio">stock: {product.stock}</p>
             <div className="botonCarrito">
               {" "}
-              <Link to="/" className="justify-content-center">
-                <button className="textoBoton mx-auto">
-                  Agregar al carrito
-                </button>
-              </Link>
+         
             </div>
           </div>
         </div>
