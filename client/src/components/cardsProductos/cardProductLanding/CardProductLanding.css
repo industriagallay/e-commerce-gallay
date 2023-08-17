@@ -66,11 +66,6 @@
     object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
   }
   
-  /* .card-title-inicio {
-        font-size: 24px;
-        margin-bottom: 15px;
-        margin-top: 1rem;
-      } */
   
   /* Estilos para centrar las cards */
   .row-cols-1 {
@@ -202,26 +197,6 @@
   .card-description-landing {
     font-size: 1rem;
     color: #999;
-  }
-  .add-to-cart-btn-landing {
-    /* position: absolute; */
-  
-    font-size: 18px;
-    bottom: 0.1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #bdba18;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .add-to-cart-btn-landing:hover {
-    background-color: #948e37ce;
   }
   .row-scroll {
     margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
