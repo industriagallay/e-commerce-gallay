@@ -38,7 +38,7 @@
 
 .card-inicio-productos {
   max-width: 20rem; /* Ancho fijo de las cards */
-  min-height: 36rem; /* Altura fija de las cards */
+  min-height: 33rem; /* Altura fija de las cards */
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -175,7 +175,7 @@
   font-size: 1rem;
   color: #999;
 }
-.botonCarrito {
+/* .botonCarrito {
   margin-top: auto;
   margin-bottom: 10px;
   background-color: #d1d93c;
@@ -186,11 +186,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-align: center;
-}
+} */
 
-.botonCarrito:hover {
+/* .botonCarrito:hover {
   background-color: #fce703;
-}
+} */
 .row-scroll {
   margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
 }

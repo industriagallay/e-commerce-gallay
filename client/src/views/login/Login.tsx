@@ -5,6 +5,7 @@ import swal from "sweetalert2";
 import "./Login.css";
 import "../../components/navbar2/NavBar2.css";
 import "../../components/navbar1/NavBar1.css";
+import Cookies from "js-cookie";
 
 type FormValues = {
   firstName: string;
@@ -26,8 +27,11 @@ const Login = () => {
         "http://localhost:3001/api/login",
         formData
       );
-      console.log("Response data:", response.data);
-      localStorage.setItem("user", JSON.stringify(response.data));
+
+      // Asegúrate de que response.data contiene el token y no tod el objeto de respuesta
+      const token = response.data.token;
+
+      Cookies.set("token", token); // Almacena el token en la cookie
 
       if (
         response.data.hasOwnProperty("isAdmin") &&
