@@ -125,38 +125,6 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* <div className="container-md">
-        <div className="row">
-          <div className="col-12-md">
-            <h2 className="h2Productosdestacados-Landing">
-              Productos Destacados
-            </h2>
-            <hr className="h2Productosdestacados-Landing" />
-          </div>
-        </div>
-      </div> */}
-
-      {/* <section className="container-md">
-        <div className="container-slider">
-          <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 justify-content-center">
-            <div className="col">
-              <Slider {...settings} className=" justify-content-center">
-                {products.map((product) => (
-                  <Link
-                    className="no-text-decoration"
-                    to={`/product/id/${product._id}`}
-                    key={`product-${product._id}`}
-                  >
-                    <CardProductLanding key={product.id} product={product} />
-                  </Link>
-                ))}
-              </Slider>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       <div className="container-md">
         <div className="productosDestacados row">
           <div className="container-md">

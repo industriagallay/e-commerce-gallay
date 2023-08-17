@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import "./navbar3.css";
+import Cookies from "js-cookie";
 
-interface NavBar2Props {
-  onClick: () => void;
-  handleLogout: () => void;
-  // Otras propiedades que NavBar2 pueda necesitar
-}
-
-const NavBar3: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
+const NavBar3 = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -25,13 +21,9 @@ const NavBar3: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
     closeNav(); // Cerrar el menú al hacer clic en un enlace
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const navigate = useNavigate();
-  const cerrarSesion = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("username");
-    setIsLoggedIn(false);
-    navigate("/", { replace: true });
+  const handleLogout = () => {
+    Cookies.remove("token"); // Elimina el token de las cookies
+    navigate("/");
   };
 
   return (
@@ -118,7 +110,7 @@ const NavBar3: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
 
                       <Link to="/" className="button_text_cerrar-sesion">
                         <button
-                          className=" button-cerrar-sesion-custom"
+                          className="button-cerrar-sesion-custom"
                           onClick={handleLogout}
                         >
                           Cerrar Sesión
