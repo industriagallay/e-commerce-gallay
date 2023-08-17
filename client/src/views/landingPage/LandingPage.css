@@ -76,7 +76,7 @@ video {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 5px;
-  line-height: 100px; /* Ajustar el espaciado vertical entre las palabras */
+  line-height: 100px;
   text-align: center;
 }
 .texto-Gallay2 {
