@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ObjectIDProps from "bson-objectid";
 import "./ProdctCard.css";
 
@@ -68,10 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
             <h5 className="card-title-inicio">{product.name}</h5>
             <p className="card-stock-inicio">stock: {product.stock}</p>
-            <div className="botonCarrito">
-              {" "}
-         
-            </div>
+            <div className="botonCarrito"> </div>
           </div>
         </div>
       </div>

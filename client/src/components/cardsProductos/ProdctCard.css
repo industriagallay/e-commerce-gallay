@@ -29,7 +29,6 @@
   height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
-  /* background-color: #f1f1f1; */
 
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
