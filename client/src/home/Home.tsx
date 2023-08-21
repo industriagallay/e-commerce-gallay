@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { gsap, Expo } from "gsap";
 import mano1 from "../assets/img/mano1.jpeg";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/cardsProductos/ProductCard";
+import Swal from "sweetalert2";
 import ObjectId from "bson-objectid";
 import "./Home.css";
 
@@ -17,7 +18,11 @@ interface Product {
 }
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [isHoverEnabled, setIsHoverEnabled] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPriceFilter, setSelectedPriceFilter] = useState<string>("");
@@ -114,13 +119,13 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     // Solo muestra un total de 8 productos por defecto
-    const defaultProducts = products.slice(0, 8);
+    const defaultProducts = products.slice(0, 9);
     setFilteredProducts(defaultProducts);
   }, [products]);
 
   //mostrar todos los productos
   const showAllProducts = () => {
-    const allProducts = products.slice(0, 8); // Obtener los primeros 8 productos
+    const allProducts = products.slice(0, 9); // Obtener los primeros 8 productos
     setFilteredProducts(allProducts);
   };
 
@@ -193,6 +198,57 @@ const Home: React.FC = () => {
       setAnimationsCompleted(true);
     }
   }, [animationsCompleted]);
+
+  const handleDeleteProduct = async (product: Product) => {
+    try {
+      setIsHoverEnabled(false);
+
+      const swalResult = await Swal.fire({
+        title:
+          "¿Estás seguro de eliminar este producto? Esta acción es irreversible",
+        showCancelButton: true,
+        confirmButtonText: "Borrar",
+      });
+
+      if (swalResult.isConfirmed) {
+        const response = await axios.delete(
+          `http://localhost:3001/products/${product._id}`
+        );
+
+        if (response.status === 200) {
+          Swal.fire("¡Producto borrado correctamente!", "", "success");
+          // Actualiza la lista de productos después de eliminar
+          setProducts((prevProducts) =>
+            prevProducts.filter((p) => p._id !== product._id)
+          );
+        } else {
+          Swal.fire("No se pudo borrar el producto", "", "error");
+        }
+      } else if (swalResult.isDenied) {
+        Swal.fire("La acción fue cancelada", "", "info");
+      }
+
+      setIsHoverEnabled(true);
+    } catch (error) {
+      // Error al eliminar el producto
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Ocurrió un error inesperado",
+      });
+    }
+  };
+
+  const editModalOpen = (product: Product) => {
+    setSelectedProduct(product);
+    setShowModal(true);
+  };
+
+  const handleCardClick = (product: Product) => {
+    if (!showModal) {
+      navigate(`/product/id/${product._id}`);
+    }
+  };
 
   return (
     <div>
@@ -299,7 +355,8 @@ const Home: React.FC = () => {
                       handleMinPriceChange(event.target.value)
                     }
                   />
-                  <div className="line-between-inputs"></div> {/* Línea horizontal */}
+                  <div className="line-between-inputs"></div>{" "}
+                  {/* Línea horizontal */}
                   <input
                     inputMode="numeric"
                     placeholder="Máximo"
@@ -320,18 +377,17 @@ const Home: React.FC = () => {
           <div className="col-12 col-md-8 col-lg-8">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
               {filteredProducts.map((product, index) => (
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to={`/product/id/${product._id}`}
-                  key={`product-${index}`}
-                >
+                <div key={`product-${index}`}>
                   <ProductCard
                     product={product}
                     hovered={product.price > 2500 && index === hoveredCard}
                     onMouseEnter={() => setHoveredCard(index)}
                     onMouseLeave={() => setHoveredCard(null)}
+                    setProducts={setProducts}
+                    onClick={handleCardClick}
+                    onDelete={() => handleDeleteProduct(product)}
                   />
-                </Link>
+                </div>
               ))}
             </div>
           </div>
