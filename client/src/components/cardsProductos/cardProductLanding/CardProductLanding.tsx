@@ -56,11 +56,7 @@ const CardProductLanding: React.FC<CardProductLandingProps> = ({ product }) => {
                   </p>
                 </div>
                 <h5 className="card-title-inicio">{product.name}</h5>
-                <h6 className="card-description-landing">
-                  {product.description}
-                </h6>
                 <p className="card-stock-landing">stock: {product.stock}</p>
-               
               </div>
             </div>
           </div>

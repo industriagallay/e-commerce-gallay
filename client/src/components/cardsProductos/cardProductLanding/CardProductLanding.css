@@ -1,203 +1,197 @@
 /****** estilo para las cards de los productso*******/
 /* Estilos para las cards */
 .card-landing-productos {
-    --bs-card-spacer-y: 1rem;
-    --bs-card-spacer-x: 1rem;
-    --bs-card-title-spacer-y: 0.5rem;
-    --bs-card-title-color: ;
-    --bs-card-subtitle-color: ;
-    --bs-card-border-width: var(--bs-border-width);
-    --bs-card-border-color: var(--bs-border-color-translucent);
-    --bs-card-border-radius: var(--bs-border-radius);
-    --bs-card-box-shadow: ;
-    --bs-card-inner-border-radius: calc(
-      var(--bs-border-radius) - (var(--bs-border-width))
-    );
-    --bs-card-cap-padding-y: 0.5rem;
-    --bs-card-cap-padding-x: 1rem;
-    --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
-    --bs-card-cap-color: ;
-    --bs-card-height: ;
-    --bs-card-color: ;
-    --bs-card-bg: var(--bs-body-bg);
-    --bs-card-img-overlay-padding: 1rem;
-    --bs-card-group-margin: 0.75rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    height: var(--bs-card-height);
-    color: var(--bs-body-color);
-    word-wrap: break-word;
-    /* background-color: #f1f1f1; */
-  
-    background-clip: border-box;
-    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-    border-radius: var(--bs-card-border-radius);
+  --bs-card-spacer-y: 1rem;
+  --bs-card-spacer-x: 1rem;
+  --bs-card-title-spacer-y: 0.5rem;
+  --bs-card-title-color: ;
+  --bs-card-subtitle-color: ;
+  --bs-card-border-width: var(--bs-border-width);
+  --bs-card-border-color: var(--bs-border-color-translucent);
+  --bs-card-border-radius: var(--bs-border-radius);
+  --bs-card-box-shadow: ;
+  --bs-card-inner-border-radius: calc(
+    var(--bs-border-radius) - (var(--bs-border-width))
+  );
+  --bs-card-cap-padding-y: 0.5rem;
+  --bs-card-cap-padding-x: 1rem;
+  --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+  --bs-card-cap-color: ;
+  --bs-card-height: ;
+  --bs-card-color: ;
+  --bs-card-bg: var(--bs-body-bg);
+  --bs-card-img-overlay-padding: 1rem;
+  --bs-card-group-margin: 0.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: var(--bs-card-height);
+  color: var(--bs-body-color);
+  word-wrap: break-word;
+  /* background-color: #f1f1f1; */
+
+  background-clip: border-box;
+  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  border-radius: var(--bs-card-border-radius);
+}
+
+.card-landing-productos {
+  max-width: 20rem; /* Ancho fijo de las cards */
+  min-height: 36rem; /* Altura fija de las cards */
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+/* Agregar la clase "discounted-hover" a la tarjeta cuando se hace hover en el precio descontado */
+.card-landing-productos.hovered.discounted-hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-landing-productos:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.card-img-top-landing {
+  width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
+  max-height: 200px;
+  border-radius: 8px;
+  object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
+}
+
+/* Estilos para centrar las cards */
+.row-cols-1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Estilos para responsividad de las cards */
+@media (min-width: 992px) {
+  .row-cols-lg-1 > * {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 50px;
   }
-  
+}
+
+@media (min-width: 768px) {
+  .row-cols-md-4 {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 576px) {
+  .row-cols-sm-2 {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
   .card-landing-productos {
-    max-width: 20rem; /* Ancho fijo de las cards */
-    min-height: 36rem; /* Altura fija de las cards */
-    overflow: hidden;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px;
-    margin: 10px;
-    box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-   
+    margin-right: 5px;
+    margin-left: 5px;
   }
-  /* Agregar la clase "discounted-hover" a la tarjeta cuando se hace hover en el precio descontado */
-  .card-landing-productos.hovered.discounted-hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    
+}
+
+@media (max-width: 390px) {
+  .row > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * 1);
+    padding-left: calc(var(--bs-gutter-x) * 1);
+    margin-top: var(--bs-gutter-y);
   }
-  
-  .card-landing-productos:hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-  }
-  
-  .card-img-top-landing {
-    width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
-    max-height: 200px;
-    border-radius: 8px;
-    object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
-  }
-  
-  
-  /* Estilos para centrar las cards */
-  .row-cols-1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  /* Estilos para responsividad de las cards */
-  @media (min-width: 992px) {
-    .row-cols-lg-1 > * {
-      flex: 0 0 auto;
-      width: 100%;
-      margin-top: 50px;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .row-cols-md-4 {
-      justify-content: center;
-    }
-  }
-  
-  @media (min-width: 576px) {
-    .row-cols-sm-2 {
-      justify-content: center;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .card-landing-productos {
-      margin-right: 5px;
-      margin-left: 5px;
-    }
-  }
-  
-  @media (max-width: 390px) {
-    .row > * {
-      flex-shrink: 0;
-      width: 100%;
-      max-width: 100%;
-      padding-right: calc(var(--bs-gutter-x) * 1);
-      padding-left: calc(var(--bs-gutter-x) * 1);
-      margin-top: var(--bs-gutter-y);
-    }
-  }
-  
-  /* Estilos para centrar las cards y separarlas del filtro */
-  .col-landing {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 13px;
-  }
-  
-  /* .col-inicio-sesion.hovered .card-text-inicio {
+}
+
+/* Estilos para centrar las cards y separarlas del filtro */
+.col-landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 13px;
+}
+
+/* .col-inicio-sesion.hovered .card-text-inicio {
         text-decoration: line-through;
         color: red;
       } */
-  
-  /* Estilos para el botón "sumar al carrito" */
-  .card-body-landing-productos {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-  }
-  
-  .additional-text-landing {
-    color: #00a650; /* Puedes agregar otros estilos según tus preferencias */
-    font-size: 1.1rem;
-    margin-left: 8px; /* Ajustar el espacio entre el precio y el texto adicional */
-  }
-  
-  .price-off-landing {
-    font-size: 15px;
-    color: #008300;
-    margin-left: 8px;
-  }
-  .free-shipping-landing {
-    color: #008300;
-  }
-  /* .free-shipping::after {
+
+/* Estilos para el botón "sumar al carrito" */
+.card-body-landing-productos {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.additional-text-landing {
+  color: #00a650; /* Puedes agregar otros estilos según tus preferencias */
+  font-size: 1.1rem;
+  margin-left: 8px; /* Ajustar el espacio entre el precio y el texto adicional */
+}
+
+.price-off-landing {
+  font-size: 15px;
+  color: #008300;
+  margin-left: 8px;
+}
+.free-shipping-landing {
+  color: #008300;
+}
+/* .free-shipping::after {
       content: " ⚡";
     } */
-  
-  .img-container-landing {
-    position: relative;
-  }
-  
-  .line-horizontal-landing {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: #ccc; 
-  }
-  .card-stock-landing {
-    font-size: 1rem; /* Tamaño del texto del stock */
-    margin-bottom: 16px; /* Ajustar el espacio entre el texto adicional y el stock */
-  }
-  
-  .card-text-landing {
-    display: flex; /* Mostrar el precio y el texto adicional en la misma línea */
-    align-items: center; /* Centrar verticalmente los elementos */
-    margin-bottom: 8px; /* Separación entre el precio y el stock */
-  }
-  
-  .price-container-landing {
-    position: relative;
-    font-size: 2rem; /* Tamaño de fuente para el precio, ajusta el valor según tus necesidades */
-    /* font-weight: bold;  */
-    margin-bottom: 8px; /* Espacio inferior para separar del texto adicional */
-  }
-  
-  .discount-price-landing {
-    font-size: 16px; /* Tamaño de fuente para el precio tachado, ajusta según tus necesidades */
-    text-decoration: line-through; /* Tachar el texto */
-    margin-left: auto; /* Alinea el precio tachado a la derecha del contenedor */
-  }
-  
-  .price-landing {
-    display: flex; /* Para mostrar el precio y el texto adicional en la misma línea */
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap; /* Centrar verticalmente los elementos */
-  }
-  .card-description-landing {
-    font-size: 1rem;
-    color: #999;
-  }
-  .row-scroll {
-    margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
-  }
+
+.img-container-landing {
+  position: relative;
+}
+
+.line-horizontal-landing {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #ccc;
+}
+.card-stock-landing {
+  font-size: 1rem; /* Tamaño del texto del stock */
+  margin-bottom: 16px; /* Ajustar el espacio entre el texto adicional y el stock */
+}
+
+.card-text-landing {
+  display: flex; /* Mostrar el precio y el texto adicional en la misma línea */
+  align-items: center; /* Centrar verticalmente los elementos */
+  margin-bottom: 8px; /* Separación entre el precio y el stock */
+}
+
+.price-container-landing {
+  position: relative;
+  font-size: 2rem; /* Tamaño de fuente para el precio, ajusta el valor según tus necesidades */
+  /* font-weight: bold;  */
+  margin-bottom: 8px; /* Espacio inferior para separar del texto adicional */
+}
+
+.discount-price-landing {
+  font-size: 16px; /* Tamaño de fuente para el precio tachado, ajusta según tus necesidades */
+  text-decoration: line-through; /* Tachar el texto */
+  margin-left: auto; /* Alinea el precio tachado a la derecha del contenedor */
+}
+
+.price-landing {
+  display: flex; /* Para mostrar el precio y el texto adicional en la misma línea */
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap; /* Centrar verticalmente los elementos */
+}
+
+.row-scroll {
+  margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
+}
