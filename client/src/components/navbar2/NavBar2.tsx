@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
 import "./NavBar2.css";
+import Cookies from "js-cookie";
 
-interface NavBar2Props {
-  onClick: () => void;
-  handleLogout: () => void;
-  // Otras propiedades que NavBar2 pueda necesitar
-}
-
-const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
+const NavBar2 = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate();
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -25,18 +22,15 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
     closeNav(); // Cerrar el menú al hacer clic en un enlace
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const navigate = useNavigate();
-  const cerrarSesion = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("username");
+  const handleLogout = () => {
     setIsLoggedIn(false);
-    navigate("/", { replace: true });
+    Cookies.remove("token"); // Elimina el token de las cookies
+    navigate("/");
   };
 
   return (
     <div>
-      <div className="container-fluid navbar-container">
+      <div className="navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar2 navbar-expand-lg navbar-light">
             <Link
@@ -102,19 +96,11 @@ const NavBar2: React.FC<NavBar2Props> = ({ onClick, handleLogout }) => {
                   </li>
                 </ul>
                 <div className="btn-iniciar-sesion-landing">
-                  <button className="button-cerrar-sesion">
-                    <span className="button_lg_cerrar-sesion">
-                      <span className="button_sl_cerrar-sesion"></span>
-
-                      <Link to="/" className="button_text_cerrar-sesion">
-                        <button
-                          className=" button-cerrar-sesion-custom"
-                          onClick={handleLogout}
-                        >
-                          Cerrar Sesión
-                        </button>
-                      </Link>
-                    </span>
+                  <button
+                    className="button-cerrar-sesion"
+                    onClick={handleLogout}
+                  >
+                    Cerrar Sesión
                   </button>
                 </div>
               </div>

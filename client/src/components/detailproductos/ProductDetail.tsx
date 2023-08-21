@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
 import "./ProductosDetail.css";
-import NavBar2 from "../navbar2/NavBar2";
 
 interface Product {
   _id: ObjectId;
@@ -38,14 +37,6 @@ const ProductDetail: React.FC = () => {
 
   return (
     <>
-      <NavBar2
-        onClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        handleLogout={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
       {product ? (
         <div className="container mt-5">
           <div className="row">
@@ -57,12 +48,16 @@ const ProductDetail: React.FC = () => {
                   alt={product.name}
                 />
               </div>
+
+              <div className="card mb-5 p-4">
+                <h2 className="card-img-top">Descripcion</h2>{" "}
+                <p className="card-text">{product.description}</p>
+              </div>
             </div>
             <div className="col-md-4">
               <div className="card plan-card">
                 <div className="card-body">
                   <h1 className="card-title">{product.name}</h1>
-                  <p className="card-text">{product.description}</p>
                   <div className="etiquet-price">
                     <p>${product.price}</p>
                     <div></div>

@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Playfair+Display&family=Poppins:wght@400;500&family=Raleway:wght@400;700&family=Roboto+Condensed&family=Tinos&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap");
+
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .show > .nav-link {
   color: rgb(255 255 255 / 90%);
@@ -21,19 +22,6 @@ body {
   overflow-x: hidden;
 }
 
-/*barra de navegacion*/
-.navbar {
-  z-index: 999;
-  /*position: absolute; exccede el larrgo del viewport*/
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* padding: 15px 200px; */
-  transition: 0.5s ease;
-}
 /* video hero loop */
 #hero {
   min-height: 100vh;
@@ -81,12 +69,6 @@ video {
   margin-top: 50px;
 }
 
-/* 
-.homeLanding .content {
-  width: 90%;
-  margin-top: 20px;
-} */
-
 /*Texto de la home-Letras*/
 .texto-Industria1,
 .texto-Gallay2 {
@@ -94,7 +76,7 @@ video {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 5px;
-  line-height: 100px; /* Ajustar el espaciado vertical entre las palabras */
+  line-height: 100px;
   text-align: center;
 }
 .texto-Gallay2 {
@@ -247,7 +229,7 @@ section.container-slider {
   border-radius: 8px;
   padding: 15px;
   margin: 10px;
-  box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 15px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   margin-bottom: 20px; /* Espacio debajo de cada tarjeta */
 }
@@ -350,4 +332,56 @@ section.container-slider {
 
 .no-text-decoration {
   text-decoration: none !important;
+}
+/******CARD PRODCTOS DESTACADOS********/
+.card-horizontal-carrusel-info-productos-destacados {
+  display: flex;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.card-horizontal-carrusel-info-productos-destacados:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-content-carrusel-productos-destacados {
+  padding: 20px;
+}
+
+.card-content-carrusel-productos-destacados h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-content-carrusel-productos-destacados p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/**********PRODUCTOS DESTACADOS LANDING***********/
+.icon-rounded {
+  font-size: 24px;
+  color: #bfc225;
+  vertical-align: middle;
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+.yellow-half {
+  background: linear-gradient(to right, yellow 100%, transparent 50%);
+  display: inline;
+  font-family: "Inter", sans-serif;
+  /* font-weight: 600; */
+}
+.producto-span-color-amarillo {
+  color: #d6d850;
+}
+
+.productosDestacados {
+  margin-top: 22em;
 }

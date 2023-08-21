@@ -1,5 +1,3 @@
-/****** estilo para las cards de los productso*******/
-/* Estilos para las cards */
 .card-inicio-productos {
   --bs-card-spacer-y: 1rem;
   --bs-card-spacer-x: 1rem;
@@ -29,16 +27,14 @@
   height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
-  /* background-color: #f1f1f1; */
-
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
 }
 
 .card-inicio-productos {
-  max-width: 20rem; /* Ancho fijo de las cards */
-  min-height: 36rem; /* Altura fija de las cards */
+  max-width: 20rem;
+  min-height: 33rem;
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -47,7 +43,7 @@
   box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
-/* Agregar la clase "discounted-hover" a la tarjeta cuando se hace hover en el precio descontado */
+
 .card-inicio-productos.hovered.discounted-hover {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -57,27 +53,18 @@
 }
 
 .card-img-top-inicio {
-  width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
-
+  width: 100%;
   height: 200px;
   border-radius: 8px;
-  object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
+  object-fit: contain;
 }
 
-/* .card-title-inicio {
-    font-size: 24px;
-    margin-bottom: 15px;
-    margin-top: 1rem;
-  } */
-
-/* Estilos para centrar las cards */
 .row-cols-1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-/* Estilos para responsividad de las cards */
 @media (min-width: 576px) {
   .row-cols-sm-2 {
     justify-content: center;
@@ -90,7 +77,6 @@
   }
 }
 
-/* Estilos para centrar las cards y separarlas del filtro */
 .col-inicio-sesion {
   display: flex;
   align-items: center;
@@ -98,23 +84,16 @@
   margin-bottom: 13px;
 }
 
-/* .col-inicio-sesion.hovered .card-text-inicio {
-    text-decoration: line-through;
-    color: red;
-  } */
-
-/* Estilos para el botón "sumar al carrito" */
 .card-body-inicio-productos {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
 .additional-text {
-  color: #00a650; /* Puedes agregar otros estilos según tus preferencias */
+  color: #00a650;
   font-size: 1.1rem;
-  margin-left: 8px; /* Ajustar el espacio entre el precio y el texto adicional */
+  margin-left: 8px;
 }
 
 .price-off {
@@ -125,9 +104,6 @@
 .free-shipping {
   color: #008300;
 }
-/* .free-shipping::after {
-  content: " ⚡";
-} */
 
 .img-container {
   position: relative;
@@ -139,64 +115,44 @@
   left: 0;
   right: 0;
   height: 1px;
-  background-color: #ccc; /* Color de la línea horizontal */
+  background-color: #ccc;
 }
 .card-stock-inicio {
-  font-size: 1rem; /* Tamaño del texto del stock */
-  margin-bottom: 16px; /* Ajustar el espacio entre el texto adicional y el stock */
+  font-size: 1rem;
+  margin-bottom: 16px;
 }
 
 .card-text-inicio {
-  display: flex; /* Mostrar el precio y el texto adicional en la misma línea */
-  align-items: center; /* Centrar verticalmente los elementos */
-  margin-bottom: 8px; /* Separación entre el precio y el stock */
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .price-container {
   position: relative;
-  font-size: 2rem; /* Tamaño de fuente para el precio, ajusta el valor según tus necesidades */
-  /* font-weight: bold;  */
-  margin-bottom: 8px; /* Espacio inferior para separar del texto adicional */
+  font-size: 2rem;
+  margin-bottom: 8px;
 }
 
 .discount-price {
-  font-size: 16px; /* Tamaño de fuente para el precio tachado, ajusta según tus necesidades */
-  text-decoration: line-through; /* Tachar el texto */
-  margin-left: auto; /* Alinea el precio tachado a la derecha del contenedor */
+  font-size: 16px;
+  text-decoration: line-through;
+  margin-left: auto;
 }
 
 .price {
-  display: flex; /* Para mostrar el precio y el texto adicional en la misma línea */
+  display: flex;
   align-items: center;
   flex-direction: row;
-  flex-wrap: wrap; /* Centrar verticalmente los elementos */
+  flex-wrap: wrap;
 }
 .card-description-inicio {
   font-size: 1rem;
   color: #999;
 }
-.add-to-cart-btn {
-  /* position: absolute; */
 
-  font-size: 18px;
-  bottom: 0.1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #bdba18;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.add-to-cart-btn:hover {
-  background-color: #948e37ce;
-}
 .row-scroll {
-  margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
+  margin-top: 100px;
 }
 
 @media (min-width: 390px) {
@@ -207,4 +163,90 @@
 }
 .container {
   margin-top: 100px;
+}
+
+.textoBoton {
+  font-size: 1em;
+}
+
+.botonBorrar {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: none;
+  position: absolute;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 5px 0.2px #fd0101;
+  box-shadow: 1px 1px 5px 0.2px #ff0000;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
+  transition-delay: 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: space-between;
+  background-color: aliceblue;
+}
+
+.botonBorrar:hover {
+  width: 245px;
+  transition-delay: 0.2s;
+}
+
+.botonBorrar:hover > .paragraph {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+  margin-top: 1.1em;
+  margin-left: 0.9em;
+}
+
+.botonBorrar:hover > .icon-wrapper .icon {
+  transform: scale(1.1);
+}
+
+.botonBorrar:hover > .icon-wrapper .icon path {
+  stroke: rgb(195, 33, 33);
+}
+
+.paragraph {
+  color: black;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 15px;
+  margin-right: 20px;
+  padding-left: 20px;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  transform: scale(0.9);
+  transition: 0.2s linear;
+}
+
+.icon path {
+  stroke: #000;
+  stroke-width: 2px;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
 }

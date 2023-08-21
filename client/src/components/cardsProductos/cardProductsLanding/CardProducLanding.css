@@ -54,7 +54,6 @@
 
 .card-landing-productos:hover {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
 }
 
 .card-img-top-landing {
@@ -63,6 +62,12 @@
   border-radius: 8px;
   object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
 }
+
+/* .card-title-inicio {
+      font-size: 24px;
+      margin-bottom: 15px;
+      margin-top: 1rem;
+    } */
 
 /* Estilos para centrar las cards */
 .row-cols-1 {
@@ -119,9 +124,9 @@
 }
 
 /* .col-inicio-sesion.hovered .card-text-inicio {
-        text-decoration: line-through;
-        color: red;
-      } */
+      text-decoration: line-through;
+      color: red;
+    } */
 
 /* Estilos para el botón "sumar al carrito" */
 .card-body-landing-productos {
@@ -146,8 +151,8 @@
   color: #008300;
 }
 /* .free-shipping::after {
-      content: " ⚡";
-    } */
+    content: " ⚡";
+  } */
 
 .img-container-landing {
   position: relative;
@@ -159,7 +164,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background-color: #ccc;
+  background-color: #ccc; /* Color de la línea horizontal */
 }
 .card-stock-landing {
   font-size: 1rem; /* Tamaño del texto del stock */
@@ -191,7 +196,30 @@
   flex-direction: row;
   flex-wrap: wrap; /* Centrar verticalmente los elementos */
 }
+.card-description-landing {
+  font-size: 1rem;
+  color: #999;
+}
+.add-to-cart-btn-landing {
+  /* position: absolute; */
 
+  font-size: 18px;
+  bottom: 0.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #bdba18;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn-landing:hover {
+  background-color: #948e37ce;
+}
 .row-scroll {
   margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
 }

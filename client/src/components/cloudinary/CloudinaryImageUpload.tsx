@@ -4,8 +4,10 @@ import { Image } from "cloudinary-react";
 import { VITE_UPLOAD_PRESET } from "../../variable";
 
 type CloudinaryImageUploadProps = {
-  onImageUpload: (imageUrl: string) => void;
+  onImageUpload: (imageUrl: string, resetImage: () => void) => void; // Actualización aquí
   cloudinaryName: string;
+  clearImage: () => void;
+  initialImage: string;
 };
 
 const uploadPreset = VITE_UPLOAD_PRESET;
@@ -13,9 +15,14 @@ const uploadPreset = VITE_UPLOAD_PRESET;
 const CloudinaryImageUpload: React.FC<CloudinaryImageUploadProps> = ({
   onImageUpload,
   cloudinaryName,
+  clearImage,
+  initialImage,
 }) => {
-  const [image, setImage] = useState("");
   const [isUploading, setIsUploading] = useState(false);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string>(
+    initialImage || ""
+  );
+  const [image, setImage] = useState<string>(initialImage || "");
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsUploading(true);
@@ -36,8 +43,10 @@ const CloudinaryImageUpload: React.FC<CloudinaryImageUploadProps> = ({
         formData
       );
 
-      setImage(response.data.secure_url);
-      onImageUpload(response.data.secure_url);
+      const imageUrl = response.data.secure_url;
+      setImage(imageUrl);
+      setSelectedImageUrl(imageUrl);
+      onImageUpload(imageUrl, resetImage); // Actualización aquí
     } catch (error) {
       console.error("Error uploading image: ", error);
     } finally {
@@ -45,14 +54,22 @@ const CloudinaryImageUpload: React.FC<CloudinaryImageUploadProps> = ({
     }
   };
 
+  const resetImage = () => {
+    setImage("");
+    clearImage();
+  };
+
   return (
-    <div>
+    <div onReset={resetImage}>
       <input type="file" onChange={handleImageUpload} />
       {isUploading ? (
         <p>Subiendo imagen...</p>
       ) : (
         image && (
-          <Image cloudName={cloudinaryName} publicId={image} width="300" />
+          <div>
+            <Image cloudName={cloudinaryName} publicId={image} width="300" />
+            <button onClick={resetImage}>Limpiar Imagen</button>
+          </div>
         )
       )}
     </div>

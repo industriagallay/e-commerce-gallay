@@ -159,7 +159,6 @@ a:hover {
   display: flex; /* Muestra los enlaces cuando la clase 'active' está presente */
   flex-direction: column; /* Alinea los enlaces verticalmente */
   max-height: 100vh;
-
   position: absolute;
   top: 80px;
   right: 0;
@@ -183,17 +182,20 @@ a:hover {
 .navbar {
   height: 80px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 1.2rem;
   /* position: sticky; */
   /* top: 0; */
   z-index: 999;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: #000000;
 }
 
 .navbar-links {
   position: relative;
-  color: #fff;
+  color: #ffffff;
   font-weight: 500;
   display: flex;
   justify-content: flex-end;

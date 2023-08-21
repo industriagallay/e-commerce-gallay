@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
 import larryTexto from "../../assets/larry-texto.png";
-import NavBar2 from "../../components/navbar2/NavBar2";
 import CloudinaryImageUpload from "../../components/cloudinary/CloudinaryImageUpload";
 import "../../components/navbar1/NavBar1.css";
 import "./DashboardAdmin.css";
@@ -24,13 +23,18 @@ const DashboardAdmin = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<FormValues>();
+
+  const clearImage = () => {
+    setImageUrl("");
+  };
 
   const crearProducto = async (data: FormValues) => {
     try {
       const dataWithImage = {
         ...data,
-        backgroundImage: imageUrl, // Asigna la URL de la imagen subida al campo 'backgroundImage'
+        backgroundImage: imageUrl,
       };
       const response = await axios.post(
         "http://localhost:3001/products",
@@ -45,6 +49,8 @@ const DashboardAdmin = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      reset();
+      clearImage();
     } catch (error) {
       swal.fire({
         position: "center",
@@ -56,22 +62,12 @@ const DashboardAdmin = () => {
     }
   };
 
-  // Asegúrate de llamar a la función onImageUpload con la URL de la imagen.
   const handleImageUpload = (imageUrl: string) => {
-    setImageUrl(imageUrl); // Actualizamos el estado imageUrl con la URL de la imagen subida.
+    setImageUrl(imageUrl);
   };
 
   return (
     <div className="perrito-admin">
-      <NavBar2
-        handleLogout={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        onClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
-
       <div className="container formAdmin-container">
         <div className="row">
           <div className="col-8">
@@ -79,6 +75,7 @@ const DashboardAdmin = () => {
               className="admin ml-auto"
               onSubmit={handleSubmit(crearProducto)}
               encType="multipart/form-data"
+              onReset={clearImage}
             >
               <div className="header-admin">crea tu producto</div>
               <div className="inputs-admin">
@@ -109,6 +106,8 @@ const DashboardAdmin = () => {
                 <CloudinaryImageUpload
                   onImageUpload={handleImageUpload}
                   cloudinaryName={cloudinaryName}
+                  clearImage={clearImage}
+                  initialImage={imageUrl}
                 />
                 <input
                   type="number"
