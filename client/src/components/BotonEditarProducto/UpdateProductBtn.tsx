@@ -144,6 +144,13 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({ product }) => {
               Hola admin! gestióna desde aca todos los campos de tus productos
             </div>
             <div className="inputs-admin">
+              <p>No olvides seleccionar una foto</p>
+              <CloudinaryImageUpload
+                onImageUpload={handleImageUpload}
+                cloudinaryName={cloudinaryName}
+                clearImage={clearImage}
+                initialImage={selectedImageUrl}
+              />
               <input
                 type="text"
                 placeholder="nombre"
@@ -168,13 +175,6 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({ product }) => {
               {errors.description?.type === "required" && (
                 <p className="text-danger">El campo descripcion es requerido</p>
               )}
-              <p>No olvides seleccionar una foto</p>
-              <CloudinaryImageUpload
-                onImageUpload={handleImageUpload}
-                cloudinaryName={cloudinaryName}
-                clearImage={clearImage}
-                initialImage={selectedImageUrl}
-              />
               <input
                 type="number"
                 placeholder="stock"

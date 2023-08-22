@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Esto ajustará el formulario al alto de la pantalla */
+  height: 100vh;
 }
 
 .admin {
@@ -19,7 +19,6 @@
   background-color: #ffffff;
   color: rgb(97 97 97);
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
-  /* width: 100rem; */
   background-clip: border-box;
 }
 
@@ -149,8 +148,6 @@
   font-weight: 600;
 }
 
-/******LARRY y Titulos*******/
-/* Estilos para los títulos */
 .h1-admin {
   font-size: 5.5rem;
   font-weight: bold;
@@ -165,17 +162,14 @@
   margin-bottom: 4.5rem;
 }
 
-/* Estilos para la imagen */
 .larry {
   background-color: transparent;
-  /* width: 100%;  */
   max-height: 25rem;
   border-radius: 10%;
 }
 
-/*****Perrito******/
 .perrito-admin {
-  background-image: url("../../assets/perrito.jpg");
+  background-image: url("../../assets/fondoAdmin.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -186,4 +180,9 @@
 .container.formAdmin-container {
   padding: 10rem;
   margin-top: 10px;
+}
+
+.pagination .active {
+  background-color: #007bff;
+  color: white;
 }
