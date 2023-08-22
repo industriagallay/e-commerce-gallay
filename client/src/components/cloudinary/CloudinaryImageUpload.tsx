@@ -4,7 +4,7 @@ import { Image } from "cloudinary-react";
 import { VITE_UPLOAD_PRESET } from "../../variable";
 
 type CloudinaryImageUploadProps = {
-  onImageUpload: (imageUrl: string, resetImage: () => void) => void; // Actualización aquí
+  onImageUpload: (imageUrl: string, resetImage: () => void) => void;
   cloudinaryName: string;
   clearImage: () => void;
   initialImage: string;
@@ -46,7 +46,7 @@ const CloudinaryImageUpload: React.FC<CloudinaryImageUploadProps> = ({
       const imageUrl = response.data.secure_url;
       setImage(imageUrl);
       setSelectedImageUrl(imageUrl);
-      onImageUpload(imageUrl, resetImage); // Actualización aquí
+      onImageUpload(imageUrl, resetImage);
     } catch (error) {
       console.error("Error uploading image: ", error);
     } finally {
