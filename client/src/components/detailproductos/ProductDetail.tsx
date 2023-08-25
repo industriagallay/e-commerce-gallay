@@ -1,21 +1,83 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
-import "./ProductosDetail.css";
 
-interface Product {
+import "./ProductosDetail.css";
+import { Product } from "../../types";
+
+interface ProductDetailProps {
+  clientId: string; // Agrega clientId como prop
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface ProductLocal {
   _id: ObjectId;
   name: string;
   description: string;
   backgroundImage: string;
   price: number;
   stock: number;
+  quantity: number;
 }
 
-const ProductDetail: React.FC = () => {
+const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [productData, setProductData] = useState<Product | null>(null);
+  const [purchaseId, setPurchaseId] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+
+  const addToCartHandler = async (product: Product) => {
+    try {
+      console.log({ clientId });
+      const { _id: productId, price } = product;
+      const quantity = 1;
+
+      if (!clientId) {
+        alert("Por Favor Registrese antes de realizar una compra");
+        navigate("/login");
+        return;
+      }
+
+      // Verifica si el cliente ya tiene un carrito (purchase)
+      if (!purchaseId) {
+        console.log({ purchaseId });
+        const createPurchaseResponse = await axios.post(
+          `http://localhost:3001/purchases/${clientId}`,
+          {
+            products: [
+              {
+                productId,
+                quantity,
+                price,
+                backgroundImage: product.backgroundImage,
+              },
+            ],
+            totalPrice: price,
+          }
+        );
+
+        const createdPurchase = createPurchaseResponse.data;
+        setPurchaseId(createdPurchase._id);
+        console.log(createdPurchase._id);
+      } else {
+        await axios.post(
+          `http://localhost:3001/purchases/${clientId}/products`,
+          {
+            productId,
+            quantity,
+            price,
+            backgroundImage: product.backgroundImage,
+          }
+        );
+      }
+      alert("Producto agregado al carrito exitosamente.");
+      navigate("/carritocompra");
+    } catch (error) {
+      console.error("Error al agregar el producto al carrito:", error);
+    }
+  };
 
   useEffect(() => {
     if (id !== undefined) {
@@ -24,8 +86,8 @@ const ProductDetail: React.FC = () => {
           const response = await axios.get<Product>(
             `http://localhost:3001/products/id/${encodeURIComponent(productId)}`
           );
-          const productData = response.data;
-          setProduct(productData);
+          const product = response.data;
+          setProductData(product);
         } catch (error) {
           console.error("Error al obtener los detalles del producto:", error);
         }
@@ -37,30 +99,33 @@ const ProductDetail: React.FC = () => {
 
   return (
     <>
-      {product ? (
+      {productData ? (
         <div className="container mt-5">
           <div className="row">
             <div className="col-md-8">
               <div className="card tarjDetail">
                 <img
-                  src={product.backgroundImage}
+                  src={productData.backgroundImage}
                   className="card-img-top"
-                  alt={product.name}
+                  alt={productData.name}
                 />
               </div>
             </div>
             <div className="col-md-4">
               <div className="card plan-card">
                 <div className="card-body">
-                  <h1 className="card-title">{product.name}</h1>
-                  <p className="card-text">{product.description}</p>
+                  <h1 className="card-title">{productData.name}</h1>
+                  <p className="card-text">{productData.description}</p>
                   <div className="etiquet-price">
-                    <p>${product.price}</p>
+                    <p>${productData.price}</p>
                     <div></div>
                   </div>
 
-                  <p className="card-text mt-3">Stock: {product.stock}</p>
-                  <button className="boton">
+                  <p className="card-text mt-3">Stock: {productData.stock}</p>
+                  <button
+                    onClick={() => addToCartHandler(productData)}
+                    className="boton"
+                  >
                     <svg
                       viewBox="0 0 16 16"
                       className="bi bi-cart-check"

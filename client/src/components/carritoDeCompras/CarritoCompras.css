@@ -1,0 +1,61 @@
+.card-carritocompraupdate {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-carritocompraupdate img{
+   
+    border-radius: 50%;
+    max-width: 100px; /* Tamaño máximo de la imagen */
+    height: auto;
+    object-fit: cover;
+}
+
+
+  
+  .card-bodycarritocompraupdate {
+    padding: 16px;
+  }
+  
+  .card-titlecarritocompraupdate {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .card-textcarritocompraupdate {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  /* Estilo para el input y el botón de cantidad */
+  .input-groupcarritocompraupdate {
+    margin-top: 10px;
+  }
+  
+  .form-controlcarritocompraupdate {
+    width: 50px; /* Ancho del input */
+    text-align: center; /* Centrar el número en el input */
+    border-radius: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .input-group-appendcarritocompraupdate button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  /***boton eliminar****/
+.btn-outline-secondarycarritocompraupdate {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border: 1px solid #bbbbbb;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    padding: 0 5px 0 5px;
+    background-color: crimson;
+    margin-top: 15px;
+}
