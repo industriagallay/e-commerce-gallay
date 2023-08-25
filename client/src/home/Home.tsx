@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/cardsProductos/ProductCard";
 import ObjectId from "bson-objectid";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./Home.css";
 
 interface Product {
@@ -299,7 +300,8 @@ const Home: React.FC = () => {
                       handleMinPriceChange(event.target.value)
                     }
                   />
-                  <div className="line-between-inputs"></div> {/* Línea horizontal */}
+                  <div className="line-between-inputs"></div>{" "}
+                  {/* Línea horizontal */}
                   <input
                     inputMode="numeric"
                     placeholder="Máximo"
@@ -309,10 +311,11 @@ const Home: React.FC = () => {
                       handleMaxPriceChange(event.target.value)
                     }
                   />
-                  <div className="Arrow-icon" onClick={handleRangeSearch}>
-                    <i className="bi bi-arrow-right-circle"></i>
+                  <div className="Arrow-iconSelect" onClick={handleRangeSearch}>
+                    <i className="biarrow bi-arrow-right-circle"></i>
                   </div>
                 </div>
+              
               </div>
             </div>
           </div>

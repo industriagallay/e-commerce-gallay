@@ -6,6 +6,7 @@ import { VITE_UPLOAD_PRESET } from "../../variable";
 type CloudinaryImageUploadProps = {
   onImageUpload: (imageUrl: string) => void;
   cloudinaryName: string;
+  
 };
 
 const uploadPreset = VITE_UPLOAD_PRESET;
@@ -13,6 +14,7 @@ const uploadPreset = VITE_UPLOAD_PRESET;
 const CloudinaryImageUpload: React.FC<CloudinaryImageUploadProps> = ({
   onImageUpload,
   cloudinaryName,
+  
 }) => {
   const [image, setImage] = useState("");
   const [isUploading, setIsUploading] = useState(false);
@@ -38,6 +40,10 @@ const CloudinaryImageUpload: React.FC<CloudinaryImageUploadProps> = ({
 
       setImage(response.data.secure_url);
       onImageUpload(response.data.secure_url);
+  // Llama a setProductImage con la URL de la imagen
+  
+
+
     } catch (error) {
       console.error("Error uploading image: ", error);
     } finally {
