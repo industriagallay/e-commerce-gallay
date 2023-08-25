@@ -311,10 +311,11 @@ const Home: React.FC = () => {
                       handleMaxPriceChange(event.target.value)
                     }
                   />
-                  <div className="Arrow-icon" onClick={handleRangeSearch}>
-                    <i className="bi bi-arrow-right-circle"></i>
+                  <div className="Arrow-iconSelect" onClick={handleRangeSearch}>
+                    <i className="biarrow bi-arrow-right-circle"></i>
                   </div>
                 </div>
+              
               </div>
             </div>
           </div>
