@@ -14,25 +14,23 @@ import NavBar1 from "../src/components/navbar1/NavBar1";
 import NavBar2 from "../src/components/navbar2/NavBar2";
 import Cookies from "js-cookie";
 import { decodeToken } from "react-jwt";
-// import { Product } from "./types";
-import CarritoCompra from "./components/carritoDeCompras/CarritoCompras";
+import CarritoCompra, { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 // import axios from "axios";
-
-
-
-
 
 
 const App = () => {
   const [clientId, setClientId] = useState<string>("");
-  
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const userToken = Cookies.get("token");
     return !!userToken; // Convierte el token en un valor booleano
   });
+
+ 
   
+
+
 
   // Luego, en algún lugar de tu código, obtén y establece clientId
   useEffect(() => {
@@ -51,7 +49,7 @@ const App = () => {
         const decoded = decodeToken(token) as { isAdmin: boolean; _id: string }; // Decodifica el token y obtén el clientId
 
         console.log({ decoded });
-       
+
         setIsLoggedIn(true);
         setIsAdmin(decoded.isAdmin);
         setClientId(decoded?._id); // Establece el clientId en el estado
@@ -62,7 +60,7 @@ const App = () => {
         setClientId(""); // Cambia "" a null en caso de error
       }
     } else {
-      console.log("555555555")
+      console.log("555555555");
       setIsLoggedIn(false);
       setIsAdmin(false);
       setClientId(""); // Cambia "" a null cuando no hay token
@@ -74,6 +72,8 @@ const App = () => {
     console.log({ userToken });
     verificarAutenticacion(userToken);
   }, [location]);
+
+
 
   return (
     <>
@@ -91,20 +91,11 @@ const App = () => {
         <Route path="/admin" element={<DashboardAdmin />} />
         <Route
           path="/product/id/:id"
-          element={
-            <ProductDetail
-              clientId={clientId}            
-          
-            />
-          }
+          element={<ProductDetail clientId={clientId} />}
         />
         <Route
           path="/carritocompra"
-          element={
-            <CarritoCompra
-              clientId={clientId}
-            />
-          }
+          element={<CarritoCompra clientId={clientId}  />}
         />
       </Routes>
       <Footer />

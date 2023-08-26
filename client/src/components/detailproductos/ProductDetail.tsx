@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
-
 import "./ProductosDetail.css";
-import { Product } from "../../types";
+// import { Product } from "../../types";
 
 interface ProductDetailProps {
-  clientId: string; // Agrega clientId como prop
+  clientId: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface ProductLocal {
+
+interface Product {
   _id: ObjectId;
   name: string;
   description: string;
@@ -42,16 +41,18 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
 
       // Verifica si el cliente ya tiene un carrito (purchase)
       if (!purchaseId) {
+       
         console.log({ purchaseId });
         const createPurchaseResponse = await axios.post(
           `http://localhost:3001/purchases/${clientId}`,
+          
           {
             products: [
               {
                 productId,
                 quantity,
                 price,
-                backgroundImage: product.backgroundImage,
+          
               },
             ],
             totalPrice: price,
@@ -68,10 +69,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
             productId,
             quantity,
             price,
-            backgroundImage: product.backgroundImage,
+         
           }
         );
       }
+
       alert("Producto agregado al carrito exitosamente.");
       navigate("/carritocompra");
     } catch (error) {
@@ -103,7 +105,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         <div className="container mt-5">
           <div className="row">
             <div className="col-md-8">
-              <div className="card tarjDetail">
+              <div className="card tarjDetail"> 
                 <img
                   src={productData.backgroundImage}
                   className="card-img-top"
