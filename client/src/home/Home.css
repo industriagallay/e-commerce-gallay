@@ -747,9 +747,9 @@ p {
   border: 1px solid #007bff;
 }
 
-.bi::before,
-[class^="bi-"]::before,
-[class*=" bi-"]::before {
+.biarrow::before,
+[class^="biarrow-"]::before,
+[class*=" biarrow-"]::before {
   display: inline-block;
   font-family: bootstrap-icons !important;
   font-style: normal;
@@ -767,18 +767,18 @@ p {
   margin-left: 1rem;
 }
 
-.Arrow-icon {
+.Arrow-iconSelect {
   font-size: 1.8rem; /* Tamaño más grande */
   color: #007bff;
   cursor: pointer;
   margin: 10px 0;
 }
 
-.Arrow-icon:hover {
+.Arrow-iconSelect:hover {
   color: #d5d818; /* Color azul más claro en hover */
 }
 
-.Arrow-icon {
+.Arrow-iconSelect {
   position: relative;
 }
 
@@ -821,4 +821,11 @@ input[type="number"] {
 
 .show-all-button:hover {
   background-color: #0056b3;
+}
+
+/***** carrito de compras ******/
+.carritoDisable {
+  display: flex;
+  margin-top: 1rem;
+  font-size:2rem;
 }
