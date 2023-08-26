@@ -30,7 +30,7 @@ const NavBar2 = () => {
 
   return (
     <div>
-      <div className="container-fluid navbar-container">
+      <div className="navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar2 navbar-expand-lg navbar-light">
             <Link

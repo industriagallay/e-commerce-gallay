@@ -112,12 +112,21 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
                   alt={productData.name}
                 />
               </div>
+
+              <div className="card mb-5 p-4">
+                <h2 className="card-img-top">Descripcion</h2>{" "}
+                <p className="card-text">{product.description}</p>
+              </div>
             </div>
             <div className="col-md-4">
               <div className="card plan-card">
                 <div className="card-body">
+
                   <h1 className="card-title">{productData.name}</h1>
                   <p className="card-text">{productData.description}</p>
+
+          
+
                   <div className="etiquet-price">
                     <p>${productData.price}</p>
                     <div></div>

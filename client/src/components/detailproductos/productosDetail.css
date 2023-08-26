@@ -1,5 +1,5 @@
 .tarjDetail {
-  margin-bottom: 8em;
+  margin-bottom: 2em;
   position: relative;
   display: flex;
   align-items: center;
@@ -159,14 +159,14 @@
   background-color: #1976f0;
   outline: 3px #181717 solid;
   outline-offset: -3px;
-  border-radius: 5px;
-  border: none;
+  border-radius: 9px;
+  border: solid;
   cursor: pointer;
   transition: 400ms;
 }
 
 .boton .text {
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: 700;
   font-size: 1em;
   transition: 400ms;
@@ -178,7 +178,7 @@
 }
 
 .boton:hover {
-  background-color: transparent;
+  background-color: rgb(255, 191, 0);
 }
 
 .boton:hover .text {

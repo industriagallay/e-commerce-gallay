@@ -12,13 +12,35 @@ import ProductDetail from "./components/detailproductos/ProductDetail";
 import NavBar3 from "../src/components/navbar3/NavBar3";
 import NavBar1 from "../src/components/navbar1/NavBar1";
 import NavBar2 from "../src/components/navbar2/NavBar2";
+import UpdateProduct from "../src/components/BotonEditarProducto/UpdateProductBtn";
 import Cookies from "js-cookie";
+import ObjectIDProps from "bson-objectid";
 import { decodeToken } from "react-jwt";
-import CarritoCompra, { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
+import CarritoCompra, {
+  ICartItem,
+} from "./components/carritoDeCompras/CarritoCompras";
 // import axios from "axios";
 
+interface ProductCardProps {
+  product: Product;
+  hovered: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  onClick: (product: Product) => void;
+  onDelete: () => void;
+}
 
-const App = () => {
+interface Product {
+  _id: ObjectIDProps;
+  name: string;
+  description: string;
+  backgroundImage: string;
+  stock: number;
+  price: number;
+}
+
+const App: React.FC<ProductCardProps> = ({ product }) => {
   const [clientId, setClientId] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
@@ -26,11 +48,6 @@ const App = () => {
     const userToken = Cookies.get("token");
     return !!userToken; // Convierte el token en un valor booleano
   });
-
- 
-  
-
-
 
   // Luego, en algún lugar de tu código, obtén y establece clientId
   useEffect(() => {
@@ -73,8 +90,6 @@ const App = () => {
     verificarAutenticacion(userToken);
   }, [location]);
 
-
-
   return (
     <>
       {isLoggedIn && isAdmin && <NavBar3 />}
@@ -89,13 +104,14 @@ const App = () => {
         <Route path="/creatucuchillo" element={<CreaTuCuchillo />} />
         <Route path="/help" element={<Help />} />
         <Route path="/admin" element={<DashboardAdmin />} />
+
         <Route
           path="/product/id/:id"
           element={<ProductDetail clientId={clientId} />}
         />
         <Route
           path="/carritocompra"
-          element={<CarritoCompra clientId={clientId}  />}
+          element={<CarritoCompra clientId={clientId} />}
         />
       </Routes>
       <Footer />
