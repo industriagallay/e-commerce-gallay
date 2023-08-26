@@ -6,7 +6,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import ObjectId from "bson-objectid";
-
 import "./ProdctCard.css";
 
 interface ProductCardProps {
@@ -102,7 +101,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       setIsHoverEnabled(true);
     } catch (error) {
-      // Error al eliminar el producto
       Swal.fire({
         icon: "error",
         title: "Ups...",

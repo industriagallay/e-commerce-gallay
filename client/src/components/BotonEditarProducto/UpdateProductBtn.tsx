@@ -135,7 +135,7 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({ product }) => {
           }}
         >
           <form
-            className="admin ml-auto mt-5 mb-5"
+            className="admin ml-auto"
             onSubmit={handleSubmit(modificarProducto)}
             encType="multipart/form-data"
             onReset={clearImage}
