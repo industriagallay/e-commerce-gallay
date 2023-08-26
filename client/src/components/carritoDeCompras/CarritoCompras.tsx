@@ -3,8 +3,10 @@ import "./CarritoCompras.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 // Define un tipo para los elementos del carrito
 export interface ICartItem {
+  // imageUrl: string;
   productId: string;
   // cart: [];
   backgroundImage: string;
@@ -16,15 +18,18 @@ export interface ICartItem {
 
 const CarritoCompra: React.FC<{
   clientId: string;
+  // backgroundImage: string;
 }> = ({ clientId }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
+ 
       try {
         const response = await axios.get(
           `http://localhost:3001/purchases/${clientId}`
         );
+       
         console.log(response.data);
         const cartData = response.data[0].products;
         setCartItems(cartData);
@@ -34,6 +39,7 @@ const CarritoCompra: React.FC<{
     };
 
     fetchData();
+    
   }, [clientId]);
 
   const removeFromCartHandler = async (productId: string) => {
@@ -49,7 +55,7 @@ const CarritoCompra: React.FC<{
         `http://localhost:3001/purchases/${clientId}/products/${productId}`
       );
       console.log({ a: response.data });
-
+     
       // Actualiza el estado local del carrito después de la eliminación
       setCartItems((prevCartItems) =>
         prevCartItems.filter((item) => item.productId !== productId)
