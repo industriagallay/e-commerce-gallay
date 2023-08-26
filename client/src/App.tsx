@@ -12,20 +12,36 @@ import ProductDetail from "./components/detailproductos/ProductDetail";
 import NavBar3 from "../src/components/navbar3/NavBar3";
 import NavBar1 from "../src/components/navbar1/NavBar1";
 import NavBar2 from "../src/components/navbar2/NavBar2";
+import UpdateProduct from "../src/components/BotonEditarProducto/UpdateProductBtn";
 import Cookies from "js-cookie";
+import ObjectIDProps from "bson-objectid";
 import { decodeToken } from "react-jwt";
 // import { Product } from "./types";
 import CarritoCompra from "./components/carritoDeCompras/CarritoCompras";
 // import axios from "axios";
 
 
+interface ProductCardProps {
+  product: Product;
+  hovered: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  onClick: (product: Product) => void;
+  onDelete: () => void;
+}
 
+interface Product {
+  _id: ObjectIDProps;
+  name: string;
+  description: string;
+  backgroundImage: string;
+  stock: number;
+  price: number;
+}
 
-
-
-const App = () => {
-  const [clientId, setClientId] = useState<string>("");
-  
+const App: React.FC<ProductCardProps> = ({ product }) => {
+const [clientId, setClientId] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -89,6 +105,7 @@ const App = () => {
         <Route path="/creatucuchillo" element={<CreaTuCuchillo />} />
         <Route path="/help" element={<Help />} />
         <Route path="/admin" element={<DashboardAdmin />} />
+
         <Route
           path="/product/id/:id"
           element={
@@ -105,6 +122,7 @@ const App = () => {
               clientId={clientId}
             />
           }
+
         />
       </Routes>
       <Footer />

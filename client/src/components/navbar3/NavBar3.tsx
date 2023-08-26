@@ -28,7 +28,7 @@ const NavBar3 = () => {
 
   return (
     <div>
-      <div className="container-fluid navbar-container">
+      <div className="navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar2 navbar-expand-lg navbar-light">
             <Link
@@ -104,20 +104,14 @@ const NavBar3 = () => {
                   </li>
                 </ul>
                 <div className="btn-iniciar-sesion-landing">
-                  <button className="button-cerrar-sesion">
-                    <span className="button_lg_cerrar-sesion">
-                      <span className="button_sl_cerrar-sesion"></span>
-
-                      <Link to="/" className="button_text_cerrar-sesion">
-                        <button
-                          className="button-cerrar-sesion-custom"
-                          onClick={handleLogout}
-                        >
-                          Cerrar Sesión
-                        </button>
-                      </Link>
-                    </span>
-                  </button>
+                  <Link to="/" className="button_text_cerrar-sesion">
+                    <button
+                      className="button-cerrar-sesion-custom"
+                      onClick={handleLogout}
+                    >
+                      Cerrar Sesión
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
