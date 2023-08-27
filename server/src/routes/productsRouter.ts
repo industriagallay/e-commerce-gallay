@@ -12,7 +12,7 @@ productsRouter.get("/", getAllProductsHandler);
 productsRouter.post("/", createProductHandler);
 productsRouter.get("/id/:id", getProductByIdHandler);
 productsRouter.get("/name", getProductsByNameHandler);
-productsRouter.put("/:id", updateProductHandler);
+productsRouter.put("/put/:id", updateProductHandler);
 productsRouter.delete("/:id", deleteProductHandler);
 
 export default productsRouter;

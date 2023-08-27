@@ -22,6 +22,11 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
+    categories: {
+      type: String,
+      enum: ["handle", "blade", "knife"],
+      default: "knife",
+    },
   },
   { timestamps: true }
 );

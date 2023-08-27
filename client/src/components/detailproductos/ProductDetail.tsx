@@ -9,7 +9,6 @@ interface ProductDetailProps {
   clientId: string;
 }
 
-
 interface Product {
   _id: ObjectId;
   name: string;
@@ -41,18 +40,16 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
 
       // Verifica si el cliente ya tiene un carrito (purchase)
       if (!purchaseId) {
-       
         console.log({ purchaseId });
         const createPurchaseResponse = await axios.post(
           `http://localhost:3001/purchases/${clientId}`,
-          
+
           {
             products: [
               {
                 productId,
                 quantity,
                 price,
-          
               },
             ],
             totalPrice: price,
@@ -69,7 +66,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
             productId,
             quantity,
             price,
-         
           }
         );
       }
@@ -105,12 +101,17 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         <div className="container mt-5">
           <div className="row">
             <div className="col-md-8">
-              <div className="card tarjDetail"> 
+              <div className="card tarjDetail">
                 <img
                   src={productData.backgroundImage}
                   className="card-img-top"
                   alt={productData.name}
                 />
+              </div>
+
+              <div className="card mb-5 p-4">
+                <h2 className="card-img-top">Descripcion</h2>{" "}
+                <p className="card-text">{productData.description}</p>
               </div>
             </div>
             <div className="col-md-4">
@@ -118,6 +119,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
                 <div className="card-body">
                   <h1 className="card-title">{productData.name}</h1>
                   <p className="card-text">{productData.description}</p>
+
                   <div className="etiquet-price">
                     <p>${productData.price}</p>
                     <div></div>

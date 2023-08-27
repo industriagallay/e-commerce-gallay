@@ -21,7 +21,7 @@ const NavBar1: React.FC = () => {
 
   return (
     <div>
-      <div className="container-fluid navbar-container">
+      <div className="navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar navbar-expand-lg navbar-light d-flex justify-content-start">
             <Link
