@@ -45,13 +45,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   });
 
   const verificarAutenticacion = async (token: string | undefined) => {
-    console.log({ token });
     if (token) {
       try {
-        console.log("1111111111");
         const decoded = decodeToken(token) as { isAdmin: boolean };
 
-        console.log({ decoded });
         setIsLoggedIn(true);
         setIsAdmin(decoded.isAdmin);
       } catch (error) {
@@ -67,7 +64,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   useEffect(() => {
     const userToken = Cookies.get("token");
-    console.log({ userToken });
     verificarAutenticacion(userToken);
   }, [location]);
 
