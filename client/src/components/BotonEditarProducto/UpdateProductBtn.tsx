@@ -17,7 +17,7 @@ type FormValues = {
   price: number;
 };
 
-interface Product {
+export interface Product {
   _id: ObjectId;
   name: string;
   description: string;
@@ -27,7 +27,7 @@ interface Product {
 }
 
 interface UpdateProductBtnProps {
-  product: Product;
+  product?: Product;
 }
 
 const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({ product }) => {
@@ -70,10 +70,10 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({ product }) => {
         description: productData.description || "",
         stock: productData.stock || 0,
         price: productData.price || 0,
-        backgroundImage: selectedImageUrl || "",
+        backgroundImage: selectedImageUrl || productData?.backgroundImage || "",
       });
     }
-  }, [productData, reset, selectedImageUrl]);
+  }, [productData, reset, selectedImageUrl, product]);
 
   const modificarProducto = async (data: FormValues) => {
     try {
@@ -158,7 +158,7 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({ product }) => {
                 {...register("name", {
                   required: true,
                 })}
-                defaultValue={product?.name}
+                defaultValue={product?.name ?? ""}
               />
               {errors.name?.type === "required" && (
                 <p className="text-danger">El campo nombre es requerido</p>
