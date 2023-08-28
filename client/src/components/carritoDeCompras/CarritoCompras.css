@@ -1,17 +1,27 @@
-.card-carritocompraupdate {
+/* Estilos mejorados para el título "Carrito de Compras" */
+.h2carritodecompras {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 20px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.card-carritocompraupdate {
+  margin-bottom: 50px;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  height: 400px;
 }
 
 .card-carritocompraupdate img {
-  max-width: 100px; /* Tamaño máximo de la imagen */
+  border-radius: 50%;
+  max-width: 100px;
   height: auto;
   object-fit: cover;
 }
-
 .card-bodycarritocompraupdate {
   padding: 16px;
 }
@@ -22,37 +32,134 @@
 }
 
 .card-textcarritocompraupdate {
+  margin-top: 20px;
   font-size: 16px;
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
 /* Estilo para el input y el botón de cantidad */
-.input-groupcarritocompraupdate {
+.input-groupcarrito {
   margin-top: 10px;
+}
+.btn-outline-secondarymenosinpit {
+  border: 1px solid #bebebe;
+}
+
+/* Estilos personalizados para el input de cantidad y botones de suma y resta */
+.input-group {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.input-group-prepend,
+.input-group-append {
+  width: 30px;
+}
+
+.form-control {
+  max-width: 10%;
+  text-align: center;
+  justify-content: center;
 }
 
 .form-controlcarritocompraupdate {
-  width: 50px; /* Ancho del input */
-  text-align: center; /* Centrar el número en el input */
+  width: 50px;
+  text-align: center;
   border-radius: 0;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   border: 1px solid #ddd;
 }
 
-.input-group-appendcarritocompraupdate button {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-/***boton eliminar****/
-.btn-outline-secondarycarritocompraupdate {
-  color: rgb(255, 255, 255);
+/* Estilo para el botón de eliminar */
+.input-group-appendcarritocompraupdate button.btn-outline-secondaryeliminar {
+  color: #4866e7;
+  margin-left: 15px;
+  margin-bottom: 10px;
   cursor: pointer;
-  border: 1px solid #bbbbbb;
+  border: 1px solid #e6e6e6;
   font-size: 1.2rem;
   border-radius: 5px;
   padding: 0 5px 0 5px;
-  background-color: crimson;
-  margin-top: 15px;
+}
+
+/* Cambiar el color del texto al pasar el mouse (hover) */
+.input-group-appendcarritocompraupdate
+  button.btn-outline-secondaryeliminar:hover {
+  color: blue;
+}
+
+/********card resumen compra *********/
+
+.resumen-card-carritocompraresumen {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+}
+
+.resumen-titulo-carritocompra {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.total-a-pagar-carritocompra {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.botoncheckoutcompraca {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+}
+
+.seguirComprando {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  text-decoration: none !important;
+}
+
+/* Agrega estos estilos en tu archivo CarritoCompras.css */
+
+.total-a-pagar-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.total-a-pagar-text {
+  font-weight: 700;
+}
+
+.total-a-pagar-amount {
+  font-weight: bold;
+}
+
+/***animacion gif**/
+.gif-carrito-vacio {
+  width: 100px;
+  height: 100px;
 }

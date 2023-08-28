@@ -61,6 +61,8 @@ const App = () => {
       try {
         const decoded = decodeToken(token) as { isAdmin: boolean; _id: string };
 
+        console.log({ decoded });
+
         setIsLoggedIn(true);
         setIsAdmin(decoded.isAdmin);
         setClientId(decoded?._id);
@@ -70,6 +72,7 @@ const App = () => {
         setClientId("");
       }
     } else {
+      console.log("555555555");
       setIsLoggedIn(false);
       setIsAdmin(false);
       setClientId("");

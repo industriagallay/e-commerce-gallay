@@ -5,14 +5,13 @@ import ObjectId from "bson-objectid";
 import Swal from "sweetalert2";
 
 import "./ProductosDetail.css";
-import { Product } from "../../types";
+// import { Product } from "../../types";
 
 interface ProductDetailProps {
-  clientId: string; // Agrega clientId como prop
+  clientId: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface ProductLocal {
+interface Product {
   _id: ObjectId;
   name: string;
   description: string;
@@ -44,13 +43,13 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
           `http://localhost:3001/purchases/${clientId}`,
+
           {
             products: [
               {
                 productId,
                 quantity,
                 price,
-                backgroundImage: product.backgroundImage,
               },
             ],
             totalPrice: price,
@@ -66,7 +65,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
             productId,
             quantity,
             price,
-            backgroundImage: product.backgroundImage,
           }
         );
       }
