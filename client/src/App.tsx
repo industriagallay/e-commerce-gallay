@@ -18,6 +18,7 @@ import { decodeToken } from "react-jwt";
 import CarritoCompra from "./components/carritoDeCompras/CarritoCompras";
 import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProductBtn";
 import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
+import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 
 export interface ProductCardProps {
   product: Product;
@@ -106,6 +107,10 @@ const App = () => {
         <Route
           path="/carritocompra"
           element={<CarritoCompra clientId={clientId} />}
+        />
+        <Route
+          path="/compra-finalizada"
+          element={<CompraFinalizada clientId={clientId} />}
         />
       </Routes>
       <Footer />
