@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./CarritoCompras.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 import animation_llvcrs0g from "../../assets/animation_llvcrs0g_small.gif";
+
 
 // Define un tipo para los elementos del carrito
 export interface ICartItem {
@@ -41,6 +43,11 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
         const response = await axios.get(
           `http://localhost:3001/purchases/${clientId}`
         );
+
+
+
+        console.log(response.data);
+
         const cartData = response.data[0].products;
         setCartItems(cartData);
       } catch (error) {
@@ -217,6 +224,9 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
                   Cantidad: {item.quantity}
                 </p>
 
+
+
+
                 <div className="input-group input-group-sm">
                   <div className="input-group-prepend">
                     <button
@@ -245,6 +255,15 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
                       +
                     </button>
                   </div>
+                </div>
+                <div className="input-group-appendcarritocompraupdate">
+                  <button
+                    className="btn btn-outline-secondaryeliminar"
+                    type="button"
+                    onClick={() => removeFromCartHandler(item.productId)}
+                  >
+                    eliminar
+                  </button>
                 </div>
               </div>
               <div className="input-group-appendcarritocompraupdate">
