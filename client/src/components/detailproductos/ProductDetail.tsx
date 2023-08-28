@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
+import Swal from "sweetalert2";
+
 import "./ProductosDetail.css";
 // import { Product } from "../../types";
 
@@ -28,7 +30,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
 
   const addToCartHandler = async (product: Product) => {
     try {
-      console.log({ clientId });
       const { _id: productId, price } = product;
       const quantity = 1;
 
@@ -40,7 +41,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
 
       // Verifica si el cliente ya tiene un carrito (purchase)
       if (!purchaseId) {
-        console.log({ purchaseId });
         const createPurchaseResponse = await axios.post(
           `http://localhost:3001/purchases/${clientId}`,
 
@@ -58,7 +58,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
 
         const createdPurchase = createPurchaseResponse.data;
         setPurchaseId(createdPurchase._id);
-        console.log(createdPurchase._id);
       } else {
         await axios.post(
           `http://localhost:3001/purchases/${clientId}/products`,
@@ -69,8 +68,13 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
           }
         );
       }
-
-      alert("Producto agregado al carrito exitosamente.");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "producto agregado correctamente!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       navigate("/carritocompra");
     } catch (error) {
       console.error("Error al agregar el producto al carrito:", error);
@@ -118,8 +122,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
               <div className="card plan-card">
                 <div className="card-body">
                   <h1 className="card-title">{productData.name}</h1>
-                  <p className="card-text">{productData.description}</p>
-
                   <div className="etiquet-price">
                     <p>${productData.price}</p>
                     <div></div>
