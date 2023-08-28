@@ -256,15 +256,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
                     </button>
                   </div>
                 </div>
-                <div className="input-group-appendcarritocompraupdate">
-                  <button
-                    className="btn btn-outline-secondaryeliminar"
-                    type="button"
-                    onClick={() => removeFromCartHandler(item.productId)}
-                  >
-                    eliminar
-                  </button>
-                </div>
+                
               </div>
               <div className="input-group-appendcarritocompraupdate">
                 <button
