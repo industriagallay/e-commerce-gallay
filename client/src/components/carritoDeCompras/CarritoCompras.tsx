@@ -3,11 +3,13 @@ import "./CarritoCompras.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import animation_llvcrs0g from "../../assets/animation_llvcrs0g_small.gif";
+
+
 // Define un tipo para los elementos del carrito
 export interface ICartItem {
   // imageUrl: string;
   productId: string;
-  // cart: [];
   backgroundImage: string;
   _id: string;
   name: string;
@@ -15,11 +17,25 @@ export interface ICartItem {
   price: number;
 }
 
-const CarritoCompra: React.FC<{
+interface IProductData {
+  quantity: number;
+  _id: string;
+  name: string;
+  backgroundImage: string;
+  price: number;
+  stock: number;
+}
+
+interface ICarritoItemDataProps {
   clientId: string;
-  // backgroundImage: string;
-}> = ({ clientId }) => {
+}
+
+const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
+  const [productData, setProductData] = useState<IProductData | null>(null);
+  const [productDataMap, setProductDataMap] = useState<{
+    [productId: string]: IProductData;
+  }>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +44,10 @@ const CarritoCompra: React.FC<{
           `http://localhost:3001/purchases/${clientId}`
         );
 
+
+
         console.log(response.data);
+
         const cartData = response.data[0].products;
         setCartItems(cartData);
       } catch (error) {
@@ -38,6 +57,23 @@ const CarritoCompra: React.FC<{
 
     fetchData();
   }, [clientId]);
+
+  useEffect(() => {
+    const fetchProductData = async (productId: string) => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/products/id/${productId}`
+        );
+        setProductData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    cartItems.forEach((item) => {
+      fetchProductData(item.productId);
+    });
+  }, [cartItems]);
 
   const removeFromCartHandler = async (productId: string) => {
     console.log("Eliminar producto con ID:", productId);
@@ -113,6 +149,55 @@ const CarritoCompra: React.FC<{
     // También puedes mostrar un mensaje de confirmación al usuario.
   };
 
+  useEffect(() => {
+    console.log({ a: "contenido del carrito", cartItems });
+  }, []);
+
+  useEffect(() => {
+    const fetchProductData = async (productId: string) => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/products/id/${productId}`
+        );
+        // Usar el productId como clave para almacenar el productData en el mapa
+        setProductDataMap((prevProductDataMap) => ({
+          ...prevProductDataMap,
+          [productId]: response.data,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    cartItems.forEach((item) => {
+      // Verificar si el productData ya está en el mapa antes de hacer la solicitud
+      if (!productDataMap[item.productId]) {
+        fetchProductData(item.productId);
+      }
+    });
+  }, [cartItems, productDataMap]);
+
+  if (!productData) {
+    return null;
+  }
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="container">
+        <h2 className="h2carritodecompras">Carrito de Compras</h2>
+        <p>El carrito está vacío...</p>
+        <img
+          src={animation_llvcrs0g}
+          alt="Carrito Vacío"
+          className="gif-carrito-vacio"
+        />
+        <Link className="seguirComprando" to={"/home"}>
+          Seguir Comprando
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
       <h2 className="h2carritodecompras">Carrito de Compras</h2>
@@ -121,18 +206,27 @@ const CarritoCompra: React.FC<{
           <div className="col-md-4" key={item._id}>
             <div className="card-carritocompraupdate">
               <img
-                src={item.backgroundImage} // Reemplaza esto con la URL real de la imagen
+                src={productDataMap[item.productId]?.backgroundImage}
                 className="card-img-top product-imagecarritocompraupdate"
-                alt={item.name}
+                alt={productDataMap[item.productId]?.name}
               />
               <div className="card-bodycarritocompraupdate">
-                <h5 className="card-titlecarritocompraupdate">{item.name}</h5>
+                <h5 className="card-titlecarritocompraupdate">
+                  {productData.name}
+                </h5>
+              </div>
+
+              <div className="card-bodycarritocompraupdate">
                 <p className="card-textcarritocompraupdate">
                   Precio: ${item.price}
                 </p>
                 <p className="card-textcarritocompraupdate">
                   Cantidad: {item.quantity}
                 </p>
+
+
+
+
                 <div className="input-group input-group-sm">
                   <div className="input-group-prepend">
                     <button
@@ -171,6 +265,15 @@ const CarritoCompra: React.FC<{
                     eliminar
                   </button>
                 </div>
+              </div>
+              <div className="input-group-appendcarritocompraupdate">
+                <button
+                  className="btn btn-outline-secondaryeliminar"
+                  type="button"
+                  onClick={() => removeFromCartHandler(item.productId)}
+                >
+                  eliminar
+                </button>
               </div>
             </div>
           </div>

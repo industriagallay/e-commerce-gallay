@@ -12,16 +12,14 @@ import ProductDetail from "./components/detailproductos/ProductDetail";
 import NavBar3 from "../src/components/navbar3/NavBar3";
 import NavBar1 from "../src/components/navbar1/NavBar1";
 import NavBar2 from "../src/components/navbar2/NavBar2";
-import UpdateProduct from "../src/components/BotonEditarProducto/UpdateProductBtn";
 import Cookies from "js-cookie";
 import ObjectIDProps from "bson-objectid";
 import { decodeToken } from "react-jwt";
-import CarritoCompra, {
-  ICartItem,
-} from "./components/carritoDeCompras/CarritoCompras";
-// import axios from "axios";
+import CarritoCompra from "./components/carritoDeCompras/CarritoCompras";
+import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProductBtn";
+import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 
-interface ProductCardProps {
+export interface ProductCardProps {
   product: Product;
   hovered: boolean;
   onMouseEnter: () => void;
@@ -31,7 +29,7 @@ interface ProductCardProps {
   onDelete: () => void;
 }
 
-interface Product {
+export interface Product {
   _id: ObjectIDProps;
   name: string;
   description: string;
@@ -40,53 +38,49 @@ interface Product {
   price: number;
 }
 
-const App: React.FC<ProductCardProps> = ({ product }) => {
+const App = () => {
   const [clientId, setClientId] = useState<string>("");
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const userToken = Cookies.get("token");
-    return !!userToken; // Convierte el token en un valor booleano
+    return !!userToken;
   });
 
-  // Luego, en algún lugar de tu código, obtén y establece clientId
   useEffect(() => {
     const userToken = Cookies.get("token");
     if (userToken) {
       const decoded = decodeToken(userToken) as { _id: string };
-      console.log({ z: decoded._id });
       setClientId(decoded._id);
     }
-  }, []); // El segundo argumento es un arreglo vacío para que este efecto se ejecute solo una vez al montar el componente.
+  }, []);
 
   const verificarAutenticacion = async (token: string | undefined) => {
-    console.log({ token });
     if (token) {
       try {
-        const decoded = decodeToken(token) as { isAdmin: boolean; _id: string }; // Decodifica el token y obtén el clientId
+        const decoded = decodeToken(token) as { isAdmin: boolean; _id: string };
 
         console.log({ decoded });
 
         setIsLoggedIn(true);
         setIsAdmin(decoded.isAdmin);
-        setClientId(decoded?._id); // Establece el clientId en el estado
+        setClientId(decoded?._id);
       } catch (error) {
-        console.error("Error parsing token:", error);
         setIsLoggedIn(false);
         setIsAdmin(false);
-        setClientId(""); // Cambia "" a null en caso de error
+        setClientId("");
       }
     } else {
       console.log("555555555");
       setIsLoggedIn(false);
       setIsAdmin(false);
-      setClientId(""); // Cambia "" a null cuando no hay token
+      setClientId("");
     }
   };
 
   useEffect(() => {
     const userToken = Cookies.get("token");
-    console.log({ userToken });
     verificarAutenticacion(userToken);
   }, [location]);
 
@@ -95,7 +89,6 @@ const App: React.FC<ProductCardProps> = ({ product }) => {
       {isLoggedIn && isAdmin && <NavBar3 />}
       {isLoggedIn && !isAdmin && <NavBar2 />}
       {!isLoggedIn && <NavBar1 />}
-
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
@@ -104,6 +97,10 @@ const App: React.FC<ProductCardProps> = ({ product }) => {
         <Route path="/creatucuchillo" element={<CreaTuCuchillo />} />
         <Route path="/help" element={<Help />} />
         <Route path="/admin" element={<DashboardAdmin />} />
+        <Route
+          path="/product/edit/:id"
+          element={<UpdateProductBtn product={selectedProduct ?? undefined} />}
+        />
 
         <Route
           path="/product/id/:id"
