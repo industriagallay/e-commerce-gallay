@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CarritoCompras.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -28,6 +29,7 @@ interface ICarritoItemDataProps {
 const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
   const [productData, setProductData] = useState<IProductData | null>(null);
+  const navigate = useNavigate();
   const [productDataMap, setProductDataMap] = useState<{
     [productId: string]: IProductData;
   }>({});
@@ -109,10 +111,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
 
   /// Función para realizar el pago
   const checkout = () => {
-    // Implementa la lógica para realizar el pago aquí.
-    // Esto podría implicar hacer una solicitud HTTP para procesar el pago.
-    // Una vez que el pago se haya realizado con éxito, puedes vaciar el carrito.
-    // También puedes mostrar un mensaje de confirmación al usuario.
+    navigate("/compra-finalizada");
   };
 
   useEffect(() => {
