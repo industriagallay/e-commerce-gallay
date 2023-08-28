@@ -3,6 +3,8 @@ import "./CarritoCompras.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import animation_llvcrs0g from "../../assets/animation_llvcrs0g_small.gif";
+
 
 // Define un tipo para los elementos del carrito
 export interface ICartItem {
@@ -37,11 +39,15 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
- 
       try {
         const response = await axios.get(
           `http://localhost:3001/purchases/${clientId}`
         );
+
+
+
+        console.log(response.data);
+
         const cartData = response.data[0].products;
         setCartItems(cartData);
       } catch (error) {
@@ -50,7 +56,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     };
 
     fetchData();
-    
   }, [clientId]);
 
   useEffect(() => {
@@ -83,7 +88,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
         `http://localhost:3001/purchases/${clientId}/products/${productId}`
       );
       console.log({ a: response.data });
-     
+
       // Actualiza el estado local del carrito después de la eliminación
       setCartItems((prevCartItems) =>
         prevCartItems.filter((item) => item.productId !== productId)
@@ -101,6 +106,30 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
       prevCartItems.map((item) => {
         if (item.productId === productId) {
           return { ...item, quantity: newQuantity };
+        }
+        return item;
+      })
+    );
+  };
+
+  // Función para disminuir la cantidad de un producto en el carrito
+  const decrementQuantity = (productId: string) => {
+    setCartItems((prevCartItems) =>
+      prevCartItems.map((item) => {
+        if (item.productId === productId && item.quantity > 1) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      })
+    );
+  };
+
+  // Función para aumentar la cantidad de un producto en el carrito
+  const incrementQuantity = (productId: string) => {
+    setCartItems((prevCartItems) =>
+      prevCartItems.map((item) => {
+        if (item.productId === productId) {
+          return { ...item, quantity: item.quantity + 1 };
         }
         return item;
       })
@@ -156,7 +185,12 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     return (
       <div className="container">
         <h2 className="h2carritodecompras">Carrito de Compras</h2>
-        <p>El carrito está vacío.</p>
+        <p>El carrito está vacío...</p>
+        <img
+          src={animation_llvcrs0g}
+          alt="Carrito Vacío"
+          className="gif-carrito-vacio"
+        />
         <Link className="seguirComprando" to={"/home"}>
           Seguir Comprando
         </Link>
@@ -171,63 +205,101 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
         {cartItems.map((item) => (
           <div className="col-md-4" key={item._id}>
             <div className="card-carritocompraupdate">
-              <div className="card-carritocompraupdate">
-                <img
-                  src={productDataMap[item.productId]?.backgroundImage}
-                  className="card-img-top product-imagecarritocompraupdate"
-                  alt={productDataMap[item.productId]?.name}
-                />
-                <div className="card-bodycarritocompraupdate">
-                  <h5 className="card-titlecarritocompraupdate">
-                    {productData.name}
-                  </h5>
-                </div>
+              <img
+                src={productDataMap[item.productId]?.backgroundImage}
+                className="card-img-top product-imagecarritocompraupdate"
+                alt={productDataMap[item.productId]?.name}
+              />
+              <div className="card-bodycarritocompraupdate">
+                <h5 className="card-titlecarritocompraupdate">
+                  {productData.name}
+                </h5>
+              </div>
 
-                <div className="card-bodycarritocompraupdate">
-                  <p className="card-textcarritocompraupdate">
-                    Precio: ${item.price}
-                  </p>
-                  <p className="card-textcarritocompraupdate">
-                    Cantidad: {item.quantity}
-                  </p>
-                  <div className="input-groupcarritocompraupdate">
-                    <input
-                      type="number"
-                      className="form-controlcarritocompraupdate"
-                      value={item.quantity}
-                      onChange={(e) => {
-                        const newQuantity = parseInt(e.target.value, 10);
-                        updateQuantity(item._id, newQuantity);
-                      }}
-                    />
-                  </div>
-                  <div className="input-group-appendcarritocompraupdate">
+              <div className="card-bodycarritocompraupdate">
+                <p className="card-textcarritocompraupdate">
+                  Precio: ${item.price}
+                </p>
+                <p className="card-textcarritocompraupdate">
+                  Cantidad: {item.quantity}
+                </p>
+
+
+
+
+                <div className="input-group input-group-sm">
+                  <div className="input-group-prepend">
                     <button
-                      className="btn btn-outline-secondary"
+                      className="btn btn-outline-secondarymenos"
                       type="button"
-                      onClick={() => removeFromCartHandler(item.productId)}
+                      onClick={() => decrementQuantity(item.productId)}
                     >
-                      Eliminar
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="number"
+                    className="form-control form-control-lg text-center"
+                    value={item.quantity}
+                    onChange={(e) => {
+                      const newQuantity = parseInt(e.target.value, 10);
+                      updateQuantity(item._id, newQuantity);
+                    }}
+                  />
+                  <div className="input-group-append">
+                    <button
+                      className="btn btn-outline-secondarymas"
+                      type="button"
+                      onClick={() => incrementQuantity(item.productId)}
+                    >
+                      +
                     </button>
                   </div>
                 </div>
+                <div className="input-group-appendcarritocompraupdate">
+                  <button
+                    className="btn btn-outline-secondaryeliminar"
+                    type="button"
+                    onClick={() => removeFromCartHandler(item.productId)}
+                  >
+                    eliminar
+                  </button>
+                </div>
+              </div>
+              <div className="input-group-appendcarritocompraupdate">
+                <button
+                  className="btn btn-outline-secondaryeliminar"
+                  type="button"
+                  onClick={() => removeFromCartHandler(item.productId)}
+                >
+                  eliminar
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="checkout">
-        <p className="preciototalcalculadototal">
-          Total: ${calculateTotal(cartItems)}
-        </p>
-        <button className="botoncheckoutcompraca" onClick={checkout}>
-          Realizar Pago
-        </button>
+      <div className="container-md">
+        <div className="row">
+          <div className="col-4 resumen-card-carritocompraresumen">
+            <h4 className="resumen-titulo-carritocompra">Resumen de Compra</h4>
+            <div className="total-a-pagar-container">
+              <p className="total-a-pagar-text">Total a Pagar:</p>
+              <p className="total-a-pagar-amount">
+                ${calculateTotal(cartItems)}
+              </p>
+            </div>
+            <button className="botoncheckoutcompraca " onClick={checkout}>
+              Realizar Pago
+            </button>
+            <div className="checkout">
+              <Link className="seguirComprando" to={"/home"}>
+                Seguir Comprando
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-      <Link className="seguirComprando" to={"/home"}>
-        {" "}
-        Seguir Comprando{" "}
-      </Link>
     </div>
   );
 };
