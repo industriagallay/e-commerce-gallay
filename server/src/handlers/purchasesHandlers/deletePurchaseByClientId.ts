@@ -3,9 +3,9 @@ import Purchases from "../../models/purchases";
 
 const deletePurchaseByClientId = async (req: Request, res: Response) => {
   const clientId: string = req.params.clientId;
-
+console.log({b:clientId});
   try {
-    const deletedPurchase = await Purchases.findOneAndDelete({ clientId });
+    const deletedPurchase = await Purchases.findOneAndDelete({ _id: clientId });
 
     if (!deletedPurchase) {
       return res.status(404).json({ message: "Compra no encontrada" });
