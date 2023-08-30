@@ -1,5 +1,5 @@
 import React, { Key, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import fundicion from "../../assets/img/fundiciónPNG.png";
 import Slider from "react-slick";
 import "./EligeTuHoja.css"
@@ -7,8 +7,10 @@ import "animate.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 interface Product {
+  clientId: string;
   _id: Key | null | undefined;
   // _id: Object;
   name: string;
@@ -19,12 +21,80 @@ interface Product {
   categories: string;
 }
 
-const EligeTuCuchillo: React.FC = () => {
+interface EligeTuHojaProps {
+  clientId: string;
+}
+
+
+
+const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId}) => {
+  const { id } = useParams<{ id: string }>();
+  const [purchaseId, setPurchaseId] = useState<string | null>(null);
+  const [cartUpdate, setCartUpdate] = useState<number>(0);
   const [products, setProducts] = useState<Product[]>([]);
-  // const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const location = useLocation();
-  // Estado para almacenar el nombre de usuario
   const [username, setUsername] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+
+
+  const addToHojaHandler = async (product: Product) => {
+    try {
+      const { _id: productId, price } = product;
+      const quantity = 1;
+
+      if (!clientId) {
+        alert("Por Favor Registrese antes de realizar una compra");
+        navigate("/login");
+        return;
+      }
+
+      // Verifica si el cliente ya tiene un carrito (purchase)
+      if (!purchaseId) {
+        const createPurchaseResponse = await axios.post(
+          `http://localhost:3001/purchases/${clientId}`,
+
+          {
+            products: [
+              {
+                productId,
+                quantity,
+                price,
+              },
+            ],
+            totalPrice: price,
+          }
+        );
+        const createdPurchase = createPurchaseResponse.data;
+        setPurchaseId(createdPurchase._id);
+      } else {
+        await axios.post(
+          `http://localhost:3001/purchases/${clientId}/products`,
+          {
+            productId,
+            quantity,
+            price,
+          }
+        );
+      }
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "producto agregado correctamente!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/loader");
+      setCartUpdate((prevValue) => prevValue + 1);
+    } catch (error) {
+      console.error("Error al agregar el producto al carrito:", error);
+    }
+  };
+
+
+
+
+
 
 
   useEffect(() => {
@@ -34,9 +104,11 @@ const EligeTuCuchillo: React.FC = () => {
           "http://localhost:3001/products"
         );
         console.log({ a: response });
-        //logica filtrado por categoria
-        setProducts(response.data);
-        // setFilteredProducts(response.data);
+        // Filtrar los productos por categoría "handle"
+        const handleProducts = response.data.filter((product) =>
+          product.categories.includes("blade")
+        );
+        setProducts(handleProducts);
       } catch (error) {
         console.log(error);
       }
@@ -44,12 +116,6 @@ const EligeTuCuchillo: React.FC = () => {
 
     fetchProducts();
   }, []);
-
-
-
-
-
-
 
 
 
@@ -117,7 +183,7 @@ const EligeTuCuchillo: React.FC = () => {
             </div>
             <div className="containericono3 col-12 col-md-2">
               <i className="bi bi-3-circle bi-3-circle-paso3hoja">
-                <span className="spanpaso3hoja"> creando tu cuchillo </span>
+                <span className="spanpaso3hoja"> procesando </span>
               </i>
             </div>
             <div className="containericono4 col-12 col-md-2 ">
@@ -142,11 +208,14 @@ const EligeTuCuchillo: React.FC = () => {
                     <img className="imagehojasproduct" src={product.backgroundImage} alt={product.name} />
                     <div className="card-content-hojas">
                       <h3 className="productname-hojas">{product.name}</h3>
-                      {/* <p className="product-description-cabo">{product.description}</p> */}
-                      <p className="product-category-hojas">Categoría: {product.categories}</p>
-                      <Link to="/eligetuhoja" className="elegir-button">
-                        Elegir
-                      </Link>
+                      <p className="product-description-cabo">{product.description}</p>
+                      {/* <p className="product-category-hojas">Categoría: {product.categories}</p> */}
+                      <button
+                  onClick={() => addToHojaHandler(product)}
+                  className="elegir-button"
+                >
+                  Elegir
+                </button>
                     </div>
                   </div>
                 ))}

@@ -31,7 +31,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
     try {
       if (clientId) {
         await axios.delete(
-          `http://localhost:3001/purchases/delete/${clientId}`
+          `http://localhost:3001/delete/clientId${clientId}`
         );
       }
       setIsLoggedIn(false);

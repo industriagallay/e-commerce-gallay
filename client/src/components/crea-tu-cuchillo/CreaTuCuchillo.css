@@ -162,14 +162,14 @@
   color: var(--bs-body-color);
   word-wrap: break-word;
   /* background-color: #f1f1f1; */
-
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
 }
 .card-cabo {
-  width: 20rem; /* Ancho fijo de las cards */
-  height: var(--bs-card-height); /* Altura fija de las cards */
+  /* width: 20rem;  */
+  /* height: var(--bs-card-height);  */
+  min-height: 28rem;
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -185,9 +185,10 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+
+
 .imagecaboproduct {
   width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
-
   height: 200px;
   border-radius: 8px;
   object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
@@ -207,13 +208,20 @@
 }
 
 .elegir-button {
-  background-color: #007bff; /* Establece el color de fondo del botón Elegir */
-  color: #fff; /* Establece el color del texto del botón Elegir */
-  padding: 5px 10px; /* Agrega espacio interno al botón */
-  text-decoration: none; /* Elimina la decoración de enlace */
-  border: none; /* Elimina el borde del botón */
-  border-radius: 5px; /* Agrega bordes redondeados al botón */
-  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+  border-radius: 5px;
+  text-decoration: none;
+  position: absolute; /* Establece la posición absoluta para el botón */
+  bottom: 10px; /* Ajusta la distancia desde la parte inferior */
+  right: 10px; /* Ajusta la distancia desde la derecha */
+  background-color: #007bff; /* Cambia el color de fondo */
+  color: #fff; /* Cambia el color del texto */
+  padding: 5px 10px; /* Ajusta el espacio interno del botón */
+  border: none; /* Quita los bordes del botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+/* Estilo adicional para el botón al pasar el cursor sobre él */
+.elegir-button:hover {
+  background-color: #0056b3;
 }
 
 .card-cabo img {

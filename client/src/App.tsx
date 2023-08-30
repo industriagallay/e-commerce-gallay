@@ -20,6 +20,7 @@ import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProduc
 import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja"
+import Loader from "./components/loader/Loader";
 
 export interface ProductCardProps {
   product: Product;
@@ -100,8 +101,9 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/creatucuchillo" element={<CreaTuCuchillo />} />
-        <Route path="eligetuhoja" element={<EligeTuHoja />} />
+        <Route path="/creatucuchillo" element={<CreaTuCuchillo  clientId={clientId}/>} />
+        <Route path="eligetuhoja" element={<EligeTuHoja clientId={clientId}/>} />
+        <Route path="/loader" element={<Loader />}/>
         <Route path="/help" element={<Help />} />
         <Route path="/admin" element={<DashboardAdmin />} />
         <Route
