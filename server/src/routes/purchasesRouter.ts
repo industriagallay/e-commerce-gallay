@@ -8,8 +8,8 @@ import deleteProductToPurchaseHandler from "../handlers/purchasesHandlers/delete
 import createPurchaseByClientIdHandler from "../handlers/purchasesHandlers/createPurchaseByClientIdHandler";
 import cancelPurchaseByClientIdHandler from "../handlers/purchasesHandlers/cancelPurchaseByClientIdHandler";
 import deletePurchaseByClientId from "../handlers/purchasesHandlers/deletePurchaseByClientId";
-import closePurchaseHandler from "../handlers/purchasesHandlers/closePurchaseHandler";
 import getPurchaseDetailsHandler from "../handlers/purchasesHandlers/getPurchaseDetailsHandler ";
+import updatePurchaseHandler from "../handlers/purchasesHandlers/updatePurchaseHandler";
 
 export const purchasesRouter = Router();
 
@@ -25,7 +25,7 @@ purchasesRouter.delete(
 );
 purchasesRouter.post("/:clientId", createPurchaseByClientIdHandler);
 purchasesRouter.put("/:clientId/cancel", cancelPurchaseByClientIdHandler);
-purchasesRouter.post("/close/:clientId", closePurchaseHandler);
-purchasesRouter.get("/:purchasesId", getPurchaseDetailsHandler )
+purchasesRouter.get("/:purchasesId", getPurchaseDetailsHandler);
+purchasesRouter.put("/update/:purchasesId", updatePurchaseHandler);
 
 export default purchasesRouter;

@@ -39,11 +39,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         return;
       }
 
-      // Verifica si el cliente ya tiene un carrito (purchase)
+      // Verifica si la última compra fue finalizada
       if (!purchaseId) {
+        // Si la compra anterior ha sido finalizada, crea una nueva compra
         const createPurchaseResponse = await axios.post(
           `http://localhost:3001/purchases/${clientId}`,
-
           {
             products: [
               {

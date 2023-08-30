@@ -19,7 +19,7 @@ import CarritoCompra from "./components/carritoDeCompras/CarritoCompras";
 import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProductBtn";
 import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
-import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja"
+import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja";
 
 export interface ProductCardProps {
   product: Product;
@@ -90,6 +90,8 @@ const App = () => {
     verificarAutenticacion(userToken);
   }, [location]);
 
+
+
   return (
     <>
       {isLoggedIn && isAdmin && <NavBar3 />}
@@ -103,7 +105,10 @@ const App = () => {
         <Route path="/creatucuchillo" element={<CreaTuCuchillo />} />
         <Route path="eligetuhoja" element={<EligeTuHoja />} />
         <Route path="/help" element={<Help />} />
-        <Route path="/admin" element={<DashboardAdmin />} />
+        <Route
+          path="/admin"
+          element={<DashboardAdmin isAdmin={isAdmin} isLoggedIn={isLoggedIn} />}
+        />
         <Route
           path="/product/edit/:id"
           element={
@@ -116,17 +121,32 @@ const App = () => {
         />
         <Route
           path="/product/id/:id"
-          element={<ProductDetail clientId={clientId} />}
+          element={
+            <ProductDetail
+              clientId={clientId}
+              
+            />
+          }
         />
+
         <Route
           path="/carritocompra"
           element={
-            <CarritoCompra clientId={clientId} purchasesId={purchasesId} />
+            <CarritoCompra
+              clientId={clientId}
+              purchasesId={purchasesId}
+           
+            />
           }
         />
         <Route
           path="/compra-finalizada"
-          element={<CompraFinalizada clientId={clientId} />}
+          element={
+            <CompraFinalizada
+              clientId={clientId}
+        
+            />
+          }
         />
       </Routes>
       <Footer />

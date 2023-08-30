@@ -6,7 +6,6 @@ import axios from "axios";
 
 import animation_llvcrs0g from "../../assets/animation_llvcrs0g_small.gif";
 
-// Define un tipo para los elementos del carrito
 export interface ICartItem {
   // imageUrl: string;
   productId: string;
@@ -32,32 +31,35 @@ interface ICarritoItemDataProps {
   purchasesId: string;
 }
 
-const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
-  clientId,
-}) => {
+const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
+  const [purchasesId, setPurchasesId] = useState();
   const [productData, setProductData] = useState<IProductData | null>(null);
   const navigate = useNavigate();
+  const [totalPrice, setTotalPrice] = useState(0);
   const [productDataMap, setProductDataMap] = useState<{
     [productId: string]: IProductData;
   }>({});
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/purchases/${clientId}`
+      );
+
+      const purchaseData = response.data[0];
+      const cartData = purchaseData.products;
+
+      const purchasesId = purchaseData._id;
+
+      setCartItems(cartData);
+      setPurchasesId(purchasesId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/purchases/${clientId}`
-        );
-
-        console.log(response.data);
-
-        const cartData = response.data[0].products;
-        setCartItems(cartData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchData();
   }, [clientId]);
 
@@ -78,6 +80,10 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     });
   }, [cartItems]);
 
+  useEffect(() => {
+    setTotalPrice(calculateTotal(cartItems));
+  }, [cartItems]);
+
   const removeFromCartHandler = async (productId: string) => {
     try {
       if (!clientId) {
@@ -88,15 +94,22 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
         `http://localhost:3001/purchases/${clientId}/products/${productId}`
       );
 
-      // Obtener los detalles actualizados de la compra
       const updatedPurchaseResponse = await axios.get(
         `http://localhost:3001/purchases/${clientId}`
       );
 
-      // Verificar si la respuesta contiene datos válidos antes de actualizar el estado
       if (updatedPurchaseResponse.data.length > 0) {
         const updatedPurchase = updatedPurchaseResponse.data[0];
         setCartItems(updatedPurchase.products);
+
+        const newTotalPrice = calculateTotal(updatedPurchase.products);
+        console.log({ pur: purchasesId });
+        await axios.put(
+          `http://localhost:3001/purchases/update/${purchasesId}`,
+          {
+            totalPrice: newTotalPrice,
+          }
+        );
       } else {
         setCartItems([]);
       }
@@ -125,6 +138,8 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
         return item;
       })
     );
+    const newTotal = calculateTotal(cartItems);
+    setTotalPrice(newTotal);
   };
 
   const incrementQuantity = (productId: string) => {
@@ -136,6 +151,8 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
         return item;
       })
     );
+    const newTotalPrice = calculateTotal(cartItems);
+    setTotalPrice(newTotalPrice);
   };
 
   const calculateTotal = (cart: ICartItem[]) => {
@@ -144,12 +161,10 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
 
   const checkout = async (clientId: string) => {
     try {
-      await axios.post(`http://localhost:3001/purchases/close/${clientId}`);
-      setCartItems([]);
-
+      await axios.post(`http://localhost:3001/purchases/${clientId}`);
       navigate("/compra-finalizada");
     } catch (error) {
-      console.error("Error al cerrar la compra:", error);
+      console.error(error);
     }
   };
 
@@ -265,7 +280,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
                   </button>
                 </div>
               </div>
-
             </div>
           </div>
         ))}
