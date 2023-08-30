@@ -418,12 +418,12 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
               {errors.price?.type === "required" && (
                 <p className="text-danger">El campo precio es requerido</p>
               )}
-              <h5>Elegí una categoría</h5>
               <select
                 style={{ height: "3em", borderRadius: "6px" }}
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
+                <option> Elegí una categoría </option>
                 <option value="handle">Cabo</option>
                 <option value="blade">Hoja</option>
                 <option value="knife">Cuchillo</option>

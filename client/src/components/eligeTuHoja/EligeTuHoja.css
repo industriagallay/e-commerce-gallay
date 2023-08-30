@@ -162,15 +162,15 @@
     color: var(--bs-body-color);
     word-wrap: break-word;
     /* background-color: #f1f1f1; */
-  
     background-clip: border-box;
     border: var(--bs-card-border-width) solid var(--bs-card-border-color);
     border-radius: var(--bs-card-border-radius);
   }
   
   .card-hojas {
-    width: 20rem; /* Ancho fijo de las cards */
-    height: var(--bs-card-height); /* Altura fija de las cards */
+    /* width: 20rem;  */
+    /* height: var(--bs-card-height);  */
+    min-height: 28rem;
     overflow: hidden;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -194,12 +194,9 @@
     object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
   }
 
-
-
-
-
   .card-Hojas img {
     max-width: 100%;
+
   }
   
   .card-Hojas h3 {
@@ -211,6 +208,26 @@
   /* Estilos para el contenido debajo de la imagen */
   .card-content-Hojas {
     margin-top: 20px;
+  }
+  .card-hojas {
+    position: relative; /* Establece la posición relativa en la tarjeta */
+  }
+  .loader-button {
+    border-radius: 5px;
+    text-decoration: none;
+    position: absolute; /* Establece la posición absoluta para el botón */
+    bottom: 10px; /* Ajusta la distancia desde la parte inferior */
+    right: 10px; /* Ajusta la distancia desde la derecha */
+    background-color: #007bff; /* Cambia el color de fondo */
+    color: #fff; /* Cambia el color del texto */
+    padding: 5px 10px; /* Ajusta el espacio interno del botón */
+   
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  }
+  
+  /* Estilo adicional para el botón al pasar el cursor sobre él */
+  .loader-button:hover {
+    background-color: #0056b3;
   }
   
   /*****slikes arrow left*****/

@@ -1,15 +1,19 @@
 import React, { Key, useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useParams, useNavigate } from "react-router-dom";
 import fundicion from "../../assets/img/fundiciónPNG.png";
 import Slider from "react-slick";
-import EligeTuHoja from "../eligeTuHoja/EligeTuHoja";
+import ObjectId from "bson-objectid";
 import "./CreaTuCuchillo.css";
 import "animate.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
+import Swal from "sweetalert2";
+
+
 
 interface Product {
+  clientId: string;
   _id: Key | null | undefined;
   // _id: Object;
   name: string;
@@ -20,12 +24,81 @@ interface Product {
   categories: string;
 }
 
-const CreaTuCuchillo: React.FC = () => {
+interface CreaTuCuchilloProps {
+  clientId: string;
+}
+
+
+
+
+const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId}) => {
+  const { id } = useParams<{ id: string }>();
+  const [purchaseId, setPurchaseId] = useState<string | null>(null);
+  const [cartUpdate, setCartUpdate] = useState<number>(0);
   const [products, setProducts] = useState<Product[]>([]);
-  // const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const location = useLocation();
-  // Estado para almacenar el nombre de usuario
   const [username, setUsername] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+ 
+
+
+
+
+  const addToCaboHandler = async (product: Product) => {
+    try {
+      const { _id: productId, price } = product;
+      const quantity = 1;
+
+      if (!clientId) {
+        alert("Por Favor Registrese antes de realizar una compra");
+        navigate("/login");
+        return;
+      }
+
+      // Verifica si el cliente ya tiene un carrito (purchase)
+      if (!purchaseId) {
+        const createPurchaseResponse = await axios.post(
+          `http://localhost:3001/purchases/${clientId}`,
+
+          {
+            products: [
+              {
+                productId,
+                quantity,
+                price,
+              },
+            ],
+            totalPrice: price,
+          }
+        );
+        const createdPurchase = createPurchaseResponse.data;
+        setPurchaseId(createdPurchase._id);
+      } else {
+        await axios.post(
+          `http://localhost:3001/purchases/${clientId}/products`,
+          {
+            productId,
+            quantity,
+            price,
+          }
+        );
+      }
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "producto agregado correctamente!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/eligetuhoja");
+      setCartUpdate((prevValue) => prevValue + 1);
+    } catch (error) {
+      console.error("Error al agregar el producto al carrito:", error);
+    }
+  };
+
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -111,7 +184,7 @@ const CreaTuCuchillo: React.FC = () => {
             </div>
             <div className="containericono3 col-12 col-md-2">
               <i className="bi bi-3-circle bi-3-circle-paso3">
-                <span className="spanpaso3"> creando tu cuchillo </span>
+                <span className="spanpaso3"> procesando </span>
               </i>
             </div>
             <div className="containericono4 col-12 col-md-2 ">
@@ -140,11 +213,14 @@ const CreaTuCuchillo: React.FC = () => {
                     />
                     <div className="card-content-cabo">
                       <h3 className="productname-cabo">{product.name}</h3>
-                      {/* <p className="product-description-cabo">{product.description}</p> */}
+                      <p className="product-description-cabo">{product.description}</p>
                       {/* <p className="product-category-cabo">Categoría: {product.categories}</p> */}
-                      <Link to="/eligetuhoja" className="elegir-button">
-                        Elegir
-                      </Link>
+                      <button
+                  onClick={() => addToCaboHandler(product)}
+                  className="elegir-button"
+                >
+                  Elegir
+                </button>
                     </div>
                   </div>
                 ))}

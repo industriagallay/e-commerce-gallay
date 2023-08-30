@@ -51,7 +51,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
             totalPrice: price,
           }
         );
-
         const createdPurchase = createPurchaseResponse.data;
         setPurchaseId(createdPurchase._id);
       } else {
