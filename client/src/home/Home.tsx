@@ -23,9 +23,9 @@ const Home: React.FC = () => {
   const [isHoverEnabled, setIsHoverEnabled] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPriceFilter, setSelectedPriceFilter] = useState<string>("");
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>("");
   const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
@@ -107,6 +107,7 @@ const Home: React.FC = () => {
           "http://localhost:3001/products"
         );
         console.log({ a: response });
+        //logica filtrado por categoria
         setProducts(response.data);
         setFilteredProducts(response.data);
       } catch (error) {
