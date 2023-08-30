@@ -1,5 +1,16 @@
 import mongoose, { Schema } from "mongoose";
 
+// Define un enum para los posibles estados de la compra
+const PurchaseStatusEnum = [
+  "inCart",
+  "pending pay",
+  "paid",
+  "sent",
+  "submitted",
+  "canceled",
+  "closed",
+];
+
 const purchaseSchema = new Schema(
   {
     idClient: {
@@ -36,7 +47,7 @@ const purchaseSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["inCart", "pending pay", "paid", "sent", "submitted", "canceled"],
+      enum: PurchaseStatusEnum,
       default: "inCart",
     },
   },

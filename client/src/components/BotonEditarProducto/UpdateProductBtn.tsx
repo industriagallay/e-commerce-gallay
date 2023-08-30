@@ -24,13 +24,20 @@ export interface Product {
   backgroundImage: string;
   stock: number;
   price: number;
+  categories: string[];
 }
 
 interface UpdateProductBtnProps {
   product?: Product;
+  isAdmin: boolean;
+  isLoggedIn: boolean;
 }
 
-const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({ product }) => {
+const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({
+  product,
+  isAdmin,
+  isLoggedIn,
+}) => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [productData, setProductData] = useState<Product | null>(null);
   const [selectedImageUrl, setSelectedImageUrl] = useState<string>("");
@@ -121,6 +128,11 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({ product }) => {
     setImageUrl(imageUrl);
     setSelectedImageUrl(imageUrl);
   };
+
+  if (!isLoggedIn || !isAdmin) {
+    navigate("/home");
+    return null;
+  }
 
   return (
     <>
