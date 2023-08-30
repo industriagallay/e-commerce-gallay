@@ -19,6 +19,7 @@ import CarritoCompra from "./components/carritoDeCompras/CarritoCompras";
 import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProductBtn";
 import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
+import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja"
 
 export interface ProductCardProps {
   product: Product;
@@ -100,6 +101,7 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/creatucuchillo" element={<CreaTuCuchillo />} />
+        <Route path="eligetuhoja" element={<EligeTuHoja />} />
         <Route path="/help" element={<Help />} />
         <Route path="/admin" element={<DashboardAdmin />} />
         <Route
