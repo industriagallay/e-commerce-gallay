@@ -7,6 +7,9 @@ import addProductToPurchaseHandler from "../handlers/purchasesHandlers/addProduc
 import deleteProductToPurchaseHandler from "../handlers/purchasesHandlers/deleteProductToPurchaseHandler";
 import createPurchaseByClientIdHandler from "../handlers/purchasesHandlers/createPurchaseByClientIdHandler";
 import cancelPurchaseByClientIdHandler from "../handlers/purchasesHandlers/cancelPurchaseByClientIdHandler";
+import deletePurchaseByClientId from "../handlers/purchasesHandlers/deletePurchaseByClientId";
+import closePurchaseHandler from "../handlers/purchasesHandlers/closePurchaseHandler";
+import getPurchaseDetailsHandler from "../handlers/purchasesHandlers/getPurchaseDetailsHandler ";
 
 export const purchasesRouter = Router();
 
@@ -15,11 +18,14 @@ purchasesRouter.get("/:clientId", getPurchasesByClientHandler);
 purchasesRouter.put("/:purchaseId/status", updateStatusHandler);
 purchasesRouter.get("/status/:status", getPurchasesByStatus);
 purchasesRouter.post("/:clientId/products", addProductToPurchaseHandler);
+purchasesRouter.delete("/delete/:clientId", deletePurchaseByClientId);
 purchasesRouter.delete(
   "/:clientId/products/:productId",
   deleteProductToPurchaseHandler
 );
 purchasesRouter.post("/:clientId", createPurchaseByClientIdHandler);
 purchasesRouter.put("/:clientId/cancel", cancelPurchaseByClientIdHandler);
+purchasesRouter.post("/close/:clientId", closePurchaseHandler);
+purchasesRouter.get("/:purchasesId", getPurchaseDetailsHandler )
 
 export default purchasesRouter;
