@@ -44,4 +44,202 @@
   }
 }
 
-/*css template cards*/
+/*******paso 1 y 2 *******/
+
+.bi-1-circle-paso1 {
+  font-size: 2rem;
+  color: rgb(63, 87, 224);
+
+  margin-bottom: 15px;
+}
+
+.spanpaso1 {
+  font-weight: lighter;
+  font-size: 1.5rem;
+}
+
+.bi-2-circle-paso2 {
+  font-size: 2rem;
+  color: rgb(63, 87, 224);
+
+  margin-bottom: 15px;
+}
+
+.spanpaso2 {
+  font-weight: lighter;
+  font-size: 1.5rem;
+  color: rgb(63, 87, 224);
+}
+
+.bi-3-circle-paso3 {
+  font-size: 2rem;
+  color: rgb(63, 87, 224);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.spanpaso3 {
+  font-weight: lighter;
+  font-size: 1.5rem;
+  color: rgb(63, 87, 224);
+}
+
+.bi-4-circle-paso4 {
+  font-size: 2rem;
+  color: rgb(63, 87, 224);
+}
+
+.spanpaso4 {
+  font-weight: lighter;
+  font-size: 1.5rem;
+  color: rgb(63, 87, 224);
+}
+
+/***titulo elegi tu cabo***/
+.containerIconosPasoss {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.container-h1elegitucabo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.h1elegitucabo {
+  font-size: 4.5rem;
+  color: rgb(222, 209, 135);
+}
+
+.containerSubtextoCaBO {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h2subtextocreatucuchillo {
+  font-size: 2.5rem;
+  color: rgb(184, 170, 93);
+  margin-bottom: 50px;
+}
+
+/***h2cabos***/
+.cabosh2cabos {
+  color: darkgray;
+}
+
+/*****estilos cards slider cabos******/
+/* Estilos para las tarjetas */
+.card-cabo {
+  --bs-card-spacer-y: 1rem;
+  --bs-card-spacer-x: 1rem;
+  --bs-card-title-spacer-y: 0.5rem;
+  --bs-card-title-color: ;
+  --bs-card-subtitle-color: ;
+  --bs-card-border-width: var(--bs-border-width);
+  --bs-card-border-color: var(--bs-border-color-translucent);
+  --bs-card-border-radius: var(--bs-border-radius);
+  --bs-card-box-shadow: ;
+  --bs-card-inner-border-radius: calc(
+    var(--bs-border-radius) - (var(--bs-border-width))
+  );
+  --bs-card-cap-padding-y: 0.5rem;
+  --bs-card-cap-padding-x: 1rem;
+  --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+  --bs-card-cap-color: ;
+  --bs-card-height: ;
+  --bs-card-color: ;
+  --bs-card-bg: var(--bs-body-bg);
+  --bs-card-img-overlay-padding: 1rem;
+  --bs-card-group-margin: 0.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: var(--bs-card-height);
+  color: var(--bs-body-color);
+  word-wrap: break-word;
+  /* background-color: #f1f1f1; */
+
+  background-clip: border-box;
+  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  border-radius: var(--bs-card-border-radius);
+}
+.card-cabo {
+  width: 20rem; /* Ancho fijo de las cards */
+  height: var(--bs-card-height); /* Altura fija de las cards */
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.card-cabo.hovered.discounted-hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+.card-cabo:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.imagecaboproduct {
+  width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
+
+  height: 200px;
+  border-radius: 8px;
+  object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
+}
+
+.productname-cabo {
+  font-size: 18px; /* Establece el tamaño de fuente para el nombre del producto */
+}
+
+.product-description-cabo {
+  font-size: 14px; /* Establece el tamaño de fuente para la descripción del producto */
+}
+
+.product-category-cabo {
+  font-size: 12px; /* Establece el tamaño de fuente para la categoría del producto */
+  color: #888; /* Establece el color del texto de la categoría */
+}
+
+.elegir-button {
+  background-color: #007bff; /* Establece el color de fondo del botón Elegir */
+  color: #fff; /* Establece el color del texto del botón Elegir */
+  padding: 5px 10px; /* Agrega espacio interno al botón */
+  text-decoration: none; /* Elimina la decoración de enlace */
+  border: none; /* Elimina el borde del botón */
+  border-radius: 5px; /* Agrega bordes redondeados al botón */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+}
+
+.card-cabo img {
+  max-width: 100%;
+}
+
+.card-cabo h3 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Estilos para el contenido debajo de la imagen */
+.card-content-cabo {
+  margin-top: 20px;
+}
+
+/*****slikes arrow left*****/
+.slick-prev:before,
+.slick-next:before {
+  margin-left: -10px;
+  font-family: "slick";
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.75;
+  color: rgb(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
