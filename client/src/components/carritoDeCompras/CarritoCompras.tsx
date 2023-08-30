@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "./CarritoCompras.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 import animation_llvcrs0g from "../../assets/animation_llvcrs0g_small.gif";
 
 export interface ICartItem {
@@ -60,29 +59,32 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
   };
 
   useEffect(() => {
+    setProductDataMap({});
     fetchData();
   }, [clientId]);
 
   useEffect(() => {
     const fetchProductData = async (productId: string) => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/products/id/${productId}`
-        );
-        setProductData(response.data);
-      } catch (error) {
-        console.log(error);
+      if (!productDataMap[productId]) {
+        // Verificar si los datos ya están en el map
+        try {
+          const response = await axios.get(
+            `http://localhost:3001/products/id/${productId}`
+          );
+          setProductDataMap((prevProductDataMap) => ({
+            ...prevProductDataMap,
+            [productId]: response.data,
+          }));
+        } catch (error) {
+          console.log(error);
+        }
       }
     };
 
     cartItems.forEach((item) => {
       fetchProductData(item.productId);
     });
-  }, [cartItems]);
-
-  useEffect(() => {
-    setTotalPrice(calculateTotal(cartItems));
-  }, [cartItems]);
+  }, [cartItems, productDataMap]);
 
   const removeFromCartHandler = async (productId: string) => {
     try {
@@ -102,6 +104,8 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
         const updatedPurchase = updatedPurchaseResponse.data[0];
         setCartItems(updatedPurchase.products);
 
+        setProductDataMap({});
+
         const newTotalPrice = calculateTotal(updatedPurchase.products);
         console.log({ pur: purchasesId });
         await axios.put(
@@ -112,6 +116,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
         );
       } else {
         setCartItems([]);
+        setProductDataMap({});
       }
     } catch (error) {
       console.error("Error al eliminar el producto del carrito:", error);
@@ -159,10 +164,15 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
-  const checkout = async (clientId: string) => {
+  const checkout = async () => {
     try {
-      await axios.post(`http://localhost:3001/purchases/${clientId}`);
-      navigate("/compra-finalizada");
+      if (cartItems.length > 0) {
+        await axios.post(`http://localhost:3001/purchases/${clientId}`, {
+          products: cartItems,
+          totalPrice: calculateTotal(cartItems),
+        });
+        navigate("/compra-finalizada");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -193,10 +203,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
       }
     });
   }, [cartItems, productDataMap]);
-
-  if (!productData) {
-    return null;
-  }
 
   if (cartItems.length === 0) {
     return (
@@ -229,7 +235,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
               />
               <div className="card-bodycarritocompraupdate">
                 <h5 className="card-titlecarritocompraupdate">
-                  {productData.name}
+                  {productData?.name}
                 </h5>
               </div>
 
@@ -296,7 +302,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
             </div>
             <button
               className="botoncheckoutcompraca"
-              onClick={() => checkout(clientId)}
+              onClick={() => checkout()}
             >
               Realizar Pago
             </button>

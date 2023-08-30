@@ -33,7 +33,7 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
         const response = await axios.get(
           `http://localhost:3001/purchases/${clientId}`
         );
-        console.log(response.data);
+        console.log(response.data[0]);
         setUltimaCompra(response.data[0]);
       } catch (error) {
         console.error("Error al obtener la última compra:", error);
@@ -44,7 +44,24 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   }, [clientId]);
 
   const handleHomePage = () => {
+    setUltimaCompra(null);
     navigate("/home");
+  };
+
+  const handleNuevaCompra = async () => {
+    try {
+      try {
+        await axios.post(
+          `http://localhost:3001/purchases/generate/${clientId}`
+        );
+        navigate("/home");
+      } catch (error) {
+        console.error(error);
+      }
+      handleHomePage();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (!ultimaCompra) {
@@ -68,7 +85,7 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
       <p>Estado de la compra: {ultimaCompra.status}</p>
       <p>Fecha de la compra: {ultimaCompra.createdAt}</p>
       <p>Por favor, realice el pago utilizando los datos proporcionados.</p>
-      <button onClick={handleHomePage}>Volver al inicio</button>
+      <button onClick={handleNuevaCompra}>Volver al inicio</button>
     </div>
   );
 };

@@ -90,8 +90,6 @@ const App = () => {
     verificarAutenticacion(userToken);
   }, [location]);
 
-
-
   return (
     <>
       {isLoggedIn && isAdmin && <NavBar3 />}
@@ -121,32 +119,18 @@ const App = () => {
         />
         <Route
           path="/product/id/:id"
-          element={
-            <ProductDetail
-              clientId={clientId}
-              
-            />
-          }
+          element={<ProductDetail clientId={clientId} />}
         />
 
         <Route
           path="/carritocompra"
           element={
-            <CarritoCompra
-              clientId={clientId}
-              purchasesId={purchasesId}
-           
-            />
+            <CarritoCompra clientId={clientId} purchasesId={purchasesId} />
           }
         />
         <Route
           path="/compra-finalizada"
-          element={
-            <CompraFinalizada
-              clientId={clientId}
-        
-            />
-          }
+          element={<CompraFinalizada clientId={clientId} />}
         />
       </Routes>
       <Footer />
