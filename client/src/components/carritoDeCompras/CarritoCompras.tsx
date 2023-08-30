@@ -6,11 +6,11 @@ import axios from "axios";
 
 import animation_llvcrs0g from "../../assets/animation_llvcrs0g_small.gif";
 
-
 // Define un tipo para los elementos del carrito
 export interface ICartItem {
   // imageUrl: string;
   productId: string;
+  purchasesId: string;
   backgroundImage: string;
   _id: string;
   name: string;
@@ -29,9 +29,12 @@ interface IProductData {
 
 interface ICarritoItemDataProps {
   clientId: string;
+  purchasesId: string;
 }
 
-const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
+const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
+  clientId,
+}) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
   const [productData, setProductData] = useState<IProductData | null>(null);
   const navigate = useNavigate();
@@ -45,8 +48,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
         const response = await axios.get(
           `http://localhost:3001/purchases/${clientId}`
         );
-
-
 
         console.log(response.data);
 
@@ -78,32 +79,33 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
   }, [cartItems]);
 
   const removeFromCartHandler = async (productId: string) => {
-    console.log("Eliminar producto con ID:", productId);
-
     try {
       if (!clientId) {
-        console.log({ clientId });
         return;
       }
-      // Realiza una solicitud HTTP DELETE para eliminar el producto del carrito
-      const response = await axios.delete(
+
+      await axios.delete(
         `http://localhost:3001/purchases/${clientId}/products/${productId}`
       );
-      console.log({ a: response.data });
 
-      // Actualiza el estado local del carrito después de la eliminación
-      setCartItems((prevCartItems) =>
-        prevCartItems.filter((item) => item.productId !== productId)
+      // Obtener los detalles actualizados de la compra
+      const updatedPurchaseResponse = await axios.get(
+        `http://localhost:3001/purchases/${clientId}`
       );
-      console.log({ setCartItems });
+
+      // Verificar si la respuesta contiene datos válidos antes de actualizar el estado
+      if (updatedPurchaseResponse.data.length > 0) {
+        const updatedPurchase = updatedPurchaseResponse.data[0];
+        setCartItems(updatedPurchase.products);
+      } else {
+        setCartItems([]);
+      }
     } catch (error) {
       console.error("Error al eliminar el producto del carrito:", error);
     }
   };
 
-  // Función para actualizar la cantidad de un producto en el carrito
   const updateQuantity = (productId: string, newQuantity: number) => {
-    // Actualizar la cantidad del producto en el carrito local
     setCartItems((prevCartItems) =>
       prevCartItems.map((item) => {
         if (item.productId === productId) {
@@ -114,7 +116,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     );
   };
 
-  // Función para disminuir la cantidad de un producto en el carrito
   const decrementQuantity = (productId: string) => {
     setCartItems((prevCartItems) =>
       prevCartItems.map((item) => {
@@ -126,7 +127,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     );
   };
 
-  // Función para aumentar la cantidad de un producto en el carrito
   const incrementQuantity = (productId: string) => {
     setCartItems((prevCartItems) =>
       prevCartItems.map((item) => {
@@ -138,14 +138,19 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     );
   };
 
-  // Función para calcular el total del carrito
   const calculateTotal = (cart: ICartItem[]) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
-  /// Función para realizar el pago
-  const checkout = () => {
-    navigate("/compra-finalizada");
+  const checkout = async (clientId: string) => {
+    try {
+      await axios.post(`http://localhost:3001/purchases/close/${clientId}`);
+      setCartItems([]);
+
+      navigate("/compra-finalizada");
+    } catch (error) {
+      console.error("Error al cerrar la compra:", error);
+    }
   };
 
   useEffect(() => {
@@ -158,7 +163,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
         const response = await axios.get(
           `http://localhost:3001/products/id/${productId}`
         );
-        // Usar el productId como clave para almacenar el productData en el mapa
         setProductDataMap((prevProductDataMap) => ({
           ...prevProductDataMap,
           [productId]: response.data,
@@ -169,7 +173,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     };
 
     cartItems.forEach((item) => {
-      // Verificar si el productData ya está en el mapa antes de hacer la solicitud
       if (!productDataMap[item.productId]) {
         fetchProductData(item.productId);
       }
@@ -223,9 +226,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
                   Cantidad: {item.quantity}
                 </p>
 
-
-
-
                 <div className="input-group input-group-sm">
                   <div className="input-group-prepend">
                     <button
@@ -265,15 +265,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
                   </button>
                 </div>
               </div>
-              <div className="input-group-appendcarritocompraupdate">
-                <button
-                  className="btn btn-outline-secondaryeliminar"
-                  type="button"
-                  onClick={() => removeFromCartHandler(item.productId)}
-                >
-                  eliminar
-                </button>
-              </div>
             </div>
           </div>
         ))}
@@ -288,7 +279,10 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
                 ${calculateTotal(cartItems)}
               </p>
             </div>
-            <button className="botoncheckoutcompraca " onClick={checkout}>
+            <button
+              className="botoncheckoutcompraca"
+              onClick={() => checkout(clientId)}
+            >
               Realizar Pago
             </button>
             <div className="checkout">

@@ -19,6 +19,7 @@ type FormValues = {
   backgroundImage: string;
   stock: number;
   price: number;
+  categories: string;
 };
 
 interface Purchase {
@@ -46,6 +47,18 @@ interface Client {
   isActive: boolean;
 }
 
+interface Product {
+  _id: string;
+  name: string;
+  description: string;
+  backgroundImage: string;
+  stock: number;
+  price: number;
+  categories: "handle" | "blade" | "knife";
+  createdAt: string;
+  updatedAt: string;
+}
+
 const DashboardAdmin: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
@@ -55,6 +68,9 @@ const DashboardAdmin: React.FC = () => {
   const [searchQueryPurchases, setSearchQueryPurchases] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [currentPageCompras, setCurrentPageCompras] = useState<number>(1);
+  const [productos, setProductos] = useState<Product[]>([]);
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>("categoria1");
   const cloudinaryName = VITE_CLOUDINARY_NAME || "";
   const {
     register,
@@ -72,12 +88,13 @@ const DashboardAdmin: React.FC = () => {
       const dataWithImage = {
         ...data,
         backgroundImage: imageUrl,
+        categories: selectedCategory,
       };
       const response = await axios.post(
         "http://localhost:3001/products",
         dataWithImage
       );
-      console.log(response);
+      console.log(response.data);
 
       swal.fire({
         position: "center",
@@ -193,13 +210,11 @@ const DashboardAdmin: React.FC = () => {
       );
 
       if (response.status === 200) {
-        // Actualizar la lista de clientes después de la desactivación exitosa
         const updatedClientes = clientes.map((cliente) => {
           if (cliente._id.toString() === userId) {
-            // Convertir ObjectID a string
             return {
               ...cliente,
-              isActive: !isActive, // Cambiar el valor de isActive
+              isActive: !isActive,
             };
           }
           return cliente;
@@ -207,7 +222,6 @@ const DashboardAdmin: React.FC = () => {
 
         setClientes(updatedClientes);
 
-        // Mostrar una confirmación al usuario
         swal.fire({
           position: "center",
           icon: "success",
@@ -225,7 +239,7 @@ const DashboardAdmin: React.FC = () => {
     }
   };
 
-  async function fetchPurchases(): Promise<Purchase[]> {
+  const fetchPurchases = async (): Promise<Purchase[]> => {
     try {
       const respuesta = await axios.get<Purchase[]>(
         "http://localhost:3001/purchases"
@@ -236,7 +250,7 @@ const DashboardAdmin: React.FC = () => {
       console.error("Error al obtener las compras:", error);
       throw error;
     }
-  }
+  };
 
   useEffect(() => {
     fetchPurchases()
@@ -248,7 +262,7 @@ const DashboardAdmin: React.FC = () => {
       });
   }, []);
 
-  async function handleSearchPurchase() {
+  const handleSearchPurchase = async () => {
     try {
       console.log("Search query:", searchQueryPurchases);
 
@@ -301,7 +315,30 @@ const DashboardAdmin: React.FC = () => {
         text: "Ocurrió un error al buscar las compras del cliente.",
       });
     }
-  }
+  };
+
+  const fetchProductos = async (): Promise<Product[]> => {
+    try {
+      const response = await axios.get<Product[]>(
+        "http://localhost:3001/products"
+      );
+      const productosData = response.data;
+      return productosData;
+    } catch (error) {
+      console.error("Error al obtener los productos:", error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    fetchProductos()
+      .then((productosData) => {
+        setProductos(productosData);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los productos:", error.message);
+      });
+  }, []);
 
   return (
     <div className="perrito-admin">
@@ -365,6 +402,16 @@ const DashboardAdmin: React.FC = () => {
               {errors.price?.type === "required" && (
                 <p className="text-danger">El campo precio es requerido</p>
               )}
+              <h5>Elegí una categoría</h5>
+              <select
+                style={{ height: "3em", borderRadius: "6px" }}
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                <option value="handle">Cabo</option>
+                <option value="blade">Hoja</option>
+                <option value="knife">Cuchillo</option>
+              </select>
               <div className="checkbox-container-admin"></div>
               <button
                 className="sigin-btn-admin"
@@ -470,7 +517,7 @@ const DashboardAdmin: React.FC = () => {
               </thead>
               <tbody>
                 {paginatedClientes.map((cliente, index) => (
-                  <tr key={cliente._id.toString()}>
+                  <tr key={index}>
                     <td>{startIndex + index + 1}</td>
                     <td>{cliente.firstName}</td>
                     <td>{cliente.lastName}</td>
@@ -575,11 +622,7 @@ const DashboardAdmin: React.FC = () => {
               </div>
 
               <div className="text-end">
-                <select
-                  style={{ width: "15em" }}
-                  // value={selectedState}
-                  // onChange={(e) => setSelectedState(e.target.value)}
-                >
+                <select style={{ width: "15em" }}>
                   <option value="">Seleccionar estado</option>
                   <option value="pending pay">Pendiente de pago</option>
                   <option value="paid">Pagado</option>
@@ -612,7 +655,7 @@ const DashboardAdmin: React.FC = () => {
               </thead>
               <tbody>
                 {compras.map((compra, index) => (
-                  <React.Fragment key={`${index++}`}>
+                  <React.Fragment key={`${index}`}>
                     <tr>
                       <td>{index + 1}</td>
                       <td>
@@ -632,20 +675,25 @@ const DashboardAdmin: React.FC = () => {
                         }
                       </td>
                       <td>
-                        {compra.products.map((producto, index) => (
-                          <p key={index++}>Producto ID: {producto.productId}</p>
-                        ))}
-                      </td>
-                      <td>
-                        {compra.products.map((producto) => (
-                          <p key={producto.productId}>
-                            Cantidad: {producto.quantity}
+                        {compra.products.map((producto, productoIndex) => (
+                          <p key={productoIndex}>
+                            {" "}
+                            {
+                              productos.find(
+                                (p) => p._id === producto.productId
+                              )?.name
+                            }
                           </p>
                         ))}
                       </td>
                       <td>
-                        {compra.products.map((producto) => (
-                          <p key={producto.productId}>{producto.price}</p>
+                        {compra.products.map((producto, index) => (
+                          <p key={index}>{producto.quantity}</p>
+                        ))}
+                      </td>
+                      <td>
+                        {compra.products.map((producto, index) => (
+                          <p key={index}>{producto.price}</p>
                         ))}
                       </td>
                       <td>{compra.totalPrice}</td>

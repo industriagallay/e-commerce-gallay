@@ -5,7 +5,6 @@ import ObjectId from "bson-objectid";
 import Swal from "sweetalert2";
 
 import "./ProductosDetail.css";
-// import { Product } from "../../types";
 
 interface ProductDetailProps {
   clientId: string;
@@ -25,6 +24,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
   const { id } = useParams<{ id: string }>();
   const [productData, setProductData] = useState<Product | null>(null);
   const [purchaseId, setPurchaseId] = useState<string | null>(null);
+  const [cartUpdate, setCartUpdate] = useState<number>(0);
 
   const navigate = useNavigate();
 
@@ -76,6 +76,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         timer: 1500,
       });
       navigate("/carritocompra");
+      setCartUpdate((prevValue) => prevValue + 1);
     } catch (error) {
       console.error("Error al agregar el producto al carrito:", error);
     }
@@ -97,7 +98,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
 
       fetchProductDetails(id);
     }
-  }, [id]);
+  }, [id, cartUpdate]);
 
   return (
     <>
