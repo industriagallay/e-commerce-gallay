@@ -265,6 +265,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
                   </button>
                 </div>
               </div>
+
             </div>
           </div>
         ))}
