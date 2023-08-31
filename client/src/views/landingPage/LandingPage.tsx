@@ -7,8 +7,9 @@ import "animate.css";
 import "./LandingPage.css";
 import axios from "axios";
 import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 interface Product {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,16 +20,87 @@ interface Product {
   backgroundImage: string;
   stock: number;
   price: number;
+  clientId: string;
+  categories:string;
 }
 
-const LandingPage: React.FC = () => {
+interface LandingPageProps {
+  clientId: string;
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({ clientId}) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [purchaseId, setPurchaseId] = useState<string | null>(null);
+  const [cartUpdate, setCartUpdate] = useState<number>(0);
+  const navigate = useNavigate();
+
+    const addToCaboHandler = async (product: Product) => {
+    try {
+      const { _id: productId, price } = product;
+      const quantity = 1;
+
+      if (!clientId) {
+        alert("Por Favor Registrese antes de realizar una compra");
+        navigate("/login");
+        return;
+      }
+
+      // Verifica si el cliente ya tiene un carrito (purchase)
+      if (!purchaseId) {
+        const createPurchaseResponse = await axios.post(
+          `http://localhost:3001/purchases/${clientId}`,
+
+          {
+            products: [
+              {
+                productId,
+                quantity,
+                price,
+              },
+            ],
+            totalPrice: price,
+          }
+        );
+        const createdPurchase = createPurchaseResponse.data;
+        setPurchaseId(createdPurchase._id);
+      } else {
+        await axios.post(
+          `http://localhost:3001/purchases/${clientId}/products`,
+          {
+            productId,
+            quantity,
+            price,
+          }
+        );
+      }
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "producto agregado correctamente!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/eligetuhoja");
+      setCartUpdate((prevValue) => prevValue + 1);
+    } catch (error) {
+      console.error("Error al agregar el producto al carrito:", error);
+    }
+  };
+
+
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const products = await getProducts();
-        setProducts(products);
+        const response = await axios.get<Product[]>(
+          "http://localhost:3001/products"
+        );
+        console.log({ a: response });
+        // Filtrar los productos por categoría "handle"
+        const handleProducts = response.data.filter((product) =>
+          product.categories.includes("knife")
+        );
+        setProducts(handleProducts);
       } catch (error) {
         console.log(error);
       }
@@ -36,18 +108,6 @@ const LandingPage: React.FC = () => {
 
     fetchProducts();
   }, []);
-
-  const getProducts = async (): Promise<Product[]> => {
-    try {
-      const response = await axios.get<Product[]>(
-        "http://localhost:3001/products"
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  };
 
   const settings = {
     dots: true,
@@ -176,3 +236,4 @@ const LandingPage: React.FC = () => {
 };
 
 export default LandingPage;
+
