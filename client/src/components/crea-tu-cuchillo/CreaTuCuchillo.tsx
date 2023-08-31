@@ -33,8 +33,8 @@ interface CreaTuCuchilloProps {
 
 const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId}) => {
   const { id } = useParams<{ id: string }>();
-  const [purchaseId, setPurchaseId] = useState<string | null>(null);
   const [cartUpdate, setCartUpdate] = useState<number>(0);
+  const [purchaseId, setPurchaseId] = useState<string | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const location = useLocation();
   const [username, setUsername] = useState<string | null>(null);
