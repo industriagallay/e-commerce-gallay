@@ -18,7 +18,7 @@ body {
 }
 /*color hover del logo*/
 a:hover {
-  color: #d7e745;
+  /* color: #d7e745; */
 }
 
 .navbar-toggler {
@@ -346,7 +346,7 @@ a:hover {
   bottom: -1px;
   left: -8px;
   width: 0;
-  background-color: #a2b11a;
+  /* background-color: #a2b11a; */
   transform: skew(-15deg);
   transition: all 0.2s ease;
 }

@@ -2,12 +2,21 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
+import axios from "axios";
 import "./NavBar2.css";
 import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar2 = () => {
+interface NavBar2Props {
+  clientId: string;
+}
+
+const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // Estado para rastrear si hay elementos en el carrito
+
   const navigate = useNavigate();
 
   const toggleNav = () => {
@@ -19,13 +28,20 @@ const NavBar2 = () => {
   };
 
   const handleLinkClick = () => {
-    closeNav(); // Cerrar el menú al hacer clic en un enlace
+    closeNav();
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    Cookies.remove("token"); // Elimina el token de las cookies
-    navigate("/");
+  const handleLogout = async () => {
+    try {
+      if (clientId) {
+        await axios.delete(`http://localhost:3001/delete/clientId${clientId}`);
+      }
+      setIsLoggedIn(false);
+      Cookies.remove("token");
+      navigate("/");
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
   };
 
   return (
@@ -102,6 +118,17 @@ const NavBar2 = () => {
                   >
                     Cerrar Sesión
                   </button>
+                </div>
+
+                <div className="container-iconcart-carrito">
+                  {/* Enlace al componente del carrito con el ícono */}
+                  <Link className="icon-icon-carrito-1221" to="/carritocompra">
+                    {/* Icono del carrito */}
+                    <FontAwesomeIcon
+                      icon={faShoppingCart}
+                      className="icon-carrito-navabar-fixed"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>

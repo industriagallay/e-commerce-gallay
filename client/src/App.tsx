@@ -20,6 +20,7 @@ import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProduc
 import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja"
+import Loader from "./components/loader/Loader";
 
 export interface ProductCardProps {
   product: Product;
@@ -38,11 +39,15 @@ export interface Product {
   backgroundImage: string;
   stock: number;
   price: number;
+  categories: string[];
 }
 
 const App = () => {
   const [clientId, setClientId] = useState<string>("");
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [purchasesId, setPurchasesId] = useState<string>("");
+  const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
+    undefined
+  );
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -89,29 +94,37 @@ const App = () => {
   return (
     <>
       {isLoggedIn && isAdmin && <NavBar3 />}
-      {isLoggedIn && !isAdmin && <NavBar2 />}
+      {isLoggedIn && !isAdmin && <NavBar2 clientId={clientId} />}
       {!isLoggedIn && <NavBar1 />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/creatucuchillo" element={<CreaTuCuchillo />} />
-        <Route path="eligetuhoja" element={<EligeTuHoja />} />
+        <Route path="/creatucuchillo" element={<CreaTuCuchillo  clientId={clientId}/>} />
+        <Route path="eligetuhoja" element={<EligeTuHoja clientId={clientId}/>} />
+        <Route path="/loader" element={<Loader />}/>
         <Route path="/help" element={<Help />} />
         <Route path="/admin" element={<DashboardAdmin />} />
         <Route
           path="/product/edit/:id"
-          element={<UpdateProductBtn product={selectedProduct ?? undefined} />}
+          element={
+            <UpdateProductBtn
+              product={selectedProduct ?? undefined}
+              isLoggedIn={isLoggedIn}
+              isAdmin={isAdmin}
+            />
+          }
         />
-
         <Route
           path="/product/id/:id"
           element={<ProductDetail clientId={clientId} />}
         />
         <Route
           path="/carritocompra"
-          element={<CarritoCompra clientId={clientId} />}
+          element={
+            <CarritoCompra clientId={clientId} purchasesId={purchasesId} />
+          }
         />
         <Route
           path="/compra-finalizada"
