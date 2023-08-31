@@ -34,8 +34,22 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
   const handleLogout = async () => {
     try {
       if (clientId) {
-        await axios.delete(`http://localhost:3001/delete/clientId${clientId}`);
+        // Verifica si el cliente tiene compras antes de eliminar
+        const response = await axios.get(
+          `http://localhost:3001/purchases/${clientId}`
+        );
+        const purchases = response.data;
+
+        if (purchases.length > 0) {
+          // Si el cliente tiene compras, elimina la primera compra
+          const purchaseIdToDelete = purchases[0]._id;
+          console.log({ c: purchases[0] });
+          await axios.delete(
+            `http://localhost:3001/purchases/delete/${purchaseIdToDelete}`
+          );
+        }
       }
+      // Cierra la sesión y redirige al inicio
       setIsLoggedIn(false);
       Cookies.remove("token");
       navigate("/");
@@ -43,7 +57,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
       console.error("Error al cerrar sesión:", error);
     }
   };
-
+  
   return (
     <div>
       <div className="navbar-container">

@@ -7,6 +7,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import ObjectId from "bson-objectid";
 import "./ProdctCard.css";
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
+// AOS.init();
+
 
 interface ProductCardProps {
   product: Product;
@@ -123,7 +127,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     //col-12 col-md-6 col-lg-4 col-xl-3 mb-4
-    <div className="container ">
+    <div className="container " >
+     
       <div
         className={`col-inicio-sesion ${
           product.price > 2500 && isHoverEnabled ? "hovered" : ""
@@ -134,7 +139,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
           handleCardClick(event);
         }}
         style={{ cursor: "pointer" }}
+        data-aos="fade-up"
+        data-aos-offset="100" 
+      
       >
+       
         <div className="card-inicio-productos h-100">
           <div className="img-container">
             {isAdmin && (

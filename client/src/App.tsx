@@ -21,6 +21,11 @@ import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja"
 import Loader from "./components/loader/Loader";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Importa los estilos CSS de AOS
+
+
+
 
 export interface ProductCardProps {
   product: Product;
@@ -43,6 +48,14 @@ export interface Product {
 }
 
 const App = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duración de las animaciones en milisegundos
+      once: true,     // Si quieres que las animaciones se reproduzcan solo una vez
+    });
+  }, []);
+
+
   const [clientId, setClientId] = useState<string>("");
   const [purchasesId, setPurchasesId] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
@@ -97,7 +110,7 @@ const App = () => {
       {isLoggedIn && !isAdmin && <NavBar2 clientId={clientId} />}
       {!isLoggedIn && <NavBar1 />}
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage  clientId={clientId}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
