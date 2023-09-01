@@ -269,7 +269,7 @@ const Home: React.FC = () => {
         <div className="home">
           <div className="home__primary col-lg-6 col-md-12"  >
             <h1 className="home__title">
-              Industria <br />
+              Industria 
               Gallay
             </h1>
             <div className="home__img"   >
