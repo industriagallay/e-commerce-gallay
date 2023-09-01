@@ -191,13 +191,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ clientId}) => {
             <div className="row">
               <div className="col-8">
                 {" "}
-                <h2 className="h2Productosdestacados-Landing">
+                {/* <h2 className="h2Productosdestacados-Landing">
                   <span className="producto-span-color-amarillo">
                     Productos{" "}
                   </span>{" "}
                   <span className="yellow-half">Destacados</span>{" "}
                   <FaArrowCircleRight className="icon-rounded" />
-                </h2>
+                </h2> */}
               </div>
             </div>
             <div className="col-12-md">

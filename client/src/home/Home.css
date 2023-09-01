@@ -256,6 +256,22 @@ p {
   color: transparent;
 } */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*********css Filtro lateral izquierdo*********/
 
 /* Estilos para el contenedor de categorías */
@@ -476,6 +492,19 @@ p {
   margin-left: 9px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /****** estilo para las cards de los productso*******/
 /* Estilos para las cards */
 .card-inicio-productos {
@@ -677,6 +706,22 @@ p {
   margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /******Precio Seleccionado*******/
 
 /* Agrega esta clase para resaltar el filtro seleccionado */
@@ -718,6 +763,14 @@ p {
   font-weight: bold; /* Texto en negrita */
   margin-bottom: 20px; /* Espacio inferior */
 }
+
+
+
+
+
+
+
+
 
 /*****Busqueda de precio por rango******/
 
@@ -788,6 +841,19 @@ p {
   background-color: #ccc;
   margin: 10px 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*******Eliminar flechas inc-dec input********/
