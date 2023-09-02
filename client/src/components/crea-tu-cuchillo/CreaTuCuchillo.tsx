@@ -135,7 +135,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
           <div className="col">
             <img
               src={fundicion}
-              className="img-fluid"
+              className="img-fluid full-width-image-121"
               alt="image-fundicion"
             ></img>
           </div>
