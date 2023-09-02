@@ -134,7 +134,7 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
           <div className="col">
             <img
               src={fundicion}
-              className="img-fluid"
+              className="img-fluid full-heigth-image"
               alt="image-fundicion"
             ></img>
           </div>
@@ -143,7 +143,7 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h1 className="h1elegitucabo"> Elegí Tu Hoja </h1>
+            <h1 className="h1elegituhoja"> Elegí Tu Hoja </h1>
           </div>
         </div>
         <div className="row">

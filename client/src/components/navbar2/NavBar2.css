@@ -137,6 +137,27 @@ a:hover {
     justify-content: center;
     margin-top: 10px;
   }
+  .icon-carrito-navabar-fixed {
+    border-radius: 50%;
+    border: 5px solid #fff;
+    background-color: rgba(255, 255, 255, 0.877);
+    color: #858585;
+    position: fixed;
+    margin-left: 30px;
+    font-size: 2.5rem;
+    z-index: 999;
+    cursor: pointer;
+    right: 5px;
+    margin-right: 10px;
+    top: 30px;
+  }
+  
+  .container-iconcart-carrito {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
 }
 
 .navbar-toggler-icon {
@@ -150,6 +171,7 @@ a:hover {
   background-size: 100%;
   background: #ffffffd0;
   border-radius: 20%;
+  margin-right: inherit;
 }
 /*barra de navegacion*/
 .navbar-links-container {
