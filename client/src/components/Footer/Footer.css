@@ -56,18 +56,6 @@ footer {
   padding: 20px;
 }
 
-/* .hero-imagen-desarrollador {
-  width: 170px;
-  height: 200px;
-  border-radius: 50%;
-  margin: 20px;
-} */
-
-/* .hero-principal h2 {
-  font-size: 1.5rem;
-  color: #615151;
-} */
-
 .seccion-oscura {
   color: white;
   background-color: #1b1b32;
@@ -86,19 +74,6 @@ footer {
 .seccion-texto {
   font-size: 1.2rem;
 }
-
-/* .btn-info {
-  font-size: 1.1rem;
-  margin: 20px;
-} */
-
-/* .texto-negro {
-  color: black;
-} */
-
-/* .texto-blanco {
-  color: white;
-} */
 
 .navbar-footer {
   justify-self: flex-start;

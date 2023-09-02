@@ -117,21 +117,18 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
     cssEase: "linear",
   };
 
-  
   let slidesToShow = 3;
 
-
   if (window.innerWidth <= 768 && window.innerWidth > 390) {
-    slidesToShow = 2; 
+    slidesToShow = 2;
   } else if (window.innerWidth <= 390) {
     slidesToShow = 1;
   }
 
-
   settings.slidesToShow = slidesToShow;
 
   return (
-     <div>
+    <div>
       <div className="container-12-lg image-container">
         <div className="row">
           <div className="col">
@@ -206,7 +203,7 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
                       <p className="product-description-cabo">
                         {product.description}
                       </p>
-                      {/* <p className="product-category-cabo">Categoría: {product.categories}</p> */}
+
                       <button
                         onClick={() => addToHojaHandler(product)}
                         className="elegir-button"

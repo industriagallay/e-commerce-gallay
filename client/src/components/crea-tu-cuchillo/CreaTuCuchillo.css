@@ -1,88 +1,3 @@
-/*texto animad-imagen*/
-
-
-/* @media (min-width: 768px) {
-  .animated-text h1 {
-    font-size: 1.5rem;
-  }
-  .animated-text .lead {
-    font-size: 1.5rem;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .animated-text h1 {
-    font-size: 1.2rem; 
-  }
-  .animated-text .lead {
-    font-size: 1.2rem; 
-  }
-}
-
-
-@media (max-width: 576px) {
-  .animated-text h1 {
-    font-size: 1rem; 
-  }
-  .animated-text .lead {
-    font-size: 1rem; 
-  }
-}
-
-
-@media (max-width: 390px) {
-  .animated-text h1 {
-    font-size: 0.8rem; 
-  }
-  .animated-text .lead {
-    font-size: 0.8rem; 
-  }
-}
-
-.animated-text h1 {
-  color: azure;
-  
-  font-weight: bold;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.animated-text .lead {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: azure;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 70px;
-}
-
-.image-container {
-  z-index: 2;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.animated-text {
-  animation: fade-in 3s ease-in-out;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-} */
-
 /*******paso 1 y 2 *******/
 
 .bi-1-circle-paso1 {
@@ -202,14 +117,12 @@
   height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
-  /* background-color: #f1f1f1; */
+
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
 }
 .card-cabo {
-  /* width: 20rem;  */
-  /* height: var(--bs-card-height);  */
   min-height: 28rem;
   overflow: hidden;
   border: 1px solid #ccc;
@@ -227,23 +140,23 @@
 }
 
 .imagecaboproduct {
-  width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
+  width: 100%; 
   height: 200px;
   border-radius: 8px;
-  object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
+  object-fit: contain;
 }
 
 .productname-cabo {
-  font-size: 18px; /* Establece el tamaño de fuente para el nombre del producto */
+  font-size: 18px;
 }
 
 .product-description-cabo {
-  font-size: 14px; /* Establece el tamaño de fuente para la descripción del producto */
+  font-size: 14px; 
 }
 
 .product-category-cabo {
-  font-size: 12px; /* Establece el tamaño de fuente para la categoría del producto */
-  color: #888; /* Establece el color del texto de la categoría */
+  font-size: 12px; 
+  color: #888;
 }
 .relative-boton {
   position: relative;
@@ -252,13 +165,13 @@
   border-radius: 5px;
   text-decoration: none;
   position: absolute;
-  bottom: 10px; /* Ajusta la distancia desde la parte inferior */
-  right: 10px; /* Ajusta la distancia desde la derecha */
-  background-color: #007bff; /* Cambia el color de fondo */
-  color: #fff; /* Cambia el color del texto */
-  padding: 5px 10px; /* Ajusta el espacio interno del botón */
-  border: none; /* Quita los bordes del botón */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  bottom: 10px; 
+  right: 10px; 
+  background-color: #007bff; 
+  color: #fff; 
+  padding: 5px 10px; 
+  border: none; 
+  cursor: pointer; 
 }
 /* Estilo adicional para el botón al pasar el cursor sobre él */
 .elegir-button:hover {

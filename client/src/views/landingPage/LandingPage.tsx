@@ -21,20 +21,20 @@ interface Product {
   stock: number;
   price: number;
   clientId: string;
-  categories:string;
+  categories: string;
 }
 
 interface LandingPageProps {
   clientId: string;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ clientId}) => {
+const LandingPage: React.FC<LandingPageProps> = ({ clientId }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [purchaseId, setPurchaseId] = useState<string | null>(null);
   const [cartUpdate, setCartUpdate] = useState<number>(0);
   const navigate = useNavigate();
 
-    const addToCaboHandler = async (product: Product) => {
+  const addToCaboHandler = async (product: Product) => {
     try {
       const { _id: productId, price } = product;
       const quantity = 1;
@@ -87,8 +87,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ clientId}) => {
     }
   };
 
-
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -96,7 +94,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ clientId}) => {
           "http://localhost:3001/products"
         );
         console.log({ a: response });
-        // Filtrar los productos por categoría "handle"
+
         const handleProducts = response.data.filter((product) =>
           product.categories.includes("knife")
         );
@@ -189,16 +187,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ clientId}) => {
         <div className="productosDestacados row">
           <div className="container-md">
             <div className="row">
-              <div className="col-8">
-                {" "}
-                {/* <h2 className="h2Productosdestacados-Landing">
-                  <span className="producto-span-color-amarillo">
-                    Productos{" "}
-                  </span>{" "}
-                  <span className="yellow-half">Destacados</span>{" "}
-                  <FaArrowCircleRight className="icon-rounded" />
-                </h2> */}
-              </div>
+              <div className="col-8"> </div>
             </div>
             <div className="col-12-md">
               <hr className="h2Productosdestacados-Landing mt-5" />
@@ -236,4 +225,3 @@ const LandingPage: React.FC<LandingPageProps> = ({ clientId}) => {
 };
 
 export default LandingPage;
-
