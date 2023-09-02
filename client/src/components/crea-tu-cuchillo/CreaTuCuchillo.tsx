@@ -118,16 +118,13 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
     cssEase: "linear",
   };
 
- 
   let slidesToShow = 3;
 
-  
   if (window.innerWidth <= 768 && window.innerWidth > 390) {
-    slidesToShow = 2; 
+    slidesToShow = 2;
   } else if (window.innerWidth <= 390) {
-    slidesToShow = 1; 
+    slidesToShow = 1;
   }
-
 
   settings.slidesToShow = slidesToShow;
 
@@ -207,7 +204,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
                       <p className="product-description-cabo">
                         {product.description}
                       </p>
-                      {/* <p className="product-category-cabo">Categoría: {product.categories}</p> */}
+
                       <button
                         onClick={() => addToCaboHandler(product)}
                         className="elegir-button"

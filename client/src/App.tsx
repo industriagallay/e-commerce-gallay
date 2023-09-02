@@ -22,7 +22,7 @@ import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja"
 import Loader from "./components/loader/Loader";
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // Importa los estilos CSS de AOS
+import 'aos/dist/aos.css';
 
 
 
@@ -50,8 +50,8 @@ export interface Product {
 const App = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Duración de las animaciones en milisegundos
-      once: true,     // Si quieres que las animaciones se reproduzcan solo una vez
+      duration: 1000, 
+      once: true,    
     });
   }, []);
 
