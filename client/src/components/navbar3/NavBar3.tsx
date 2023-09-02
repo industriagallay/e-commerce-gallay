@@ -18,11 +18,11 @@ const NavBar3 = () => {
   };
 
   const handleLinkClick = () => {
-    closeNav(); // Cerrar el menú al hacer clic en un enlace
+    closeNav();
   };
 
   const handleLogout = () => {
-    Cookies.remove("token"); // Elimina el token de las cookies
+    Cookies.remove("token");
     navigate("/");
   };
 

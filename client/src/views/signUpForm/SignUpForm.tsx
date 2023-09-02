@@ -60,8 +60,7 @@ const SignUpForm = () => {
               onSubmit={handleSubmit(crearCuenta)}
             >
               <div className="header">
-                Crea tu cuenta para que puedas acceder a todos los productos que
-                tenemos especialmente para tí
+                Registrarse
               </div>
               <div className="inputs">
                 <input
