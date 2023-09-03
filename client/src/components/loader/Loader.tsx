@@ -4,20 +4,20 @@ import "./Loader.css"
 import anime from 'animejs';
 
 
-const Loader = () => {
-  const navigate = useNavigate();
+const Loader: React.FC = () => {
+  // const navigate = useNavigate();
 
-  useEffect(() => {
+  // useEffect(() => {
   
-    const timeoutId = setTimeout(() => {
-      navigate("/compra-finalizada");
-    }, 5000);
+  //   const timeoutId = setTimeout(() => {
+  //     navigate("/compra-finalizada");
+  //   }, 5000);
 
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [navigate]);
+  //   return () => {
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, [navigate]);
 
 
 
@@ -26,7 +26,7 @@ useEffect(() => {
     // Función para verificar si el elemento textWrapper existe antes de acceder a él
     const initAnimation = () => {
       const textWrapper = document.querySelector('.ml16');
-      if (!textWrapper) return; // Verifica si el elemento existe
+      if (!textWrapper) return; 
 
       const textContent = textWrapper.textContent;
       if (textContent === null) return; // Verifica si textContent es nulo

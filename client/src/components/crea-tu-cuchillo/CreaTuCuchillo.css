@@ -1,49 +1,3 @@
-/*texto animad-imagen*/
-
-.animated-text h1 {
-  color: azure;
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.animated-text h2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: azure;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 70px;
-}
-
-.image-container {
-  z-index: 2;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.animated-text {
-  animation: fade-in 3s ease-in-out;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 /*******paso 1 y 2 *******/
 
 .bi-1-circle-paso1 {
@@ -74,9 +28,6 @@
 .bi-3-circle-paso3 {
   font-size: 2rem;
   color: rgb(63, 87, 224);
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: center;
 }
 
 .spanpaso3 {
@@ -109,8 +60,9 @@
   align-items: center;
 }
 .h1elegitucabo {
+  font-weight: 800;
   font-size: 4.5rem;
-  color: rgb(222, 209, 135);
+  color: rgb(209, 186, 52);
 }
 
 .containerSubtextoCaBO {
@@ -120,6 +72,7 @@
 }
 
 .h2subtextocreatucuchillo {
+  font-weight: 400;
   font-size: 2.5rem;
   color: rgb(184, 170, 93);
   margin-bottom: 50px;
@@ -161,14 +114,12 @@
   height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
-  /* background-color: #f1f1f1; */
+
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
 }
 .card-cabo {
-  /* width: 20rem;  */
-  /* height: var(--bs-card-height);  */
   min-height: 28rem;
   overflow: hidden;
   border: 1px solid #ccc;
@@ -185,39 +136,39 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-
-
 .imagecaboproduct {
-  width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
+  width: 100%;
   height: 200px;
   border-radius: 8px;
-  object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
+  object-fit: contain;
 }
 
 .productname-cabo {
-  font-size: 18px; /* Establece el tamaño de fuente para el nombre del producto */
+  font-size: 18px;
 }
 
 .product-description-cabo {
-  font-size: 14px; /* Establece el tamaño de fuente para la descripción del producto */
+  font-size: 14px;
 }
 
 .product-category-cabo {
-  font-size: 12px; /* Establece el tamaño de fuente para la categoría del producto */
-  color: #888; /* Establece el color del texto de la categoría */
+  font-size: 12px;
+  color: #888;
 }
-
+.relative-boton {
+  position: relative;
+}
 .elegir-button {
   border-radius: 5px;
   text-decoration: none;
-  position: absolute; /* Establece la posición absoluta para el botón */
-  bottom: 10px; /* Ajusta la distancia desde la parte inferior */
-  right: 10px; /* Ajusta la distancia desde la derecha */
-  background-color: #007bff; /* Cambia el color de fondo */
-  color: #fff; /* Cambia el color del texto */
-  padding: 5px 10px; /* Ajusta el espacio interno del botón */
-  border: none; /* Quita los bordes del botón */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
 }
 /* Estilo adicional para el botón al pasar el cursor sobre él */
 .elegir-button:hover {
@@ -242,12 +193,83 @@
 /*****slikes arrow left*****/
 .slick-prev:before,
 .slick-next:before {
-  margin-left: -10px;
   font-family: "slick";
-  font-size: 20px;
+  font-size: 25px;
   line-height: 1;
   opacity: 0.75;
   color: rgb(0, 0, 0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+/***imagen-inicio-componente***/
+.full-width-image {
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  height: 100%;
+}
+.background-color-componente-elegitucabo {
+  background-color: #e0e0e0;
+}
+@media (min-width: 1400px) {
+  .full-width-image-121 {
+    max-width: 100%; /* Establece un ancho máximo del 100% */
+    min-height: 80%;
+    height: 80%;
+  }
+}
+@media (min-width: 1440px) {
+  .full-width-image-121 {
+    max-width: 100%; /* Establece un ancho máximo del 100% */
+    height: 150%;
+    min-height: 120%;
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+  }
+}
+@media (max-width: 1200px) {
+  .full-width-image-121 {
+    max-width: 100%; /* Establece un ancho máximo del 100% */
+    min-height: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .full-width-image-121 {
+    max-width: 100%; /* Establece un ancho máximo del 100% */
+    height: 170%;
+    min-height: 130%;
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+  }
+}
+
+@media (max-width: 768px) {
+  .full-width-image-121 {
+    max-width: 100%; /* Establece un ancho máximo del 100% */
+    height: 170%;
+    min-height: 150%;
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+  }
+}
+
+@media (max-width: 390px) {
+  .full-width-image-121 {
+    max-width: 100%; /* Establece un ancho máximo del 100% */
+    height: 170%;
+    min-height: 250%;
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+  }
+
+  .h1elegitucabo {
+    margin-top: 3rem;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: rgb(209, 186, 52);
+  }
+  .h2subtextocreatucuchillo {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: rgb(184, 170, 93);
+    margin-bottom: 50px;
+  }
 }

@@ -8,19 +8,18 @@
   color: rgb(97 97 97);
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
   background-clip: border-box;
-  /* max-height: 80vh;  */
+
   max-height: 100%;
-  width: 100%; /* Ajusta el ancho */
-  margin: 0 auto; /* Centra horizontalmente */
-  padding: 2rem; /* Agrega espacio interno */
-  max-height: calc(100vh - 125px); /* Restar la altura del navbar y el footer */
-  margin-bottom: 10px; /* Espacio para el footer */
-  /* margin-top: 50px; */
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  max-height: calc(100vh - 125px);
+  margin-bottom: 10px;
 }
 
 .Loginheader {
   width: 100%;
-  max-width: 500px; /* Ancho fijo */
+  max-width: 500px;
   margin: 0 auto;
 
   position: relative;
@@ -111,8 +110,6 @@
 }
 
 .Loginsigin-btn {
-  /* text-transform: uppercase;
-    font-weight: 700; */
   font-size: 1.2rem;
   line-height: 2rem;
   text-align: center;
@@ -145,11 +142,9 @@
 }
 
 .Loginforget {
-  /* text-align: right; */
   font-weight: 400;
 }
 
-/*background-image-login*/
 .login {
   min-height: 100vh;
   width: 100%;
@@ -184,16 +179,13 @@
   .Loginform {
     min-width: 100%;
     max-height: 100%;
-
-    /*margin-bottom: 50px;  Espacio para el footer */
-    /* padding: 1rem; Reducir espacio interno */
   }
 
   .Loginheader {
-    font-size: 1.5rem; /* Reducir tamaño del encabezado */
+    font-size: 1.5rem;
   }
 
   .Logininputs {
-    gap: 1.5rem; /* Reducir espacio entre campos */
+    gap: 1.5rem;
   }
 }

@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap");
-
+body {
+  max-width: 100%;
+  overflow-x: hidden; /* Esto ocultará el scroll horizontal */
+}
 :root {
   --first-color: #010a43;
   --second-color: #ffc2c2;
@@ -70,8 +73,8 @@
   width: 100%;
   position: fixed;
   /* top: 0;
-  left: 0; */
-  /* background-color: var(--first-color);
+  left: 0;
+  background-color: var(--first-color);
   color: var(--white-color); */
   z-index: var(--z-fixed);
 }
@@ -230,7 +233,7 @@
   }
   .home__img img {
     position: absolute;
-    width: 30rem;
+    width: 25rem;
     top: 5%;
     left: 0;
     right: 0;
@@ -244,9 +247,15 @@
     background-color: var(--white-color);
   }
   .home__year {
-    font-size: 7rem;
+    font-size: 6rem;
     writing-mode: vertical-rl;
     margin-left: 5rem;
+  }
+  .home__title {
+    font-size: 5.5rem;
+    /* writing-mode: vertical-lr; */
+    transform: rotate(180deg);
+    color: var(--white-color);
   }
 }
 
@@ -258,4 +267,78 @@
   .nav {
     height: calc(3.5rem + 1.5rem);
   }
+
+  .home__title {
+    margin-bottom: 150px;
+    font-size: 8rem;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: var(--white-color);
+  }
+
+  .home__year {
+    font-size: 7rem;
+    writing-mode: vertical-rl;
+    margin-left: 5rem;
+  }
+  .home__img img {
+    position: absolute;
+    width: 30rem;
+    top: 5%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 390px) {
+  body {
+    margin: 0;
+  }
+ 
+  
+  
+  .home__img img {
+    position: absolute;
+    width: 16rem;
+   top: -16%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 20px;
+  }
+  .home__scroll {
+    color: var(--white-color);
+
+      position: absolute;
+      left: 0;
+      bottom: 4%;
+      font-size:6px;
+      transform: rotate(270deg);
+  
+  
+  }
+ 
+  .home__year {
+    font-size: 4rem;
+    /* writing-mode: vertical-l; */
+    margin-left: 1rem;
+   
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+  
+  
+  
+  .home__title {
+    font-size: 4rem;
+    margin-right: 1rem;
+    color: var(--white-color);
+  }
+  
 }

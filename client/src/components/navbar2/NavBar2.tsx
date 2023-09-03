@@ -15,7 +15,6 @@ interface NavBar2Props {
 const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  // Estado para rastrear si hay elementos en el carrito
 
   const navigate = useNavigate();
 
@@ -34,14 +33,12 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
   const handleLogout = async () => {
     try {
       if (clientId) {
-        // Verifica si el cliente tiene compras antes de eliminar
         const response = await axios.get(
           `http://localhost:3001/purchases/${clientId}`
         );
         const purchases = response.data;
 
         if (purchases.length > 0) {
-          // Si el cliente tiene compras, elimina la primera compra
           const purchaseIdToDelete = purchases[0]._id;
           console.log({ c: purchases[0] });
           await axios.delete(
@@ -57,7 +54,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
       console.error("Error al cerrar sesión:", error);
     }
   };
-  
+
   return (
     <div>
       <div className="navbar-container">
@@ -72,20 +69,20 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
               <GiRocketThruster className="navbar-icon" />
               Gallay
             </Link>
-
-            <button
-              className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
-              onClick={toggleNav}
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded={isNavOpen ? "true" : "false"}
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
+         
+              <button
+                className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
+                onClick={toggleNav}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded={isNavOpen ? "true" : "false"}
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+       
             <div
               className={`navbar-links-container ${isNavOpen ? "active" : ""}`}
             >

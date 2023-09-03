@@ -31,61 +31,10 @@
   --z-modal: 1000;
 }
 
-/* 
-
-::before,
-::after {
-  box-sizing: border-box;
-}  
-
-body {
-  margin: 3rem 0 0 0;
-  font-family: var(--body-font);
-  font-weight: initial;
-  overflow: hidden;
-}
-
-h1,
-h2 {
-  margin: 0;
-  font-weight: initial;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-p {
-  font-size: var(--normal-font-size);
-} */
-
 .bd-grid {
-  /* max-width: 1200px;
-  margin-left: 1rem;
-  margin-right: 1rem; */
   max-width: 1200px;
-  margin: 0 auto; /* Centramos el contenido */
+  margin: 0 auto;
 }
-
-/* .l-header {
-  width: 100%;
-  position: fixed;
- 
-  background-color: var(--first-color);
-  color: var(--white-color);
-  z-index: var(--z-fixed);
-} */
 
 .nav {
   height: 3rem;
@@ -246,19 +195,8 @@ p {
   }
 }
 
-/* Filstros*/
-/* .select-padding.col-md-8 {
-  flex: 0 0 auto;
-  width: 66.66666667%;
-  padding-right: 6rem;
-}
-.transparent-text {
-  color: transparent;
-} */
-
 /*********css Filtro lateral izquierdo*********/
 
-/* Estilos para el contenedor de categorías */
 .categories-container {
   display: flex;
   flex-direction: column;
@@ -267,9 +205,6 @@ p {
 
 .filter-container {
   padding-left: 1.9rem;
-  /* padding-top: 4rem; */
-  /* overflow-x: hidden; */
-  /* display: flex;  */
 }
 .vertical-filter {
   background-color: #f1f1f1;
@@ -299,14 +234,12 @@ p {
 }
 
 .input-filtrado-vertical:focus {
-  border-color: #007bff !important; /* Cambia el color del borde cuando el input está enfocado */
+  border-color: #007bff !important;
   outline: none;
   box-shadow: 0 0 10px rgba(57, 80, 211, 0.2);
 }
 
-/* Estilos para el icono de flecha */
 .arrow-down {
-  /* margin-left: auto; */
   margin-left: 5px;
   transform: rotate(180deg);
   transition: transform 0.3s ease-in-out;
@@ -323,7 +256,7 @@ p {
   cursor: pointer;
   align-items: center;
 }
-/* Estilos para el botón de categorías */
+
 .h3-filtro-vertical {
   font-size: 18px;
   margin: 0;
@@ -331,8 +264,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* justify-content: center; */
-  /* background-color: #dadd11; */
+
   padding: 10px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -342,7 +274,7 @@ p {
 .ul-filtrado-vertical li {
   margin-bottom: 5px;
 }
-/* Estilos para las subcategorías */
+
 .ul-filtrado-vertical {
   list-style: none;
   padding: 0;
@@ -362,7 +294,6 @@ p {
   background-color: #ffc2c2;
 }
 
-/* Estilos para la sección de categorías y subcategorías */
 .h3-filtro-vertical {
   background-color: #cec21a;
   padding: 10px;
@@ -380,10 +311,9 @@ p {
 }
 
 .li-filtro-vertical {
-  display: none; /* Ocultamos inicialmente las subcategorías */
+  display: none;
 }
 
-/* Estilos para el botón que despliega las subcategorías */
 .show-subcategories-btn {
   cursor: pointer;
   text-align: center;
@@ -399,14 +329,13 @@ p {
   background-color: #0056b3;
 }
 
-/*icono flechita categorias*/
 .svg-inline--fa {
   display: var(--fa-display, inline-block);
   height: 0.6em;
   overflow: visible;
   vertical-align: -0.125em;
 }
-/*quitamos el scroll horizontal*/
+
 .row-scroll {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -414,52 +343,42 @@ p {
   flex-wrap: wrap;
 
   margin-top: calc(-1 * var(--bs-gutter-y));
-  /* margin-right: calc(-.5 * var(--bs-gutter-x)); */
+
   margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
 
 /********boton filtrado general******/
-/* Estilos para el botón desplegable */
+
 .form-select-filtro {
-  /* Establecer un tamaño de fuente y un color de texto */
   font-size: 16px;
   color: #333;
 
-  /* Ajustar el ancho y alto del select */
   width: 80%;
   height: 40px;
 
-  /* Establecer los colores de fondo y borde */
   background-color: #f1f1f1;
   border: 1px solid #ccc;
   border-radius: 4px;
 
-  /* Personalizar el cursor al pasar sobre el select */
   cursor: pointer;
 
-  /* Ajustar el relleno (padding) interno para dar espacio al texto */
   padding: 8px;
 }
 
-/* Estilo para los options dentro del select */
 .form-select-filtro option {
-  /* Establecer un tamaño de fuente y color de texto */
   font-size: 16px;
   color: #333;
 }
 
-/* Cambiar el color del texto cuando el select está desactivado */
 .form-select-filtro:disabled {
   color: #999;
 }
 
-/* Cambiar el color de fondo cuando el select está desactivado */
 .form-select-filtro:disabled option {
   background-color: #f1f1f1;
   color: #999;
 }
 
-/* Establecer los colores de fondo y texto cuando el select está enfocado */
 .form-select-filtro:focus {
   outline: none;
   background-color: #fff;
@@ -515,8 +434,8 @@ p {
 }
 
 .card-inicio-productos {
-  width: 20rem; /* Ancho fijo de las cards */
-  height: var(--bs-card-height); /* Altura fija de las cards */
+  width: 20rem;
+  height: var(--bs-card-height);
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -525,7 +444,7 @@ p {
   box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
-/* Agregar la clase "discounted-hover" a la tarjeta cuando se hace hover en el precio descontado */
+
 .card-inicio-productos.hovered.discounted-hover {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -535,27 +454,19 @@ p {
 }
 
 .card-img-top-inicio {
-  width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
+  width: 100%;
 
   height: 200px;
   border-radius: 8px;
-  object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
+  object-fit: contain;
 }
 
-/* .card-title-inicio {
-  font-size: 24px;
-  margin-bottom: 15px;
-  margin-top: 1rem;
-} */
-
-/* Estilos para centrar las cards */
 .row-cols-1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-/* Estilos para responsividad de las cards */
 @media (min-width: 576px) {
   .row-cols-sm-2 {
     justify-content: center;
@@ -568,7 +479,6 @@ p {
   }
 }
 
-/* Estilos para centrar las cards y separarlas del filtro */
 .col-inicio-sesion {
   display: flex;
   align-items: center;
@@ -576,23 +486,16 @@ p {
   margin-bottom: 13px;
 }
 
-/* .col-inicio-sesion.hovered .card-text-inicio {
-  text-decoration: line-through;
-  color: red;
-} */
-
-/* Estilos para el botón "sumar al carrito" */
 .card-body-inicio-productos {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
 .additional-text {
-  color: #00a650; /* Puedes agregar otros estilos según tus preferencias */
+  color: #00a650;
   font-size: 1.1rem;
-  margin-left: 8px; /* Ajustar el espacio entre el precio y el texto adicional */
+  margin-left: 8px;
 }
 
 .price-off {
@@ -617,45 +520,43 @@ p {
   left: 0;
   right: 0;
   height: 1px;
-  background-color: #ccc; /* Color de la línea horizontal */
+  background-color: #ccc;
 }
 .card-stock-inicio {
-  font-size: 1rem; /* Tamaño del texto del stock */
-  margin-bottom: 16px; /* Ajustar el espacio entre el texto adicional y el stock */
+  font-size: 1rem;
+  margin-bottom: 16px;
 }
 
 .card-text-inicio {
-  display: flex; /* Mostrar el precio y el texto adicional en la misma línea */
-  align-items: center; /* Centrar verticalmente los elementos */
-  margin-bottom: 8px; /* Separación entre el precio y el stock */
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .price-container {
   position: relative;
-  font-size: 2rem; /* Tamaño de fuente para el precio, ajusta el valor según tus necesidades */
-  /* font-weight: bold;  */
-  margin-bottom: 8px; /* Espacio inferior para separar del texto adicional */
+  font-size: 2rem;
+
+  margin-bottom: 8px;
 }
 
 .discount-price {
-  font-size: 16px; /* Tamaño de fuente para el precio tachado, ajusta según tus necesidades */
-  text-decoration: line-through; /* Tachar el texto */
-  margin-left: auto; /* Alinea el precio tachado a la derecha del contenedor */
+  font-size: 16px;
+  text-decoration: line-through;
+  margin-left: auto;
 }
 
 .price {
-  display: flex; /* Para mostrar el precio y el texto adicional en la misma línea */
+  display: flex;
   align-items: center;
   flex-direction: row;
-  flex-wrap: wrap; /* Centrar verticalmente los elementos */
+  flex-wrap: wrap;
 }
 .card-description-inicio {
   font-size: 1rem;
   color: #999;
 }
 .add-to-cart-btn {
-  /* position: absolute; */
-
   font-size: 18px;
   bottom: 0.1rem;
   left: 50%;
@@ -674,15 +575,14 @@ p {
   background-color: #948e37ce;
 }
 .row-scroll {
-  margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
+  margin-top: 100px;
 }
 
 /******Precio Seleccionado*******/
 
-/* Agrega esta clase para resaltar el filtro seleccionado */
 .selected {
   font-weight: bold;
-  color: #007bff; /* Color azul, puedes ajustar esto según tus estilos */
+  color: #007bff;
   cursor: pointer;
 }
 
@@ -697,26 +597,22 @@ p {
   margin-top: 20px;
 }
 
-/* Agrega cursor pointer a todos los elementos de precio */
 .precioContainer p {
   cursor: pointer;
-
-  /* Agrega otros estilos si es necesario */
 }
 .Mas_deprecio_B {
   margin-bottom: 0;
 }
-/* Ajusta los estilos de selección */
+
 .precioContainer p.selected {
   font-weight: bold;
-  color: #007bff; /* Color azul, puedes ajustar esto según tus estilos */
-  
+  color: #007bff;
 }
 
 .precioFiltroA-B {
-  font-size: 1.5rem; /* Tamaño de fuente más grande */
-  font-weight: bold; /* Texto en negrita */
-  margin-bottom: 20px; /* Espacio inferior */
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 /*****Busqueda de precio por rango******/
@@ -725,20 +621,17 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* border-bottom: 1px solid #ccc;  */
-  /* padding-bottom: 10px;  */
 }
 
 .Min-number,
 .Max-number {
   width: 40%;
-  height: 35px; 
+  height: 35px;
   margin: 5px;
   padding: 5px;
   text-align: center;
   border-radius: 7px;
   border: groove;
-
 }
 
 .Min-number:focus,
@@ -768,14 +661,14 @@ p {
 }
 
 .Arrow-iconSelect {
-  font-size: 1.8rem; /* Tamaño más grande */
+  font-size: 1.8rem;
   color: #007bff;
   cursor: pointer;
   margin: 10px 0;
 }
 
 .Arrow-iconSelect:hover {
-  color: #d5d818; /* Color azul más claro en hover */
+  color: #d5d818;
 }
 
 .Arrow-iconSelect {
@@ -789,16 +682,14 @@ p {
   margin: 10px 0;
 }
 
-
 /*******Eliminar flechas inc-dec input********/
-/* Agrega este estilo a tu archivo de estilos CSS */
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Opcional: Cambia el estilo del cursor cuando pasas el mouse por encima */
 input[type="number"] {
   cursor: text;
 }
@@ -827,5 +718,5 @@ input[type="number"] {
 .carritoDisable {
   display: flex;
   margin-top: 1rem;
-  font-size:2rem;
+  font-size: 2rem;
 }

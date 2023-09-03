@@ -37,8 +37,8 @@
 }
 
 .card-landing-productos {
-  max-width: 20rem; /* Ancho fijo de las cards */
-  min-height: 36rem; /* Altura fija de las cards */
+  max-width: 20rem;
+  min-height: 40rem; 
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -58,10 +58,10 @@
 }
 
 .card-img-top-landing {
-  width: 100%; /* Ajusta el ancho de la imagen al 100% de la card */
-  max-height: 200px;
+  width: 100%; 
+  min-height: 287px;
   border-radius: 8px;
-  object-fit: contain; /* Ajusta la imagen al tamaño de la card, recortando el contenido si es necesario */
+  object-fit: contain;
 }
 
 /* Estilos para centrar las cards */
@@ -118,23 +118,19 @@
   margin-bottom: 13px;
 }
 
-/* .col-inicio-sesion.hovered .card-text-inicio {
-        text-decoration: line-through;
-        color: red;
-      } */
 
 /* Estilos para el botón "sumar al carrito" */
 .card-body-landing-productos {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+
 }
 
 .additional-text-landing {
-  color: #00a650; /* Puedes agregar otros estilos según tus preferencias */
+  color: #00a650; 
   font-size: 1.1rem;
-  margin-left: 8px; /* Ajustar el espacio entre el precio y el texto adicional */
+  margin-left: 8px; 
 }
 
 .price-off-landing {
@@ -162,36 +158,36 @@
   background-color: #ccc;
 }
 .card-stock-landing {
-  font-size: 1rem; /* Tamaño del texto del stock */
-  margin-bottom: 16px; /* Ajustar el espacio entre el texto adicional y el stock */
+  font-size: 1rem;
+  margin-bottom: 16px; 
 }
 
 .card-text-landing {
-  display: flex; /* Mostrar el precio y el texto adicional en la misma línea */
-  align-items: center; /* Centrar verticalmente los elementos */
-  margin-bottom: 8px; /* Separación entre el precio y el stock */
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 8px; 
 }
 
 .price-container-landing {
   position: relative;
-  font-size: 2rem; /* Tamaño de fuente para el precio, ajusta el valor según tus necesidades */
-  /* font-weight: bold;  */
-  margin-bottom: 8px; /* Espacio inferior para separar del texto adicional */
+  font-size: 2rem; 
+
+  margin-bottom: 8px; 
 }
 
 .discount-price-landing {
-  font-size: 16px; /* Tamaño de fuente para el precio tachado, ajusta según tus necesidades */
-  text-decoration: line-through; /* Tachar el texto */
-  margin-left: auto; /* Alinea el precio tachado a la derecha del contenedor */
+  font-size: 16px; 
+  text-decoration: line-through; 
+  margin-left: auto; 
 }
 
 .price-landing {
-  display: flex; /* Para mostrar el precio y el texto adicional en la misma línea */
+  display: flex; 
   align-items: center;
   flex-direction: row;
-  flex-wrap: wrap; /* Centrar verticalmente los elementos */
+  flex-wrap: wrap;
 }
 
 .row-scroll {
-  margin-top: 100px; /* Ajusta este valor según el espaciado deseado */
+  margin-top: 100px; 
 }
