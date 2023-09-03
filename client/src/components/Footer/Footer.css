@@ -1,11 +1,13 @@
-/*Footer*/
-/* footer {
-  min-height: 500px;
-} */
 footer {
-  margin-top: 50px;
-  padding-top: 50px;
-  background-color: #1c1c1d;
+  margin-top: 30px;
+  height: calc(
+    100% - 30px
+  ); /* Mantén la altura total deseada restando el margen superior */
+  min-height: 400px;
+  width: 100%;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
   color: #fff;
   text-align: center;
 }
@@ -17,8 +19,8 @@ footer {
 
 .footer-texto {
   font-size: 1.5rem;
-  padding: 20px;
-  margin-bottom: 30px;
+  padding: 10px;
+  margin-bottom: 20px;
   font-family: "Quicksand", sans-serif;
 }
 
@@ -58,11 +60,11 @@ footer {
 
 .seccion-oscura {
   color: white;
-  background-color: #1b1b32;
+  background-color: #1b1b22;
 }
 
 .seccion-clara {
-  color: black;
+  color: rgb(0, 0, 0);
   background-color: white;
 }
 

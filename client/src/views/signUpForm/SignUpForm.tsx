@@ -13,7 +13,7 @@ type FormValues = {
   password: string;
 };
 
-const SignUpForm = () => {
+const SignUpForm: React.FC = () => {
   const navigate = useNavigate();
   const {
     register,
