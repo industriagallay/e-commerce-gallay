@@ -26,12 +26,14 @@ const Help: React.FC = () => {
 
   return (
     <div>
-      <h1 className="preguntasFrecuentes animate__animated animate__fadeInTopLeft">
-        Preguntas Frecuentes
-        <p className="parradopreguntasFrecuentes">
-          Industria Gallay está a su Servicio ¿En qué podemos Ayudarte?
-        </p>
-      </h1>
+      <div className="background-help-color-grid">
+        <h1 className="preguntasFrecuentes animate__animated animate__fadeInTopLeft">
+          Preguntas Frecuentes
+          <p className="parradopreguntasFrecuentes">
+            Industria Gallay está a su Servicio ¿En qué podemos Ayudarte?
+          </p>
+        </h1>
+      </div>
 
       <section className="container-md section-preguntas">
         <button

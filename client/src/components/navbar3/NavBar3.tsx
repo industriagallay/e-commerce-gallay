@@ -5,7 +5,7 @@ import { IconContext } from "react-icons/lib";
 import "./navbar3.css";
 import Cookies from "js-cookie";
 
-const NavBar3 = () => {
+const NavBar3: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navigate = useNavigate();
 

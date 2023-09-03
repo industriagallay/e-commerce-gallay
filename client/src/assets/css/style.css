@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap");
-
+body {
+  max-width: 100%;
+  overflow-x: hidden; /* Esto ocultará el scroll horizontal */
+}
 :root {
   --first-color: #010a43;
   --second-color: #ffc2c2;

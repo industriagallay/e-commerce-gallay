@@ -272,7 +272,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
       </div>
       <div className="container-md">
         <div className="row">
-          <div className="col-4 resumen-card-carritocompraresumen">
+          <div className="col-12 resumen-card-carritocompraresumen">
             <h4 className="resumen-titulo-carritocompra">Resumen de Compra</h4>
             <div className="total-a-pagar-container">
               <p className="total-a-pagar-text">Total a Pagar:</p>
