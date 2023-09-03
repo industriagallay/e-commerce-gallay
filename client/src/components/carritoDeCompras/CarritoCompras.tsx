@@ -32,9 +32,7 @@ interface ICarritoItemDataProps {
   purchasesId: string;
 }
 
-const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
-  clientId,
-}) => {
+const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
   const [productData, setProductData] = useState<IProductData | null>(null);
   const navigate = useNavigate();
@@ -201,87 +199,103 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
   }
 
   return (
-    <div className="container">
-      <h2 className="h2carritodecompras">Carrito de Compras</h2>
-      <div className="row">
-        {cartItems.map((item) => (
-          <div className="col-md-4" key={item._id}>
-            <div className="card-carritocompraupdate">
-              <img
-                src={productDataMap[item.productId]?.backgroundImage}
-                className="card-img-top product-imagecarritocompraupdate"
-                alt={productDataMap[item.productId]?.name}
-              />
-              <div className="card-bodycarritocompraupdate">
-                <h5 className="card-titlecarritocompraupdate">
-                  {productData.name}
-                </h5>
-              </div>
+    <div>
+      <div className="container-fondo-blackCCC">
+        <div className="parteObscura-carritoCCC">
+          <h2 className="h2carritodecompras">Carrito de Compras</h2>
+        </div>
+      </div>
 
-              <div className="card-bodycarritocompraupdate">
-                <p className="card-textcarritocompraupdate">
-                  Precio: ${item.price}
-                </p>
-                <p className="card-textcarritocompraupdate">
-                  Cantidad: {item.quantity}
-                </p>
+      <div className="container">
+        <div className="row">
+          {cartItems.map((item) => (
+            <div className="col-12 col-md-6 col-lg-4" key={item._id}>
+              <div className="card-carritocompraupdate">
+                <img
+                  src={productDataMap[item.productId]?.backgroundImage}
+                  className="card-img-top product-imagecarritocompraupdate"
+                  alt={productDataMap[item.productId]?.name}
+                />
+                <div className="card-bodycarritocompraupdate">
+                  <h5 className="card-titlecarritocompraupdate">
+                    {productData.name}
+                  </h5>
+                </div>
 
-                <div className="input-group input-group-sm">
-                  <div className="input-group-prepend">
-                    <button
-                      className="btn btn-outline-secondarymenos"
-                      type="button"
-                      onClick={() => decrementQuantity(item.productId)}
-                    >
-                      -
-                    </button>
+                <div className="card-bodycarritocompraupdate">
+                  <p className="card-textcarritocompraupdate">
+                    Precio: ${item.price}
+                  </p>
+                  <p className="card-textcarritocompraupdate">
+                    Cantidad: {item.quantity}
+                  </p>
+
+                  <div className="input-group input-group-sm">
+                    <div className="input-group-prepend">
+                      <button
+                        className="btn btn-outline-secondarymenos"
+                        type="button"
+                        onClick={() => decrementQuantity(item.productId)}
+                      >
+                        -
+                      </button>
+                    </div>
+                    <input
+                      type="number"
+                      className="form-control form-control-lg text-center"
+                      value={item.quantity}
+                      onChange={(e) => {
+                        const newQuantity = parseInt(e.target.value, 10);
+                        updateQuantity(item._id, newQuantity);
+                      }}
+                    />
+                    <div className="input-group-append">
+                      <button
+                        className="btn btn-outline-secondarymas"
+                        type="button"
+                        onClick={() => incrementQuantity(item.productId)}
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                  <input
-                    type="number"
-                    className="form-control form-control-lg text-center"
-                    value={item.quantity}
-                    onChange={(e) => {
-                      const newQuantity = parseInt(e.target.value, 10);
-                      updateQuantity(item._id, newQuantity);
-                    }}
-                  />
-                  <div className="input-group-append">
+                  <div className="input-group-appendcarritocompraupdate">
                     <button
-                      className="btn btn-outline-secondarymas"
+                      className="btn btn-outline-secondaryeliminar"
                       type="button"
-                      onClick={() => incrementQuantity(item.productId)}
+                      onClick={() => removeFromCartHandler(item.productId)}
                     >
-                      +
+                      eliminar
                     </button>
                   </div>
                 </div>
-                
               </div>
-
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="container-md">
-        <div className="row">
-          <div className="col-12 resumen-card-carritocompraresumen">
-            <h4 className="resumen-titulo-carritocompra">Resumen de Compra</h4>
-            <div className="total-a-pagar-container">
-              <p className="total-a-pagar-text">Total a Pagar:</p>
-              <p className="total-a-pagar-amount">
-                ${calculateTotal(cartItems)}
-              </p>
-            </div>
-            <button
-              className="botoncheckoutcompraca"
-              onClick={() => checkout(clientId)}
-            >
-              Realizar Pago
-            </button>
-            <div className="checkout">
-              <Link className="seguirComprando" to={"/home"}>
-                Seguir Comprando
-              </Link>
+          ))}
+        </div>
+        <div className="container-md">
+          <div className="row">
+            <div className="col-6 resumen-card-carritocompraresumen">
+              <h4 className="resumen-titulo-carritocompra">
+                Resumen de Compra
+              </h4>
+              <div className="total-a-pagar-container">
+                <p className="total-a-pagar-text">Total a Pagar:</p>
+                <p className="total-a-pagar-amount">
+                  ${calculateTotal(cartItems)}
+                </p>
+              </div>
+              <button
+                className="botoncheckoutcompraca"
+                onClick={() => checkout(clientId)}
+              >
+                Realizar Pago
+              </button>
+              <div className="checkout">
+                <Link className="seguirComprando" to={"/home"}>
+                  Seguir Comprando
+                </Link>
+              </div>
             </div>
           </div>
         </div>
