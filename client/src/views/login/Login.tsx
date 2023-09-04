@@ -13,7 +13,7 @@ type FormValues = {
   password: string;
 };
 
-const Login = () => {
+const Login: React.FC = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -28,10 +28,10 @@ const Login = () => {
         formData
       );
 
-      // Asegúrate de que response.data contiene el token y no tod el objeto de respuesta
+      
       const token = response.data.token;
 
-      Cookies.set("token", token); // Almacena el token en la cookie
+      Cookies.set("token", token);
 
       if (
         response.data.hasOwnProperty("isAdmin") &&

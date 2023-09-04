@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap, Expo } from "gsap";
 import mano1 from "../assets/img/mano1.jpeg";
@@ -6,6 +6,8 @@ import axios from "axios";
 import ProductCard from "../components/cardsProductos/ProductCard";
 import Swal from "sweetalert2";
 import ObjectId from "bson-objectid";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./Home.css";
 
 interface Product {
@@ -18,7 +20,12 @@ interface Product {
 }
 
 const Home: React.FC = () => {
-  const navigate = useNavigate();
+  useEffect(() => {
+    AOS.init({
+      mirror: true,
+    });
+  }, []);
+
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [isHoverEnabled, setIsHoverEnabled] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -29,6 +36,8 @@ const Home: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>("");
   const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+
+  const navigate = useNavigate();
 
   const handleMinPriceChange = (value: string) => {
     setMinPrice(Number(value));
@@ -52,9 +61,6 @@ const Home: React.FC = () => {
 
     setSelectedFilter(filterValue);
 
-    // Resetear el filtro de precio al cambiar el filtro general
-    // setSelectedPriceFilter("");
-
     if (filterValue === "1") {
       showAllProducts();
     } else if (filterValue === "3") {
@@ -66,7 +72,6 @@ const Home: React.FC = () => {
     }
   };
 
-  //filtro por precio seleccionado
   const handlePriceFilterChange = (filter: string) => {
     setSelectedPriceFilter(filter);
 
@@ -107,7 +112,7 @@ const Home: React.FC = () => {
           "http://localhost:3001/products"
         );
         console.log({ a: response });
-        //logica filtrado por categoria
+
         setProducts(response.data);
         setFilteredProducts(response.data);
       } catch (error) {
@@ -119,14 +124,12 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Solo muestra un total de 8 productos por defecto
     const defaultProducts = products.slice(0, 9);
     setFilteredProducts(defaultProducts);
   }, [products]);
 
-  //mostrar todos los productos
   const showAllProducts = () => {
-    const allProducts = products.slice(0, 9); // Obtener los primeros 8 productos
+    const allProducts = products.slice(0, 9);
     setFilteredProducts(allProducts);
   };
 
@@ -218,7 +221,7 @@ const Home: React.FC = () => {
 
         if (response.status === 200) {
           Swal.fire("¡Producto borrado correctamente!", "", "success");
-          // Actualiza la lista de productos después de eliminar
+
           setProducts((prevProducts) =>
             prevProducts.filter((p) => p._id !== product._id)
           );
@@ -231,7 +234,6 @@ const Home: React.FC = () => {
 
       setIsHoverEnabled(true);
     } catch (error) {
-      // Error al eliminar el producto
       Swal.fire({
         icon: "error",
         title: "Ups...",
@@ -244,7 +246,9 @@ const Home: React.FC = () => {
     setSelectedProduct(product);
     navigate(`/product/edit/${product._id}`);
   };
-
+  useEffect(() => {
+    AOS.refreshHard(); // O AOS.refresh() si solo necesitas actualizar las animaciones existentes
+  }, [filteredProducts]);
   return (
     <div>
       <header className="l-header"></header>
@@ -252,11 +256,8 @@ const Home: React.FC = () => {
       <main className="main-bg">
         <div className="home">
           <div className="home__primary col-lg-6 col-md-12">
-            <h1 className="home__title">
-              Industria <br />
-              Gallay
-            </h1>
-            <div className="home__img ">
+            <h1 className="home__title">Industria Gallay</h1>
+            <div className="home__img">
               <img src={mano1} alt="image-home " />
             </div>
           </div>

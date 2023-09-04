@@ -5,6 +5,8 @@ import { IconContext } from "react-icons/lib";
 import axios from "axios";
 import "./NavBar2.css";
 import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 interface NavBar2Props {
   clientId: string;
@@ -13,6 +15,7 @@ interface NavBar2Props {
 const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
   const navigate = useNavigate();
 
   const toggleNav = () => {
@@ -30,14 +33,12 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
   const handleLogout = async () => {
     try {
       if (clientId) {
-        // Verifica si el cliente tiene compras antes de eliminar
         const response = await axios.get(
           `http://localhost:3001/purchases/${clientId}`
         );
         const purchases = response.data;
 
         if (purchases.length > 0) {
-          // Si el cliente tiene compras, elimina la primera compra
           const purchaseIdToDelete = purchases[0]._id;
           console.log({ c: purchases[0] });
           await axios.delete(
@@ -68,20 +69,20 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
               <GiRocketThruster className="navbar-icon" />
               Gallay
             </Link>
-
-            <button
-              className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
-              onClick={toggleNav}
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded={isNavOpen ? "true" : "false"}
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
+         
+              <button
+                className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
+                onClick={toggleNav}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded={isNavOpen ? "true" : "false"}
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+       
             <div
               className={`navbar-links-container ${isNavOpen ? "active" : ""}`}
             >
@@ -128,6 +129,17 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
                   >
                     Cerrar Sesión
                   </button>
+                </div>
+
+                <div className="container-iconcart-carrito">
+                  {/* Enlace al componente del carrito con el ícono */}
+                  <Link className="icon-icon-carrito-1221" to="/carritocompra">
+                    {/* Icono del carrito */}
+                    <FontAwesomeIcon
+                      icon={faShoppingCart}
+                      className="icon-carrito-navabar-fixed"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>

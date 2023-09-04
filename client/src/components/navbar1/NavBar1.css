@@ -18,23 +18,22 @@ body {
 }
 /*color hover del logo*/
 a:hover {
-  color: #d7e745;
+  /* color: #d7e745; */
 }
 
 .navbar-toggler {
   border: none;
   background-color: transparent;
-  margin-right: 20px; /* Espacio entre el botón y el borde derecho */
-  transition: transform 0.3s ease-in-out; /* Efecto de transición */
+  margin-right: 20px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .navbar-toggler.collapsed {
-  transform: rotate(0deg); /* Rotación del botón en estado colapsado */
+  transform: rotate(0deg);
 }
 
 @media (max-width: 992px) {
   .navbar-links a {
-    /* Agregamos espaciado vertical entre los enlaces */
     padding: 10px 0;
     margin: 0px 0px 0px 0px;
   }
@@ -59,7 +58,6 @@ a:hover {
     gap: 200px;
   }
   .btn-iniciar-sesion-landing {
-    /* Alinea el botón al centro y agrega margen superior */
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -68,20 +66,19 @@ a:hover {
 
 @media (max-width: 768px) {
   .navbar-links a {
-    /* Agregamos espaciado vertical entre los enlaces */
     padding: 10px 0;
   }
-  /* Estilos para ocultar los enlaces y mostrar solo el botón */
+
   .navbar-links-container {
     display: none;
     max-height: 0;
     top: 80px;
   }
-  /* Asegura que el botón aparezca debajo de la barra de navegación */
+
   .navbar-toggler {
     margin-top: 10px;
   }
-  /* Estilos para mostrar el botón */
+
   .collapsed .navbar-toggler-icon {
     background: #d3d3d3d0;
   }
@@ -93,7 +90,6 @@ a:hover {
     gap: 200px;
   }
   .btn-iniciar-sesion-landing {
-    /* Alinea el botón al centro y agrega margen superior */
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -101,20 +97,18 @@ a:hover {
 }
 @media (max-width: 576px) {
   .navbar-links a {
-    /* Agregamos espaciado vertical entre los enlaces */
     padding: 10px 0;
   }
-  /* Estilos para ocultar los enlaces y mostrar solo el botón */
+
   .navbar-links-container {
     display: none;
     max-height: 0;
     top: 80px;
   }
-  /* Asegura que el botón aparezca debajo de la barra de navegación */
   .navbar-toggler {
     margin-top: 10px;
   }
-  /* Estilos para mostrar el botón */
+
   .collapsed .navbar-toggler-icon {
     background: #a8a8a8d0;
   }
@@ -150,14 +144,14 @@ a:hover {
   position: absolute;
   right: 0;
   transition: max-height 0.3s ease-in-out;
-  overflow: hidden; /* Oculta el contenido cuando está colapsado */
+  overflow: hidden;
   margin-left: auto;
   margin-right: 4rem;
 }
 
 .navbar-links-container.active {
-  display: flex; /* Muestra los enlaces cuando la clase 'active' está presente */
-  flex-direction: column; /* Alinea los enlaces verticalmente */
+  display: flex;
+  flex-direction: column;
   max-height: 100vh;
   position: absolute;
   top: 80px;
@@ -346,7 +340,7 @@ a:hover {
   bottom: -1px;
   left: -8px;
   width: 0;
-  background-color: #a2b11a;
+  /* background-color: #a2b11a; */
   transform: skew(-15deg);
   transition: all 0.2s ease;
 }
