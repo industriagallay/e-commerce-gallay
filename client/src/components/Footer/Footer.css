@@ -1,8 +1,8 @@
 footer {
-  margin-top: 30px;
+  /* margin-top: 30px;
   height: calc(
     100% - 30px
-  ); /* Mantén la altura total deseada restando el margen superior */
+  );  */
   min-height: 400px;
   width: 100%;
   color: #fff;

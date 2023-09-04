@@ -40,7 +40,13 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
       const quantity = 1;
 
       if (!clientId) {
-        alert("Por Favor Registrese antes de realizar una compra");
+        Swal.fire({
+          position: "center",
+          icon: "info",
+          title: "Registrate para acceder a nuestros Productos",
+          showConfirmButton: false,
+          timer: 2000,
+        });
         navigate("/login");
         return;
       }
