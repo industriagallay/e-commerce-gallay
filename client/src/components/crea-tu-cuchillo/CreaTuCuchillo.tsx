@@ -2,6 +2,7 @@ import React, { Key, useEffect, useState } from "react";
 import { useLocation, Link, useParams, useNavigate } from "react-router-dom";
 import fundicion from "../../assets/img/fundiciónPNG.png";
 import Slider from "react-slick";
+
 import ObjectId from "bson-objectid";
 import "./CreaTuCuchillo.css";
 import "animate.css";
@@ -118,7 +119,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
@@ -138,12 +139,12 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
     <div>
       <div className="container-12-lg image-container">
         <div className="row">
-          <div className="col">
+          <div className="col" >
             <img
               src={fundicion}
               className="img-fluid full-width-image-121"
               alt="image-fundicion"
-            ></img>
+            />
           </div>
         </div>
       </div>
