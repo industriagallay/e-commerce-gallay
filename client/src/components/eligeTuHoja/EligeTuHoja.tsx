@@ -186,15 +186,15 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
         </div>
         <div className="row">
           <div className="col-12">
-            <div className="containerslidercaboss">
+            <div className="containersliderhojasss">
               <Slider {...settings}>
                 {products.map((product) => (
                   <div
                     key={product._id}
-                    className="card-cabo col-lg-4 col-md-6 col-sm-12"
+                    className="card-hojas col-lg-4 col-md-6 col-sm-12"
                   >
                     <img
-                      className="imagecaboproduct"
+                      className="imagehojasproduct"
                       src={product.backgroundImage}
                       alt={product.name}
                     />
