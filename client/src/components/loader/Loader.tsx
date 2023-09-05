@@ -5,19 +5,19 @@ import anime from 'animejs';
 
 
 const Loader: React.FC = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
+  useEffect(() => {
   
-  //   const timeoutId = setTimeout(() => {
-  //     navigate("/compra-finalizada");
-  //   }, 5000);
+    const timeoutId = setTimeout(() => {
+      navigate("/compra-finalizada");
+    }, 5000);
 
 
-  //   return () => {
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, [navigate]);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [navigate]);
 
 
 
