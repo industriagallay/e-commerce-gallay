@@ -11,7 +11,6 @@ import "./ProdctCard.css";
 // import 'aos/dist/aos.css';
 // AOS.init();
 
-
 interface ProductCardProps {
   product: Product;
   hovered: boolean;
@@ -127,12 +126,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     //col-12 col-md-6 col-lg-4 col-xl-3 mb-4
-    <div className="container " >
-     
+    <div className="container ">
       <div
-        className={`col-inicio-sesion ${
-          product.price > 2500 && isHoverEnabled ? "hovered" : ""
-        }`}
+        className="col-inicio-sesion"
         onMouseEnter={isHoverEnabled ? onMouseEnter : undefined}
         onMouseLeave={onMouseLeave}
         onClick={(event) => {
@@ -140,10 +136,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
         }}
         style={{ cursor: "pointer" }}
         data-aos="fade-up"
-        data-aos-offset="100" 
-      
+        data-aos-offset="100"
       >
-       
         <div className="card-inicio-productos h-100">
           <div className="img-container">
             {isAdmin && (
@@ -180,27 +174,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
           <div className="card-body-inicio-productos">
             <div className="price-container">
-              {product.price > 2500 && hovered && (
-                <p className="card-text-inicio discount-price">
-                  $ {(product.price * 0.9).toFixed(2)}
-                </p>
-              )}
-
+              <h5 className="card-title-inicio-product">{product.name}</h5>
               <p className="card-text-inicio price">
                 <span>$ {product.price}</span>
-                {product.price > 2500 && (
-                  <span className="price-off">14% OFF</span>
-                )}
-                {product.price > 50 && (
-                  <span className="additional-text">
-                    Mismo precio en 3 cuotas de 311 pesos con 67 centavos
-                    $31.1,67 <br />
-                    <span className="free-shipping">Envio Gratis ⚡ FULL</span>
-                  </span>
-                )}
               </p>
             </div>
-            <h5 className="card-title-inicio">{product.name}</h5>
             <p className="card-stock-inicio">stock: {product.stock}</p>
             <div className="botonCarrito"> </div>
           </div>

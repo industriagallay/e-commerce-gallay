@@ -8,7 +8,7 @@ import "./LandingPage.css";
 import axios from "axios";
 import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
 import { Link, useNavigate } from "react-router-dom";
-import { FaArrowCircleRight } from "react-icons/fa";
+// import { FaArrowCircleRight } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 interface Product {
