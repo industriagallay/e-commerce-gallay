@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
 import Swal from "sweetalert2";
-
 import "./ProductosDetail.css";
 
 interface ProductDetailProps {
@@ -38,12 +37,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         navigate("/login");
         return;
       }
-
-      // Verifica si el cliente ya tiene un carrito (purchase)
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
           `http://localhost:3001/purchases/${clientId}`,
-
           {
             products: [
               {
@@ -67,6 +63,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
           }
         );
       }
+
       Swal.fire({
         position: "center",
         icon: "success",

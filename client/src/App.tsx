@@ -19,7 +19,7 @@ import CarritoCompra from "./components/carritoDeCompras/CarritoCompras";
 import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProductBtn";
 import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
-import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja"
+import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja";
 import Loader from "./components/loader/Loader";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -118,7 +118,10 @@ const App = () => {
         <Route path="eligetuhoja" element={<EligeTuHoja clientId={clientId}/>} />
         <Route path="/loader" element={<Loader />}/>
         <Route path="/help" element={<Help />} />
-        <Route path="/admin" element={<DashboardAdmin />} />
+        <Route
+          path="/admin"
+          element={<DashboardAdmin isAdmin={isAdmin} isLoggedIn={isLoggedIn} />}
+        />
         <Route
           path="/product/edit/:id"
           element={
@@ -133,6 +136,7 @@ const App = () => {
           path="/product/id/:id"
           element={<ProductDetail clientId={clientId} />}
         />
+
         <Route
           path="/carritocompra"
           element={

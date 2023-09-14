@@ -43,7 +43,24 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   }, [clientId]);
 
   const handleHomePage = () => {
-    navigate("/");
+    setUltimaCompra(null);
+    navigate("/home");
+  };
+
+  const handleNuevaCompra = async () => {
+    try {
+      try {
+        await axios.post(
+          `http://localhost:3001/purchases/generate/${clientId}`
+        );
+        navigate("/home");
+      } catch (error) {
+        console.error(error);
+      }
+      handleHomePage();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (!ultimaCompra) {
