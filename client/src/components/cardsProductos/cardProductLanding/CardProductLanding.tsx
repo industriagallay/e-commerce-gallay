@@ -33,29 +33,29 @@ const CardProductLanding: React.FC<CardProductLandingProps> = ({ product }) => {
               </div>
               <div className="card-body-landing-productos ">
                 <div className="price-container-landing">
-                  {product.price > 2500 && (
+                  {/* {product.price && (
                     <p className="card-text-landing discount-price-landing">
-                      $ {(product.price * 0.9).toFixed(2)}
+                      $ {(product.price)}
                     </p>
-                  )}
+                  )} */}
 
+                    <h5 className="card-title-inicio">{product.name}</h5>
                   <p className="card-text-landing price-landing">
                     <span>$ {product.price}</span>
-                    {product.price > 2500 && (
-                      <span className="price-off-landing">14% OFF</span>
+                    {/* {product.price && (
+                      <span className="price-off-landing"></span>
                     )}
-                    {product.price > 50 && (
+                    {product.price&& (
                       <span className="additional-text-landing">
-                        Mismo precio en 3 cuotas de 311 pesos con 67 centavos
-                        $31.1,67 <br />
+                    
+                        <br />
                         <span className="free-shipping-landing">
-                          Envio Gratis ⚡ FULL
+
                         </span>
                       </span>
-                    )}
+                    )} */}
                   </p>
                 </div>
-                <h5 className="card-title-inicio">{product.name}</h5>
                 <p className="card-stock-landing">stock: {product.stock}</p>
               </div>
             </div>

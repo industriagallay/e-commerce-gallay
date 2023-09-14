@@ -161,7 +161,6 @@
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  opacity: 0.9;
 }
 
 .background-herramientas::before {

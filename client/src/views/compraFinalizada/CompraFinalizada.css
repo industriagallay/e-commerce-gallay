@@ -1,0 +1,122 @@
+@media (max-width: 390px) {
+  .container-texto-inicio-compraFinaliZada .Titutlo-comprafinalizadaH2 {
+    font-size: 3rem;
+  }
+  .container-texto-inicio-compraFinaliZada .resumenh3 {
+    font-size: 2rem;
+  }
+}
+
+.container-texto-inicio-compraFinaliZada {
+  padding: 0.6rem;
+  margin-bottom: 5rem;
+  background-color: #03020e;
+}
+.Titutlo-comprafinalizadaH2 {
+  border-bottom: 1px solid #fff;
+  font-size: 5.5rem;
+  background-color: rgb(0, 0, 0);
+  color: rgb(223, 226, 29);
+  padding: 10px 5px 25px 5px;
+  text-align: center;
+  margin-top: 9rem;
+  margin-bottom: 4rem;
+}
+
+.resumenh3 {
+  font-size: 3.5rem;
+  background-color: black;
+  color: rgb(231, 211, 25);
+  padding: 10px 0px 40px 0px;
+  text-align: center;
+}
+
+.datos-compra-finalizada {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-group-item-comprafinalizada-product {
+  background-color: #a7b1bb;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-evenly;
+}
+.Producto-comprafinalizada {
+  display: flex;
+  justify-content: space-between;
+}
+.cantidad-comprafinaliza {
+  display: flex;
+  justify-content: center;
+}
+.precio-comprafinalizada {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.list-group-item-comprafinalizada-product:nth-child(odd) {
+  background-color: #242222;
+  color: #fff;
+  font-weight: 500;
+}
+
+.datosparabonar-C-finalizada {
+  margin-top: 20px;
+  font-size: 2.5rem;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.datosparabonar-C-finalizada::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  margin: 10px 0;
+}
+
+.totalapafar-Compra-finalizada {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.estadodelacompra-comprafinalizada {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.fechadelacompra-comprafinalizada {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.parrafoProporcionados {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.botonVolveral-inicio-comprafinalizada {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.botonVolveral-inicio-comprafinalizada:hover {
+  background-color: #242222;
+  color: #fff;
+}

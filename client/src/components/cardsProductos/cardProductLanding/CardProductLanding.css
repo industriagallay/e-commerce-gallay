@@ -29,8 +29,6 @@
   height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
-  /* background-color: #f1f1f1; */
-
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
@@ -38,7 +36,7 @@
 
 .card-landing-productos {
   max-width: 20rem;
-  min-height: 40rem; 
+  min-height: 36rem;
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -47,10 +45,6 @@
   box-shadow: 10px 5px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
-/* Agregar la clase "discounted-hover" a la tarjeta cuando se hace hover en el precio descontado */
-.card-landing-productos.hovered.discounted-hover {
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
 
 .card-landing-productos:hover {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -58,10 +52,18 @@
 }
 
 .card-img-top-landing {
-  width: 100%; 
-  min-height: 287px;
+  width: 100%;
+  min-height: 360px;
   border-radius: 8px;
   object-fit: contain;
+}
+
+.card-title-inicio {
+  color: #424242;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
 }
 
 /* Estilos para centrar las cards */
@@ -118,38 +120,19 @@
   margin-bottom: 13px;
 }
 
-
 /* Estilos para el botón "sumar al carrito" */
 .card-body-landing-productos {
   position: relative;
   display: flex;
   flex-direction: column;
-
 }
-
-.additional-text-landing {
-  color: #00a650; 
-  font-size: 1.1rem;
-  margin-left: 8px; 
-}
-
-.price-off-landing {
-  font-size: 15px;
-  color: #008300;
-  margin-left: 8px;
-}
-.free-shipping-landing {
-  color: #008300;
-}
-/* .free-shipping::after {
-      content: " ⚡";
-    } */
 
 .img-container-landing {
   position: relative;
 }
 
 .line-horizontal-landing {
+  margin-bottom: 12px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -159,35 +142,30 @@
 }
 .card-stock-landing {
   font-size: 1rem;
-  margin-bottom: 16px; 
+  margin-bottom: 16px;
 }
 
 .card-text-landing {
-  display: flex; 
-  align-items: center; 
-  margin-bottom: 8px; 
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .price-container-landing {
   position: relative;
-  font-size: 2rem; 
+  font-size: 2rem;
 
-  margin-bottom: 8px; 
-}
-
-.discount-price-landing {
-  font-size: 16px; 
-  text-decoration: line-through; 
-  margin-left: auto; 
+  margin-bottom: 8px;
 }
 
 .price-landing {
-  display: flex; 
+  display: flex;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .row-scroll {
-  margin-top: 100px; 
+  margin-top: 100px;
 }
