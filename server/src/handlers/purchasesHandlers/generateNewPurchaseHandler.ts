@@ -4,9 +4,9 @@ import Purchases from "../../models/purchases";
 const generateNewPurchaseHandler = async (req: Request, res: Response) => {
   const clientId = req.params.clientId;
   const { products, totalPrice } = req.body;
+  console.log(totalPrice);
 
   try {
-    // Siempre generamos una nueva compra para el cliente
     const purchase = await Purchases.create({
       idClient: clientId,
       products,

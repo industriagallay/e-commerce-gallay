@@ -21,11 +21,8 @@ import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja";
 import Loader from "./components/loader/Loader";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export interface ProductCardProps {
   product: Product;
@@ -50,11 +47,10 @@ export interface Product {
 const App = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000, 
-      once: true,    
+      duration: 1000,
+      once: true,
     });
   }, []);
-
 
   const [clientId, setClientId] = useState<string>("");
   const [purchasesId, setPurchasesId] = useState<string>("");
@@ -110,13 +106,19 @@ const App = () => {
       {isLoggedIn && !isAdmin && <NavBar2 clientId={clientId} />}
       {!isLoggedIn && <NavBar1 />}
       <Routes>
-        <Route path="/" element={<LandingPage  clientId={clientId}/>} />
+        <Route path="/" element={<LandingPage clientId={clientId} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/creatucuchillo" element={<CreaTuCuchillo  clientId={clientId}/>} />
-        <Route path="eligetuhoja" element={<EligeTuHoja clientId={clientId}/>} />
-        <Route path="/loader" element={<Loader />}/>
+        <Route
+          path="/creatucuchillo"
+          element={<CreaTuCuchillo clientId={clientId} />}
+        />
+        <Route
+          path="eligetuhoja"
+          element={<EligeTuHoja clientId={clientId} />}
+        />
+        <Route path="/loader" element={<Loader />} />
         <Route path="/help" element={<Help />} />
         <Route
           path="/admin"
@@ -140,7 +142,11 @@ const App = () => {
         <Route
           path="/carritocompra"
           element={
-            <CarritoCompra clientId={clientId} purchasesId={purchasesId} />
+            <CarritoCompra
+              clientId={clientId}
+              purchasesId={purchasesId}
+              totalPrice={0}
+            />
           }
         />
         <Route

@@ -8,7 +8,6 @@ import "./LandingPage.css";
 import axios from "axios";
 import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
 import { Link, useNavigate } from "react-router-dom";
-// import { FaArrowCircleRight } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 interface Product {
@@ -45,7 +44,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ clientId }) => {
         return;
       }
 
-      // Verifica si el cliente ya tiene un carrito (purchase)
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
           `http://localhost:3001/purchases/${clientId}`,
