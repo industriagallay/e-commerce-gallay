@@ -155,9 +155,9 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     setOriginalClientes(clientes);
   }, [clientes]);
 
-  const filteredClientes = originalClientes.filter((cliente) =>
-    cliente.firstName.toLowerCase().includes(searchQueryClientes.toLowerCase())
-  );
+  // const filteredClientes = originalClientes.filter((cliente) =>
+  //   cliente.firstName.toLowerCase().includes(searchQueryClientes.toLowerCase())
+  // );
 
   const fetchFilteredClients = async () => {
     try {
@@ -175,19 +175,19 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     }
   };
 
-  const fetchFilteredCompras = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/purchases/client/${searchQueryPurchases}`,
-        {
-          params: { search: searchQueryPurchases },
-        }
-      );
-      setCompras(response.data);
-    } catch (error) {
-      console.error("Error searching purchases:", error);
-    }
-  };
+  // const fetchFilteredCompras = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:3001/purchases/client/${searchQueryPurchases}`,
+  //       {
+  //         params: { search: searchQueryPurchases },
+  //       }
+  //     );
+  //     setCompras(response.data);
+  //   } catch (error) {
+  //     console.error("Error searching purchases:", error);
+  //   }
+  // };
 
   const filteredClientesList = originalClientes.filter((cliente) =>
     cliente.firstName.toLowerCase().includes(searchQueryClientes.toLowerCase())
@@ -213,6 +213,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     startIndexCompras,
     endIndexCompras
   );
+  console.log(paginatedCompras);
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {

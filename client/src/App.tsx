@@ -17,7 +17,6 @@ import ObjectIDProps from "bson-objectid";
 import { decodeToken } from "react-jwt";
 import CarritoCompra from "./components/carritoDeCompras/CarritoCompras";
 import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProductBtn";
-import { ICartItem } from "./components/carritoDeCompras/CarritoCompras";
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja";
 import Loader from "./components/loader/Loader";
@@ -53,8 +52,8 @@ const App = () => {
   }, []);
 
   const [clientId, setClientId] = useState<string>("");
-  const [purchasesId, setPurchasesId] = useState<string>("");
-  const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
+  const [purchasesId, _setPurchasesId] = useState<string>("");
+  const [selectedProduct, _setSelectedProduct] = useState<Product | undefined>(
     undefined
   );
   const [isAdmin, setIsAdmin] = useState(false);
