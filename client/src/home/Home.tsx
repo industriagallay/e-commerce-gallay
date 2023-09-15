@@ -52,7 +52,7 @@ const Home: React.FC = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get<Product[]>(
-          "http://localhost:3001/products"
+          "https://industria-gallay-server.onrender.com/products"
         );
 
         const filteredKnifeProducts = response.data.filter(
@@ -234,7 +234,7 @@ const Home: React.FC = () => {
 
       if (swalResult.isConfirmed) {
         const response = await axios.delete(
-          `http://localhost:3001/products/${product._id}`
+          `https://industria-gallay-server.onrender.com/products/${product._id}`
         );
 
         if (response.status === 200) {

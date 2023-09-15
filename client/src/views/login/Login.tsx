@@ -24,11 +24,10 @@ const Login: React.FC = () => {
   const iniciarSesion = async (formData: FormValues) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/login",
+        "https://industria-gallay-server.onrender.com/api/login",
         formData
       );
 
-      
       const token = response.data.token;
 
       Cookies.set("token", token);
