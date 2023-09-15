@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
 import Swal from "sweetalert2";
-import "./ProductosDetail.css";
+import "./productosDetail.css";
 
 interface ProductDetailProps {
   clientId: string;
