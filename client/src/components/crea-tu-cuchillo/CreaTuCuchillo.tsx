@@ -1,9 +1,7 @@
 import React, { Key, useEffect, useState } from "react";
-import { useLocation, Link, useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import fundicion from "../../assets/img/fundiciónPNG.png";
 import Slider from "react-slick";
-
-import ObjectId from "bson-objectid";
 import "./CreaTuCuchillo.css";
 import "animate.css";
 import "slick-carousel/slick/slick.css";
@@ -14,7 +12,6 @@ import Swal from "sweetalert2";
 interface Product {
   clientId: string;
   _id: Key | null | undefined;
-  // _id: Object;
   name: string;
   description: string;
   backgroundImage: string;
@@ -28,10 +25,9 @@ interface CreaTuCuchilloProps {
 }
 
 const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
-  const [cartUpdate, setCartUpdate] = useState<number>(0);
+  const [_cartUpdate, setCartUpdate] = useState<number>(0);
   const [purchaseId, setPurchaseId] = useState<string | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const location = useLocation();
 
   const navigate = useNavigate();
 
@@ -52,7 +48,6 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
         return;
       }
 
-      // Verifica si el cliente ya tiene un carrito (purchase)
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
           `http://localhost:3001/purchases/${clientId}`,
@@ -101,7 +96,6 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
           "http://localhost:3001/products"
         );
         console.log({ a: response });
-        // Filtrar los productos por categoría "handle"
         const handleProducts = response.data.filter((product) =>
           product.categories.includes("handle")
         );
@@ -139,7 +133,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
     <div>
       <div className="container-12-lg image-container">
         <div className="row">
-          <div className="col" >
+          <div className="col">
             <img
               src={fundicion}
               className="img-fluid full-width-image-121"

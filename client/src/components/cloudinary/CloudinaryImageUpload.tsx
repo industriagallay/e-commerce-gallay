@@ -19,7 +19,7 @@ const CloudinaryImageUpload: React.FC<CloudinaryImageUploadProps> = ({
   initialImage,
 }) => {
   const [isUploading, setIsUploading] = useState(false);
-  const [selectedImageUrl, setSelectedImageUrl] = useState<string>(
+  const [_selectedImageUrl, setSelectedImageUrl] = useState<string>(
     initialImage || ""
   );
   const [image, setImage] = useState<string>(initialImage || "");
