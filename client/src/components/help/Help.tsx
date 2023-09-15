@@ -3,20 +3,7 @@ import { Link } from "react-router-dom";
 import "../navbar2/NavBar2.css";
 import "./Help.css";
 
-// type CollapseStates = {
-//   pregunta1: boolean;
-//   pregunta2: boolean;
-//   pregunta3: boolean;
-//   pregunta4: boolean;
-//   pregunta5: boolean;
-//   pregunta6: boolean;
-//   pregunta7: boolean;
-//   pregunta8: boolean;
-//   pregunta9: boolean;
-// };
-
 const Help: React.FC = () => {
-  /*abrir un mensaje a la vez*/
   const [openMessage, setOpenMessage] = useState<string | null>(null);
   const toggleCollapse = (pregunta: string) => {
     setOpenMessage((prevMessage) =>

@@ -23,7 +23,10 @@ const SignUpForm: React.FC = () => {
 
   const crearCuenta = async (data: FormValues) => {
     try {
-      await axios.post("http://localhost:3001/api/register", data);
+      await axios.post(
+        "https://industria-gallay-server.onrender.com/api/register",
+        data
+      );
 
       swal.fire({
         position: "center",
@@ -59,9 +62,7 @@ const SignUpForm: React.FC = () => {
               className="SignUpform ml-auto"
               onSubmit={handleSubmit(crearCuenta)}
             >
-              <div className="header">
-                Registrarse
-              </div>
+              <div className="header">Registrarse</div>
               <div className="inputs">
                 <input
                   type="text"

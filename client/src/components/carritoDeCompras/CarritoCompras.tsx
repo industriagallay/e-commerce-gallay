@@ -45,7 +45,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/purchases/${clientId}`
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
         );
 
         console.log(response.data);
@@ -64,7 +64,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/products/id/${productId}`
+          `https://industria-gallay-server.onrender.com/products/id/${productId}`
         );
         setProductData(response.data);
       } catch (error) {
@@ -84,11 +84,11 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
       }
 
       await axios.delete(
-        `http://localhost:3001/purchases/${clientId}/products/${productId}`
+        `https://industria-gallay-server.onrender.com/purchases/${clientId}/products/${productId}`
       );
 
       const updatedPurchaseResponse = await axios.get(
-        `http://localhost:3001/purchases/${clientId}`
+        `https://industria-gallay-server.onrender.com/purchases/${clientId}`
       );
 
       if (updatedPurchaseResponse.data.length > 0) {
@@ -141,9 +141,12 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
 
   const checkout = async (clientId: string, totalPrice: number) => {
     try {
-      await axios.post(`http://localhost:3001/purchases/generate/${clientId}`, {
-        totalPrice,
-      });
+      await axios.post(
+        `https://industria-gallay-server.onrender.com/purchases/generate/${clientId}`,
+        {
+          totalPrice,
+        }
+      );
       setCartItems([]);
 
       navigate("/compra-finalizada");
@@ -160,7 +163,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/products/id/${productId}`
+          `https://industria-gallay-server.onrender.com/products/id/${productId}`
         );
         setProductDataMap((prevProductDataMap) => ({
           ...prevProductDataMap,

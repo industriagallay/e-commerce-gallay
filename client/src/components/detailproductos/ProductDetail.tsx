@@ -39,7 +39,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
       }
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
-          `http://localhost:3001/purchases/${clientId}`,
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`,
           {
             products: [
               {
@@ -55,7 +55,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         setPurchaseId(createdPurchase._id);
       } else {
         await axios.post(
-          `http://localhost:3001/purchases/${clientId}/products`,
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}/products`,
           {
             productId,
             quantity,
@@ -83,7 +83,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
       const fetchProductDetails = async (productId: string) => {
         try {
           const response = await axios.get<Product>(
-            `http://localhost:3001/products/id/${encodeURIComponent(productId)}`
+            `https://industria-gallay-server.onrender.com/products/id/${encodeURIComponent(
+              productId
+            )}`
           );
           const product = response.data;
           setProductData(product);

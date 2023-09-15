@@ -102,7 +102,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
         categories: selectedCategory,
       };
       const response = await axios.post(
-        "http://localhost:3001/products",
+        "https://industria-gallay-server.onrender.com/products",
         dataWithImage
       );
       console.log(response.data);
@@ -134,7 +134,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const fetchClients = async (page: number) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/clients/allclient?page=${page}&perPage=7`
+        `https://industria-gallay-server.onrender.com/clients/allclient?page=${page}&perPage=7`
       );
       if (response.status === 200) {
         const data = response.data;
@@ -155,14 +155,10 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     setOriginalClientes(clientes);
   }, [clientes]);
 
-  // const filteredClientes = originalClientes.filter((cliente) =>
-  //   cliente.firstName.toLowerCase().includes(searchQueryClientes.toLowerCase())
-  // );
-
   const fetchFilteredClients = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/clients?search=${searchQueryClientes}&page=${currentPage}&perPage=7`
+        `https://industria-gallay-server.onrender.com/clients?search=${searchQueryClientes}&page=${currentPage}&perPage=7`
       );
       if (response.status === 200) {
         const data = response.data;
@@ -174,20 +170,6 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
       console.error("Error fetching clients:", error);
     }
   };
-
-  // const fetchFilteredCompras = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3001/purchases/client/${searchQueryPurchases}`,
-  //       {
-  //         params: { search: searchQueryPurchases },
-  //       }
-  //     );
-  //     setCompras(response.data);
-  //   } catch (error) {
-  //     console.error("Error searching purchases:", error);
-  //   }
-  // };
 
   const filteredClientesList = originalClientes.filter((cliente) =>
     cliente.firstName.toLowerCase().includes(searchQueryClientes.toLowerCase())
@@ -218,7 +200,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/clients/delete/${userId}`
+        `https://industria-gallay-server.onrender.com/clients/delete/${userId}`
       );
 
       if (response.status === 200) {
@@ -254,7 +236,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const fetchPurchases = async (): Promise<Purchase[]> => {
     try {
       const respuesta = await axios.get<Purchase[]>(
-        "http://localhost:3001/purchases"
+        "https://industria-gallay-server.onrender.com/purchases"
       );
       const compra = respuesta.data;
       return compra;
@@ -307,7 +289,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
       const clientIds = matchingClients.map((cliente) => cliente._id);
 
       const response = await axios.get(
-        `http://localhost:3001/purchases/client/${clientIds}`
+        `https://industria-gallay-server.onrender.com/purchases/client/${clientIds}`
       );
 
       if (response.data.length === 0) {
@@ -332,7 +314,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const fetchProductos = async (): Promise<Product[]> => {
     try {
       const response = await axios.get<Product[]>(
-        "http://localhost:3001/products"
+        "https://industria-gallay-server.onrender.com/products"
       );
       const productosData = response.data;
       return productosData;

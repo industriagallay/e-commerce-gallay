@@ -50,7 +50,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
 
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
-          `http://localhost:3001/purchases/${clientId}`,
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`,
 
           {
             products: [
@@ -67,7 +67,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
         setPurchaseId(createdPurchase._id);
       } else {
         await axios.post(
-          `http://localhost:3001/purchases/${clientId}/products`,
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}/products`,
           {
             productId,
             quantity,
@@ -93,7 +93,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get<Product[]>(
-          "http://localhost:3001/products"
+          "https://industria-gallay-server.onrender.com/products"
         );
         console.log({ a: response });
         const handleProducts = response.data.filter((product) =>
