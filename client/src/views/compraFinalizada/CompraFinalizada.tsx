@@ -43,7 +43,8 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   }, [clientId]);
 
   const handleHomePage = () => {
-    navigate("/");
+    setUltimaCompra(null);
+    navigate("/home");
   };
 
   if (!ultimaCompra) {

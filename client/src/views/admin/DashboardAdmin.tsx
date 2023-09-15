@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
@@ -59,7 +60,16 @@ interface Product {
   updatedAt: string;
 }
 
-const DashboardAdmin: React.FC = () => {
+interface DashboardAdminProps {
+  product?: Product;
+  isAdmin: boolean;
+  isLoggedIn: boolean;
+}
+
+const DashboardAdmin: React.FC<DashboardAdminProps> = ({
+  isAdmin,
+  isLoggedIn,
+}) => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
@@ -69,6 +79,7 @@ const DashboardAdmin: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [currentPageCompras, setCurrentPageCompras] = useState<number>(1);
   const [productos, setProductos] = useState<Product[]>([]);
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] =
     useState<string>("categoria1");
   const cloudinaryName = VITE_CLOUDINARY_NAME || "";
@@ -339,6 +350,11 @@ const DashboardAdmin: React.FC = () => {
         console.error("Error al obtener los productos:", error.message);
       });
   }, []);
+
+  if (!isLoggedIn || !isAdmin) {
+    navigate("/home");
+    return null;
+  }
 
   return (
     <div className="perrito-admin">
