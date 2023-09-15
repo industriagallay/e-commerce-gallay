@@ -720,3 +720,11 @@ input[type="number"] {
   margin-top: 1rem;
   font-size: 2rem;
 }
+
+/******paginado*****/
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  margin-bottom: 20px;
+}
