@@ -22,6 +22,7 @@ interface ProductCardProps {
 }
 
 interface Product {
+  categories: string;
   _id: ObjectIDProps;
   name: string;
   description: string;
