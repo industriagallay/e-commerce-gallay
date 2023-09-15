@@ -96,8 +96,15 @@ video {
   filter: blur(70px);
   opacity: 0;
 }
+@media (min-width: 1900px) {
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 3.3em;
+    line-height: 130px;
+  }
+}
 
-@media (min-width: 1300px) {
+@media (max-width: 1300px) {
   .texto-Industria1,
   .texto-Gallay2 {
     font-size: 3.1em;
