@@ -14,7 +14,7 @@ interface NavBar2Props {
 
 const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [_isLoggedIn, setIsLoggedIn] = useState(true);
 
   const navigate = useNavigate();
 
@@ -46,7 +46,6 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
           );
         }
       }
-      // Cierra la sesión y redirige al inicio
       setIsLoggedIn(false);
       Cookies.remove("token");
       navigate("/");
@@ -69,20 +68,19 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
               <GiRocketThruster className="navbar-icon" />
               Gallay
             </Link>
-         
-              <button
-                className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
-                onClick={toggleNav}
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded={isNavOpen ? "true" : "false"}
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-       
+            <button
+              className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
+              onClick={toggleNav}
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded={isNavOpen ? "true" : "false"}
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
             <div
               className={`navbar-links-container ${isNavOpen ? "active" : ""}`}
             >
@@ -132,9 +130,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
                 </div>
 
                 <div className="container-iconcart-carrito">
-                  {/* Enlace al componente del carrito con el ícono */}
                   <Link className="icon-icon-carrito-1221" to="/carritocompra">
-                    {/* Icono del carrito */}
                     <FontAwesomeIcon
                       icon={faShoppingCart}
                       className="icon-carrito-navabar-fixed"

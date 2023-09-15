@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap, Expo } from "gsap";
 import mano1 from "../assets/img/mano1.jpeg";
@@ -19,7 +19,6 @@ interface Product {
   stock: number;
   price: number;
 }
-// Define una variable para totalPages fuera del componente
 let totalPages = 0;
 
 const Home: React.FC = () => {
@@ -31,13 +30,10 @@ const Home: React.FC = () => {
 
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  // Define variables de paginación
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const productsPerPage = 9; // Número de productos por página
-  // const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
-  const [isHoverEnabled, setIsHoverEnabled] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const productsPerPage = 9;
+  const [_isHoverEnabled, setIsHoverEnabled] = useState(true);
+  const [_selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,11 +45,9 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Calcula totalPages cuando filteredProducts cambia
     totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  }, [filteredProducts]); // Ejecutar el efecto cuando filteredProducts cambie
+  }, [filteredProducts]);
 
-  // Filtrar los productos por categoría "knife" al cargar
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -75,16 +69,13 @@ const Home: React.FC = () => {
     fetchProducts();
   }, []);
 
-  // Función para cambiar de página
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    setSelectedFilter(""); // Limpia el filtro de categoría
-    setSelectedPriceFilter(""); // Limpia el filtro de precio
-    setMinPrice(undefined); // Limpia el valor mínimo de precio
-    setMaxPrice(undefined); // Limpia el valor máximo de precio
+    setSelectedFilter("");
+    setSelectedPriceFilter("");
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
   };
-
-  // Filtrar los productos que se muestran en la página actual
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const productsToShow = filteredProducts.slice(startIndex, endIndex);
@@ -274,12 +265,8 @@ const Home: React.FC = () => {
     navigate(`/product/edit/${product._id}`);
   };
   useEffect(() => {
-    AOS.refreshHard(); // O AOS.refresh() si solo necesitas actualizar las animaciones existentes
+    AOS.refreshHard();
   }, [filteredProducts]);
-
-  // useEffect(() => {
-  //   setCurrentPage(1);
-  // }, [filteredProducts]);
 
   return (
     <div>
@@ -384,7 +371,6 @@ const Home: React.FC = () => {
                     }
                   />
                   <div className="line-between-inputs"></div>{" "}
-                  {/* Línea horizontal */}
                   <input
                     inputMode="numeric"
                     placeholder="Máximo"
