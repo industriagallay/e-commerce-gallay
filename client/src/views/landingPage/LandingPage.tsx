@@ -33,7 +33,7 @@ const LandingPage: React.FC<LandingPageProps> = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get<Product[]>(
-          "http://localhost:3001/products"
+          "https://industria-gallay-server.onrender.com/products"
         );
         console.log({ a: response });
 
