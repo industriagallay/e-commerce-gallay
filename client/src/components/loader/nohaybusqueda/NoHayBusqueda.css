@@ -1,0 +1,165 @@
+.center-viewport {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.content {
+  margin-left: 100px;
+  flex: 1;
+  padding-right: 20px;
+}
+
+.rectangle {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nohaybusqueda {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.punto-container {
+  padding: 0;
+}
+
+.punto1,
+.punto2,
+.punto3 {
+  margin-top: 1px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.LinkStyle {
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.LinkStyle:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.boton-seguir-comprando {
+  border: 1px solid #9e9e9e;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+/*******LOADER********/
+.loadernohaybusqueda {
+  position: relative;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.55);
+  border: 1px solid #fac142;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loadernohaybusqueda::before {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  background: transparent;
+  border: 1px dashed #fac142;
+  border-radius: 50%;
+  box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 35px rgba(0, 0, 0, 0.25);
+}
+
+.loadernohaybusqueda::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px dashed #fac142;
+  box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 35px rgba(0, 0, 0, 0.25);
+}
+
+.loadernohaybusqueda span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+  transform-origin: top left;
+  animation: radar82 2s linear infinite;
+  border-top: 1px dashed #fff;
+}
+
+.loadernohaybusqueda span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fac142;
+  transform-origin: top left;
+  transform: rotate(-55deg);
+  filter: blur(30px) drop-shadow(20px 20px 20px #fac142);
+}
+
+@keyframes radar82 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*****responsive****/
+@media (max-width: 390px) {
+  .rectangle {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+
+  .loadernohaybusqueda {
+    margin-bottom: 20px;
+  }
+
+  .no-hay-busqueda {
+    margin-right: 80px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .punto1,
+  .punto2,
+  .punto3 {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  .LinkStyle {
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    text-decoration: none;
+  }
+}

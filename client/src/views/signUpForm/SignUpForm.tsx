@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
@@ -20,6 +21,8 @@ const SignUpForm: React.FC = () => {
     formState: { errors },
     handleSubmit,
   } = useForm<FormValues>();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const crearCuenta = async (data: FormValues) => {
     try {
@@ -59,9 +62,7 @@ const SignUpForm: React.FC = () => {
               className="SignUpform ml-auto"
               onSubmit={handleSubmit(crearCuenta)}
             >
-              <div className="header">
-                Registrarse
-              </div>
+              <div className="header">Registrarse</div>
               <div className="inputs">
                 <input
                   type="text"
@@ -70,6 +71,12 @@ const SignUpForm: React.FC = () => {
                   {...register("firstName", {
                     required: true,
                   })}
+                  onInput={(e) => {
+                    e.currentTarget.value = e.currentTarget.value.replace(
+                      /[^A-Za-z]/g,
+                      ""
+                    );
+                  }}
                 />
                 {errors.firstName?.type === "required" && (
                   <p className="text-danger">El campo nombre es requerido</p>
@@ -81,6 +88,12 @@ const SignUpForm: React.FC = () => {
                   {...register("lastName", {
                     required: true,
                   })}
+                  onInput={(e) => {
+                    e.currentTarget.value = e.currentTarget.value.replace(
+                      /[^A-Za-z]/g,
+                      ""
+                    );
+                  }}
                 />
                 {errors.lastName?.type === "required" && (
                   <p className="text-danger">El campo apellido es requerido</p>
@@ -91,6 +104,8 @@ const SignUpForm: React.FC = () => {
                   type="text"
                   {...register("email", {
                     required: true,
+                    pattern:
+                      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                   })}
                 />
                 {errors.email?.type === "required" && (
@@ -102,6 +117,7 @@ const SignUpForm: React.FC = () => {
                   className="input"
                   {...register("dni", {
                     required: true,
+                    pattern: /^[0-9]{8}$/,
                   })}
                 />
                 {errors.dni?.type === "required" && (
@@ -113,6 +129,7 @@ const SignUpForm: React.FC = () => {
                   className="input"
                   {...register("phone", {
                     required: true,
+                    pattern: /^[0-9]{10}$/,
                   })}
                 />
                 {errors.phone?.type === "required" && (
@@ -121,7 +138,7 @@ const SignUpForm: React.FC = () => {
                 <input
                   placeholder="contraseña"
                   className="input"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   {...register("password", {
                     required: true,
                   })}
@@ -131,10 +148,18 @@ const SignUpForm: React.FC = () => {
                     El campo contraseña es requerido
                   </p>
                 )}
-                <div className="checkbox-container"></div>
-                <button className="sigin-btn" type="submit">
-                  Crear Cuenta
-                </button>
+                <div className="password-toggle">
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <i className="bi bi-eye-slash registrarse"></i>
+                    ) : (
+                      <i className="bi bi-eye registrarse"></i>
+                    )}{" "}
+                  </button>
+                </div>
                 <p className="signup-link">
                   ya tenes cuenta? <Link to="/login">Inicia sesión</Link>
                 </p>

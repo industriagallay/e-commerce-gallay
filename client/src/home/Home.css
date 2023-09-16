@@ -506,9 +506,6 @@
 .free-shipping {
   color: #008300;
 }
-.free-shipping::after {
-  /* content: " ⚡"; */
-}
 
 .img-container {
   position: relative;
@@ -719,4 +716,12 @@ input[type="number"] {
   display: flex;
   margin-top: 1rem;
   font-size: 2rem;
+}
+
+/******paginado*****/
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  margin-bottom: 20px;
 }

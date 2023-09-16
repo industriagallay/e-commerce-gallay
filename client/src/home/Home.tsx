@@ -11,6 +11,7 @@ import "aos/dist/aos.css";
 import "./Home.css";
 
 interface Product {
+  categories: string;
   _id: ObjectId;
   name: string;
   description: string;
@@ -18,6 +19,8 @@ interface Product {
   stock: number;
   price: number;
 }
+
+let totalPages = 0;
 
 const Home: React.FC = () => {
   useEffect(() => {
@@ -27,6 +30,10 @@ const Home: React.FC = () => {
   }, []);
 
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const productsPerPage = 9;
+
   const [isHoverEnabled, setIsHoverEnabled] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
@@ -39,14 +46,70 @@ const Home: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const showAllProducts = () => {
+    const filteredKnifeProducts = products.filter(
+      (product) => product.categories === "knife"
+    );
+
+    if (filteredKnifeProducts.length < (currentPage - 1) * productsPerPage) {
+      setCurrentPage(1);
+    }
+
+    setFilteredProducts(filteredKnifeProducts);
+  };
+
+  useEffect(() => {
+    totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  }, [filteredProducts]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get<Product[]>(
+          "http://localhost:3001/products"
+        );
+
+        const filteredKnifeProducts = response.data.filter(
+          (product) => product.categories === "knife"
+        );
+
+        setProducts(filteredKnifeProducts);
+        setFilteredProducts(filteredKnifeProducts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    setSelectedFilter("");
+    setSelectedPriceFilter("");
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
+  };
+
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+  const productsToShow = filteredProducts.slice(startIndex, endIndex);
+
   const handleMinPriceChange = (value: string) => {
-    setMinPrice(Number(value));
+    const numericValue = value.replace(/\D/g, "");
+
+    if (numericValue.length <= 5) {
+      setMinPrice(Number(numericValue));
+    }
   };
 
   const handleMaxPriceChange = (value: string) => {
-    setMaxPrice(Number(value));
-  };
+    const numericValue = value.replace(/\D/g, "");
 
+    if (numericValue.length <= 5) {
+      setMaxPrice(Number(numericValue));
+    }
+  };
   const handleRangeSearch = () => {
     if (minPrice !== undefined && maxPrice !== undefined) {
       const filtered = products.filter(
@@ -104,34 +167,6 @@ const Home: React.FC = () => {
       setFilteredProducts(filtered);
     }
   }, [searchTerm, products]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get<Product[]>(
-          "http://localhost:3001/products"
-        );
-        console.log({ a: response });
-
-        setProducts(response.data);
-        setFilteredProducts(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    const defaultProducts = products.slice(0, 9);
-    setFilteredProducts(defaultProducts);
-  }, [products]);
-
-  const showAllProducts = () => {
-    const allProducts = products.slice(0, 9);
-    setFilteredProducts(allProducts);
-  };
 
   const [animationsCompleted, setAnimationsCompleted] = useState(false);
   useEffect(() => {
@@ -247,8 +282,9 @@ const Home: React.FC = () => {
     navigate(`/product/edit/${product._id}`);
   };
   useEffect(() => {
-    AOS.refreshHard(); // O AOS.refresh() si solo necesitas actualizar las animaciones existentes
+    AOS.refreshHard();
   }, [filteredProducts]);
+
   return (
     <div>
       <header className="l-header"></header>
@@ -346,21 +382,24 @@ const Home: React.FC = () => {
                     inputMode="numeric"
                     placeholder="Mínimo"
                     className="Min-number"
-                    type="number"
+                    type="text"
+                    value={minPrice !== undefined ? minPrice.toString() : ""}
                     onChange={(event) =>
                       handleMinPriceChange(event.target.value)
                     }
+                    maxLength={5}
                   />
-                  <div className="line-between-inputs"></div>{" "}
-                  {/* Línea horizontal */}
+                  <div className="line-between-inputs"></div>
                   <input
                     inputMode="numeric"
                     placeholder="Máximo"
                     className="Max-number"
-                    type="number"
+                    type="text"
+                    value={maxPrice !== undefined ? maxPrice.toString() : ""}
                     onChange={(event) =>
                       handleMaxPriceChange(event.target.value)
                     }
+                    maxLength={5}
                   />
                   <div className="Arrow-iconSelect" onClick={handleRangeSearch}>
                     <i className="biarrow bi-arrow-right-circle"></i>
@@ -372,11 +411,11 @@ const Home: React.FC = () => {
 
           <div className="col-12 col-md-8 col-lg-8">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
-              {filteredProducts.map((product, index) => (
+              {productsToShow.map((product, index) => (
                 <div key={`product-${index}`}>
                   <ProductCard
                     product={product}
-                    hovered={product.price > 2500 && index === hoveredCard}
+                    hovered={product.price === hoveredCard}
                     onMouseEnter={() => setHoveredCard(index)}
                     onMouseLeave={() => setHoveredCard(null)}
                     setProducts={setProducts}
@@ -389,6 +428,45 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
+      <nav aria-label="Page navigation example">
+        <ul className="pagination">
+          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              Anterior
+            </button>
+          </li>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <li
+              key={index}
+              className={`page-item ${
+                currentPage === index + 1 ? "active" : ""
+              }`}
+            >
+              <button
+                className="page-link"
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            </li>
+          ))}
+          <li
+            className={`page-item ${
+              currentPage === totalPages ? "disabled" : ""
+            }`}
+          >
+            <button
+              className="page-link"
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Siguiente
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
