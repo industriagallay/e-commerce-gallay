@@ -23,6 +23,7 @@ import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja"
 import Loader from "./components/loader/Loader";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import NoHayBusqueda from "./components/loader/nohaybusqueda/NoHayBusqueda";
 
 
 
@@ -117,6 +118,7 @@ const App = () => {
         <Route path="/creatucuchillo" element={<CreaTuCuchillo  clientId={clientId}/>} />
         <Route path="eligetuhoja" element={<EligeTuHoja clientId={clientId}/>} />
         <Route path="/loader" element={<Loader />}/>
+        <Route path="/nohaybusqueda" element={<NoHayBusqueda />}/>
         <Route path="/help" element={<Help />} />
         <Route path="/admin" element={<DashboardAdmin />} />
         <Route

@@ -506,9 +506,6 @@
 .free-shipping {
   color: #008300;
 }
-.free-shipping::after {
-  /* content: " ⚡"; */
-}
 
 .img-container {
   position: relative;

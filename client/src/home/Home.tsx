@@ -19,7 +19,7 @@ interface Product {
   stock: number;
   price: number;
 }
-// Define una variable para totalPages fuera del componente
+
 let totalPages = 0;
 
 const Home: React.FC = () => {
@@ -31,10 +31,8 @@ const Home: React.FC = () => {
 
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  // Define variables de paginación
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const productsPerPage = 9; // Número de productos por página
-  // const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const productsPerPage = 9;
 
   const [isHoverEnabled, setIsHoverEnabled] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -48,12 +46,22 @@ const Home: React.FC = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Calcula totalPages cuando filteredProducts cambia
-    totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  }, [filteredProducts]); // Ejecutar el efecto cuando filteredProducts cambie
+  const showAllProducts = () => {
+    const filteredKnifeProducts = products.filter(
+      (product) => product.categories === "knife"
+    );
 
-  // Filtrar los productos por categoría "knife" al cargar
+    if (filteredKnifeProducts.length < (currentPage - 1) * productsPerPage) {
+      setCurrentPage(1);
+    }
+
+    setFilteredProducts(filteredKnifeProducts);
+  };
+
+  useEffect(() => {
+    totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  }, [filteredProducts]);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -75,28 +83,33 @@ const Home: React.FC = () => {
     fetchProducts();
   }, []);
 
-  // Función para cambiar de página
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    setSelectedFilter(""); // Limpia el filtro de categoría
-    setSelectedPriceFilter(""); // Limpia el filtro de precio
-    setMinPrice(undefined); // Limpia el valor mínimo de precio
-    setMaxPrice(undefined); // Limpia el valor máximo de precio
+    setSelectedFilter("");
+    setSelectedPriceFilter("");
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
   };
 
-  // Filtrar los productos que se muestran en la página actual
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const productsToShow = filteredProducts.slice(startIndex, endIndex);
 
   const handleMinPriceChange = (value: string) => {
-    setMinPrice(Number(value));
+    const numericValue = value.replace(/\D/g, "");
+
+    if (numericValue.length <= 5) {
+      setMinPrice(Number(numericValue));
+    }
   };
 
   const handleMaxPriceChange = (value: string) => {
-    setMaxPrice(Number(value));
-  };
+    const numericValue = value.replace(/\D/g, "");
 
+    if (numericValue.length <= 5) {
+      setMaxPrice(Number(numericValue));
+    }
+  };
   const handleRangeSearch = () => {
     if (minPrice !== undefined && maxPrice !== undefined) {
       const filtered = products.filter(
@@ -154,11 +167,6 @@ const Home: React.FC = () => {
       setFilteredProducts(filtered);
     }
   }, [searchTerm, products]);
-
-  const showAllProducts = () => {
-    const allProducts = products.slice(0, 9);
-    setFilteredProducts(allProducts);
-  };
 
   const [animationsCompleted, setAnimationsCompleted] = useState(false);
   useEffect(() => {
@@ -274,12 +282,8 @@ const Home: React.FC = () => {
     navigate(`/product/edit/${product._id}`);
   };
   useEffect(() => {
-    AOS.refreshHard(); // O AOS.refresh() si solo necesitas actualizar las animaciones existentes
+    AOS.refreshHard();
   }, [filteredProducts]);
-
-  // useEffect(() => {
-  //   setCurrentPage(1);
-  // }, [filteredProducts]);
 
   return (
     <div>
@@ -378,21 +382,24 @@ const Home: React.FC = () => {
                     inputMode="numeric"
                     placeholder="Mínimo"
                     className="Min-number"
-                    type="number"
+                    type="text"
+                    value={minPrice !== undefined ? minPrice.toString() : ""}
                     onChange={(event) =>
                       handleMinPriceChange(event.target.value)
                     }
+                    maxLength={5}
                   />
-                  <div className="line-between-inputs"></div>{" "}
-                  {/* Línea horizontal */}
+                  <div className="line-between-inputs"></div>
                   <input
                     inputMode="numeric"
                     placeholder="Máximo"
                     className="Max-number"
-                    type="number"
+                    type="text"
+                    value={maxPrice !== undefined ? maxPrice.toString() : ""}
                     onChange={(event) =>
                       handleMaxPriceChange(event.target.value)
                     }
+                    maxLength={5}
                   />
                   <div className="Arrow-iconSelect" onClick={handleRangeSearch}>
                     <i className="biarrow bi-arrow-right-circle"></i>
