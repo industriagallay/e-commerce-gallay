@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap, Expo } from "gsap";
 import mano1 from "../assets/img/mano1.jpeg";
@@ -44,6 +44,8 @@ const Home: React.FC = () => {
   const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
 
+  let lastMinPrice = minPrice;
+  let lastMaxPrice = maxPrice;
   const navigate = useNavigate();
 
   const showAllProducts = () => {
@@ -84,11 +86,13 @@ const Home: React.FC = () => {
   }, []);
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    setSelectedFilter("");
-    setSelectedPriceFilter("");
-    setMinPrice(undefined);
-    setMaxPrice(undefined);
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      setSelectedFilter("");
+      setSelectedPriceFilter("");
+      setMinPrice(undefined);
+      setMaxPrice(undefined);
+    }
   };
 
   const startIndex = (currentPage - 1) * productsPerPage;
@@ -112,10 +116,19 @@ const Home: React.FC = () => {
   };
   const handleRangeSearch = () => {
     if (minPrice !== undefined && maxPrice !== undefined) {
-      const filtered = products.filter(
-        (product) => product.price >= minPrice && product.price <= maxPrice
-      );
-      setFilteredProducts(filtered);
+      if (minPrice > maxPrice) {
+        navigate("/nohaybusqueda");
+        return;
+      }
+
+      if (minPrice !== lastMinPrice || maxPrice !== lastMaxPrice) {
+        const filtered = products.filter(
+          (product) => product.price >= minPrice && product.price <= maxPrice
+        );
+        setFilteredProducts(filtered);
+        lastMinPrice = minPrice;
+        lastMaxPrice = maxPrice;
+      }
     }
   };
 
