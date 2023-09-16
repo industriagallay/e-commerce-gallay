@@ -16,9 +16,9 @@ const NoHayBusqueda = () => {
             No hay productos que coincidan con tu Búsqueda
           </h1>
           <ul className="punto-container">
-            <li className="punto1">Intenta filtrar el precio nuevamente</li>
+            <li className="punto1">Intente filtrar el precio nuevamente</li>
             <li className="punto2">
-              Respeta el orden del filtrado número "Mínimo" y "Máximo"
+              Respete el orden del filtrado por número "Mínimo" y "Máximo"
             </li>
             <button className="btn btn-primary boton-seguir-comprando">
               <Link className="LinkStyle" to="/home">
