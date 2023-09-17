@@ -132,7 +132,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <div className="price-container">
               <h5 className="card-title-inicio-product">{product.name}</h5>
               <p className="card-text-inicio price">
-                <span>$ {product.price}</span>
+                <span className="text-primary">$ {product.price}</span>
               </p>
             </div>
             <p className="card-stock-inicio">stock: {product.stock}</p>
