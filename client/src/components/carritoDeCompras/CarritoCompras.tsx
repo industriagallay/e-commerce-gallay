@@ -48,8 +48,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
           `https://industria-gallay-server.onrender.com/purchases/${clientId}`
         );
 
-        console.log(response.data);
-
         const cartData = response.data[0].products;
         setCartItems(cartData);
       } catch (error) {
@@ -154,10 +152,6 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
       console.error("Error al cerrar la compra:", error);
     }
   };
-
-  useEffect(() => {
-    console.log({ a: "contenido del carrito", cartItems });
-  }, []);
 
   useEffect(() => {
     const fetchProductData = async (productId: string) => {

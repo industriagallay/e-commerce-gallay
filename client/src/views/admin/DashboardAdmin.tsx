@@ -258,8 +258,6 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const handleSearchPurchase = async () => {
     try {
-      console.log("Search query:", searchQueryPurchases);
-
       if (!searchQueryPurchases) {
         swal.fire({
           icon: "warning",

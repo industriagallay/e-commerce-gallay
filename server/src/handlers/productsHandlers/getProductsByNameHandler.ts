@@ -6,7 +6,6 @@ const getProductsByNameHandler = async (
   res: Response,
   _next: NextFunction
 ) => {
-  console.log({ a: req.query });
   const { name }: { name?: string } = req.query;
   try {
     if (!name || name.trim() === '') {

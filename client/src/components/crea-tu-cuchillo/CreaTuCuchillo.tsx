@@ -95,7 +95,6 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
         const response = await axios.get<Product[]>(
           "https://industria-gallay-server.onrender.com/products"
         );
-        console.log({ a: response });
         const handleProducts = response.data.filter((product) =>
           product.categories.includes("handle")
         );

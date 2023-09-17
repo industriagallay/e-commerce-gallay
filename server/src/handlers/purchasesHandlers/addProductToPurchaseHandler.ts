@@ -3,9 +3,7 @@ import Purchases from "../../models/purchases";
 
 const addProductToPurchaseHandler = async (req: Request, res: Response) => {
   const clientId = req.params.clientId;
-  console.log({elClienteQueQuiereComprarEs: req.params.clienteId})
   const { productId, quantity, price } = req.body;
-  console.log({ miProductoFrontendEs: req.body });
   try {
     const purchase = await Purchases.findOne({ idClient: clientId });
 

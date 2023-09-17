@@ -40,7 +40,6 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
 
         if (purchases.length > 0) {
           const purchaseIdToDelete = purchases[0]._id;
-          console.log({ c: purchases[0] });
           await axios.delete(
             `https://industria-gallay-server.onrender.com/purchases/delete/${purchaseIdToDelete}`
           );
