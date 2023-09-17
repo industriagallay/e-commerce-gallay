@@ -35,8 +35,6 @@ const LandingPage: React.FC<LandingPageProps> = () => {
         const response = await axios.get<Product[]>(
           "https://industria-gallay-server.onrender.com/products"
         );
-        console.log({ a: response });
-
         const handleProducts = response.data.filter((product) =>
           product.categories.includes("knife")
         );
