@@ -7,12 +7,10 @@ const getClientByIdController = async (req: Request, res: Response) => {
 
   try {
     const filtro = { _id: new Types.ObjectId(clienteId) };
-    console.log("filtro (por ID):", filtro);
 
     const cliente = await Clients.findOne(filtro);
 
     if (cliente) {
-      console.log({ cliente });
       return res.json(cliente);
     } else {
       return res.status(404).json({ message: "Cliente no encontrado" });

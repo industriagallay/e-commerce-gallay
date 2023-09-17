@@ -4,7 +4,6 @@ import Purchases from "../../models/purchases";
 const updatePurchaseHandler = async (req: Request, res: Response) => {
   try {
     const purchasesId = req.params.purchasesId;
-    console.log("purchaseId:", purchasesId);
     const { totalPrice } = req.body;
 
     const purchase = await Purchases.findById(purchasesId);

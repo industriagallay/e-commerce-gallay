@@ -5,7 +5,6 @@ const createProductHandler = async (req: Request, res: Response) => {
   try {
     const { name, description, backgroundImage, stock, price, categories } =
       req.body;
-    console.log({ a: req.body });
     const newProduct = new Products({
       name,
       description,
@@ -16,7 +15,6 @@ const createProductHandler = async (req: Request, res: Response) => {
     });
 
     await newProduct.save();
-    console.log(newProduct);
     return res.send("Producto agregado exitosamente");
   } catch (error) {
     console.error(error);
