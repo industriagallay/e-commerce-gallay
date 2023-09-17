@@ -34,7 +34,7 @@ const CardProductLanding: React.FC<CardProductLandingProps> = ({ product }) => {
                 <div className="price-container-landing">
                   <h5 className="card-title-inicio">{product.name}</h5>
                   <p className="card-text-landing price-landing">
-                    <span>$ {product.price}</span>
+                    <span className="text-primary">$ {product.price}</span>
                   </p>
                 </div>
                 <p className="card-stock-landing">stock: {product.stock}</p>
