@@ -86,7 +86,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       if (swalResult.isConfirmed) {
         const response = await axios.delete(
-          `http://localhost:3001/products/${productId}`
+          `https://industria-gallay-server.onrender.com/products/${productId}`
         );
 
         if (response.status === 200) {

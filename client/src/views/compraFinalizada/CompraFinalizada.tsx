@@ -31,7 +31,7 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
     const fetchUltimaCompra = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/purchases/${clientId}`
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
         );
         setUltimaCompra(response.data[0]);
       } catch (error) {

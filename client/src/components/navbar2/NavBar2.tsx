@@ -34,7 +34,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
     try {
       if (clientId) {
         const response = await axios.get(
-          `http://localhost:3001/purchases/${clientId}`
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
         );
         const purchases = response.data;
 
@@ -42,7 +42,7 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
           const purchaseIdToDelete = purchases[0]._id;
           console.log({ c: purchases[0] });
           await axios.delete(
-            `http://localhost:3001/purchases/delete/${purchaseIdToDelete}`
+            `https://industria-gallay-server.onrender.com/purchases/delete/${purchaseIdToDelete}`
           );
         }
       }

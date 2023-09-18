@@ -34,8 +34,10 @@ const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage = 9;
 
-  const [isHoverEnabled, setIsHoverEnabled] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_isHoverEnabled, setIsHoverEnabled] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -68,7 +70,7 @@ const Home: React.FC = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get<Product[]>(
-          "http://localhost:3001/products"
+          "https://industria-gallay-server.onrender.com/products"
         );
 
         const filteredKnifeProducts = response.data.filter(
@@ -264,7 +266,7 @@ const Home: React.FC = () => {
 
       if (swalResult.isConfirmed) {
         const response = await axios.delete(
-          `http://localhost:3001/products/${product._id}`
+          `https://industria-gallay-server.onrender.com/products/${product._id}`
         );
 
         if (response.status === 200) {

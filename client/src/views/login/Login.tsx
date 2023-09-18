@@ -24,7 +24,7 @@ const Login: React.FC = () => {
   const iniciarSesion = async (formData: FormValues) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/login",
+        "https://industria-gallay-server.onrender.com/api/login",
         formData
       );
 
@@ -34,6 +34,7 @@ const Login: React.FC = () => {
       Cookies.set("token", token);
 
       if (
+        // eslint-disable-next-line no-prototype-builtins
         response.data.hasOwnProperty("isAdmin") &&
         response.data.isAdmin === true
       ) {

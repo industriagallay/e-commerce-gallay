@@ -44,7 +44,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/purchases/${clientId}`
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
         );
 
         console.log(response.data);
@@ -63,7 +63,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/products/id/${productId}`
+          `https://industria-gallay-server.onrender.com/products/id/${productId}`
         );
         setProductData(response.data);
       } catch (error) {
@@ -83,12 +83,12 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
       }
 
       await axios.delete(
-        `http://localhost:3001/purchases/${clientId}/products/${productId}`
+        `https://industria-gallay-server.onrender.com/purchases/${clientId}/products/${productId}`
       );
 
       // Obtener los detalles actualizados de la compra
       const updatedPurchaseResponse = await axios.get(
-        `http://localhost:3001/purchases/${clientId}`
+        `https://industria-gallay-server.onrender.com/purchases/${clientId}`
       );
 
       // Verificar si la respuesta contiene datos válidos antes de actualizar el estado
@@ -142,7 +142,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
 
   const checkout = async (clientId: string) => {
     try {
-      await axios.post(`http://localhost:3001/purchases/close/${clientId}`);
+      await axios.post(`https://industria-gallay-server.onrender.com/purchases/close/${clientId}`);
       setCartItems([]);
 
       navigate("/compra-finalizada");
@@ -151,15 +151,13 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     }
   };
 
-  useEffect(() => {
-    console.log({ a: "contenido del carrito", cartItems });
-  }, []);
+  
 
   useEffect(() => {
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/products/id/${productId}`
+          `https://industria-gallay-server.onrender.com/products/id/${productId}`
         );
         setProductDataMap((prevProductDataMap) => ({
           ...prevProductDataMap,
