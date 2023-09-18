@@ -28,7 +28,6 @@ const Login: React.FC = () => {
         formData
       );
 
-      
       const token = response.data.token;
 
       Cookies.set("token", token);

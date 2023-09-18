@@ -3,13 +3,7 @@ import ObjectIDProps from "bson-objectid";
 import { decodeToken } from "react-jwt";
 import Cookies from "js-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import Swal from "sweetalert2";
-import ObjectId from "bson-objectid";
 import "./ProdctCard.css";
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
-// AOS.init();
 
 interface ProductCardProps {
   product: Product;
@@ -33,19 +27,19 @@ interface Product {
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  hovered,
+  // hovered,
   onMouseEnter,
   onMouseLeave,
   onClick,
   onDelete,
 }) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isHoverEnabled, setIsHoverEnabled] = useState(true);
+  const [isHoverEnabled, _setIsHoverEnabled] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+  const [_isLoggedIn, setIsLoggedIn] = useState(() => {
     const userToken = Cookies.get("token");
-    return !!userToken; // Convierte el token en un valor booleano
+    return !!userToken;
   });
 
   const verificarAutenticacion = async (token: string | undefined) => {
@@ -71,44 +65,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
     verificarAutenticacion(userToken);
   }, [location]);
 
-  const handleDeleteProduct = async () => {
-    const productId = new ObjectId(product._id.toString());
-
-    try {
-      setIsHoverEnabled(false);
-
-      const swalResult = await Swal.fire({
-        title:
-          "Estas seguro de eliminar este producto? la accion es irreversible",
-        showCancelButton: true,
-        confirmButtonText: "Borrar",
-      });
-
-      if (swalResult.isConfirmed) {
-        const response = await axios.delete(
-          `https://industria-gallay-server.onrender.com/products/${productId}`
-        );
-
-        if (response.status === 200) {
-          Swal.fire("Producto borrado correctamente!", "", "success");
-          window.location.reload();
-        } else {
-          Swal.fire("No se pudo borrar el producto", "", "error");
-        }
-      } else if (swalResult.isDenied) {
-        Swal.fire("La accion fue cancelada", "", "info");
-      }
-
-      setIsHoverEnabled(true);
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Ups...",
-        text: "Ocurrio un error inesperado!",
-      });
-    }
-  };
-
   const handleCardClick = (event: React.MouseEvent) => {
     event.stopPropagation();
 
@@ -126,7 +82,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    //col-12 col-md-6 col-lg-4 col-xl-3 mb-4
     <div className="container ">
       <div
         className="col-inicio-sesion"
@@ -177,7 +132,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <div className="price-container">
               <h5 className="card-title-inicio-product">{product.name}</h5>
               <p className="card-text-inicio price">
-                <span>$ {product.price}</span>
+                <span className="text-primary">$ {product.price}</span>
               </p>
             </div>
             <p className="card-stock-inicio">stock: {product.stock}</p>

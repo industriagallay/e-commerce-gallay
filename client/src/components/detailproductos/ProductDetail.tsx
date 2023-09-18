@@ -3,8 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ObjectId from "bson-objectid";
 import Swal from "sweetalert2";
-
-import "./ProductosDetail.css";
+import "./productosDetail.css";
 
 interface ProductDetailProps {
   clientId: string;
@@ -38,12 +37,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         navigate("/login");
         return;
       }
-
-      // Verifica si el cliente ya tiene un carrito (purchase)
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
           `https://industria-gallay-server.onrender.com/purchases/${clientId}`,
-
           {
             products: [
               {
@@ -67,6 +63,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
           }
         );
       }
+
       Swal.fire({
         position: "center",
         icon: "success",
@@ -87,6 +84,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         try {
           const response = await axios.get<Product>(
             `https://industria-gallay-server.onrender.com/products/id/${encodeURIComponent(productId)}`
+
           );
           const product = response.data;
           setProductData(product);

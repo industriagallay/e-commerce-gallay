@@ -8,7 +8,6 @@ const PurchaseStatusEnum = [
   "sent",
   "submitted",
   "canceled",
-  "closed",
 ];
 
 const purchaseSchema = new Schema(

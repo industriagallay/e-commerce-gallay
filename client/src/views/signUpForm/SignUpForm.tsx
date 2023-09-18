@@ -27,7 +27,6 @@ const SignUpForm: React.FC = () => {
   const crearCuenta = async (data: FormValues) => {
     try {
       await axios.post("https://industria-gallay-server.onrender.com/api/register", data);
-
       swal.fire({
         position: "center",
         icon: "success",
