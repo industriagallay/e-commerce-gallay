@@ -8,7 +8,6 @@ import "./LandingPage.css";
 import axios from "axios";
 import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
 import { Link, useNavigate } from "react-router-dom";
-// import { FaArrowCircleRight } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 interface Product {
@@ -146,7 +145,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ clientId }) => {
     <div className="background-color">
       <section className="container-fluid-md">
         <div className="row">
-          <div className="col-md-6">
+          <div className=" col-md-6">
             <video muted autoPlay loop className="w-100">
               <source src={yunqueHerreroMP4} type="video/mp4" />
             </video>
@@ -183,43 +182,43 @@ const LandingPage: React.FC<LandingPageProps> = ({ clientId }) => {
           </div>
         </div>
       </section>
-      <div className="container-md">
-        <div className="productosDestacados row">
-          <div className="container-md">
-            <div className="row">
-              <div className="col-8"> </div>
+      <section className="container">
+        <div className="container-md">
+          <div className="productosDestacados row">
+            <div className="container-md">
+              <div className="row">
+                <div className="col-8"> </div>
+              </div>
+              <div className="col-12-md"></div>
             </div>
-            <div className="col-12-md">
-              <hr className="h2Productosdestacados-Landing mt-5" />
-            </div>
-          </div>
 
-          <div className="col-12-md">
-            <section className="container-md">
-              <div className="container-slider">
-                <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 justify-content-center">
-                  <div className="col">
-                    <Slider {...settings} className="justify-content-center">
-                      {products.map((product) => (
-                        <Link
-                          className="no-text-decoration"
-                          to={`/product/id/${product._id}`}
-                          key={`product-${product._id}`}
-                        >
-                          <CardProductLanding
-                            key={product.id}
-                            product={product}
-                          />
-                        </Link>
-                      ))}
-                    </Slider>
+            <div className="col-12-md">
+              <section className="container-md">
+                <div className="container-slider">
+                  <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 justify-content-center">
+                    <div className="col">
+                      <Slider {...settings} className="justify-content-center">
+                        {products.map((product) => (
+                          <Link
+                            className="no-text-decoration"
+                            to={`/product/id/${product._id}`}
+                            key={`product-${product._id}`}
+                          >
+                            <CardProductLanding
+                              key={product.id}
+                              product={product}
+                            />
+                          </Link>
+                        ))}
+                      </Slider>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
