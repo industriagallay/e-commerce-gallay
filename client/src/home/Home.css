@@ -466,6 +466,11 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+@media (min-width: 768px) {
+  .row-cols-md-4 {
+    justify-content: center;
+  }
+}
 
 @media (min-width: 576px) {
   .row-cols-sm-2 {
@@ -473,11 +478,7 @@
   }
 }
 
-@media (min-width: 768px) {
-  .row-cols-md-4 {
-    justify-content: center;
-  }
-}
+
 
 .col-inicio-sesion {
   display: flex;
@@ -505,9 +506,6 @@
 }
 .free-shipping {
   color: #008300;
-}
-.free-shipping::after {
-  /* content: " ⚡"; */
 }
 
 .img-container {

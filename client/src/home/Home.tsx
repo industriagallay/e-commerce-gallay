@@ -19,6 +19,7 @@ interface Product {
   stock: number;
   price: number;
 }
+
 let totalPages = 0;
 
 const Home: React.FC = () => {
@@ -32,7 +33,10 @@ const Home: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage = 9;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_isHoverEnabled, setIsHoverEnabled] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -42,7 +46,21 @@ const Home: React.FC = () => {
   const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
 
+  let lastMinPrice = minPrice;
+  let lastMaxPrice = maxPrice;
   const navigate = useNavigate();
+
+  const showAllProducts = () => {
+    const filteredKnifeProducts = products.filter(
+      (product) => product.categories === "knife"
+    );
+
+    if (filteredKnifeProducts.length < (currentPage - 1) * productsPerPage) {
+      setCurrentPage(1);
+    }
+
+    setFilteredProducts(filteredKnifeProducts);
+  };
 
   useEffect(() => {
     totalPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -70,30 +88,49 @@ const Home: React.FC = () => {
   }, []);
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    setSelectedFilter("");
-    setSelectedPriceFilter("");
-    setMinPrice(undefined);
-    setMaxPrice(undefined);
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      setSelectedFilter("");
+      setSelectedPriceFilter("");
+      setMinPrice(undefined);
+      setMaxPrice(undefined);
+    }
   };
+
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const productsToShow = filteredProducts.slice(startIndex, endIndex);
 
   const handleMinPriceChange = (value: string) => {
-    setMinPrice(Number(value));
+    const numericValue = value.replace(/\D/g, "");
+
+    if (numericValue.length <= 5) {
+      setMinPrice(Number(numericValue));
+    }
   };
 
   const handleMaxPriceChange = (value: string) => {
-    setMaxPrice(Number(value));
-  };
+    const numericValue = value.replace(/\D/g, "");
 
+    if (numericValue.length <= 5) {
+      setMaxPrice(Number(numericValue));
+    }
+  };
   const handleRangeSearch = () => {
     if (minPrice !== undefined && maxPrice !== undefined) {
-      const filtered = products.filter(
-        (product) => product.price >= minPrice && product.price <= maxPrice
-      );
-      setFilteredProducts(filtered);
+      if (minPrice > maxPrice) {
+        navigate("/nohaybusqueda");
+        return;
+      }
+
+      if (minPrice !== lastMinPrice || maxPrice !== lastMaxPrice) {
+        const filtered = products.filter(
+          (product) => product.price >= minPrice && product.price <= maxPrice
+        );
+        setFilteredProducts(filtered);
+        lastMinPrice = minPrice;
+        lastMaxPrice = maxPrice;
+      }
     }
   };
 
@@ -145,11 +182,6 @@ const Home: React.FC = () => {
       setFilteredProducts(filtered);
     }
   }, [searchTerm, products]);
-
-  const showAllProducts = () => {
-    const allProducts = products.slice(0, 9);
-    setFilteredProducts(allProducts);
-  };
 
   const [animationsCompleted, setAnimationsCompleted] = useState(false);
   useEffect(() => {
@@ -365,20 +397,24 @@ const Home: React.FC = () => {
                     inputMode="numeric"
                     placeholder="Mínimo"
                     className="Min-number"
-                    type="number"
+                    type="text"
+                    value={minPrice !== undefined ? minPrice.toString() : ""}
                     onChange={(event) =>
                       handleMinPriceChange(event.target.value)
                     }
+                    maxLength={5}
                   />
-                  <div className="line-between-inputs"></div>{" "}
+                  <div className="line-between-inputs"></div>
                   <input
                     inputMode="numeric"
                     placeholder="Máximo"
                     className="Max-number"
-                    type="number"
+                    type="text"
+                    value={maxPrice !== undefined ? maxPrice.toString() : ""}
                     onChange={(event) =>
                       handleMaxPriceChange(event.target.value)
                     }
+                    maxLength={5}
                   />
                   <div className="Arrow-iconSelect" onClick={handleRangeSearch}>
                     <i className="biarrow bi-arrow-right-circle"></i>

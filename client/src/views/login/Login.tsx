@@ -33,6 +33,7 @@ const Login: React.FC = () => {
       Cookies.set("token", token);
 
       if (
+        // eslint-disable-next-line no-prototype-builtins
         response.data.hasOwnProperty("isAdmin") &&
         response.data.isAdmin === true
       ) {

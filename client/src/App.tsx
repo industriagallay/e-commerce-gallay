@@ -20,8 +20,13 @@ import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProduc
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja";
 import Loader from "./components/loader/Loader";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import NoHayBusqueda from "./components/loader/nohaybusqueda/NoHayBusqueda";
+
+
+
+
 
 export interface ProductCardProps {
   product: Product;
@@ -105,15 +110,10 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
-        <Route
-          path="/creatucuchillo"
-          element={<CreaTuCuchillo clientId={clientId} />}
-        />
-        <Route
-          path="eligetuhoja"
-          element={<EligeTuHoja clientId={clientId} />}
-        />
-        <Route path="/loader" element={<Loader />} />
+        <Route path="/creatucuchillo" element={<CreaTuCuchillo  clientId={clientId}/>} />
+        <Route path="eligetuhoja" element={<EligeTuHoja clientId={clientId}/>} />
+        <Route path="/loader" element={<Loader />}/>
+        <Route path="/nohaybusqueda" element={<NoHayBusqueda />}/>
         <Route path="/help" element={<Help />} />
         <Route
           path="/admin"

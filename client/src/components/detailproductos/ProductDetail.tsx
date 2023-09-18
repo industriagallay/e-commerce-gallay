@@ -83,9 +83,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
       const fetchProductDetails = async (productId: string) => {
         try {
           const response = await axios.get<Product>(
-            `https://industria-gallay-server.onrender.com/products/id/${encodeURIComponent(
-              productId
-            )}`
+            `https://industria-gallay-server.onrender.com/products/id/${encodeURIComponent(productId)}`
+
           );
           const product = response.data;
           setProductData(product);
