@@ -34,7 +34,6 @@ export const authRequired = (
   }
 
   const decodedToken = Jwt.decode(token) as DecodedToken;
-  console.log(decodedToken);
   if (!decodedToken) {
     return res.status(403).json({ message: "Token no valido" });
   }

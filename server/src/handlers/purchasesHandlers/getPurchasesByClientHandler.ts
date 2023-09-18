@@ -3,7 +3,6 @@ import Purchases from "../../models/purchases";
 
 const getPurchasesByClientHandler = async (req: Request, res: Response) => {
   const clientId = req.params.clientId;
-console.log({b: req.params});
   try {
     const purchases = await Purchases.find({
       idClient: clientId,

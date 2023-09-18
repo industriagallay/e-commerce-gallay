@@ -16,10 +16,6 @@ body {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
-/*color hover del logo*/
-a:hover {
-  /* color: #d7e745; */
-}
 
 .navbar-toggler {
   border: none;
@@ -120,7 +116,6 @@ a:hover {
     gap: 10px;
   }
   .btn-iniciar-sesion-landing {
-    /* Alinea el botón al centro y agrega margen superior */
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -139,7 +134,7 @@ a:hover {
   background: #ffffffd0;
   border-radius: 20%;
 }
-/*barra de navegacion*/
+
 .navbar-links-container {
   position: absolute;
   right: 0;
@@ -216,12 +211,11 @@ a:hover {
 }
 
 .navbar-links a:hover {
-  /* color: #ffffff; */
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
 }
-/*icono navbar*/
+
 .navbar-logo {
   margin-left: 7rem;
   justify-self: flex-start;
@@ -241,7 +235,6 @@ a:hover {
   padding: 0;
 }
 
-/****botton del login*****/
 .button-iniciar-sesion {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -252,7 +245,6 @@ a:hover {
   cursor: pointer;
   position: relative;
   padding: 8px;
-
   text-transform: uppercase;
   font-weight: bold;
   font-size: 14px;
@@ -305,7 +297,6 @@ a:hover {
   display: block;
 
   color: #ffffff;
-  /* background-color: #0f1923; */
   overflow: hidden;
   box-shadow: inset 0px 0px 0px 1px transparent;
 }
@@ -340,7 +331,6 @@ a:hover {
   bottom: -1px;
   left: -8px;
   width: 0;
-  /* background-color: #a2b11a; */
   transform: skew(-15deg);
   transition: all 0.2s ease;
 }
@@ -349,7 +339,6 @@ a:hover {
   position: relative;
 }
 .button-iniciar-sesion-custom {
-  /* Agrega los estilos que desees personalizar */
   margin: 10px;
   color: #fff;
   font-family: "Inter", sans-serif;

@@ -17,7 +17,6 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-
 .navbar-toggler-icon {
   display: inline-block;
   width: 1.5em;
@@ -77,7 +76,7 @@ a:hover {
 
   .navbar-toggler {
     position: absolute;
-    right: 2.9rem;                         
+    right: 2.9rem;
   }
 
   .collapsed .navbar-toggler-icon {
@@ -171,17 +170,13 @@ a:hover {
     margin-right: 10px;
     top: 30px;
   }
-  
+
   .container-iconcart-carrito {
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
-  
 }
-
-
-
 
 /*barra de navegacion*/
 .navbar-links-container {

@@ -3,12 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./CarritoCompras.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 import animation_llvcrs0g from "../../assets/animation_llvcrs0g_small.gif";
 
-// Define un tipo para los elementos del carrito
 export interface ICartItem {
-  // imageUrl: string;
   productId: string;
   purchasesId: string;
   backgroundImage: string;
@@ -30,9 +27,13 @@ interface IProductData {
 interface ICarritoItemDataProps {
   clientId: string;
   purchasesId: string;
+  totalPrice: number;
 }
 
-const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
+const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
+  clientId,
+  totalPrice,
+}) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
   const [productData, setProductData] = useState<IProductData | null>(null);
   const navigate = useNavigate();
@@ -44,10 +45,8 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/purchases/${clientId}`
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
         );
-
-        console.log(response.data);
 
         const cartData = response.data[0].products;
         setCartItems(cartData);
@@ -63,7 +62,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/products/id/${productId}`
+          `https://industria-gallay-server.onrender.com/products/id/${productId}`
         );
         setProductData(response.data);
       } catch (error) {
@@ -83,15 +82,13 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
       }
 
       await axios.delete(
-        `http://localhost:3001/purchases/${clientId}/products/${productId}`
+        `https://industria-gallay-server.onrender.com/purchases/${clientId}/products/${productId}`
       );
 
-      // Obtener los detalles actualizados de la compra
       const updatedPurchaseResponse = await axios.get(
-        `http://localhost:3001/purchases/${clientId}`
+        `https://industria-gallay-server.onrender.com/purchases/${clientId}`
       );
 
-      // Verificar si la respuesta contiene datos válidos antes de actualizar el estado
       if (updatedPurchaseResponse.data.length > 0) {
         const updatedPurchase = updatedPurchaseResponse.data[0];
         setCartItems(updatedPurchase.products);
@@ -140,9 +137,14 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
-  const checkout = async (clientId: string) => {
+  const checkout = async (clientId: string, totalPrice: number) => {
     try {
-      await axios.post(`http://localhost:3001/purchases/close/${clientId}`);
+      await axios.post(
+        `https://industria-gallay-server.onrender.com/purchases/generate/${clientId}`,
+        {
+          totalPrice,
+        }
+      );
       setCartItems([]);
 
       navigate("/compra-finalizada");
@@ -152,14 +154,10 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
   };
 
   useEffect(() => {
-    console.log({ a: "contenido del carrito", cartItems });
-  }, []);
-
-  useEffect(() => {
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/products/id/${productId}`
+          `https://industria-gallay-server.onrender.com/products/id/${productId}`
         );
         setProductDataMap((prevProductDataMap) => ({
           ...prevProductDataMap,
@@ -287,7 +285,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({ clientId }) => {
               </div>
               <button
                 className="botoncheckoutcompraca"
-                onClick={() => checkout(clientId)}
+                onClick={() => checkout(clientId, totalPrice)}
               >
                 Realizar Pago
               </button>

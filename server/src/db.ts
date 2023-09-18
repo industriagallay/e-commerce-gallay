@@ -16,7 +16,7 @@ export async function connectToDatabase() {
     const options = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      dbName: "e-commerce-gallay",
+      dbName: "industria-gallay-database",
     };
 
     await mongoose.connect(uri, options);

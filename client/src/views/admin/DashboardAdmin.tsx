@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
@@ -59,7 +60,16 @@ interface Product {
   updatedAt: string;
 }
 
-const DashboardAdmin: React.FC = () => {
+interface DashboardAdminProps {
+  product?: Product;
+  isAdmin: boolean;
+  isLoggedIn: boolean;
+}
+
+const DashboardAdmin: React.FC<DashboardAdminProps> = ({
+  isAdmin,
+  isLoggedIn,
+}) => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
@@ -69,6 +79,7 @@ const DashboardAdmin: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [currentPageCompras, setCurrentPageCompras] = useState<number>(1);
   const [productos, setProductos] = useState<Product[]>([]);
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] =
     useState<string>("categoria1");
   const cloudinaryName = VITE_CLOUDINARY_NAME || "";
@@ -91,7 +102,7 @@ const DashboardAdmin: React.FC = () => {
         categories: selectedCategory,
       };
       const response = await axios.post(
-        "http://localhost:3001/products",
+        "https://industria-gallay-server.onrender.com/products",
         dataWithImage
       );
       console.log(response.data);
@@ -123,7 +134,7 @@ const DashboardAdmin: React.FC = () => {
   const fetchClients = async (page: number) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/clients/allclient?page=${page}&perPage=7`
+        `https://industria-gallay-server.onrender.com/clients/allclient?page=${page}&perPage=7`
       );
       if (response.status === 200) {
         const data = response.data;
@@ -144,14 +155,10 @@ const DashboardAdmin: React.FC = () => {
     setOriginalClientes(clientes);
   }, [clientes]);
 
-  const filteredClientes = originalClientes.filter((cliente) =>
-    cliente.firstName.toLowerCase().includes(searchQueryClientes.toLowerCase())
-  );
-
   const fetchFilteredClients = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/clients?search=${searchQueryClientes}&page=${currentPage}&perPage=7`
+        `https://industria-gallay-server.onrender.com/clients?search=${searchQueryClientes}&page=${currentPage}&perPage=7`
       );
       if (response.status === 200) {
         const data = response.data;
@@ -161,20 +168,6 @@ const DashboardAdmin: React.FC = () => {
       }
     } catch (error) {
       console.error("Error fetching clients:", error);
-    }
-  };
-
-  const fetchFilteredCompras = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/purchases/client/${searchQueryPurchases}`,
-        {
-          params: { search: searchQueryPurchases },
-        }
-      );
-      setCompras(response.data);
-    } catch (error) {
-      console.error("Error searching purchases:", error);
     }
   };
 
@@ -202,11 +195,12 @@ const DashboardAdmin: React.FC = () => {
     startIndexCompras,
     endIndexCompras
   );
+  console.log(paginatedCompras);
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/clients/delete/${userId}`
+        `https://industria-gallay-server.onrender.com/clients/delete/${userId}`
       );
 
       if (response.status === 200) {
@@ -242,7 +236,7 @@ const DashboardAdmin: React.FC = () => {
   const fetchPurchases = async (): Promise<Purchase[]> => {
     try {
       const respuesta = await axios.get<Purchase[]>(
-        "http://localhost:3001/purchases"
+        "https://industria-gallay-server.onrender.com/purchases"
       );
       const compra = respuesta.data;
       return compra;
@@ -264,8 +258,6 @@ const DashboardAdmin: React.FC = () => {
 
   const handleSearchPurchase = async () => {
     try {
-      console.log("Search query:", searchQueryPurchases);
-
       if (!searchQueryPurchases) {
         swal.fire({
           icon: "warning",
@@ -295,7 +287,7 @@ const DashboardAdmin: React.FC = () => {
       const clientIds = matchingClients.map((cliente) => cliente._id);
 
       const response = await axios.get(
-        `http://localhost:3001/purchases/client/${clientIds}`
+        `https://industria-gallay-server.onrender.com/purchases/client/${clientIds}`
       );
 
       if (response.data.length === 0) {
@@ -320,7 +312,7 @@ const DashboardAdmin: React.FC = () => {
   const fetchProductos = async (): Promise<Product[]> => {
     try {
       const response = await axios.get<Product[]>(
-        "http://localhost:3001/products"
+        "https://industria-gallay-server.onrender.com/products"
       );
       const productosData = response.data;
       return productosData;
@@ -339,6 +331,11 @@ const DashboardAdmin: React.FC = () => {
         console.error("Error al obtener los productos:", error.message);
       });
   }, []);
+
+  if (!isLoggedIn || !isAdmin) {
+    navigate("/home");
+    return null;
+  }
 
   return (
     <div className="perrito-admin">

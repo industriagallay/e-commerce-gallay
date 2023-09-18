@@ -1,5 +1,5 @@
 import React, { Key, useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import fundicion from "../../assets/img/fundiciónPNG.png";
 import Slider from "react-slick";
 import "./EligeTuHoja.css";
@@ -12,7 +12,6 @@ import Swal from "sweetalert2";
 interface Product {
   clientId: string;
   _id: Key | null | undefined;
-  // _id: Object;
   name: string;
   description: string;
   backgroundImage: string;
@@ -27,9 +26,8 @@ interface EligeTuHojaProps {
 
 const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
   const [purchaseId, setPurchaseId] = useState<string | null>(null);
-  const [cartUpdate, setCartUpdate] = useState<number>(0);
+  const [_cartUpdate, setCartUpdate] = useState<number>(0);
   const [products, setProducts] = useState<Product[]>([]);
-  const location = useLocation();
 
   const navigate = useNavigate();
 
@@ -44,10 +42,9 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
         return;
       }
 
-      // Verifica si el cliente ya tiene un carrito (purchase)
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
-          `http://localhost:3001/purchases/${clientId}`,
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}`,
 
           {
             products: [
@@ -64,7 +61,7 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
         setPurchaseId(createdPurchase._id);
       } else {
         await axios.post(
-          `http://localhost:3001/purchases/${clientId}/products`,
+          `https://industria-gallay-server.onrender.com/purchases/${clientId}/products`,
           {
             productId,
             quantity,
@@ -90,10 +87,8 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get<Product[]>(
-          "http://localhost:3001/products"
+          "https://industria-gallay-server.onrender.com/products"
         );
-        console.log({ a: response });
-        // Filtrar los productos por categoría "handle"
         const handleProducts = response.data.filter((product) =>
           product.categories.includes("blade")
         );
