@@ -34,8 +34,10 @@ const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage = 9;
 
-  const [isHoverEnabled, setIsHoverEnabled] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_isHoverEnabled, setIsHoverEnabled] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");

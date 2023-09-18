@@ -139,6 +139,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
 
   const checkout = async (clientId: string, totalPrice: number) => {
     try {
+
       await axios.post(
         `https://industria-gallay-server.onrender.com/purchases/generate/${clientId}`,
         {

@@ -56,9 +56,7 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({
       const fetchProduct = async (productId: string) => {
         try {
           const response = await axios.get<Product>(
-            `https://industria-gallay-server.onrender.com/products/id/${encodeURIComponent(
-              productId
-            )}`
+            `https://industria-gallay-server.onrender.com/products/id/${encodeURIComponent(productId)}`
           );
           const productData = response.data;
           setProductData(productData);
