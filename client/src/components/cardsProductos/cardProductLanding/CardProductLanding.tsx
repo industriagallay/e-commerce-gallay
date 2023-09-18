@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./CardProductLanding.css";
 
 interface CardProductLandingProps {
@@ -33,27 +32,9 @@ const CardProductLanding: React.FC<CardProductLandingProps> = ({ product }) => {
               </div>
               <div className="card-body-landing-productos ">
                 <div className="price-container-landing">
-                  {/* {product.price && (
-                    <p className="card-text-landing discount-price-landing">
-                      $ {(product.price)}
-                    </p>
-                  )} */}
-
-                    <h5 className="card-title-inicio">{product.name}</h5>
+                  <h5 className="card-title-inicio">{product.name}</h5>
                   <p className="card-text-landing price-landing">
                     <span>$ {product.price}</span>
-                    {/* {product.price && (
-                      <span className="price-off-landing"></span>
-                    )}
-                    {product.price&& (
-                      <span className="additional-text-landing">
-                    
-                        <br />
-                        <span className="free-shipping-landing">
-
-                        </span>
-                      </span>
-                    )} */}
                   </p>
                 </div>
                 <p className="card-stock-landing">stock: {product.stock}</p>
