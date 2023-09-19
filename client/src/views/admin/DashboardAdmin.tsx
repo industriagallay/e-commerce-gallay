@@ -11,6 +11,7 @@ import ObjectID from "bson-objectid";
 import React from "react";
 import moment from "moment";
 import "moment/locale/es";
+import { apiUrl } from "../../url";
 
 moment.locale("es");
 
@@ -103,10 +104,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
         backgroundImage: imageUrl,
         categories: selectedCategory,
       };
-      const response = await axios.post(
-        "https://industria-gallay-server.onrender.com/products",
-        dataWithImage
-      );
+      const response = await axios.post(`${apiUrl}/products`, dataWithImage);
       console.log(response.data);
 
       swal.fire({
@@ -136,7 +134,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const fetchClients = async (page: number) => {
     try {
       const response = await axios.get(
-        `https://industria-gallay-server.onrender.com/clients/allclient?page=${page}&perPage=7`
+        `${apiUrl}/clients/allclient?page=${page}&perPage=7`
       );
       if (response.status === 200) {
         const data = response.data;
@@ -160,7 +158,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const fetchFilteredClients = async () => {
     try {
       const response = await axios.get(
-        `https://industria-gallay-server.onrender.com/clients?search=${searchQueryClientes}&page=${currentPage}&perPage=7`
+        `${apiUrl}/clients?search=${searchQueryClientes}&page=${currentPage}&perPage=7`
       );
       if (response.status === 200) {
         const data = response.data;
@@ -201,9 +199,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
-      const response = await axios.delete(
-        `https://industria-gallay-server.onrender.com/clients/delete/${userId}`
-      );
+      const response = await axios.delete(`${apiUrl}/clients/delete/${userId}`);
 
       if (response.status === 200) {
         const updatedClientes = clientes.map((cliente) => {
@@ -237,9 +233,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const fetchPurchases = async (): Promise<Purchase[]> => {
     try {
-      const respuesta = await axios.get<Purchase[]>(
-        "https://industria-gallay-server.onrender.com/purchases"
-      );
+      const respuesta = await axios.get<Purchase[]>(`${apiUrl}/purchases`);
       const compra = respuesta.data;
       return compra;
     } catch (error) {
@@ -294,9 +288,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const fetchProductos = async (): Promise<Product[]> => {
     try {
-      const response = await axios.get<Product[]>(
-        "https://industria-gallay-server.onrender.com/products"
-      );
+      const response = await axios.get<Product[]>(`${apiUrl}/products`);
       const productosData = response.data;
       return productosData;
     } catch (error) {

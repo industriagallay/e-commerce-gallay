@@ -4,6 +4,7 @@ import "./CarritoCompras.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import animation_llvcrs0g from "../../assets/animation_llvcrs0g_small.gif";
+import { apiUrl } from "../../url";
 
 export interface ICartItem {
   productId: string;
@@ -45,7 +46,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
+          `${apiUrl}/purchases/${clientId}`
         );
 
         const cartData = response.data[0].products;
@@ -62,7 +63,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(
-          `https://industria-gallay-server.onrender.com/products/id/${productId}`
+          `${apiUrl}/products/id/${productId}`
         );
         setProductData(response.data);
       } catch (error) {
@@ -82,11 +83,11 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
       }
 
       await axios.delete(
-        `https://industria-gallay-server.onrender.com/purchases/${clientId}/products/${productId}`
+        `${apiUrl}/purchases/${clientId}/products/${productId}`
       );
 
       const updatedPurchaseResponse = await axios.get(
-        `https://industria-gallay-server.onrender.com/purchases/${clientId}`
+        `${apiUrl}/purchases/${clientId}`
       );
 
       if (updatedPurchaseResponse.data.length > 0) {
@@ -141,7 +142,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     try {
 
       await axios.post(
-        `https://industria-gallay-server.onrender.com/purchases/generate/${clientId}`,
+        `${apiUrl}/purchases/generate/${clientId}`,
         {
           totalPrice,
         }
@@ -158,7 +159,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(
-          `https://industria-gallay-server.onrender.com/products/id/${productId}`
+          `${apiUrl}/products/id/${productId}`
         );
         setProductDataMap((prevProductDataMap) => ({
           ...prevProductDataMap,

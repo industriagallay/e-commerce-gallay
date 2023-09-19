@@ -8,7 +8,7 @@ import "./LandingPage.css";
 import axios from "axios";
 import CardProductLanding from "../../components/cardsProductos/cardProductLanding/CardProductLanding";
 import { Link } from "react-router-dom";
-
+import { apiUrl } from "../../url";
 
 interface Product {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,9 +33,7 @@ const LandingPage: React.FC<LandingPageProps> = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get<Product[]>(
-          "https://industria-gallay-server.onrender.com/products"
-        );
+        const response = await axios.get<Product[]>(`${apiUrl}/products`);
         console.log({ a: response });
 
         const handleProducts = response.data.filter((product) =>

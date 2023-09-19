@@ -2,17 +2,18 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
-import axios from "axios";
+// import axios from "axios";
 import "./NavBar2.css";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+// import { apiUrl } from "../../url";
 
 interface NavBar2Props {
   clientId: string;
 }
 
-const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
+const NavBar2: React.FC<NavBar2Props> = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [_isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -32,19 +33,17 @@ const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
 
   const handleLogout = async () => {
     try {
-      if (clientId) {
-        const response = await axios.get(
-          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
-        );
-        const purchases = response.data;
+      // if (clientId) {
+      //   const response = await axios.get(`${apiUrl}/purchases/${clientId}`);
+      //   const purchases = response.data;
 
-        if (purchases.length > 0) {
-          const purchaseIdToDelete = purchases[0]._id;
-          await axios.delete(
-            `https://industria-gallay-server.onrender.com/purchases/delete/${purchaseIdToDelete}`
-          );
-        }
-      }
+      //   if (purchases.length > 0) {
+      //     const purchaseIdToDelete = purchases[0]._id;
+      //     await axios.delete(
+      //       `${apiUrl}/purchases/delete/${purchaseIdToDelete}`
+      //     );
+      //   }
+      // }
       setIsLoggedIn(false);
       Cookies.remove("token");
       navigate("/");
