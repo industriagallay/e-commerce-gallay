@@ -235,9 +235,9 @@ a:hover {
 
 .navbar-logo-container {
   display: flex;
-  align-items: center; /* Centra verticalmente el contenido */
-  margin-right: auto; /* Empuja el logo hacia la izquierda */
-  padding-left: 20px; /* Agrega un espacio a la izquierda del logo */
+  align-items: center; 
+  margin-right: auto; 
+  padding-left: 20px; 
 }
 .navbar-logo {
   /* margin-left: 7rem; */

@@ -313,9 +313,9 @@ const Home: React.FC = () => {
           </div>
 
           <div className="home__secondary col-lg-6 col-md-12">
-            <a className="home__scroll" href="#about">
+            {/* <a className="home__scroll" href="#about">
               SCROLLDOWN
-            </a>
+            </a> */}
             <span className="home__year">Bienvenido</span>
           </div>
         </div>
