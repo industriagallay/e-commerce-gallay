@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
 import { useNavigate, Link } from "react-router-dom";
 import "./SignUpForm.css";
+import { apiUrl } from "../../url";
 
 type FormValues = {
   firstName: string;
@@ -26,10 +27,7 @@ const SignUpForm: React.FC = () => {
 
   const crearCuenta = async (data: FormValues) => {
     try {
-      await axios.post(
-        "https://industria-gallay-server.onrender.com/api/register",
-        data
-      );
+      await axios.post(`${apiUrl}/api/register`, data);
       swal.fire({
         position: "center",
         icon: "success",

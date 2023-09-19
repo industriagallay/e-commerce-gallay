@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { apiUrl } from "../../url";
 
 interface Product {
   clientId: string;
@@ -50,7 +51,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
 
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
-          `https://industria-gallay-server.onrender.com/purchases/${clientId}`,
+          `${apiUrl}/purchases/${clientId}`,
 
           {
             products: [
@@ -66,14 +67,11 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
         const createdPurchase = createPurchaseResponse.data;
         setPurchaseId(createdPurchase._id);
       } else {
-        await axios.post(
-          `https://industria-gallay-server.onrender.com/purchases/${clientId}/products`,
-          {
-            productId,
-            quantity,
-            price,
-          }
-        );
+        await axios.post(`${apiUrl}/purchases/${clientId}/products`, {
+          productId,
+          quantity,
+          price,
+        });
       }
       Swal.fire({
         position: "center",
@@ -92,9 +90,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get<Product[]>(
-          "https://industria-gallay-server.onrender.com/products"
-        );
+        const response = await axios.get<Product[]>(`${apiUrl}/products`);
         const handleProducts = response.data.filter((product) =>
           product.categories.includes("handle")
         );

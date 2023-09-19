@@ -3,16 +3,11 @@ import Purchases from "../../models/purchases";
 
 const generateNewPurchaseHandler = async (req: Request, res: Response) => {
   const clientId = req.params.clientId;
-  const { totalPrice } = req.body;
   try {
-    let purchaseToUpdate = await Purchases.findOne(
-      {
-        idClient: clientId,
-        status: "inCart",
-        totalPrice,
-      },
-      { $sort: { createdAt: -1 } }
-    );
+    let purchaseToUpdate = await Purchases.findOne({
+      idClient: clientId,
+      status: "inCart",
+    });
     if (!purchaseToUpdate || !purchaseToUpdate._id) {
       res.status(500).json({ message: "no existe la compra" });
     }

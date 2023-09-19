@@ -6,13 +6,10 @@ const createPurchaseByClientIdHandler = async (req: Request, res: Response) => {
   const { products, totalPrice } = req.body;
 
   try {
-    let purchase = await Purchases.findOne(
-      {
-        idClient: clientId,
-        status: "inCart",
-      },
-      { $sort: { createdAt: -1 } }
-    );
+    let purchase = await Purchases.findOne({
+      idClient: clientId,
+      status: "inCart",
+    });
 
     if (!purchase) {
       // si el cliente es nuevo, aca genero una nueva compra
@@ -34,6 +31,7 @@ const createPurchaseByClientIdHandler = async (req: Request, res: Response) => {
 
     res.status(201).json(purchase);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Error al generar o actualizar la compra" });
   }
 };
