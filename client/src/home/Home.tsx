@@ -9,6 +9,7 @@ import ObjectId from "bson-objectid";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./Home.css";
+import { apiUrl } from "../url";
 
 interface Product {
   categories: string;
@@ -69,9 +70,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get<Product[]>(
-          "https://industria-gallay-server.onrender.com/products"
-        );
+        const response = await axios.get<Product[]>(`${apiUrl}/products`);
 
         const filteredKnifeProducts = response.data.filter(
           (product) => product.categories === "knife"
@@ -266,7 +265,7 @@ const Home: React.FC = () => {
 
       if (swalResult.isConfirmed) {
         const response = await axios.delete(
-          `https://industria-gallay-server.onrender.com/products/${product._id}`
+          `${apiUrl}/products/${product._id}`
         );
 
         if (response.status === 200) {

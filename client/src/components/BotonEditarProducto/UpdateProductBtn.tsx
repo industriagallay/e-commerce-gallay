@@ -8,6 +8,7 @@ import "./UpdateProductBtn.css";
 import yunque2 from "../../assets/yunque2.jpg";
 import { VITE_CLOUDINARY_NAME } from "../../variable";
 import { useParams, useNavigate } from "react-router-dom";
+import { apiUrl } from "../../url";
 
 type FormValues = {
   name: string;
@@ -56,7 +57,7 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({
       const fetchProduct = async (productId: string) => {
         try {
           const response = await axios.get<Product>(
-            `https://industria-gallay-server.onrender.com/products/id/${encodeURIComponent(productId)}`
+            `${apiUrl}/products/id/${encodeURIComponent(productId)}`
           );
           const productData = response.data;
           setProductData(productData);
@@ -94,7 +95,7 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({
         backgroundImage: imageUrl,
       };
       const response = await axios.put(
-        `https://industria-gallay-server.onrender.com/products/put/${productData._id}`,
+        `${apiUrl}/products/put/${productData._id}`,
         dataWithImage
       );
       console.log({ respuesta: response });

@@ -4,6 +4,7 @@ import axios from "axios";
 import ObjectId from "bson-objectid";
 import Swal from "sweetalert2";
 import "./productosDetail.css";
+import { apiUrl } from "../../url";
 
 interface ProductDetailProps {
   clientId: string;
@@ -39,7 +40,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
       }
       if (!purchaseId) {
         const createPurchaseResponse = await axios.post(
-          `https://industria-gallay-server.onrender.com/purchases/${clientId}`,
+          `${apiUrl}/purchases/${clientId}`,
           {
             products: [
               {
@@ -54,14 +55,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
         const createdPurchase = createPurchaseResponse.data;
         setPurchaseId(createdPurchase._id);
       } else {
-        await axios.post(
-          `https://industria-gallay-server.onrender.com/purchases/${clientId}/products`,
-          {
-            productId,
-            quantity,
-            price,
-          }
-        );
+        await axios.post(`${apiUrl}/purchases/${clientId}/products`, {
+          productId,
+          quantity,
+          price,
+        });
       }
 
       Swal.fire({
@@ -83,8 +81,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ clientId }) => {
       const fetchProductDetails = async (productId: string) => {
         try {
           const response = await axios.get<Product>(
-            `https://industria-gallay-server.onrender.com/products/id/${encodeURIComponent(productId)}`
-
+            `${apiUrl}/products/id/${encodeURIComponent(productId)}`
           );
           const product = response.data;
           setProductData(product);

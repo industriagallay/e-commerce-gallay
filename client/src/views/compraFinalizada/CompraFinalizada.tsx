@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CompraFinalizada.css";
 import moment from "moment";
+import { apiUrl } from "../../url";
 
 interface ClienteIdCompraProps {
   clientId: string;
@@ -31,9 +32,7 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   useEffect(() => {
     const fetchUltimaCompra = async () => {
       try {
-        const response = await axios.get(
-          `https://industria-gallay-server.onrender.com/purchases/${clientId}`
-        );
+        const response = await axios.get(`${apiUrl}/purchases/${clientId}`);
         setUltimaCompra(response.data[0]);
       } catch (error) {
         console.error("Error al obtener la última compra:", error);

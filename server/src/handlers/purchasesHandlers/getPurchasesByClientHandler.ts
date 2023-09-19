@@ -6,6 +6,7 @@ const getPurchasesByClientHandler = async (req: Request, res: Response) => {
   try {
     const purchases = await Purchases.find({
       idClient: clientId,
+      status: "inCart",
     });
     res.json(purchases);
   } catch (error) {

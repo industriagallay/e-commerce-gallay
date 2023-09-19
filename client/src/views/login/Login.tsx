@@ -6,6 +6,7 @@ import "./Login.css";
 import "../../components/navbar2/NavBar2.css";
 import "../../components/navbar1/NavBar1.css";
 import Cookies from "js-cookie";
+import { apiUrl } from "../../url";
 
 type FormValues = {
   firstName: string;
@@ -23,10 +24,7 @@ const Login: React.FC = () => {
 
   const iniciarSesion = async (formData: FormValues) => {
     try {
-      const response = await axios.post(
-        "https://industria-gallay-server.onrender.com/api/login",
-        formData
-      );
+      const response = await axios.post(`${apiUrl}/api/login`, formData);
 
       const token = response.data.token;
 
