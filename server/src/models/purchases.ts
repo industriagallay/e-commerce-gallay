@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 
-// Define un enum para los posibles estados de la compra
 const PurchaseStatusEnum = [
   "inCart",
   "pending pay",

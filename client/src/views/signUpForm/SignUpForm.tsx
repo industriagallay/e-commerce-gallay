@@ -26,7 +26,10 @@ const SignUpForm: React.FC = () => {
 
   const crearCuenta = async (data: FormValues) => {
     try {
-      await axios.post("https://industria-gallay-server.onrender.com/api/register", data);
+      await axios.post(
+        "https://industria-gallay-server.onrender.com/api/register",
+        data
+      );
       swal.fire({
         position: "center",
         icon: "success",
@@ -48,10 +51,13 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="registro">
       <div className="header2">
         <h2 className="slide-from-right">
-          <span>Registrate Y Disfrutá De Nuestras Ofertas </span>
+          <span>
+            Registrate y disfrutá de nuestras ofertas y variedad de cuchillos -
+            recorda que podes visitar nuestra sección para armar tu cuchillo{" "}
+          </span>
         </h2>
       </div>
       <div className="container">
@@ -61,7 +67,9 @@ const SignUpForm: React.FC = () => {
               className="SignUpform ml-auto"
               onSubmit={handleSubmit(crearCuenta)}
             >
-              <div className="header">Registrarse</div>
+              <div className="header text-center">
+                Para crear tu cuenta te pediremos algunos datos{" "}
+              </div>
               <div className="inputs">
                 <input
                   type="text"
@@ -157,6 +165,13 @@ const SignUpForm: React.FC = () => {
                     ) : (
                       <i className="bi bi-eye registrarse"></i>
                     )}{" "}
+                  </button>
+                  <br />
+                  <button
+                    type="submit"
+                    className="fs-4 mt-5 ms-5 btn btn-primary"
+                  >
+                    Crear Cuenta
                   </button>
                 </div>
                 <p className="signup-link">

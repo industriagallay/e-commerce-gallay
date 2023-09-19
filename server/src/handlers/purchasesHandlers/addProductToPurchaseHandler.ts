@@ -5,7 +5,13 @@ const addProductToPurchaseHandler = async (req: Request, res: Response) => {
   const clientId = req.params.clientId;
   const { productId, quantity, price } = req.body;
   try {
-    const purchase = await Purchases.findOne({ idClient: clientId });
+    const purchase = await Purchases.findOne(
+      {
+        idClient: clientId,
+        status: "inCart",
+      },
+      { $sort: { createdAt: -1 } }
+    );
 
     if (!purchase) {
       return res.status(404).json({ error: "Compra no encontrada" });
