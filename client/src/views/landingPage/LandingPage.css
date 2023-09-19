@@ -149,12 +149,12 @@ video {
     margin-left: 0px;
   }
 }
-@media (max-width: 390px) {
+
+@media screen and (width: 390px) and (height: 844px) {
   .texto-Industria1 {
     margin-right: 90px;
     margin-top: 50px;
   }
-
   .LI-blur {
     list-style: none;
     font-size: 3em;
@@ -186,7 +186,7 @@ video {
     left: 0;
     max-width: 100%;
     max-height: 100%;
-    height: 350px;
+    height: 450px;
     object-fit: cover;
   }
   .col-landing .card-landing-productos {
@@ -194,12 +194,218 @@ video {
   }
 }
 
-@media (max-width: 270px) {
+@media screen and (width: 844px) and (height: 390px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 1.2rem;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 90px;
+    margin-left: 60px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 360px) and (height: 640px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
+  .LI-blur {
+    list-style: none;
+    font-size: 3em;
+    letter-spacing: 15px;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 9px;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 80px;
+    margin-left: -13px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 640px) and (height: 360px) {
   .texto-Industria1 {
     margin-right: 90px;
     margin-top: 50px;
   }
 
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 1rem;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 80px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 320px) and (height: 533px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
+  .LI-blur {
+    list-style: none;
+    font-size: 3em;
+    letter-spacing: 15px;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 9px;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 80px;
+    margin-left: -30px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 533px) and (height: 320px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
+  .LI-blur {
+    list-style: none;
+    font-size: 3em;
+    letter-spacing: 15px;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 9px;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 80px;
+    margin-left: 60px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 384px) and (height: 854px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
   .LI-blur {
     list-style: none;
     font-size: 3em;
@@ -231,8 +437,208 @@ video {
     left: 0;
     max-width: 100%;
     max-height: 100%;
-    height: 350px;
+    height: 450px;
     object-fit: cover;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 854px) and (height: 384px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
+  .LI-blur {
+    list-style: none;
+    font-size: 3em;
+    letter-spacing: 15px;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 1.3rem;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 80px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 280px) and (height: 653px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
+  .LI-blur {
+    list-style: none;
+    font-size: 3em;
+    letter-spacing: 15px;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 7px;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 80px;
+    margin-left: -39px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 653px) and (height: 280px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
+  .LI-blur {
+    list-style: none;
+    font-size: 3em;
+    letter-spacing: 15px;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 14px;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 80px;
+    margin-left: 60px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    min-height: 450px;
+    /* min-height: 450px; */
+    object-fit: cover;
+  }
+  .capa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 450px;
+    background-color: #1c1c1d;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+  }
+  .col-landing .card-landing-productos {
+    margin: 10px 0px 45px 0px;
+  }
+}
+
+@media screen and (width: 270px) and (height: 600px) {
+  .texto-Industria1 {
+    margin-right: 90px;
+    margin-top: 50px;
+  }
+  .LI-blur {
+    list-style: none;
+    font-size: 2em;
+    letter-spacing: 10px;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  .texto-Industria1,
+  .texto-Gallay2 {
+    font-size: 10px;
+  }
+  .texto-Gallay2 {
+    display: flex;
+    margin-top: 80px;
+    margin-left: -20px;
+  }
+  .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    margin-top: -50px;
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    min-height: 450px;
+    /* min-height: 450px; */
+    object-fit: cover;
+  }
+  .capa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 450px;
+    background-color: #1c1c1d;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
   }
   .col-landing .card-landing-productos {
     margin: 10px 0px 45px 0px;
