@@ -150,7 +150,6 @@ body {
   }
   .home__title {
     font-size: 5.5rem;
-    /* writing-mode: vertical-lr; */
     transform: rotate(180deg);
     color: var(--white-color);
   }
@@ -215,7 +214,6 @@ body {
 
   .home__year {
     font-size: 4rem;
-    /* writing-mode: vertical-l; */
     margin-left: 1rem;
   }
   .home {
@@ -232,19 +230,19 @@ body {
   }
 }
 
-@media screen and (max-width: 270px) {
+@media screen and (width: 844px) and (height: 390px) {
   body {
     margin: 0;
   }
+
   .home__img img {
     position: absolute;
-    width: 16rem;
-    top: -16%;
+    width: 15rem;
+    top: 17%;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-    margin-right: 20px;
   }
   .home__scroll {
     color: var(--white-color);
@@ -257,7 +255,229 @@ body {
 
   .home__year {
     font-size: 4rem;
-    /* writing-mode: vertical-l; */
+    margin-left: 1rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home .home__title {
+    margin-bottom: 50px;
+    font-size: 4.5rem;
+    margin-left: 3rem;
+    color: var(--white-color);
+  }
+}
+
+@media screen and (width: 360px) and (height: 640px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 16rem;
+    top: -22%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 20px;
+  }
+  .home__scroll {
+    color: var(--white-color);
+
+    position: absolute;
+    left: 0;
+    bottom: 4%;
+    font-size: 6px;
+    transform: rotate(270deg);
+  }
+
+  .home__year {
+    font-size: 3.5rem;
+    margin-right: 3.7rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home__title {
+    font-size: 3.5rem;
+    margin-right: 100px;
+    color: var(--white-color);
+  }
+}
+
+@media screen and (width: 640px) and (height: 360px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 12rem;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 100px;
+  }
+  .home__scroll {
+    color: var(--white-color);
+
+    position: absolute;
+    left: 0;
+    bottom: 4%;
+    font-size: 6px;
+    transform: rotate(270deg);
+  }
+
+  .home__year {
+    font-size: 3.5rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home__title {
+    font-size: 3.5rem;
+    margin-left: 60px;
+    margin-bottom: 60px;
+    color: var(--white-color);
+  }
+  .vertical-filter {
+    margin-top: 200px;
+    height: 30rem;
+  }
+}
+
+@media screen and (width: 320px) and (height: 533px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 12rem;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 20px;
+  }
+
+  .home__year {
+    font-size: 2.5rem;
+    
+    margin-right: 2.7rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home__title {
+    font-size: 3.5rem;
+   
+    margin-bottom: 30px;
+    margin-top: 30px;
+ 
+    color: var(--white-color);
+  }
+  .vertical-filter {
+    margin-top: 100px;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    margin-right: 14px;
+  }
+  .filter-container {
+    padding-left: 1rem;
+  }
+}
+
+@media screen and (width: 533px) and (height: 320px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 12rem;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 50px;
+  }
+
+  .home__year {
+    font-size: 3.5rem;
+  
+    margin-left: 1.7rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home__title {
+    font-size: 3.5rem;
+
+    margin-bottom: 30px;
+    margin-top: 30px;
+ 
+    color: var(--white-color);
+  }
+  .vertical-filter {
+    margin-top: 200px;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+
+  }
+  .filter-container {
+    padding-left: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (width: 384px) and (height: 854px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 16rem;
+    top: -100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 20px;
+  }
+
+  .home__year {
+    font-size: 3.7rem;
     margin-left: 1rem;
   }
   .home {
@@ -268,8 +488,212 @@ body {
   }
 
   .home__title {
-    font-size: 4rem;
-    margin-right: 1rem;
+    font-size: 4.5rem;
     color: var(--white-color);
+  }
+  .vertical-filter {
+    margin-top: 40px;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+  }
+  .filter-container {
+    padding-right: 1.4rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (width: 854px) and (height: 384px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 13rem;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  .home__year {
+    font-size: 3.5rem;
+   
+    margin-left: 1.7rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home__title {
+    font-size: 3.5rem;
+    margin-left: 60px;
+    margin-bottom: 80px;
+    margin-top: 30px;
+    
+    color: var(--white-color);
+  }
+  .vertical-filter {
+    margin-top: 100px;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+   
+  }
+  .filter-container {
+    padding-left: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (width: 280px) and (height: 653px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 12rem;
+    top: 1px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 5px;
+  }
+
+  .home__year {
+    font-size: 2.5rem;
+
+    margin-right: 4.5rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home__title {
+    font-size: 3.5rem;
+   
+    margin-bottom: 30px;
+    margin-top: 30px;
+    
+    color: var(--white-color);
+  }
+  .vertical-filter {
+    margin-top: 40px;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    margin-right: 14px;
+  }
+  .filter-container {
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (width: 270px) and (height: 600px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 11rem;
+    top: -100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 10px;
+  }
+
+  .home__year {
+    font-size: 2.5rem;
+    margin-right: 4.6rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home__title {
+    font-size: 3rem;
+    color: var(--white-color);
+  }
+  .vertical-filter {
+    margin-top: 40px;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    margin-right: 14px;
+  }
+  .filter-container {
+    padding-right: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (width: 600px) and (height: 270px) {
+  body {
+    margin: 0;
+  }
+
+  .home__img img {
+    position: absolute;
+    width: 11rem;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 50px;
+  }
+
+  .home__year {
+    font-size: 3.5rem;
+
+    margin-left: 1.7rem;
+  }
+  .home {
+    position: relative;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .home__title {
+    font-size: 3.5rem;
+    margin-left: 60px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    
+    color: var(--white-color);
+  }
+  .vertical-filter {
+    margin-top: 200px;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+   
+  }
+  .filter-container {
+    padding-left: 1rem;
+    display: flex;
+    justify-content: center;
   }
 }
