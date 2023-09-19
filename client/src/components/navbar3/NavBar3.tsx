@@ -31,16 +31,18 @@ const NavBar3: React.FC = () => {
       <div className="navbar-container">
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar2 navbar-expand-lg navbar-light">
-            <Link
-              className="navbar-logo"
-              aria-current="page"
-              to="/"
-              onClick={closeNav}
-            >
-              <GiRocketThruster className="navbar-icon" />
-              Gallay
-            </Link>
-
+            <div className="navbar-logo-container">
+              <Link
+                className="navbar-logo"
+                aria-current="page"
+                to="/"
+                onClick={closeNav}
+              >
+                <GiRocketThruster className="navbar-icon" />
+                Gallay
+              </Link>
+            </div>
+            
             <button
               className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
               onClick={toggleNav}

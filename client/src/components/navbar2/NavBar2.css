@@ -258,8 +258,16 @@ a:hover {
   border-radius: 5px;
 }
 /*icono navbar*/
+
+.navbar-logo-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente el contenido */
+  margin-right: auto; /* Empuja el logo hacia la izquierda */
+  padding-left: 20px; /* Agrega un espacio a la izquierda del logo */
+}
+
 .navbar-logo {
-  margin-left: 7rem;
+  /* margin-left: 7rem; */
   justify-self: flex-start;
   color: #ffffff;
   justify-self: start;
