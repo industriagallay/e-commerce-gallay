@@ -2,18 +2,18 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
-import axios from "axios";
+// import axios from "axios";
 import "./NavBar2.css";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { apiUrl } from "../../url";
+// import { apiUrl } from "../../url";
 
 interface NavBar2Props {
   clientId: string;
 }
 
-const NavBar2: React.FC<NavBar2Props> = ({ clientId }) => {
+const NavBar2: React.FC<NavBar2Props> = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [_isLoggedIn, setIsLoggedIn] = useState(true);
 
