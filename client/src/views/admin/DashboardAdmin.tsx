@@ -72,10 +72,12 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 }) => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState<string | undefined>("");
+  const [searchQueryClientName, setSearchQueryClientName] = useState("");
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
   const [clientes, setClientes] = useState<Client[]>([]);
   const [compras, setCompras] = useState<Purchase[]>([]);
-  const [searchQueryPurchases, setSearchQueryPurchases] = useState("");
+  const [searchQueryPurchases, _setSearchQueryPurchases] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [currentPageCompras, setCurrentPageCompras] = useState<number>(1);
   const [productos, setProductos] = useState<Product[]>([]);
@@ -256,57 +258,38 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
       });
   }, []);
 
-  const handleSearchPurchase = async () => {
-    try {
-      if (!searchQueryPurchases) {
-        swal.fire({
-          icon: "warning",
-          title: "Ingrese un nombre de cliente",
-          text: "Por favor ingrese un nombre de cliente para buscar compras.",
-        });
-        return;
-      }
+  const handleSearchPurchase = () => {
+    const normalizedSearchQuery = searchQueryClientName.toLowerCase();
 
-      const normalizedSearchQuery = searchQueryPurchases.toLowerCase();
-
-      const matchingClients = originalClientes.filter(
-        (cliente) =>
-          cliente.firstName.toLowerCase().includes(normalizedSearchQuery) ||
-          cliente.lastName.toLowerCase().includes(normalizedSearchQuery)
+    const filteredCompras = compras.filter((compra) => {
+      const cliente = clientes.find(
+        (c) => c._id.toString() === compra.idClient.toString()
       );
 
-      if (matchingClients.length === 0) {
-        swal.fire({
-          icon: "info",
-          title: "Cliente no encontrado",
-          text: "No se encontró un cliente con ese nombre en la lista de clientes.",
-        });
-        return;
-      }
-
-      const clientIds = matchingClients.map((cliente) => cliente._id);
-
-      const response = await axios.get(
-        `https://industria-gallay-server.onrender.com/purchases/client/${clientIds}`
+      return (
+        (!normalizedSearchQuery ||
+          cliente?.firstName.toLowerCase().includes(normalizedSearchQuery) ||
+          cliente?.lastName.toLowerCase().includes(normalizedSearchQuery)) &&
+        (!selectedStatus ||
+          compra.status.toLowerCase() === selectedStatus.toLowerCase())
       );
+    });
 
-      if (response.data.length === 0) {
-        swal.fire({
-          icon: "info",
-          title: "No se encontraron compras",
-          text: "No se encontraron compras para el cliente especificado.",
-        });
-      } else {
-        setCompras(response.data);
-      }
-    } catch (error) {
-      console.error("Error searching purchases:", error);
+    if (filteredCompras.length === 0) {
       swal.fire({
-        icon: "error",
-        title: "Error al buscar compras",
-        text: "Ocurrió un error al buscar las compras del cliente.",
+        icon: "info",
+        title: "No se encontraron compras",
+        text: `No se encontraron compras con el estado: ${selectedStatus}.`,
       });
+    } else {
+      setCompras(filteredCompras);
     }
+  };
+
+  const handleStatusFilterChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedStatus(e.target.value);
   };
 
   const fetchProductos = async (): Promise<Product[]> => {
@@ -610,8 +593,8 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                 <input
                   type="text"
                   placeholder="Buscar compra por nombre de cliente"
-                  value={searchQueryPurchases}
-                  onChange={(e) => setSearchQueryPurchases(e.target.value)}
+                  value={searchQueryClientName}
+                  onChange={(e) => setSearchQueryClientName(e.target.value)}
                   style={{ width: "19em" }}
                   className="text-center"
                 />
@@ -619,18 +602,23 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
               </div>
 
               <div className="text-end">
-                <select style={{ width: "15em" }}>
+                <select
+                  style={{ width: "15em" }}
+                  id="selectStatus"
+                  value={selectedStatus}
+                  onChange={handleStatusFilterChange}
+                >
                   <option value="">Seleccionar estado</option>
                   <option value="pending pay">Pendiente de pago</option>
                   <option value="paid">Pagado</option>
-                  <option value="sent">En envio</option>
+                  <option value="sent">En envío</option>
                   <option value="submitted">Entregado</option>
                   <option value="canceled">Cancelado</option>
                 </select>
                 <button
                   className="ms-4"
                   onClick={() => {
-                    fetchFilteredClients();
+                    handleSearchPurchase();
                   }}
                 >
                   Buscar

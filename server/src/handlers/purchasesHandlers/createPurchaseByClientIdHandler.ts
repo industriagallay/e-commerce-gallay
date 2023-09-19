@@ -6,7 +6,13 @@ const createPurchaseByClientIdHandler = async (req: Request, res: Response) => {
   const { products, totalPrice } = req.body;
 
   try {
-    let purchase = await Purchases.findOne({ idClient: clientId });
+    let purchase = await Purchases.findOne(
+      {
+        idClient: clientId,
+        status: "inCart",
+      },
+      { $sort: { createdAt: -1 } }
+    );
 
     if (!purchase) {
       // si el cliente es nuevo, aca genero una nueva compra
@@ -14,14 +20,15 @@ const createPurchaseByClientIdHandler = async (req: Request, res: Response) => {
         idClient: clientId,
         products,
         totalPrice,
-        status: "pending pay",
+        status: "inCart",
       });
     } else {
       // si ya existe el cliente y esta con una compra abierta, nomas voy a agregar los productos que ya eligio a la compra
       purchase.products.push(...products);
+      purchase.idClient = clientId;
       purchase.totalPrice += totalPrice;
       purchase.updatedAt = new Date();
-      purchase.status = "pending pay";
+      purchase.status = "inCart";
       await purchase.save();
     }
 

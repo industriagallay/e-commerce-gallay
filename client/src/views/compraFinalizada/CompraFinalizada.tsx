@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CompraFinalizada.css";
+import moment from "moment";
 
 interface ClienteIdCompraProps {
   clientId: string;
@@ -96,7 +97,8 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
           Estado de la compra: {ultimaCompra.status}
         </p>
         <p className="fechadelacompra-comprafinalizada">
-          Fecha de la compra: {ultimaCompra.createdAt}
+          Fecha de la compra:{" "}
+          {moment(ultimaCompra.createdAt).format("D/M/YYYY H:mm")}
         </p>
         <p className="parrafoProporcionados">
           Por favor, realice el pago utilizando los datos proporcionados.
