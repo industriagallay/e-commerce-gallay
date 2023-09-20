@@ -73,9 +73,9 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 }) => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState<string | undefined>("");
   const [searchQueryClientName, setSearchQueryClientName] = useState("");
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
+  const [selectedPurchaseStatus, setSelectedPurchaseStatus] = useState("");
   const [clientes, setClientes] = useState<Client[]>([]);
   const [compras, setCompras] = useState<Purchase[]>([]);
   const [searchQueryPurchases, _setSearchQueryPurchases] = useState("");
@@ -154,6 +154,8 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   useEffect(() => {
     setOriginalClientes(clientes);
   }, [clientes]);
+
+  
 
   const fetchFilteredClients = async () => {
     try {
@@ -246,45 +248,27 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     fetchPurchases()
       .then((purchaseData) => {
         setCompras(purchaseData);
+
+        if (purchaseData.length > 0) {
+          setSelectedPurchaseStatus(purchaseData[0].status);
+        } else {
+          setSelectedPurchaseStatus("");
+        }
       })
       .catch((error) => {
         console.error("Error al obtener las compras:", error.message);
       });
   }, []);
 
-  const handleSearchPurchase = () => {
-    const normalizedSearchQuery = searchQueryClientName.toLowerCase();
-
-    const filteredCompras = compras.filter((compra) => {
-      const cliente = clientes.find(
-        (c) => c._id.toString() === compra.idClient.toString()
-      );
-
-      return (
-        (!normalizedSearchQuery ||
-          cliente?.firstName.toLowerCase().includes(normalizedSearchQuery) ||
-          cliente?.lastName.toLowerCase().includes(normalizedSearchQuery)) &&
-        (!selectedStatus ||
-          compra.status.toLowerCase() === selectedStatus.toLowerCase())
-      );
-    });
-
-    if (filteredCompras.length === 0) {
-      swal.fire({
-        icon: "info",
-        title: "No se encontraron compras",
-        text: `No se encontraron compras con el estado: ${selectedStatus}.`,
+  useEffect(() => {
+    fetchPurchases()
+      .then((purchaseData) => {
+        setCompras(purchaseData);
+      })
+      .catch((error) => {
+        console.error("Error al obtener las compras:", error.message);
       });
-    } else {
-      setCompras(filteredCompras);
-    }
-  };
-
-  const handleStatusFilterChange = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setSelectedStatus(e.target.value);
-  };
+  }, []);
 
   const fetchProductos = async (): Promise<Product[]> => {
     try {
@@ -311,6 +295,22 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     navigate("/home");
     return null;
   }
+
+  const handleStatusChange = async (
+    purchaseId: ObjectID,
+    newStatus: string
+  ) => {
+    try {
+      await axios.put(`/purchases/${purchaseId}/status`, { status: newStatus });
+
+      const updatedCompras = compras.map((compra) =>
+        compra._id === purchaseId ? { ...compra, status: newStatus } : compra
+      );
+      setCompras(updatedCompras);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="perrito-admin">
@@ -590,31 +590,6 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                   style={{ width: "19em" }}
                   className="text-center"
                 />
-                <button onClick={handleSearchPurchase}>Buscar</button>
-              </div>
-
-              <div className="text-end">
-                <select
-                  style={{ width: "15em" }}
-                  id="selectStatus"
-                  value={selectedStatus}
-                  onChange={handleStatusFilterChange}
-                >
-                  <option value="">Seleccionar estado</option>
-                  <option value="pending pay">Pendiente de pago</option>
-                  <option value="paid">Pagado</option>
-                  <option value="sent">En envío</option>
-                  <option value="submitted">Entregado</option>
-                  <option value="canceled">Cancelado</option>
-                </select>
-                <button
-                  className="ms-4"
-                  onClick={() => {
-                    handleSearchPurchase();
-                  }}
-                >
-                  Buscar
-                </button>
               </div>
             </div>
             <table className="table table-bordered table-striped">
@@ -674,7 +649,18 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                         ))}
                       </td>
                       <td>{compra.totalPrice}</td>
-                      <td>{compra.status}</td>
+                      <select
+                        value={selectedPurchaseStatus}
+                        onChange={(e) =>
+                          handleStatusChange(compra._id, e.target.value)
+                        }
+                      >
+                        <option value="pending pay">Pendiente de pago</option>
+                        <option value="paid">Pagado</option>
+                        <option value="sent">Enviado</option>
+                        <option value="submitted">Entregado</option>
+                        <option value="canceled">Cancelado</option>
+                      </select>
                       <td>
                         {moment(compra.createdAt).format("D/M/YYYY H:mm")}
                       </td>
