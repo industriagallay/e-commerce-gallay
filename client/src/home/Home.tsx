@@ -21,8 +21,6 @@ interface Product {
   price: number;
 }
 
-let totalPages = 0;
-
 const Home: React.FC = () => {
   useEffect(() => {
     AOS.init({
@@ -30,11 +28,10 @@ const Home: React.FC = () => {
     });
   }, []);
 
+  const [totalPages, setTotalPages] = useState<number>(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage = 9;
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_isHoverEnabled, setIsHoverEnabled] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -47,25 +44,20 @@ const Home: React.FC = () => {
   const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
 
-  let lastMinPrice = minPrice;
-  let lastMaxPrice = maxPrice;
   const navigate = useNavigate();
 
   const showAllProducts = () => {
-    const filteredKnifeProducts = products.filter(
-      (product) => product.categories === "knife"
-    );
-
-    if (filteredKnifeProducts.length < (currentPage - 1) * productsPerPage) {
-      setCurrentPage(1);
-    }
-
-    setFilteredProducts(filteredKnifeProducts);
+    setFilteredProducts(products);
+    setSelectedFilter("");
+    setSelectedPriceFilter("");
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
+    setCurrentPage(1);
   };
-
   useEffect(() => {
-    totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  }, [filteredProducts]);
+    const totalPagesCalc = Math.ceil(filteredProducts.length / productsPerPage);
+    setTotalPages(totalPagesCalc);
+  }, [filteredProducts.length, productsPerPage]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -115,6 +107,7 @@ const Home: React.FC = () => {
       setMaxPrice(Number(numericValue));
     }
   };
+
   const handleRangeSearch = () => {
     if (minPrice !== undefined && maxPrice !== undefined) {
       if (minPrice > maxPrice) {
@@ -122,14 +115,21 @@ const Home: React.FC = () => {
         return;
       }
 
-      if (minPrice !== lastMinPrice || maxPrice !== lastMaxPrice) {
-        const filtered = products.filter(
-          (product) => product.price >= minPrice && product.price <= maxPrice
-        );
-        setFilteredProducts(filtered);
-        lastMinPrice = minPrice;
-        lastMaxPrice = maxPrice;
-      }
+      const filtered = products.filter(
+        (product) => product.price >= minPrice && product.price <= maxPrice
+      );
+
+      setFilteredProducts(filtered);
+    } else {
+      Swal.fire({
+        title: "PrecioMin y PrecioMax no están definidos",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
     }
   };
 
@@ -141,11 +141,21 @@ const Home: React.FC = () => {
     if (filterValue === "1") {
       showAllProducts();
     } else if (filterValue === "3") {
-      const filtered = products.filter((product) => product.price > 2500);
+      const filtered = products.filter(
+        (product) => product.categories === "knife" && product.price > 4500
+      );
       setFilteredProducts(filtered);
+      setSelectedPriceFilter("");
+      setMinPrice(undefined);
+      setMaxPrice(undefined);
     } else if (filterValue === "4") {
-      const filtered = products.filter((product) => product.price <= 2500);
+      const filtered = products.filter(
+        (product) => product.categories === "knife" && product.price <= 2500
+      );
       setFilteredProducts(filtered);
+      setSelectedPriceFilter("");
+      setMinPrice(undefined);
+      setMaxPrice(undefined);
     }
   };
 
@@ -153,15 +163,22 @@ const Home: React.FC = () => {
     setSelectedPriceFilter(filter);
 
     if (filter === "hasta") {
-      const filtered = products.filter((product) => product.price <= 2500);
+      const filtered = products.filter(
+        (product) => product.categories === "knife" && product.price <= 2500
+      );
       setFilteredProducts(filtered);
     } else if (filter === "rango") {
       const filtered = products.filter(
-        (product) => product.price > 2500 && product.price <= 4500
+        (product) =>
+          product.categories === "knife" &&
+          product.price > 2500 &&
+          product.price <= 4500
       );
       setFilteredProducts(filtered);
     } else if (filter === "mas") {
-      const filtered = products.filter((product) => product.price > 4500);
+      const filtered = products.filter(
+        (product) => product.categories === "knife" && product.price > 4500
+      );
       setFilteredProducts(filtered);
     }
   };
@@ -313,9 +330,6 @@ const Home: React.FC = () => {
           </div>
 
           <div className="home__secondary col-lg-6 col-md-12">
-            {/* <a className="home__scroll" href="#about">
-              SCROLLDOWN
-            </a> */}
             <span className="home__year">Bienvenido</span>
           </div>
         </div>

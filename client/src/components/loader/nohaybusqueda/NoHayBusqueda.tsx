@@ -17,6 +17,9 @@ const NoHayBusqueda = () => {
           <ul className="punto-container">
             <li className="punto1">Intente filtrar el precio nuevamente</li>
             <li className="punto2">
+              Precio Mínimo y Precio Máximo no están definidos
+            </li>
+            <li className="punto2">
               Respete el orden del filtrado por número "Mínimo" y "Máximo"
             </li>
             <button className="btn btn-primary boton-seguir-comprando">
