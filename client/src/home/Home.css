@@ -213,7 +213,7 @@
   display: flex;
   flex-direction: column;
   max-width: 20rem;
-  height: 38rem;
+  height: 35rem;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -477,8 +477,6 @@
     justify-content: center;
   }
 }
-
-
 
 .col-inicio-sesion {
   display: flex;
