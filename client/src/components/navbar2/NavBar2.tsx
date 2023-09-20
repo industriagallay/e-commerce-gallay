@@ -59,7 +59,7 @@ const NavBar2: React.FC<NavBar2Props> = () => {
           <nav className="navbar2 navbar-expand-lg navbar-light">
             <div className="navbar-logo-container">
               <Link
-                className="navbar-logo"
+                className="navbar2-logo"
                 aria-current="page"
                 to="/"
                 onClick={closeNav}

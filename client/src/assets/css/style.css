@@ -136,6 +136,7 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
+    border-radius: 10px;
   }
   .home__scroll {
     color: var(--white-color);
@@ -185,6 +186,7 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
+    border-radius: 10px;
   }
 }
 @media screen and (max-width: 390px) {
@@ -201,6 +203,7 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 20px;
+    border-radius: 10px;
   }
   .home__scroll {
     color: var(--white-color);
@@ -243,6 +246,7 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
+    border-radius: 10px;
   }
   .home__scroll {
     color: var(--white-color);
@@ -286,6 +290,7 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 20px;
+    border-radius: 10px;
   }
   .home__scroll {
     color: var(--white-color);
@@ -329,6 +334,7 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 100px;
+    border-radius: 10px;
   }
   .home__scroll {
     color: var(--white-color);
@@ -376,11 +382,12 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 20px;
+    border-radius: 10px;
   }
 
   .home__year {
     font-size: 2.5rem;
-    
+
     margin-right: 2.7rem;
   }
   .home {
@@ -392,10 +399,10 @@ body {
 
   .home__title {
     font-size: 3.5rem;
-   
+
     margin-bottom: 30px;
     margin-top: 30px;
- 
+
     color: var(--white-color);
   }
   .vertical-filter {
@@ -424,11 +431,12 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 50px;
+    border-radius: 10px;
   }
 
   .home__year {
     font-size: 3.5rem;
-  
+
     margin-left: 1.7rem;
   }
   .home {
@@ -443,7 +451,7 @@ body {
 
     margin-bottom: 30px;
     margin-top: 30px;
- 
+
     color: var(--white-color);
   }
   .vertical-filter {
@@ -451,7 +459,6 @@ body {
     height: 30rem;
     display: flex;
     justify-content: center;
-
   }
   .filter-container {
     padding-left: 1rem;
@@ -474,6 +481,7 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 20px;
+    border-radius: 10px;
   }
 
   .home__year {
@@ -517,11 +525,12 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
+    border-radius: 10px;
   }
 
   .home__year {
     font-size: 3.5rem;
-   
+
     margin-left: 1.7rem;
   }
   .home {
@@ -536,7 +545,7 @@ body {
     margin-left: 60px;
     margin-bottom: 80px;
     margin-top: 30px;
-    
+
     color: var(--white-color);
   }
   .vertical-filter {
@@ -544,7 +553,6 @@ body {
     height: 30rem;
     display: flex;
     justify-content: center;
-   
   }
   .filter-container {
     padding-left: 1rem;
@@ -567,6 +575,7 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 5px;
+    border-radius: 10px;
   }
 
   .home__year {
@@ -583,10 +592,10 @@ body {
 
   .home__title {
     font-size: 3.5rem;
-   
+
     margin-bottom: 30px;
     margin-top: 30px;
-    
+
     color: var(--white-color);
   }
   .vertical-filter {
@@ -617,6 +626,7 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 10px;
+    border-radius: 10px;
   }
 
   .home__year {
@@ -662,6 +672,7 @@ body {
     bottom: 0;
     margin: auto;
     margin-right: 50px;
+    border-radius: 10px;
   }
 
   .home__year {
@@ -681,7 +692,7 @@ body {
     margin-left: 60px;
     margin-bottom: 30px;
     margin-top: 30px;
-    
+
     color: var(--white-color);
   }
   .vertical-filter {
@@ -689,7 +700,6 @@ body {
     height: 30rem;
     display: flex;
     justify-content: center;
-   
   }
   .filter-container {
     padding-left: 1rem;

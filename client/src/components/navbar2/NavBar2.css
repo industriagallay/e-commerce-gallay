@@ -253,14 +253,15 @@ a:hover {
 }
 /*icono navbar*/
 
-.navbar-logo-container {
+.navbar2-logo-container {
   display: flex;
   align-items: center;
   margin-right: auto; 
   padding-left: 20px;
 }
 
-.navbar-logo {
+.navbar2-logo { 
+  margin-left: 20px;
   justify-self: flex-start;
   color: #ffffff;
   justify-self: start;
