@@ -217,14 +217,15 @@ body {
 }
 /*icono navbar*/
 
-.navbar-logo-container {
+.navbar1-logo-container {
   display: flex;
-  align-items: center; 
-  margin-right: auto; 
-  padding-left: 20px; 
+  align-items: center;
+  margin-right: auto;
+  padding-left: 20px;
 }
 
-.navbar-logo {
+.navbar1-logo {
+  margin-left: 20px;
   justify-self: flex-start;
   color: #ffffff;
   justify-self: start;
@@ -234,7 +235,6 @@ body {
   display: flex;
   align-items: center;
 }
-
 
 .navbar-icon {
   margin-right: 0.1rem;
