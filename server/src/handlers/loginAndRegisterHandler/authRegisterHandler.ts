@@ -8,6 +8,16 @@ const authRegisterHandler = async (req: Request, res: Response) => {
     const { firstName, lastName, email, dni, phone, password, isAdmin } =
       req.body;
 
+    const existingEmail = await Clients.findOne({ email });
+    if (existingEmail) {
+      return res.status(409).json({ error: "email_exists" });
+    }
+
+    const existingDNI = await Clients.findOne({ dni });
+    if (existingDNI) {
+      return res.status(409).json({ error: "dni_exists" });
+    }
+
     const passwordHashed = await bcrypt.hash(password, 10);
 
     const newClient = new Clients({
