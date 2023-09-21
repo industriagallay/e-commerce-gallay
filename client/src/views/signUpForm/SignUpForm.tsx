@@ -31,19 +31,47 @@ const SignUpForm: React.FC = () => {
       swal.fire({
         position: "center",
         icon: "success",
-        title: "cliente creado correctamente!",
+        title: "Cliente creado correctamente!",
         showConfirmButton: false,
         timer: 1500,
       });
 
       navigate("/login");
-    } catch (error) {
-      swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Oops...",
-        text: "Ocurrio un error inesperado!",
-      });
+    } catch (error: any) {
+      if (error.response) {
+        const { status, data } = error.response;
+
+        if (status === 409 && data.error === "email_exists") {
+          swal.fire({
+            position: "center",
+            icon: "error",
+            title: "¡Ups!",
+            text: "Ese correo electrónico ya existe",
+          });
+        } else if (status === 409 && data.error === "dni_exists") {
+          swal.fire({
+            position: "center",
+            icon: "error",
+            title: "¡Ups!",
+            text: "Ese DNI ya existe",
+          });
+        } else {
+          swal.fire({
+            position: "center",
+            icon: "error",
+            title: "¡Ups!",
+            text: "Ocurrió un error inesperado en el servidor",
+          });
+        }
+      } else {
+        swal.fire({
+          position: "center",
+          icon: "error",
+          title: "¡Ups!",
+          text: "Hubo un problema de red. Por favor, inténtalo de nuevo más tarde.",
+        });
+      }
+
       console.error(error);
     }
   };
