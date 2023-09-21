@@ -1,10 +1,7 @@
+import "./Baneados.css";
 
-
-import "./Baneados.css"
 const Baneados = () => {
-  return (
-    <h1>Baneados</h1>
-  )
-}
+  return <h1>Baneados</h1>;
+};
 
 export default Baneados;
