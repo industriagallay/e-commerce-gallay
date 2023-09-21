@@ -25,19 +25,25 @@ const Login: React.FC = () => {
   const iniciarSesion = async (formData: FormValues) => {
     try {
       const response = await axios.post(`${apiUrl}/api/login`, formData);
-
+  
       const token = response.data.token;
-
+  
       Cookies.set("token", token);
-
-      if (
-        // eslint-disable-next-line no-prototype-builtins
-        response.data.hasOwnProperty("isAdmin") &&
-        response.data.isAdmin === true
-      ) {
-        navigate("/admin");
+  
+      if (response.data.isActive) {
+   
+        if (
+          // eslint-disable-next-line no-prototype-builtins
+          response.data.hasOwnProperty("isAdmin") &&
+          response.data.isAdmin === true
+        ) {
+          navigate("/admin");
+        } else {
+          navigate("/home");
+        }
       } else {
-        navigate("/home");
+      
+        navigate("/baneados");
       }
     } catch (error) {
       swal.fire({
