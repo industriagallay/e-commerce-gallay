@@ -30,6 +30,7 @@ const NavBar1: React.FC = () => {
                 aria-current="page"
                 to="/"
                 onClick={closeNav}
+                style={{ textDecoration: "none", color: "#ffffff" }}
               >
                 <GiRocketThruster className="navbar-icon" />
                 Gallay
@@ -93,6 +94,7 @@ const NavBar1: React.FC = () => {
                       <span className="button_sl_iniciar-sesion"></span>
 
                       <Link
+                        style={{ textDecoration: "none", color: "#ffffff" }}
                         to="/login"
                         className="button_text_iniciar-sesion button-iniciar-sesion-custom"
                       >

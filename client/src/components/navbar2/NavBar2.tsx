@@ -33,17 +33,6 @@ const NavBar2: React.FC<NavBar2Props> = () => {
 
   const handleLogout = async () => {
     try {
-      // if (clientId) {
-      //   const response = await axios.get(`${apiUrl}/purchases/${clientId}`);
-      //   const purchases = response.data;
-
-      //   if (purchases.length > 0) {
-      //     const purchaseIdToDelete = purchases[0]._id;
-      //     await axios.delete(
-      //       `${apiUrl}/purchases/delete/${purchaseIdToDelete}`
-      //     );
-      //   }
-      // }
       setIsLoggedIn(false);
       Cookies.remove("token");
       navigate("/");
@@ -63,6 +52,7 @@ const NavBar2: React.FC<NavBar2Props> = () => {
                 aria-current="page"
                 to="/"
                 onClick={closeNav}
+                style={{ textDecoration: "none", color: "#ffffff" }}
               >
                 <GiRocketThruster className="navbar-icon" />
                 Gallay
@@ -134,6 +124,7 @@ const NavBar2: React.FC<NavBar2Props> = () => {
                     <FontAwesomeIcon
                       icon={faShoppingCart}
                       className="icon-carrito-navabar-fixed"
+                      style={{ textDecoration: "none", color: "#ffffff" }}
                     />
                   </Link>
                 </div>
