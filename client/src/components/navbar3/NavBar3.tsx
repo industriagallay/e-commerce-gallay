@@ -37,12 +37,13 @@ const NavBar3: React.FC = () => {
                 aria-current="page"
                 to="/"
                 onClick={closeNav}
+                style={{ textDecoration: "none", color: "#ffffff" }}
               >
                 <GiRocketThruster className="navbar-icon" />
                 Gallay
               </Link>
             </div>
-            
+
             <button
               className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
               onClick={toggleNav}
@@ -110,6 +111,7 @@ const NavBar3: React.FC = () => {
                     <button
                       className="button-cerrar-sesion-custom"
                       onClick={handleLogout}
+                      style={{ textDecoration: "none", color: "#ffffff" }}
                     >
                       Cerrar Sesión
                     </button>
