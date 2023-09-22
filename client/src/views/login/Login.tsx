@@ -25,25 +25,29 @@ const Login: React.FC = () => {
   const iniciarSesion = async (formData: FormValues) => {
     try {
       const response = await axios.post(`${apiUrl}/api/login`, formData);
-  
-      const token = response.data.token;
-  
-      Cookies.set("token", token);
-  
-      if (response.data.isActive) {
-   
-        if (
-          // eslint-disable-next-line no-prototype-builtins
-          response.data.hasOwnProperty("isAdmin") &&
-          response.data.isAdmin === true
-        ) {
-          navigate("/admin");
-        } else {
-          navigate("/home");
-        }
+
+      console.log("isActive:", response.data.isActive);
+
+      if (!response.data.isActive) {
+        swal
+          .fire({
+            position: "center",
+            icon: "error",
+            title: "Usuario baneado",
+            text: "Tu cuenta ha sido suspendida. Contacta al administrador para más información.",
+            showConfirmButton: true,
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              navigate("/baneados");
+            }
+          });
+      } else if (response.data.isAdmin) {
+        navigate("/admin");
       } else {
-      
-        navigate("/baneados");
+        const token = response.data.token;
+        Cookies.set("token", token);
+        navigate("/home");
       }
     } catch (error) {
       swal.fire({
