@@ -43,21 +43,27 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
   }>({});
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${apiUrl}/purchases/${clientId}`
-        );
+    if (!clientId) {
+      // Usuario no está logueado, redirigirlo a la página de inicio de sesión
+      navigate("/login");
+    } else {
+      // Usuario logueado, continuar cargando el carrito
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `${apiUrl}/purchases/${clientId}`
+          );
 
-        const cartData = response.data[0].products;
-        setCartItems(cartData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+          const cartData = response.data[0].products;
+          setCartItems(cartData);
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
-    fetchData();
-  }, [clientId]);
+      fetchData();
+    }
+  }, [clientId, navigate]);
 
   useEffect(() => {
     const fetchProductData = async (productId: string) => {

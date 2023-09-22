@@ -14,7 +14,7 @@ const authLoginHandler = async (
     const clientFound = await Clients.findOne({ email });
 
     if (!clientFound)
-      return res.status(400).json({ message: "user not found" });
+      return res.status(400).json({ message: "usuario no encontrado" });
 
     const isMatch = await bcrypt.compare(password, clientFound.password);
 
@@ -30,10 +30,13 @@ const authLoginHandler = async (
       createdAt: clientFound.createdAt,
       updatedAt: clientFound.updatedAt,
       isAdmin: clientFound.isAdmin,
+      isActive: clientFound.isActive,
     });
+
     res.cookie("token", token);
     return res.json({
       token,
+      isActive: clientFound.isActive,
     });
   } catch (error) {
     console.error(error);
