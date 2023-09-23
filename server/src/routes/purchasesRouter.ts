@@ -16,7 +16,7 @@ export const purchasesRouter = Router();
 
 purchasesRouter.get("/", getAllPurchasesHandler);
 purchasesRouter.get("/:clientId", getPurchasesByClientHandler);
-purchasesRouter.put("/:purchaseId/status", updateStatusHandler);
+purchasesRouter.put("/:purchasesId", updateStatusHandler);
 purchasesRouter.get("/status/:status", getPurchasesByStatus);
 purchasesRouter.post("/:clientId/products", addProductToPurchaseHandler);
 purchasesRouter.delete("/delete/:clientId", deletePurchaseByClientId);
