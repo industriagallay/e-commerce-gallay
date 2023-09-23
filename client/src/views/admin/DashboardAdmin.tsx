@@ -25,7 +25,7 @@ type FormValues = {
 };
 
 interface Purchase {
-  _id: ObjectID;
+  _id: string;
   idClient: string;
   products: Array<{
     productId: string;
@@ -34,6 +34,7 @@ interface Purchase {
     _id: string;
   }>;
   totalPrice: number;
+  selectedStatus: string;
   status: string;
   createdAt: string;
   updatedAt: string;
@@ -75,7 +76,9 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
   const [searchQueryClientName, setSearchQueryClientName] = useState("");
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
-  const [selectedPurchaseStatus, setSelectedPurchaseStatus] = useState("");
+  const [purchaseStatusMap, setPurchaseStatusMap] = useState<{
+    [key: string]: string;
+  }>({});
   const [clientes, setClientes] = useState<Client[]>([]);
   const [compras, setCompras] = useState<Purchase[]>([]);
   const [searchQueryPurchases, _setSearchQueryPurchases] = useState("");
@@ -155,8 +158,6 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     setOriginalClientes(clientes);
   }, [clientes]);
 
-  
-
   const fetchFilteredClients = async () => {
     try {
       const response = await axios.get(
@@ -193,11 +194,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const startIndexCompras = (currentPageCompras - 1) * comprasPerPage;
   const endIndexCompras = startIndexCompras + comprasPerPage;
-  const paginatedCompras = filteredCompras.slice(
-    startIndexCompras,
-    endIndexCompras
-  );
-  console.log(paginatedCompras);
+  filteredCompras.slice(startIndexCompras, endIndexCompras);
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
@@ -247,13 +244,13 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   useEffect(() => {
     fetchPurchases()
       .then((purchaseData) => {
+        const initialStatusMap: { [key: string]: string } = {};
+        purchaseData.forEach((purchase) => {
+          purchase.selectedStatus = purchase.status;
+          initialStatusMap[purchase._id] = purchase.status;
+        });
         setCompras(purchaseData);
-
-        if (purchaseData.length > 0) {
-          setSelectedPurchaseStatus(purchaseData[0].status);
-        } else {
-          setSelectedPurchaseStatus("");
-        }
+        setPurchaseStatusMap(initialStatusMap);
       })
       .catch((error) => {
         console.error("Error al obtener las compras:", error.message);
@@ -296,21 +293,21 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     return null;
   }
 
-  const handleStatusChange = async (
-    purchaseId: ObjectID,
-    newStatus: string
-  ) => {
+  const handleStatusChange = async (purchasesId: string, newStatus: string) => {
     try {
-      await axios.put(`/purchases/${purchaseId}/status`, { status: newStatus });
-
-      const updatedCompras = compras.map((compra) =>
-        compra._id === purchaseId ? { ...compra, status: newStatus } : compra
-      );
-      setCompras(updatedCompras);
+      await axios.put(`${apiUrl}/purchases/${purchasesId}`, {
+        status: newStatus,
+      });
+      setPurchaseStatusMap((prevStatusMap) => ({
+        ...prevStatusMap,
+        [purchasesId]: newStatus,
+      }));
     } catch (error) {
       console.error(error);
     }
   };
+
+  console.log("searchQueryClientName:", searchQueryClientName);
 
   return (
     <div className="perrito-admin">
@@ -432,10 +429,10 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
             <li className="fs-5 text-start">
               SECCION HISTORIAL DE COMPRAS: Finalmente te brindamos una sección
               donde vas a poder ver todas las compras realizadas, como asi
-              tambien buscar una compra por un cliente en específico, buscar
-              compra por estado y cambiarle el estado a las compras dependiendo
-              si el cliente ya abono el pago, si el/los productos fueron
-              entregados o si la compra fue cancelada
+              tambien buscar una compra por un cliente en específico y cambiarle
+              el estado a las compras dependiendo si el cliente ya abono el
+              pago, si el/los productos fueron entregados o si la compra fue
+              cancelada
             </li>
           </ul>
         </div>
@@ -606,51 +603,49 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                 </tr>
               </thead>
               <tbody>
-                {compras.map((compra, index) => (
-                  <React.Fragment key={`${index}`}>
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>
-                        {
-                          clientes.find(
-                            (cliente) =>
-                              cliente._id.toString() ===
-                              compra.idClient.toString()
-                          )?.firstName
-                        }{" "}
-                        {
-                          clientes.find(
-                            (cliente) =>
-                              cliente._id.toString() ===
-                              compra.idClient.toString()
-                          )?.lastName
-                        }
-                      </td>
-                      <td>
-                        {compra.products.map((producto, productoIndex) => (
-                          <p key={productoIndex}>
-                            {" "}
-                            {
-                              productos.find(
-                                (p) => p._id === producto.productId
-                              )?.name
-                            }
-                          </p>
-                        ))}
-                      </td>
-                      <td>
-                        {compra.products.map((producto, index) => (
-                          <p key={index}>{producto.quantity}</p>
-                        ))}
-                      </td>
-                      <td>
-                        {compra.products.map((producto, index) => (
-                          <p key={index}>{producto.price}</p>
-                        ))}
-                      </td>
-                      <td>{compra.totalPrice}</td>
+                {filteredCompras.map((compra, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>
+                      {
+                        clientes.find(
+                          (cliente) =>
+                            cliente._id.toString() ===
+                            compra.idClient.toString()
+                        )?.firstName
+                      }{" "}
+                      {
+                        clientes.find(
+                          (cliente) =>
+                            cliente._id.toString() ===
+                            compra.idClient.toString()
+                        )?.lastName
+                      }
+                    </td>
+                    <td>
+                      {compra.products.map((producto, productoIndex) => (
+                        <p key={productoIndex}>
+                          {
+                            productos.find((p) => p._id === producto.productId)
+                              ?.name
+                          }
+                        </p>
+                      ))}
+                    </td>
+                    <td>
+                      {compra.products.map((producto, index) => (
+                        <p key={index}>{producto.quantity}</p>
+                      ))}
+                    </td>
+                    <td>
+                      {compra.products.map((producto, index) => (
+                        <p key={index}>{producto.price}</p>
+                      ))}
+                    </td>
+                    <td>{compra.totalPrice}</td>
+                    <td>
                       <select
-                        value={selectedPurchaseStatus}
+                        value={purchaseStatusMap[compra._id] || ""}
                         onChange={(e) =>
                           handleStatusChange(compra._id, e.target.value)
                         }
@@ -661,11 +656,9 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                         <option value="submitted">Entregado</option>
                         <option value="canceled">Cancelado</option>
                       </select>
-                      <td>
-                        {moment(compra.createdAt).format("D/M/YYYY H:mm")}
-                      </td>
-                    </tr>
-                  </React.Fragment>
+                    </td>
+                    <td>{moment(compra.createdAt).format("D/M/YYYY H:mm")}</td>
+                  </tr>
                 ))}
               </tbody>
             </table>
