@@ -1,0 +1,62 @@
+/* Baneados.css */
+.baneados-container {
+  width: 100vh;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #cac2c285;
+
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.imagen-baneado {
+  border-radius: 8px;
+}
+
+.texto-paralos-baneados {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.estasbaneado {
+  font-weight: 800;
+  color: black;
+  font-size: 3.3rem;
+  margin-top: 20px;
+}
+
+.emailbaneados,
+.subtitulobaneados {
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: dimgray;
+}
+
+.emailadmin {
+  text-decoration: none !important;
+  color: rgb(71, 71, 236);
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.emailadmin:hover {
+  background-color: rgba(0, 153, 255, 0.123);
+  border-radius: 5px;
+  border-bottom: 1px solid #fff !important;
+}

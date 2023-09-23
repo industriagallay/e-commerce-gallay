@@ -25,15 +25,16 @@ const NavBar1: React.FC = () => {
         <IconContext.Provider value={{ color: "#fff" }}>
           <nav className="navbar navbar-expand-lg navbar-light d-flex justify-content-start">
             <div className="navbar-logo-container">
-            <Link
-              className="navbar-logo"
-              aria-current="page"
-              to="/"
-              onClick={closeNav}
-            >
-              <GiRocketThruster className="navbar-icon" />
-              Gallay
-            </Link>
+              <Link
+                className="navbar1-logo"
+                aria-current="page"
+                to="/"
+                onClick={closeNav}
+                style={{ textDecoration: "none", color: "#ffffff" }}
+              >
+                <GiRocketThruster className="navbar-icon" />
+                Gallay
+              </Link>
             </div>
             <button
               className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
@@ -93,6 +94,7 @@ const NavBar1: React.FC = () => {
                       <span className="button_sl_iniciar-sesion"></span>
 
                       <Link
+                        style={{ textDecoration: "none", color: "#ffffff" }}
                         to="/login"
                         className="button_text_iniciar-sesion button-iniciar-sesion-custom"
                       >
