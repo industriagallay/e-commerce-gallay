@@ -8,7 +8,12 @@ const Footer: React.FC = () => {
   return (
     <div>
       <footer className="seccion-oscura d-flex flex-column align-items-center justify-content-center">
-        <Link className="navbar-footer" aria-current="page" to="/">
+        <Link
+          className="navbar-footer"
+          aria-current="page"
+          to="/"
+          style={{ textDecoration: "none", color: "#ffffff" }}
+        >
           <GiRocketThruster className="footer-icon" />
           Gallay
         </Link>
@@ -22,19 +27,30 @@ const Footer: React.FC = () => {
           <a href="" target="_blank" rel="noopener noreferrer">
             <i className="bi bi-facebook"></i>
           </a>
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <i className="bi bi-youtube"></i>
-          </a>
-          <a
-            href="mailto:alanabelpereyra322@gmail.com"
+          <Link
+            to=""
             target="_blank"
             rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "#ffffff" }}
+          >
+            <i className="bi bi-youtube"></i>
+          </Link>
+          <Link
+            to="mailto:alanabelpereyra322@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "#ffffff" }}
           >
             <i className="bi bi-envelope-at-fill"></i>
-          </a>
-          <a href="" target="_blank" rel="noopener noreferrer">
+          </Link>
+          <Link
+            to=""
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "#ffffff" }}
+          >
             <i className="bi bi-instagram"></i>
-          </a>
+          </Link>
         </div>
         <div className="derechos-de-autor">
           Creado por Jon Nahuel Pereyra y Alan Abel pereyra (2023) &#169;

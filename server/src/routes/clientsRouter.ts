@@ -4,6 +4,7 @@ import getClientByIdHandler from "../handlers/clientsHandlers/getClientByIdHandl
 import findClientByDniOrEmailHandler from "../handlers/clientsHandlers/clientByemailOrDniController";
 import updateClientHandler from "../handlers/clientsHandlers/updateClientHandler";
 import deleteClientHandler from "../handlers/clientsHandlers/deleteClientHandler";
+import updateActiveClientHandler from "../handlers/clientsHandlers/updateActiveClientHandler";
 
 export const clientsRouter = Router();
 
@@ -12,5 +13,6 @@ clientsRouter.get("/", findClientByDniOrEmailHandler);
 clientsRouter.get("/:id", getClientByIdHandler);
 clientsRouter.put("/update/:id", updateClientHandler);
 clientsRouter.delete("/delete/:id", deleteClientHandler);
+clientsRouter.put("/active/:clientId", updateActiveClientHandler);
 
 export default clientsRouter;

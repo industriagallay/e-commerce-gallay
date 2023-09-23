@@ -198,14 +198,18 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
-      const response = await axios.delete(`${apiUrl}/clients/delete/${userId}`);
+      const newIsActive = !isActive;
+
+      const response = await axios.put(`${apiUrl}/clients/active/${userId}`, {
+        isActive: newIsActive,
+      });
 
       if (response.status === 200) {
         const updatedClientes = clientes.map((cliente) => {
           if (cliente._id.toString() === userId) {
             return {
               ...cliente,
-              isActive: !isActive,
+              isActive: newIsActive,
             };
           }
           return cliente;
@@ -216,17 +220,20 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
         swal.fire({
           position: "center",
           icon: "success",
-          title: isActive
-            ? "Cliente desactivado correctamente"
-            : "Cliente activado correctamente",
+          title: newIsActive
+            ? "Cliente activado correctamente"
+            : "Cliente desactivado correctamente",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
-        console.error("Error al desactivar el cliente:", response.statusText);
+        console.error(
+          "Error al activar/desactivar el cliente:",
+          response.statusText
+        );
       }
     } catch (error) {
-      console.error("Error al desactivar el cliente:", error);
+      console.error("Error al activar/desactivar el cliente:", error);
     }
   };
 
