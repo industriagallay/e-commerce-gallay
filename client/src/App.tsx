@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Home from "./home/Home";
 import SignUpForm from "./views/signUpForm/SignUpForm";
 import CreaTuCuchillo from "./components/crea-tu-cuchillo/CreaTuCuchillo";
@@ -20,14 +20,10 @@ import UpdateProductBtn from "../src/components/BotonEditarProducto/UpdateProduc
 import CompraFinalizada from "./views/compraFinalizada/CompraFinalizada";
 import EligeTuHoja from "./components/eligeTuHoja/EligeTuHoja";
 import Loader from "./components/loader/Loader";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import NoHayBusqueda from "./components/loader/nohaybusqueda/NoHayBusqueda";
 import Baneados from "./components/baneados/Baneados";
-
-
-
-
 
 export interface ProductCardProps {
   product: Product;
@@ -58,22 +54,27 @@ const App = () => {
   }, []);
 
   const [clientId, setClientId] = useState<string>("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [purchasesId, _setPurchasesId] = useState<string>("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedProduct, _setSelectedProduct] = useState<Product | undefined>(
     undefined
   );
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const userToken = Cookies.get("token");
-    return !!userToken;
-  });
+  const navigate = useNavigate();
+
+  const isLoggedIn = !!Cookies.get("token");
 
   useEffect(() => {
     const userToken = Cookies.get("token");
     if (userToken) {
-      const decoded = decodeToken(userToken) as { _id: string };
-      setClientId(decoded._id);
+      const decoded = decodeToken(userToken) as {
+        isAdmin: boolean;
+        _id: string;
+      };
+      setIsAdmin(decoded.isAdmin);
+      setClientId(decoded?._id);
     }
   }, []);
 
@@ -81,16 +82,13 @@ const App = () => {
     if (token) {
       try {
         const decoded = decodeToken(token) as { isAdmin: boolean; _id: string };
-        setIsLoggedIn(true);
         setIsAdmin(decoded.isAdmin);
         setClientId(decoded?._id);
       } catch (error) {
-        setIsLoggedIn(false);
         setIsAdmin(false);
         setClientId("");
       }
     } else {
-      setIsLoggedIn(false);
       setIsAdmin(false);
       setClientId("");
     }
@@ -101,21 +99,45 @@ const App = () => {
     verificarAutenticacion(userToken);
   }, [location]);
 
+  React.useEffect(() => {
+    if (!isLoggedIn && isPrivateRoute(location.pathname)) {
+      navigate("/");
+    }
+  }, [isLoggedIn, location, navigate]);
+
+  const isPrivateRoute = (path: string) => {
+    const privateRoutes = [
+      "/loader",
+      "/admin",
+      "/product/edit/:id",
+      "/carritocompra",
+      "/comprafinalizada",
+    ];
+    return privateRoutes.includes(path);
+  };
+
   return (
     <>
       {isLoggedIn && isAdmin && <NavBar3 />}
       {isLoggedIn && !isAdmin && <NavBar2 clientId={clientId} />}
       {!isLoggedIn && <NavBar1 />}
+
       <Routes>
         <Route path="/" element={<LandingPage clientId={clientId} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/creatucuchillo" element={<CreaTuCuchillo  clientId={clientId}/>} />
-        <Route path="eligetuhoja" element={<EligeTuHoja clientId={clientId}/>} />
-        <Route path="/loader" element={<Loader />}/>
-        <Route path="/nohaybusqueda" element={<NoHayBusqueda />}/>
-        <Route path="/baneados" element={<Baneados />}/>
+        <Route
+          path="/creatucuchillo"
+          element={<CreaTuCuchillo clientId={clientId} />}
+        />
+        <Route
+          path="eligetuhoja"
+          element={<EligeTuHoja clientId={clientId} />}
+        />
+        <Route path="/loader" element={<Loader />} />
+        <Route path="/nohaybusqueda" element={<NoHayBusqueda />} />
+        <Route path="/baneados" element={<Baneados />} />
         <Route path="/help" element={<Help />} />
         <Route
           path="/admin"
