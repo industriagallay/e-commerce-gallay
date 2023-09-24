@@ -75,6 +75,8 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
   const [searchQueryClientName, setSearchQueryClientName] = useState("");
+  const [filteredComprasByClientName, setFilteredComprasByClientName] =
+    useState<Purchase[]>([]);
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
   const [purchaseStatusMap, setPurchaseStatusMap] = useState<{
     [key: string]: string;
@@ -194,7 +196,10 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const startIndexCompras = (currentPageCompras - 1) * comprasPerPage;
   const endIndexCompras = startIndexCompras + comprasPerPage;
-  filteredCompras.slice(startIndexCompras, endIndexCompras);
+  const slicedCompras = filteredCompras.slice(
+    startIndexCompras,
+    endIndexCompras
+  );
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
@@ -312,6 +317,18 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const filterComprasByClientName = (clientName: string) => {
+    const filteredCompras = compras.filter((compra) =>
+      clientes
+        .find(
+          (cliente) => cliente._id.toString() === compra.idClient.toString()
+        )
+        ?.firstName.toLowerCase()
+        .includes(clientName.toLowerCase())
+    );
+    setFilteredComprasByClientName(filteredCompras);
   };
 
   console.log("searchQueryClientName:", searchQueryClientName);
@@ -585,14 +602,15 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
           >
             <h1>Historial de compras</h1>
             <div className="mb-5 d-flex justify-content-between">
-              <div>
+              <div className="text-end mb-5">
                 <input
-                  type="text"
-                  placeholder="Buscar compra por nombre de cliente"
+                  style={{ width: "14em" }}
                   value={searchQueryClientName}
-                  onChange={(e) => setSearchQueryClientName(e.target.value)}
-                  style={{ width: "19em" }}
-                  className="text-center"
+                  onChange={(e) => {
+                    setSearchQueryClientName(e.target.value);
+                    filterComprasByClientName(e.target.value);
+                  }}
+                  placeholder="&nbsp;&nbsp;Buscar cliente por nombre"
                 />
               </div>
             </div>
@@ -610,7 +628,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                 </tr>
               </thead>
               <tbody>
-                {filteredCompras.map((compra, index) => (
+                {filteredComprasByClientName.map((compra, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>
