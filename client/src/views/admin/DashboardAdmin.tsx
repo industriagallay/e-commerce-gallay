@@ -200,6 +200,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     startIndexCompras,
     endIndexCompras
   );
+  console.log(slicedCompras);
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
