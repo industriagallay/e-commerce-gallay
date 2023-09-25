@@ -75,8 +75,6 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
   const [searchQueryClientName, setSearchQueryClientName] = useState("");
-  const [filteredComprasByClientName, setFilteredComprasByClientName] =
-    useState<Purchase[]>([]);
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
   const [purchaseStatusMap, setPurchaseStatusMap] = useState<{
     [key: string]: string;
@@ -196,11 +194,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const startIndexCompras = (currentPageCompras - 1) * comprasPerPage;
   const endIndexCompras = startIndexCompras + comprasPerPage;
-  const slicedCompras = filteredCompras.slice(
-    startIndexCompras,
-    endIndexCompras
-  );
-  console.log(slicedCompras);
+  filteredCompras.slice(startIndexCompras, endIndexCompras);
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
@@ -320,26 +314,14 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     }
   };
 
-  const filterComprasByClientName = (clientName: string) => {
-    const filteredCompras = compras.filter((compra) =>
-      clientes
-        .find(
-          (cliente) => cliente._id.toString() === compra.idClient.toString()
-        )
-        ?.firstName.toLowerCase()
-        .includes(clientName.toLowerCase())
-    );
-    setFilteredComprasByClientName(filteredCompras);
-  };
-
   console.log("searchQueryClientName:", searchQueryClientName);
 
   return (
-    <div className="perrito-admin">
+    <div className="container-fluid perrito-admin ">
       <div className="row">
-        <div className="col-8">
+        <div className="col-lg-12 col-md-12 col-sm-12 mb-4  justify-content-center">
           <form
-            className="admin ml-auto mt-5 mb-5"
+            className="admin ml-auto mt-5 mb-5 center-content"
             onSubmit={handleSubmit(crearProducto)}
             encType="multipart/form-data"
             onReset={clearImage}
@@ -417,332 +399,353 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
             </div>
           </form>
         </div>
-        <div
-          className="col-4 fs-1 mt-5 mb-5 p-5 text-center"
-          style={{
-            color: "white",
-            border: "solid",
-            width: "15em",
-            height: "25em",
-            backgroundColor: "black",
-            borderRadius: "25px",
-            opacity: "0.9",
-          }}
-        >
-          Bienvenido admin! <br />
-          <p className="fs-4">
-            Este es tu panel, aca tenes una breve explicación de como funcionan
-            las tres secciones que vas a encontrar
-          </p>
-          <br />
-          <ul>
-            <li className="fs-5 text-start">
-              SECCION CREA TU PRODUCTO: En esta seccion vas a poder crear todos
-              los productos de tu inventario llenando un simple formulario.
-            </li>
-            <hr />
-            <li className="fs-5 text-start">
-              SECCION CLIENTES: Aquí vas a poder visualizar la lista de clientes
-              que te hicieron al menos una compra, vas a poder acceder a sus
-              datos de contacto. También vas a poder buscar cliente por e-mail o
-              DNI y desactivar clientes para que no puedan acceder a la función
-              de comprar en caso que sea necesario (ACLARACIÓN: a los clientes
-              los vas a poder activar y desactivar cuando quieras tan solo con
-              un click)
-            </li>
-            <hr />
-            <li className="fs-5 text-start">
-              SECCION HISTORIAL DE COMPRAS: Finalmente te brindamos una sección
-              donde vas a poder ver todas las compras realizadas, como asi
-              tambien buscar una compra por un cliente en específico y cambiarle
-              el estado a las compras dependiendo si el cliente ya abono el
-              pago, si el/los productos fueron entregados o si la compra fue
-              cancelada
-            </li>
-          </ul>
+        <div className="container-sm center-content">
+          <div className="row justify-content-center">
+            <div
+              className="col-lg-6 col-md-12 col-sm-4 mb-4 text-center"
+              style={{
+                color: "white",
+                border: "solid",
+                backgroundColor: "black",
+                borderRadius: "25px",
+                opacity: "0.9",
+              }}
+            >
+              <h1 className="h1-admin-dashbordadmin">Bienvenido admin!</h1>{" "}
+              <br />
+              <p className="fs-4">
+                Este es tu panel, aca tenes una breve explicación de como
+                funcionan las tres secciones que vas a encontrar
+              </p>
+              <br />
+              <ul>
+                <li className="fs-5 text-start">
+                  SECCION CREA TU PRODUCTO: En esta seccion vas a poder crear
+                  todos los productos de tu inventario llenando un simple
+                  formulario.
+                </li>
+                <hr />
+                <li className="fs-5 text-start">
+                  SECCION CLIENTES: Aquí vas a poder visualizar la lista de
+                  clientes que te hicieron al menos una compra, vas a poder
+                  acceder a sus datos de contacto. También vas a poder buscar
+                  cliente por e-mail o DNI y desactivar clientes para que no
+                  puedan acceder a la función de comprar en caso que sea
+                  necesario (ACLARACIÓN: a los clientes los vas a poder activar
+                  y desactivar cuando quieras tan solo con un click)
+                </li>
+                <hr />
+                <li className="fs-5 text-start">
+                  SECCION HISTORIAL DE COMPRAS: Finalmente te brindamos una
+                  sección donde vas a poder ver todas las compras realizadas,
+                  como asi tambien buscar una compra por un cliente en
+                  específico y cambiarle el estado a las compras dependiendo si
+                  el cliente ya abono el pago, si el/los productos fueron
+                  entregados o si la compra fue cancelada
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <hr
           className="mx-auto mb-5"
-          style={{ border: "solid", opacity: "1", width: "80%" }}
+          style={{ border: " 1px solid", opacity: "1", width: "80%" }}
         />
       </div>
-      <div className="row">
-        {" "}
-        <div className="col-12 text-center">
-          <div
-            className="col-10 mx-auto mt-5 mb-5 p-5"
-            style={{
-              border: "solid",
-              backgroundColor: "white",
-              opacity: "0.9",
-              borderRadius: "18px",
-              lineHeight: "3em",
-              fontSize: "1.2em",
-            }}
-          >
-            <h1>Clientes</h1>
-            <div className="text-end mb-5">
-              <input
-                style={{ width: "14em" }}
-                value={searchQueryClientes}
-                onChange={(e) => setSearchQueryClientes(e.target.value)}
-                placeholder="&nbsp;&nbsp;Buscar cliente por nombre"
-              />
-              <button
-                className="ms-4"
-                onClick={() => {
-                  fetchFilteredClients();
+      <div className="container-fluid table-responsive center-content-tabllaa">
+        <table className="table table-bordered table-striped">
+          <div className="row ">
+            {" "}
+            <div className="text-center">
+              <div
+                className="contenido-tabla col-lg-12 col-md-12 col-sm-12 mb-4 mx-auto mt-5 mb-5 p-5 d-block"
+                style={{
+                  border: "solid",
+                  backgroundColor: "white",
+                  opacity: "0.9",
+                  borderRadius: "18px",
+                  lineHeight: "3em",
+                  fontSize: "1.2em",
                 }}
               >
-                Buscar
-              </button>
-            </div>
-            <table className="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>Index</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Email</th>
-                  <th>DNI</th>
-                  <th>Teléfono</th>
-                  <th>Bannear Usuario</th>
-                </tr>
-              </thead>
-              <tbody>
-                {paginatedClientes.map((cliente, index) => (
-                  <tr key={index}>
-                    <td>{startIndex + index + 1}</td>
-                    <td>{cliente.firstName}</td>
-                    <td>{cliente.lastName}</td>
-                    <td>{cliente.email}</td>
-                    <td>{cliente.dni}</td>
-                    <td>{cliente.phone}</td>
-                    <td>
-                      <button
-                        onClick={() =>
-                          desactivarUsuario(
-                            cliente._id.toString(),
-                            cliente.isActive
-                          )
-                        }
-                      >
-                        {cliente.isActive ? "Desactivar" : "Activar"}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <nav
-              aria-label="Page navigation example"
-              className="d-flex justify-content-center"
-            >
-              <ul className="pagination">
-                <li
-                  className={`page-item ${currentPage === 1 ? "disabled" : ""}`}
-                >
+                <h1 className="h1-admin-dashbordadmin">Clientes</h1>
+                <div className="text-end mb-5">
+                  <input
+                    style={{ width: "14em" }}
+                    value={searchQueryClientes}
+                    onChange={(e) => setSearchQueryClientes(e.target.value)}
+                    placeholder="&nbsp;&nbsp;Buscar cliente por nombre"
+                  />
                   <button
-                    className="page-link"
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage(currentPage - 1)}
+                    className="ms-4"
+                    onClick={() => {
+                      fetchFilteredClients();
+                    }}
                   >
-                    Anterior
+                    <h5 className="h5buscar-admin"> Buscar</h5>
                   </button>
-                </li>
-                {[...Array(totalPages)].map((_, page) => (
-                  <li
-                    className={`page-item ${
-                      currentPage === page + 1 ? "active" : ""
-                    }`}
-                    key={page}
-                  >
-                    <button
-                      className="page-link"
-                      onClick={() => setCurrentPage(page + 1)}
+                </div>
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Index</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Email</th>
+                      <th>DNI</th>
+                      <th>Teléfono</th>
+                      <th>Bannear Usuario</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {paginatedClientes.map((cliente, index) => (
+                      <tr key={index}>
+                        <td>{startIndex + index + 1}</td>
+                        <td>{cliente.firstName}</td>
+                        <td>{cliente.lastName}</td>
+                        <td>{cliente.email}</td>
+                        <td>{cliente.dni}</td>
+                        <td>{cliente.phone}</td>
+                        <td>
+                          <button
+                            onClick={() =>
+                              desactivarUsuario(
+                                cliente._id.toString(),
+                                cliente.isActive
+                              )
+                            }
+                          >
+                            {cliente.isActive ? "Desactivar" : "Activar"}
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <nav
+                  aria-label="Page navigation example"
+                  className="d-flex justify-content-center"
+                >
+                  <ul className="pagination">
+                    <li
+                      className={`page-item ${
+                        currentPage === 1 ? "disabled" : ""
+                      }`}
                     >
-                      {page + 1}
-                    </button>
-                  </li>
-                ))}
-                <li
-                  className={`page-item ${
-                    currentPage === totalPages ? "disabled" : ""
-                  }`}
-                >
-                  <button
-                    className="page-link"
-                    disabled={currentPage === totalPages}
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                  >
-                    Siguiente
-                  </button>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-      <hr
-        className="mx-auto mb-5"
-        style={{ border: "solid", opacity: "1", width: "80%" }}
-      />
-      <div className="row">
-        {" "}
-        <div className="col-12 text-center">
-          <div
-            className="col-10 mx-auto mt-5 mb-5 p-5"
-            style={{
-              border: "solid",
-              backgroundColor: "white",
-              opacity: "0.9",
-              borderRadius: "18px",
-              lineHeight: "3em",
-              fontSize: "1.2em",
-            }}
-          >
-            <h1>Historial de compras</h1>
-            <div className="mb-5 d-flex justify-content-between">
-              <div className="text-end mb-5">
-                <input
-                  style={{ width: "14em" }}
-                  value={searchQueryClientName}
-                  onChange={(e) => {
-                    setSearchQueryClientName(e.target.value);
-                    filterComprasByClientName(e.target.value);
-                  }}
-                  placeholder="&nbsp;&nbsp;Buscar cliente por nombre"
-                />
+                      <button
+                        className="page-link"
+                        disabled={currentPage === 1}
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                      >
+                        Anterior
+                      </button>
+                    </li>
+                    {[...Array(totalPages)].map((_, page) => (
+                      <li
+                        className={`page-item ${
+                          currentPage === page + 1 ? "active" : ""
+                        }`}
+                        key={page}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() => setCurrentPage(page + 1)}
+                        >
+                          {page + 1}
+                        </button>
+                      </li>
+                    ))}
+                    <li
+                      className={`page-item ${
+                        currentPage === totalPages ? "disabled" : ""
+                      }`}
+                    >
+                      <button
+                        className="page-link"
+                        disabled={currentPage === totalPages}
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                      >
+                        Siguiente
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
               </div>
             </div>
-            <table className="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>Index</th>
-                  <th>Cliente</th>
-                  <th>Producto</th>
-                  <th>Cantidad</th>
-                  <th>Precio por unidad</th>
-                  <th>Precio total</th>
-                  <th>Estado</th>
-                  <th>Fecha de compra</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredComprasByClientName.map((compra, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {
-                        clientes.find(
-                          (cliente) =>
-                            cliente._id.toString() ===
-                            compra.idClient.toString()
-                        )?.firstName
-                      }{" "}
-                      {
-                        clientes.find(
-                          (cliente) =>
-                            cliente._id.toString() ===
-                            compra.idClient.toString()
-                        )?.lastName
-                      }
-                    </td>
-                    <td>
-                      {compra.products.map((producto, productoIndex) => (
-                        <p key={productoIndex}>
+          </div>
+        </table>
+      </div>
+
+      <hr
+        className="mx-auto mb-5"
+        style={{ border: "1px solid", opacity: "1", width: "80%" }}
+      />
+      <div className="container-fluid table-responsive center-content-tabllaa">
+        <table className="table table-bordered table-striped">
+          <div className="row justify-content-center">
+            {" "}
+            <div className="text-center">
+              <div
+                className="contenido-tabla col-lg-12 col-md-12 col-sm-12 mb-4 mx-auto mt-5 mb-5 p-5 d-block"
+                style={{
+                  border: "solid",
+                  backgroundColor: "white",
+                  opacity: "0.9",
+                  borderRadius: "18px",
+                  lineHeight: "3em",
+                  fontSize: "1.2em",
+                }}
+              >
+                <h1>Historial de compras</h1>
+                <div className="mb-5 d-flex justify-content-between">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Buscar compra por nombre de cliente"
+                      value={searchQueryClientName}
+                      onChange={(e) => setSearchQueryClientName(e.target.value)}
+                      style={{ width: "19em" }}
+                      className="text-center"
+                    />
+                  </div>
+                </div>
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Index</th>
+                      <th>Cliente</th>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Precio por unidad</th>
+                      <th>Precio total</th>
+                      <th>Estado</th>
+                      <th>Fecha de compra</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredCompras.map((compra, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>
                           {
-                            productos.find((p) => p._id === producto.productId)
-                              ?.name
+                            clientes.find(
+                              (cliente) =>
+                                cliente._id.toString() ===
+                                compra.idClient.toString()
+                            )?.firstName
+                          }{" "}
+                          {
+                            clientes.find(
+                              (cliente) =>
+                                cliente._id.toString() ===
+                                compra.idClient.toString()
+                            )?.lastName
                           }
-                        </p>
-                      ))}
-                    </td>
-                    <td>
-                      {compra.products.map((producto, index) => (
-                        <p key={index}>{producto.quantity}</p>
-                      ))}
-                    </td>
-                    <td>
-                      {compra.products.map((producto, index) => (
-                        <p key={index}>{producto.price}</p>
-                      ))}
-                    </td>
-                    <td>{compra.totalPrice}</td>
-                    <td>
-                      <select
-                        value={purchaseStatusMap[compra._id] || ""}
-                        onChange={(e) =>
-                          handleStatusChange(compra._id, e.target.value)
+                        </td>
+                        <td>
+                          {compra.products.map((producto, productoIndex) => (
+                            <p key={productoIndex}>
+                              {
+                                productos.find(
+                                  (p) => p._id === producto.productId
+                                )?.name
+                              }
+                            </p>
+                          ))}
+                        </td>
+                        <td>
+                          {compra.products.map((producto, index) => (
+                            <p key={index}>{producto.quantity}</p>
+                          ))}
+                        </td>
+                        <td>
+                          {compra.products.map((producto, index) => (
+                            <p key={index}>{producto.price}</p>
+                          ))}
+                        </td>
+                        <td>{compra.totalPrice}</td>
+                        <td>
+                          <select
+                            value={purchaseStatusMap[compra._id] || ""}
+                            onChange={(e) =>
+                              handleStatusChange(compra._id, e.target.value)
+                            }
+                          >
+                            <option value="pending pay">
+                              Pendiente de pago
+                            </option>
+                            <option value="paid">Pagado</option>
+                            <option value="sent">Enviado</option>
+                            <option value="submitted">Entregado</option>
+                            <option value="canceled">Cancelado</option>
+                          </select>
+                        </td>
+                        <td>
+                          {moment(compra.createdAt).format("D/M/YYYY H:mm")}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                <nav
+                  aria-label="Page navigation example"
+                  className="d-flex justify-content-center"
+                >
+                  <ul className="pagination">
+                    <li
+                      className={`page-item ${
+                        currentPageCompras === 1 ? "disabled" : ""
+                      }`}
+                    >
+                      <button
+                        className="page-link"
+                        disabled={currentPageCompras === 1}
+                        onClick={() =>
+                          setCurrentPageCompras(currentPageCompras - 1)
                         }
                       >
-                        <option value="pending pay">Pendiente de pago</option>
-                        <option value="paid">Pagado</option>
-                        <option value="sent">Enviado</option>
-                        <option value="submitted">Entregado</option>
-                        <option value="canceled">Cancelado</option>
-                      </select>
-                    </td>
-                    <td>{moment(compra.createdAt).format("D/M/YYYY H:mm")}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            <nav
-              aria-label="Page navigation example"
-              className="d-flex justify-content-center"
-            >
-              <ul className="pagination">
-                <li
-                  className={`page-item ${
-                    currentPageCompras === 1 ? "disabled" : ""
-                  }`}
-                >
-                  <button
-                    className="page-link"
-                    disabled={currentPageCompras === 1}
-                    onClick={() =>
-                      setCurrentPageCompras(currentPageCompras - 1)
-                    }
-                  >
-                    Anterior
-                  </button>
-                </li>
-                {[...Array(totalPagesCompras)].map((_, page) => (
-                  <li
-                    className={`page-item ${
-                      currentPageCompras === page + 1 ? "active" : ""
-                    }`}
-                    key={page}
-                  >
-                    <button
-                      className="page-link"
-                      onClick={() => setCurrentPageCompras(page + 1)}
+                        Anterior
+                      </button>
+                    </li>
+                    {[...Array(totalPagesCompras)].map((_, page) => (
+                      <li
+                        className={`page-item ${
+                          currentPageCompras === page + 1 ? "active" : ""
+                        }`}
+                        key={page}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() => setCurrentPageCompras(page + 1)}
+                        >
+                          {page + 1}
+                        </button>
+                      </li>
+                    ))}
+                    <li
+                      className={`page-item ${
+                        currentPageCompras === totalPagesCompras
+                          ? "disabled"
+                          : ""
+                      }`}
                     >
-                      {page + 1}
-                    </button>
-                  </li>
-                ))}
-                <li
-                  className={`page-item ${
-                    currentPageCompras === totalPagesCompras ? "disabled" : ""
-                  }`}
-                >
-                  <button
-                    className="page-link"
-                    disabled={currentPageCompras === totalPagesCompras}
-                    onClick={() =>
-                      setCurrentPageCompras(currentPageCompras + 1)
-                    }
-                  >
-                    Siguiente
-                  </button>
-                </li>
-              </ul>
-            </nav>
+                      <button
+                        className="page-link"
+                        disabled={currentPageCompras === totalPagesCompras}
+                        onClick={() =>
+                          setCurrentPageCompras(currentPageCompras + 1)
+                        }
+                      >
+                        Siguiente
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
           </div>
-        </div>
+        </table>
       </div>
     </div>
   );

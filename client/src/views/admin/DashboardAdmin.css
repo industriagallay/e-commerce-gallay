@@ -7,10 +7,9 @@
 }
 
 .admin {
-  max-width: 50rem;
+  max-width: 56rem;
   margin: 0 auto;
   padding: 20px;
-
   border: 1px solid #ccc;
   position: relative;
   display: flex;
@@ -20,6 +19,7 @@
   color: rgb(97 97 97);
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.05);
   background-clip: border-box;
+  align-items: inherit;
 }
 
 .header-admin {
@@ -42,10 +42,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .inputs-admin {
-  padding: 3.5rem;
+  padding: 1rem;
   gap: 3rem;
   display: flex;
   flex-direction: column;
@@ -185,4 +186,28 @@
 .pagination .active {
   background-color: #007bff;
   color: white;
+}
+
+/****c sss****/
+
+.h1-admin-dashbordadmin {
+  margin-top: 25px;
+}
+
+.contenido-tabla {
+  display: table-row;
+  border: 1px solid #ccc;
+  border: 5px;
+}
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+.center-content-tabllaa {
+  height: 100%; 
+  max-width: 100%;
+}
+
+.h5buscar-admin {
+  margin-right: 15px;
 }
