@@ -18,9 +18,9 @@ const CardProductLanding: React.FC<CardProductLandingProps> = ({ product }) => {
   return (
     //col-12 col-md-6 col-lg-4 col-xl-3 mb-4
     <div>
-      <div className="container">
-        <div className="row ">
-          <div className="col-landing">
+      <div className="container ">
+        <div className="row col-lg-12 col-md-12 col-sm-12 col-xl-12 ">
+          <div className="col-landing ">
             <div className="card-landing-productos ">
               <div className="img-container-landing">
                 <img
