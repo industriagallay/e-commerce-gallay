@@ -23,7 +23,7 @@
     "bson-objectid": "^2.0.4",
     "cloudinary-react": "^1.8.1",
     "font-awesome-icons": "^1.6.0",
-    "gsap": "^3.12.1",
+    "gsap": "^3.12.2",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.1",
     "jwt-simple": "^0.5.6",

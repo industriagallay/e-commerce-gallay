@@ -29,7 +29,8 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
   const [_cartUpdate, setCartUpdate] = useState<number>(0);
   const [purchaseId, setPurchaseId] = useState<string | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-
+  const [productsLoaded, setProductsLoaded] = useState<boolean>(false);
+  console.log(products);
   const navigate = useNavigate();
 
   const addToCaboHandler = async (product: Product) => {
@@ -87,19 +88,28 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
+  const fetchProducts = async () => {
+    try {
+      if (!productsLoaded) {
         const response = await axios.get<Product[]>(`${apiUrl}/products`);
         const handleProducts = response.data.filter((product) =>
           product.categories.includes("handle")
         );
-        setProducts(handleProducts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
+        const copiedHandleProducts = handleProducts.map((product) => ({
+          ...product,
+        }));
+        console.log(handleProducts);
+
+        setProducts(copiedHandleProducts);
+        setProductsLoaded(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
     fetchProducts();
   }, []);
 
@@ -114,7 +124,7 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
     cssEase: "linear",
   };
 
-  let slidesToShow = 3;
+  let slidesToShow = 2;
 
   if (window.innerWidth <= 768 && window.innerWidth > 390) {
     slidesToShow = 2;
@@ -198,7 +208,9 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
                     <div className="card-content-cabo">
                       <h3 className="productname-cabo">{product.name}</h3>
                       <p className="product-description-cabo">
-                        {product.description}
+                        {product.description.length > 30
+                          ? `${product.description.substring(0, 30)}...`
+                          : product.description}
                       </p>
 
                       <button

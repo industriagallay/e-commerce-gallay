@@ -43,34 +43,24 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
   }>({});
 
   useEffect(() => {
-    if (!clientId) {
-      // Usuario no está logueado, redirigirlo a la página de inicio de sesión
-      navigate("/login");
-    } else {
-      // Usuario logueado, continuar cargando el carrito
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `${apiUrl}/purchases/${clientId}`
-          );
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${apiUrl}/purchases/${clientId}`);
 
-          const cartData = response.data[0].products;
-          setCartItems(cartData);
-        } catch (error) {
-          console.log(error);
-        }
-      };
+        const cartData = response.data[0].products;
+        setCartItems(cartData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-      fetchData();
-    }
-  }, [clientId, navigate]);
+    fetchData();
+  }, [clientId]);
 
   useEffect(() => {
     const fetchProductData = async (productId: string) => {
       try {
-        const response = await axios.get(
-          `${apiUrl}/products/id/${productId}`
-        );
+        const response = await axios.get(`${apiUrl}/products/id/${productId}`);
         setProductData(response.data);
       } catch (error) {
         console.log(error);
@@ -146,13 +136,9 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
 
   const checkout = async (clientId: string, totalPrice: number) => {
     try {
-
-      await axios.post(
-        `${apiUrl}/purchases/generate/${clientId}`,
-        {
-          totalPrice,
-        }
-      );
+      await axios.post(`${apiUrl}/purchases/generate/${clientId}`, {
+        totalPrice,
+      });
       setCartItems([]);
 
       navigate("/compra-finalizada");
@@ -164,9 +150,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
   useEffect(() => {
     const fetchProductData = async (productId: string) => {
       try {
-        const response = await axios.get(
-          `${apiUrl}/products/id/${productId}`
-        );
+        const response = await axios.get(`${apiUrl}/products/id/${productId}`);
         setProductDataMap((prevProductDataMap) => ({
           ...prevProductDataMap,
           [productId]: response.data,
