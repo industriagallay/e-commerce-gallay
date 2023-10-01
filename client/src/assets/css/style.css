@@ -18,14 +18,14 @@ body {
   --z-fixed: 100;
 }
 
-.row > * {
+/* .row > * {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0);
   padding-left: calc(var(--bs-gutter-x) * 0);
   margin-top: var(--bs-gutter-y);
-}
+} */
 
 @media screen and (min-width: 768px) {
   :root {
