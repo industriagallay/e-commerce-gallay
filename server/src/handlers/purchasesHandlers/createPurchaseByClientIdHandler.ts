@@ -12,7 +12,6 @@ const createPurchaseByClientIdHandler = async (req: Request, res: Response) => {
     });
 
     if (!purchase) {
-      // si el cliente es nuevo, aca genero una nueva compra
       purchase = await Purchases.create({
         idClient: clientId,
         products,
@@ -20,7 +19,6 @@ const createPurchaseByClientIdHandler = async (req: Request, res: Response) => {
         status: "inCart",
       });
     } else {
-      // si ya existe el cliente y esta con una compra abierta, nomas voy a agregar los productos que ya eligio a la compra
       purchase.products.push(...products);
       purchase.idClient = clientId;
       purchase.totalPrice += totalPrice;

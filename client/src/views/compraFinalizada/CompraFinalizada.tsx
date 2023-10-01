@@ -28,6 +28,7 @@ interface LastPurchase {
 const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   const navigate = useNavigate();
   const [ultimaCompra, setUltimaCompra] = useState<LastPurchase | null>(null);
+  console.log(ultimaCompra);
 
   useEffect(() => {
     const fetchUltimaCompra = async () => {
