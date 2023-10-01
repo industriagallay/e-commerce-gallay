@@ -6,19 +6,32 @@
   justify-content: center;
   position: relative;
   align-items: center;
-  max-height: 100%;
-  max-width: 100%;
+  min-height: 100%;
+  min-width: 100%;
   padding: 32px;
   border-radius: 10px;
   background: #ffffff;
   text-decoration: none;
+  margin: 10px 10px 30px 10px;
+}
+.card-title {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-text {
+  font-weight: 300;
+
+  font-size: 1.2rem;
 }
 
 .plan-card {
   background: #fff;
-  width: 26rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  max-width: 26rem;
+  min-height: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 10px;
   padding-bottom: 20px;
   border-radius: 10px;
@@ -26,6 +39,13 @@
   box-shadow: 0 6px 30px rgba(207, 212, 222, 0.3);
   font-family: "Poppins", sans-serif;
   text-decoration: none;
+  margin: 10px 10px 10px 10px;
+}
+
+.card .descripcion-card-product {
+  margin: 5px 0px 20px 10px;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .plan-card h2 {
@@ -44,19 +64,27 @@
 }
 
 .plan-card h2:hover {
-  /* Eliminar el efecto de hover */
   text-decoration: none;
 }
 
 .etiquet-price {
   position: relative;
   background: #fdbd4a;
-  width: 24.46rem;
+  width: 19.46rem;
   margin-left: -0.65rem;
   padding: 0.2rem 1.2rem;
   border-radius: 5px 0 0 5px;
 }
-
+@media screen and (width: 1024px) and (height: 600px) {
+  .etiquet-price {
+    position: relative;
+    background: #fdbd4a;
+    width: 16.46rem;
+    margin-left: -0.65rem;
+    padding: 0.2rem 1.2rem;
+    border-radius: 5px 0 0 5px;
+  }
+}
 .etiquet-price p {
   margin: 0;
   padding-top: 0.4rem;
@@ -70,10 +98,10 @@
   margin-right: 5px;
   font-size: 15px;
   font-weight: 300;
+  margin-top: 10px;
 }
 
 .etiquet-price p:after {
-  content: " / precio por unidad";
   margin-left: 5px;
   font-size: 15px;
   font-weight: 300;
@@ -93,6 +121,7 @@
 
 .benefits-list {
   margin-top: 16px;
+  margin: 10px 10px 10px 10px;
 }
 
 .benefits-list ul {
@@ -129,7 +158,7 @@
   justify-content: center;
   align-items: center;
   background: #000446;
-  color: #fff;
+  color: #ffffff;
   padding: 10px 15px;
   border-radius: 5px;
   text-decoration: none;
@@ -150,25 +179,30 @@
   fill: currentColor;
 }
 
-.boton {
+.boton-product-detail-carrito-compra {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px;
-  gap: 15px;
-  background-color: #1976f0;
-  outline: 3px #181717 solid;
+  padding: 1px 1px;
+  background-color: #2170d8;
+  outline: 4px #ffffff solid;
   outline-offset: -3px;
-  border-radius: 9px;
+  border-radius: 7px;
   border: solid;
   cursor: pointer;
-  transition: 400ms;
+  transition: 300ms;
 }
 
-.boton .text {
+.boton-product-detail-carrito-compra:hover {
+  background-color: #fdbd4a;
+  color: #000000;
+  border: 4px solid black;
+}
+
+.boton-product-detail-carrito-compra .text-agregaralCarrito {
   color: rgb(255, 255, 255);
-  font-weight: 700;
-  font-size: 1em;
+  font-weight: 500;
+  font-size: 1.2em;
   transition: 400ms;
   margin-top: 1em;
 }
@@ -188,5 +222,3 @@
 .boton:hover svg path {
   fill: #181717;
 }
-
-
