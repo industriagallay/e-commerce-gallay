@@ -318,18 +318,18 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <div className="container-fluid">
-        <header className="l-header"> </header>
+      <div className="container-fluid ">
+        <header className="l-header "> </header>
 
         <main className="main-bg">
           <div className="row">
-            <div className="col-lg-3 col-md-6 col-12 home">
-              <div className="home__primary text-center d-md-flex justify-content-center align-items-center">
-                <h1 className="home__title text-sm text-md">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12 home px-0">
+              <div className="home__primary text-center d-md-flex justify-content-center align-items-center ">
+                <h1 className="home__title text-sm text-md ">
                   Industria Gallay
                 </h1>
                 <div className="home__img d-none d-md-block">
-                  <img className="img-fluid" src={mano1} alt="image-home " />
+                  <img className="img-fluid " src={mano1} alt="image-home " />
                 </div>
               </div>
 
