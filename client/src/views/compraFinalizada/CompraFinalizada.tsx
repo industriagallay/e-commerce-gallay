@@ -44,7 +44,6 @@ interface LastPurchase {
 const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [pageReloaded, setPageReloaded] = useState(false);
   const [ultimaCompra, setUltimaCompra] = useState<LastPurchase | null>(null);
   const [productNames, setProductNames] = useState<string[]>([]);
 
