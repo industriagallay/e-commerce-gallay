@@ -6,29 +6,9 @@
   background-size: cover;
 }
 
-.header2 {
-  position: relative;
-  background-clip: border-box;
-  background-color: #1e88e5;
-  background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
-  overflow: hidden;
-  color: #fff;
-  box-shadow: 30px 25px 15px rgba(0, 0, 0, 0.2);
-  height: 7rem;
-  letter-spacing: 0;
-  line-height: 1.375;
-  font-weight: 600;
-  font-size: 1.9rem;
-  font-family: Roboto, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 0;
-}
-
 /*FORMULARIO*/
 .SignUpform {
+  margin-top: 50px;
   border: 1px solid #ccc;
   position: relative;
   display: flex;
@@ -46,18 +26,14 @@
   background-clip: border-box;
   background-color: #1e88e5;
   background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
-  margin: 50px;
+  margin: 30px;
   border-radius: 0.75rem;
   overflow: hidden;
   color: #fff;
   box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
     rgba(33, 150, 243, 0.4);
   height: 7rem;
-  letter-spacing: 0;
-  line-height: 1.375;
-  font-weight: 600;
   font-size: 1.9rem;
-  font-family: Roboto, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,6 +132,7 @@
 
 .signup-link a,
 .forget {
+  text-decoration: none !important;
   line-height: 2.5;
   font-weight: 700;
   font-size: 1rem;
@@ -241,45 +218,6 @@
   margin-right: 0.1rem;
 }
 
-/*ESTILOS DEL TEXTOANIMACIÓN*/
-.slide-from-right {
-  position: relative;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: slideRightToLeft 21s infinite;
-}
-
-.slide-from-right span {
-  color: #fff;
-  background-color: transparent;
-  display: inline-block;
-  animation-delay: 5s;
-}
-
-.slide-from-right span:nth-child(1) {
-  animation-delay: 5s;
-}
-
-.slide-from-right span:nth-child(2) {
-  animation-delay: 12s;
-}
-
-@keyframes slideRightToLeft {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  5%,
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-}
-
 .parrafoProducto {
   color: #fff;
   text-align: center;
@@ -287,6 +225,7 @@
   font-weight: 600;
 }
 .cardOff {
+  margin-bottom: 20px;
   max-width: 340px;
   display: flex;
   flex-direction: column;
