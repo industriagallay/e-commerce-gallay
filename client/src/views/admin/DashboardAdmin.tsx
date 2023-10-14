@@ -75,6 +75,8 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
   const [searchQueryClientName, setSearchQueryClientName] = useState("");
+  const [filteredComprasByClientName, setFilteredComprasByClientName] =
+    useState<Purchase[]>([]);
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
   const [purchaseStatusMap, setPurchaseStatusMap] = useState<{
     [key: string]: string;
@@ -107,25 +109,33 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
         backgroundImage: imageUrl,
         categories: selectedCategory,
       };
-      const response = await axios.post(`${apiUrl}/products`, dataWithImage);
-      console.log(response.data);
+      await axios.post(`${apiUrl}/products`, dataWithImage);
 
       swal.fire({
         position: "center",
         icon: "success",
-        title: "producto creado correctamente!",
+        title: "Producto creado correctamente!",
         showConfirmButton: false,
         timer: 1500,
       });
       reset();
       clearImage();
-    } catch (error) {
-      swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Oops...",
-        text: "Ocurrió un error inesperado!",
-      });
+    } catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Admin!",
+          text: "No se pueden crear dos productos con el mismo nombre",
+        });
+      } else {
+        swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Oops...",
+          text: "Ocurrió un error inesperado!",
+        });
+      }
       console.error(error);
     }
   };
@@ -251,12 +261,12 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   useEffect(() => {
     fetchPurchases()
       .then((purchaseData) => {
+        setCompras(purchaseData);
         const initialStatusMap: { [key: string]: string } = {};
         purchaseData.forEach((purchase) => {
           purchase.selectedStatus = purchase.status;
           initialStatusMap[purchase._id] = purchase.status;
         });
-        setCompras(purchaseData);
         setPurchaseStatusMap(initialStatusMap);
       })
       .catch((error) => {
@@ -314,7 +324,21 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     }
   };
 
-  console.log("searchQueryClientName:", searchQueryClientName);
+  const filterComprasByClientName = (clientName: string) => {
+    if (clientName.trim() === "") {
+      setFilteredComprasByClientName(compras);
+    } else {
+      const filteredCompras = compras.filter((compra) =>
+        clientes
+          .find(
+            (cliente) => cliente._id.toString() === compra.idClient.toString()
+          )
+          ?.firstName.toLowerCase()
+          .includes(clientName.toLowerCase())
+      );
+      setFilteredComprasByClientName(filteredCompras);
+    }
+  };
 
   return (
     <div className="container-fluid perrito-admin ">
@@ -453,127 +477,124 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
         />
       </div>
       <div className="container-fluid table-responsive center-content-tabllaa">
-        <table className="table table-bordered table-striped">
-          <div className="row ">
-            {" "}
-            <div className="text-center">
-              <div
-                className="contenido-tabla col-lg-12 col-md-12 col-sm-12 mb-4 mx-auto mt-5 mb-5 p-5 d-block"
-                style={{
-                  border: "solid",
-                  backgroundColor: "white",
-                  opacity: "0.9",
-                  borderRadius: "18px",
-                  lineHeight: "3em",
-                  fontSize: "1.2em",
-                }}
-              >
-                <h1 className="h1-admin-dashbordadmin">Clientes</h1>
-                <div className="text-end mb-5">
-                  <input
-                    style={{ width: "14em" }}
-                    value={searchQueryClientes}
-                    onChange={(e) => setSearchQueryClientes(e.target.value)}
-                    placeholder="&nbsp;&nbsp;Buscar cliente por nombre"
-                  />
-                  <button
-                    className="ms-4"
-                    onClick={() => {
-                      fetchFilteredClients();
-                    }}
-                  >
-                    <h5 className="h5buscar-admin"> Buscar</h5>
-                  </button>
-                </div>
-                <table className="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Index</th>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Email</th>
-                      <th>DNI</th>
-                      <th>Teléfono</th>
-                      <th>Bannear Usuario</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {paginatedClientes.map((cliente, index) => (
-                      <tr key={index}>
-                        <td>{startIndex + index + 1}</td>
-                        <td>{cliente.firstName}</td>
-                        <td>{cliente.lastName}</td>
-                        <td>{cliente.email}</td>
-                        <td>{cliente.dni}</td>
-                        <td>{cliente.phone}</td>
-                        <td>
-                          <button
-                            onClick={() =>
-                              desactivarUsuario(
-                                cliente._id.toString(),
-                                cliente.isActive
-                              )
-                            }
-                          >
-                            {cliente.isActive ? "Desactivar" : "Activar"}
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <nav
-                  aria-label="Page navigation example"
-                  className="d-flex justify-content-center"
+        <div className="row">
+          <div className="text-center">
+            <div
+              className="contenido-tabla col-lg-12 col-md-12 col-sm-12 mb-4 mx-auto mt-5 mb-5 p-5 d-block"
+              style={{
+                border: "solid",
+                backgroundColor: "white",
+                opacity: "0.9",
+                borderRadius: "18px",
+                lineHeight: "3em",
+                fontSize: "1.2em",
+              }}
+            >
+              <h1 className="h1-admin-dashbordadmin">Clientes</h1>
+              <div className="text-end mb-5">
+                <input
+                  style={{ width: "14em" }}
+                  value={searchQueryClientes}
+                  onChange={(e) => setSearchQueryClientes(e.target.value)}
+                  placeholder="&nbsp;&nbsp;Buscar cliente por nombre"
+                />
+                <button
+                  className="ms-4"
+                  onClick={() => {
+                    fetchFilteredClients();
+                  }}
                 >
-                  <ul className="pagination">
-                    <li
-                      className={`page-item ${
-                        currentPage === 1 ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        disabled={currentPage === 1}
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                      >
-                        Anterior
-                      </button>
-                    </li>
-                    {[...Array(totalPages)].map((_, page) => (
-                      <li
-                        className={`page-item ${
-                          currentPage === page + 1 ? "active" : ""
-                        }`}
-                        key={page}
-                      >
-                        <button
-                          className="page-link"
-                          onClick={() => setCurrentPage(page + 1)}
-                        >
-                          {page + 1}
-                        </button>
-                      </li>
-                    ))}
-                    <li
-                      className={`page-item ${
-                        currentPage === totalPages ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        disabled={currentPage === totalPages}
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                      >
-                        Siguiente
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
+                  <h5 className="h5buscar-admin"> Buscar</h5>
+                </button>
               </div>
+              <table className="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Index</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>DNI</th>
+                    <th>Teléfono</th>
+                    <th>Bannear Usuario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {paginatedClientes.map((cliente, index) => (
+                    <tr key={index}>
+                      <td>{startIndex + index + 1}</td>
+                      <td>{cliente.firstName}</td>
+                      <td>{cliente.lastName}</td>
+                      <td>{cliente.email}</td>
+                      <td>{cliente.dni}</td>
+                      <td>{cliente.phone}</td>
+                      <td>
+                        <button
+                          onClick={() =>
+                            desactivarUsuario(
+                              cliente._id.toString(),
+                              cliente.isActive
+                            )
+                          }
+                        >
+                          {cliente.isActive ? "Desactivar" : "Activar"}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <nav
+                aria-label="Page navigation example"
+                className="d-flex justify-content-center"
+              >
+                <ul className="pagination">
+                  <li
+                    className={`page-item ${
+                      currentPage === 1 ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      disabled={currentPage === 1}
+                      onClick={() => setCurrentPage(currentPage - 1)}
+                    >
+                      Anterior
+                    </button>
+                  </li>
+                  {[...Array(totalPages)].map((_, page) => (
+                    <li
+                      className={`page-item ${
+                        currentPage === page + 1 ? "active" : ""
+                      }`}
+                      key={page}
+                    >
+                      <button
+                        className="page-link"
+                        onClick={() => setCurrentPage(page + 1)}
+                      >
+                        {page + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li
+                    className={`page-item ${
+                      currentPage === totalPages ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      disabled={currentPage === totalPages}
+                      onClick={() => setCurrentPage(currentPage + 1)}
+                    >
+                      Siguiente
+                    </button>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
-        </table>
+        </div>
       </div>
 
       <hr
@@ -581,171 +602,164 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
         style={{ border: "1px solid", opacity: "1", width: "80%" }}
       />
       <div className="container-fluid table-responsive center-content-tabllaa">
-        <table className="table table-bordered table-striped">
-          <div className="row justify-content-center">
-            {" "}
-            <div className="text-center">
-              <div
-                className="contenido-tabla col-lg-12 col-md-12 col-sm-12 mb-4 mx-auto mt-5 mb-5 p-5 d-block"
-                style={{
-                  border: "solid",
-                  backgroundColor: "white",
-                  opacity: "0.9",
-                  borderRadius: "18px",
-                  lineHeight: "3em",
-                  fontSize: "1.2em",
-                }}
-              >
-                <h1>Historial de compras</h1>
-                <div className="mb-5 d-flex justify-content-between">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Buscar compra por nombre de cliente"
-                      value={searchQueryClientName}
-                      onChange={(e) => setSearchQueryClientName(e.target.value)}
-                      style={{ width: "19em" }}
-                      className="text-center"
-                    />
-                  </div>
+        <div className="row justify-content-center">
+          <div className="text-center">
+            <div
+              className="contenido-tabla col-lg-12 col-md-12 col-sm-12 mb-4 mx-auto mt-5 mb-5 p-5 d-block"
+              style={{
+                border: "solid",
+                backgroundColor: "white",
+                opacity: "0.9",
+                borderRadius: "18px",
+                lineHeight: "3em",
+                fontSize: "1.2em",
+              }}
+            >
+              <h1>Historial de compras</h1>
+              <div className="mb-5 d-flex justify-content-between">
+                <div>
+                  <input
+                    style={{ width: "14em" }}
+                    value={searchQueryClientName}
+                    onChange={(e) => {
+                      setSearchQueryClientName(e.target.value);
+                      filterComprasByClientName(e.target.value);
+                    }}
+                    placeholder="&nbsp;&nbsp;Buscar cliente por nombre"
+                  />
                 </div>
-                <table className="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Index</th>
-                      <th>Cliente</th>
-                      <th>Producto</th>
-                      <th>Cantidad</th>
-                      <th>Precio por unidad</th>
-                      <th>Precio total</th>
-                      <th>Estado</th>
-                      <th>Fecha de compra</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredCompras.map((compra, index) => (
-                      <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>
-                          {
-                            clientes.find(
-                              (cliente) =>
-                                cliente._id.toString() ===
-                                compra.idClient.toString()
-                            )?.firstName
-                          }{" "}
-                          {
-                            clientes.find(
-                              (cliente) =>
-                                cliente._id.toString() ===
-                                compra.idClient.toString()
-                            )?.lastName
-                          }
-                        </td>
-                        <td>
-                          {compra.products.map((producto, productoIndex) => (
-                            <p key={productoIndex}>
-                              {
-                                productos.find(
-                                  (p) => p._id === producto.productId
-                                )?.name
-                              }
-                            </p>
-                          ))}
-                        </td>
-                        <td>
-                          {compra.products.map((producto, index) => (
-                            <p key={index}>{producto.quantity}</p>
-                          ))}
-                        </td>
-                        <td>
-                          {compra.products.map((producto, index) => (
-                            <p key={index}>{producto.price}</p>
-                          ))}
-                        </td>
-                        <td>{compra.totalPrice}</td>
-                        <td>
-                          <select
-                            value={purchaseStatusMap[compra._id] || ""}
-                            onChange={(e) =>
-                              handleStatusChange(compra._id, e.target.value)
-                            }
-                          >
-                            <option value="pending pay">
-                              Pendiente de pago
-                            </option>
-                            <option value="paid">Pagado</option>
-                            <option value="sent">Enviado</option>
-                            <option value="submitted">Entregado</option>
-                            <option value="canceled">Cancelado</option>
-                          </select>
-                        </td>
-                        <td>
-                          {moment(compra.createdAt).format("D/M/YYYY H:mm")}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-
-                <nav
-                  aria-label="Page navigation example"
-                  className="d-flex justify-content-center"
-                >
-                  <ul className="pagination">
-                    <li
-                      className={`page-item ${
-                        currentPageCompras === 1 ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        disabled={currentPageCompras === 1}
-                        onClick={() =>
-                          setCurrentPageCompras(currentPageCompras - 1)
-                        }
-                      >
-                        Anterior
-                      </button>
-                    </li>
-                    {[...Array(totalPagesCompras)].map((_, page) => (
-                      <li
-                        className={`page-item ${
-                          currentPageCompras === page + 1 ? "active" : ""
-                        }`}
-                        key={page}
-                      >
-                        <button
-                          className="page-link"
-                          onClick={() => setCurrentPageCompras(page + 1)}
-                        >
-                          {page + 1}
-                        </button>
-                      </li>
-                    ))}
-                    <li
-                      className={`page-item ${
-                        currentPageCompras === totalPagesCompras
-                          ? "disabled"
-                          : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        disabled={currentPageCompras === totalPagesCompras}
-                        onClick={() =>
-                          setCurrentPageCompras(currentPageCompras + 1)
-                        }
-                      >
-                        Siguiente
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
               </div>
+              <table className="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Index</th>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio por unidad</th>
+                    <th>Precio total</th>
+                    <th>Estado</th>
+                    <th>Fecha de compra</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredComprasByClientName.map((compra, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>
+                        {
+                          clientes.find(
+                            (cliente) =>
+                              cliente._id.toString() ===
+                              compra.idClient.toString()
+                          )?.firstName
+                        }{" "}
+                        {
+                          clientes.find(
+                            (cliente) =>
+                              cliente._id.toString() ===
+                              compra.idClient.toString()
+                          )?.lastName
+                        }
+                      </td>
+                      <td>
+                        {compra.products.map((producto, productoIndex) => (
+                          <p key={productoIndex}>
+                            {
+                              productos.find(
+                                (p) => p._id === producto.productId
+                              )?.name
+                            }
+                          </p>
+                        ))}
+                      </td>
+                      <td>
+                        {compra.products.map((producto, index) => (
+                          <p key={index}>{producto.quantity}</p>
+                        ))}
+                      </td>
+                      <td>
+                        {compra.products.map((producto, index) => (
+                          <p key={index}>{producto.price}</p>
+                        ))}
+                      </td>
+                      <td>{compra.totalPrice}</td>
+                      <td>
+                        <select
+                          value={purchaseStatusMap[compra._id] || ""}
+                          onChange={(e) =>
+                            handleStatusChange(compra._id, e.target.value)
+                          }
+                        >
+                          <option value="pending pay">Pendiente de pago</option>
+                          <option value="paid">Pagado</option>
+                          <option value="sent">Enviado</option>
+                          <option value="submitted">Entregado</option>
+                          <option value="canceled">Cancelado</option>
+                        </select>
+                      </td>
+                      <td>
+                        {moment(compra.createdAt).format("D/M/YYYY H:mm")}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <nav
+                aria-label="Page navigation example"
+                className="d-flex justify-content-center"
+              >
+                <ul className="pagination">
+                  <li
+                    className={`page-item ${
+                      currentPageCompras === 1 ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      disabled={currentPageCompras === 1}
+                      onClick={() =>
+                        setCurrentPageCompras(currentPageCompras - 1)
+                      }
+                    >
+                      Anterior
+                    </button>
+                  </li>
+                  {[...Array(totalPagesCompras)].map((_, page) => (
+                    <li
+                      className={`page-item ${
+                        currentPageCompras === page + 1 ? "active" : ""
+                      }`}
+                      key={page}
+                    >
+                      <button
+                        className="page-link"
+                        onClick={() => setCurrentPageCompras(page + 1)}
+                      >
+                        {page + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li
+                    className={`page-item ${
+                      currentPageCompras === totalPagesCompras ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      disabled={currentPageCompras === totalPagesCompras}
+                      onClick={() =>
+                        setCurrentPageCompras(currentPageCompras + 1)
+                      }
+                    >
+                      Siguiente
+                    </button>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
-        </table>
+        </div>
       </div>
     </div>
   );

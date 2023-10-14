@@ -192,7 +192,9 @@ const EligeTuCuchillo: React.FC<EligeTuHojaProps> = ({ clientId }) => {
                     <div className="card-content-cabo">
                       <h3 className="productname-cabo">{product.name}</h3>
                       <p className="product-description-cabo">
-                        {product.description}
+                        {product.description.length > 190
+                          ? `${product.description.substring(0, 190)}...`
+                          : product.description}
                       </p>
 
                       <button
