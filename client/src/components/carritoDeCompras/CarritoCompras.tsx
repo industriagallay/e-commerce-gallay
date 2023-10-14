@@ -36,7 +36,9 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
   totalPrice,
 }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
-  const [productData, setProductData] = useState<IProductData | null>(null);
+  const [productData, setProductData] = useState<{
+    [key: string]: IProductData;
+  }>({});
   const navigate = useNavigate();
   const [productDataMap, setProductDataMap] = useState<{
     [productId: string]: IProductData;
@@ -61,7 +63,10 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     const fetchProductData = async (productId: string) => {
       try {
         const response = await axios.get(`${apiUrl}/products/id/${productId}`);
-        setProductData(response.data);
+        setProductData((prevProductData) => ({
+          ...prevProductData,
+          [productId]: response.data,
+        }));
       } catch (error) {
         console.log(error);
       }
@@ -142,6 +147,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
       setCartItems([]);
 
       navigate("/compra-finalizada");
+      window.location.reload();
     } catch (error) {
       console.error("Error al cerrar la compra:", error);
     }
@@ -208,7 +214,11 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
                 />
                 <div className="card-bodycarritocompraupdate">
                   <h5 className="card-titlecarritocompraupdate">
-                    {productData.name}
+                    {productData[item.productId] && (
+                      <h5 className="card-titlecarritocompraupdate">
+                        {productData[item.productId].name}
+                      </h5>
+                    )}
                   </h5>
                 </div>
 
