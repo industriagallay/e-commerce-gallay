@@ -8,9 +8,23 @@ const getPurchasesByClientHandler = async (req: Request, res: Response) => {
       idClient: clientId,
       status: "inCart",
     });
-    res.json(purchases);
+
+    const updatedPurchases = purchases.map((purchase) => {
+      const totalPrice = purchase.products.reduce((total, product) => {
+        return total + product.price;
+      }, 0);
+
+      purchase.totalPrice = totalPrice;
+      return purchase;
+    });
+
+    await Promise.all(updatedPurchases.map((purchase) => purchase.save()));
+
+    res.json(updatedPurchases);
   } catch (error) {
-    res.status(500).json({ error: "Error al obtener las compras del cliente" });
+    res
+      .status(500)
+      .json({ error: "Error al obtener y actualizar las compras del cliente" });
   }
 };
 
