@@ -43,99 +43,132 @@ interface LastPurchase {
 
 const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   const navigate = useNavigate();
-  const [_isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [pageReloaded, setPageReloaded] = useState(false);
   const [ultimaCompra, setUltimaCompra] = useState<LastPurchase | null>(null);
-  console.log(ultimaCompra);
+  const [productNames, setProductNames] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchUltimaCompra = async () => {
-      try {
-        const response = await axios.get(`${apiUrl}/purchases/${clientId}`);
-        if (response.data.length >= 2) {
-          const sortedPurchases = response.data.sort(
-            (a: Purchase, b: Purchase) => {
-              const dateA: Date = new Date(a.createdAt);
-              const dateB: Date = new Date(b.createdAt);
-              return dateB.getTime() - dateA.getTime();
-            }
-          );
+      setTimeout(async () => {
+        try {
+          const response = await axios.get(`${apiUrl}/purchases/${clientId}`);
+          if (response.data.length >= 2) {
+            const sortedPurchases = response.data.sort(
+              (a: Purchase, b: Purchase) => {
+                const dateA: Date = new Date(a.createdAt);
+                const dateB: Date = new Date(b.createdAt);
+                return dateB.getTime() - dateA.getTime();
+              }
+            );
 
-          const anteultimaCompra = sortedPurchases[1];
-          setUltimaCompra(anteultimaCompra);
+            const anteultimaCompra = sortedPurchases[1];
+            setUltimaCompra(anteultimaCompra);
+
+            const productIds = anteultimaCompra.products.map(
+              (item: { productId: string }) => item.productId
+            );
+            const productNames = await getProductNames(productIds);
+            setProductNames(productNames);
+          }
+        } catch (error) {
+          console.error("Error al obtener la anteúltima compra:", error);
+        } finally {
+          setIsLoading(false);
         }
-      } catch (error) {
-        console.error("Error al obtener la anteúltima compra:", error);
-      } finally {
-        setIsLoading(false);
-      }
+      }, 3000);
     };
     fetchUltimaCompra();
   }, [clientId]);
+
+  const getProductNames = async (productIds: string[]) => {
+    try {
+      const productNamesPromises = productIds.map(async (productId) => {
+        const response = await axios.get(`${apiUrl}/products/id/${productId}`);
+        return response.data.name;
+      });
+      const names = await Promise.all(productNamesPromises);
+      return names;
+    } catch (error) {
+      console.error("Error al obtener nombres de productos:", error);
+      return [];
+    }
+  };
 
   const handleHomePage = () => {
     setUltimaCompra(null);
     navigate("/home");
   };
 
-  if (!ultimaCompra) {
-    return <p>Cargando la información de la compra...</p>;
-  }
-
   return (
     <div>
-      <div className="compra-finalizada">
-        <div className="container-texto-inicio-compraFinaliZada">
-          <h2 className="Titutlo-comprafinalizadaH2">
-            Gracias por elegir Industria Gallay
-          </h2>
-          <h3 className="resumenh3">Resumen de la compra</h3>
+      {isLoading ? (
+        <div className="loader position-absolute">
+          Loading
+          <span></span>
         </div>
-        <div className="container">
-          <ul className="list-group datos-compra-finalizada">
-            {ultimaCompra.products.map((item, index) => (
-              <li
-                className="list-group-item list-group-item-comprafinalizada-product"
-                key={index}
-              >
-                <div className="row">
-                  <div className="col-md-4">
-                    <span className="Producto-comprafinalizada">
-                      Producto: {item.productId}
-                    </span>
+      ) : (
+        <div className="compra-finalizada">
+          <div className="container-texto-inicio-compraFinaliZada">
+            <h2 className="Titutlo-comprafinalizadaH2">
+              Gracias por elegir Industria Gallay
+            </h2>
+            <h3 className="resumenh3">Resumen de la compra</h3>
+          </div>
+          <div className="container mb-5">
+            <ul className="list-group datos-compra-finalizada">
+              {ultimaCompra?.products.map((item, index) => (
+                <li
+                  className="list-group-item list-group-item-comprafinalizada-product"
+                  key={index}
+                >
+                  <div className="row">
+                    <div className="col-md-4">
+                      <span className="Producto-comprafinalizada">
+                        Producto: {productNames[index] || item.productId}
+                      </span>
+                    </div>
+                    <div className="col-md-4">
+                      <span className="cantidad-comprafinaliza">
+                        - Cantidad: {item.quantity}
+                      </span>
+                    </div>
+                    <div className="col-md-4">
+                      <span className="precio-comprafinalizada">
+                        - Precio: ${item.price}
+                      </span>
+                    </div>
                   </div>
-                  <div className="col-md-4">
-                    <span className="cantidad-comprafinaliza">
-                      - Cantidad: {item.quantity}
-                    </span>
-                  </div>
-                  <div className="col-md-4">
-                    <span className="precio-comprafinalizada">
-                      - Precio: ${item.price}
-                    </span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <h3 className="datosparabonar-C-finalizada">
+            Datos para abonar <br /> CVU: 0000003100078622123854
+          </h3>
+          <h3 className="text-center">
+            Para finalizar la compra, manda el comprobante a
+            industriagallay@gmail.com
+          </h3>
+          <hr />
+          <p className="totalapafar-Compra-finalizada">
+            Total a pagar: ${ultimaCompra?.totalPrice}
+          </p>
+          <p className="fechadelacompra-comprafinalizada">
+            Fecha de la compra:{" "}
+            {moment(ultimaCompra?.createdAt).format("D/M/YYYY H:mm")}
+          </p>
+          <p className="parrafoProporcionados">
+            Por favor, realice el pago utilizando los datos proporcionados.
+          </p>
+          <button
+            className="botonVolveral-inicio-comprafinalizada my-5"
+            onClick={handleHomePage}
+          >
+            Volver al inicio
+          </button>
         </div>
-        <h3 className="datosparabonar-C-finalizada">Datos para abonar</h3>
-        <p className="totalapafar-Compra-finalizada">
-          Total a pagar: ${ultimaCompra.totalPrice}
-        </p>
-        <p className="fechadelacompra-comprafinalizada">
-          Fecha de la compra:{" "}
-          {moment(ultimaCompra.createdAt).format("D/M/YYYY H:mm")}
-        </p>
-        <p className="parrafoProporcionados">
-          Por favor, realice el pago utilizando los datos proporcionados.
-        </p>
-        <button
-          className="botonVolveral-inicio-comprafinalizada"
-          onClick={handleHomePage}
-        >
-          Volver al inicio
-        </button>
-      </div>
+      )}
     </div>
   );
 };
