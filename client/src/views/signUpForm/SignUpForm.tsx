@@ -78,24 +78,14 @@ const SignUpForm: React.FC = () => {
 
   return (
     <div className="registro">
-      <div className="header2">
-        <h2 className="slide-from-right">
-          <span>
-            Registrate y disfrutá de nuestras ofertas y variedad de cuchillos -
-            recorda que podes visitar nuestra sección para armar tu cuchillo{" "}
-          </span>
-        </h2>
-      </div>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row justify-content-center">
-          <div className="col-lg-6 col-md-8 col-sm-10">
+          <div className="col-lg-4 col-md-8 col-sm-10">
             <form
               className="SignUpform ml-auto"
               onSubmit={handleSubmit(crearCuenta)}
             >
-              <div className="header text-center">
-                Para crear tu cuenta te pediremos algunos datos{" "}
-              </div>
+              <div className="header text-center text-break">Bienvenidos</div>
               <div className="inputs">
                 <input
                   type="text"
@@ -181,7 +171,7 @@ const SignUpForm: React.FC = () => {
                     El campo contraseña es requerido
                   </p>
                 )}
-                <div className="password-toggle">
+                <div className="password-toggle ">
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -193,14 +183,13 @@ const SignUpForm: React.FC = () => {
                     )}{" "}
                   </button>
                   <br />
-                  <button
-                    type="submit"
-                    className="fs-4 mt-5 ms-5 btn btn-primary"
-                  >
-                    Crear Cuenta
-                  </button>
+                  <div className="d-flex justify-content-center align-items-center">
+                    <button type="submit" className="fs-4 mt-4 btn btn-primary">
+                      Crear Cuenta
+                    </button>
+                  </div>
                 </div>
-                <p className="signup-link">
+                <p className="signup-link d-flex flex-column">
                   ya tenes cuenta? <Link to="/login">Inicia sesión</Link>
                 </p>
               </div>
