@@ -9,6 +9,22 @@ interface ClienteIdCompraProps {
   clientId: string;
 }
 
+interface Purchase {
+  _id: string;
+  idClient: string;
+  products: Array<{
+    productId: string;
+    quantity: number;
+    price: number;
+    _id: string;
+  }>;
+  totalPrice: number;
+  selectedStatus: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 interface Product {
   productId: string;
   quantity: number;
@@ -27,6 +43,7 @@ interface LastPurchase {
 
 const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   const navigate = useNavigate();
+  const [_isLoading, setIsLoading] = useState(true);
   const [ultimaCompra, setUltimaCompra] = useState<LastPurchase | null>(null);
   console.log(ultimaCompra);
 
@@ -34,12 +51,24 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
     const fetchUltimaCompra = async () => {
       try {
         const response = await axios.get(`${apiUrl}/purchases/${clientId}`);
-        setUltimaCompra(response.data[0]);
+        if (response.data.length >= 2) {
+          const sortedPurchases = response.data.sort(
+            (a: Purchase, b: Purchase) => {
+              const dateA: Date = new Date(a.createdAt);
+              const dateB: Date = new Date(b.createdAt);
+              return dateB.getTime() - dateA.getTime();
+            }
+          );
+
+          const anteultimaCompra = sortedPurchases[1];
+          setUltimaCompra(anteultimaCompra);
+        }
       } catch (error) {
-        console.error("Error al obtener la última compra:", error);
+        console.error("Error al obtener la anteúltima compra:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
-
     fetchUltimaCompra();
   }, [clientId]);
 
@@ -92,9 +121,6 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
         <h3 className="datosparabonar-C-finalizada">Datos para abonar</h3>
         <p className="totalapafar-Compra-finalizada">
           Total a pagar: ${ultimaCompra.totalPrice}
-        </p>
-        <p className="estadodelacompra-comprafinalizada">
-          Estado de la compra: {ultimaCompra.status}
         </p>
         <p className="fechadelacompra-comprafinalizada">
           Fecha de la compra:{" "}

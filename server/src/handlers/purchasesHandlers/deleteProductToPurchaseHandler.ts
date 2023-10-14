@@ -7,6 +7,7 @@ const deleteProductToPurchaseHandler = async (req: Request, res: Response) => {
 
   try {
     const purchase = await Purchases.findOne({ idClient: clientId });
+    console.log(purchase);
 
     if (!purchase) {
       return res.status(404).json({ error: "Compra no encontrada" });
@@ -24,7 +25,7 @@ const deleteProductToPurchaseHandler = async (req: Request, res: Response) => {
 
     purchase.products.splice(productIndex, 1);
     await purchase.save();
-
+    console.log(purchase);
     res.json(purchase);
   } catch (error) {
     res
