@@ -204,7 +204,10 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
   const startIndexCompras = (currentPageCompras - 1) * comprasPerPage;
   const endIndexCompras = startIndexCompras + comprasPerPage;
-  filteredCompras.slice(startIndexCompras, endIndexCompras);
+  const paginatedCompras = filteredCompras.slice(
+    startIndexCompras,
+    endIndexCompras
+  );
 
   const desactivarUsuario = async (userId: string, isActive: boolean) => {
     try {
@@ -643,7 +646,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredComprasByClientName.map((compra, index) => (
+                  {paginatedCompras.map((compra, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>
