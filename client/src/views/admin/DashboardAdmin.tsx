@@ -75,7 +75,7 @@ const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   const [imageUrl, setImageUrl] = useState<string>("");
   const [searchQueryClientes, setSearchQueryClientes] = useState("");
   const [searchQueryClientName, setSearchQueryClientName] = useState("");
-  const [filteredComprasByClientName, setFilteredComprasByClientName] =
+  const [_filteredComprasByClientName, setFilteredComprasByClientName] =
     useState<Purchase[]>([]);
   const [originalClientes, setOriginalClientes] = useState<Client[]>([]);
   const [purchaseStatusMap, setPurchaseStatusMap] = useState<{
