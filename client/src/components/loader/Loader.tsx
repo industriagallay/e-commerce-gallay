@@ -8,7 +8,7 @@ const Loader: React.FC = () => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      navigate("/compra-finalizada");
+      navigate("/carritocompra");
     }, 5000);
 
     return () => {
