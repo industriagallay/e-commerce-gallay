@@ -146,7 +146,7 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
             Datos para abonar <br /> CVU: 0000003100078622123854
           </h3>
           <h3 className="text-center">
-            Para finalizar la compra, manda el comprobante a
+            Para finalizar la compra, envia el comprobante de pago a
             industriagallay@gmail.com
           </h3>
           <hr />
@@ -158,7 +158,8 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
             {moment(ultimaCompra?.createdAt).format("D/M/YYYY H:mm")}
           </p>
           <p className="parrafoProporcionados">
-            Por favor, realice el pago utilizando los datos proporcionados.
+            Por favor, realiza el pago utilizando los datos proporcionados y te
+            llegara un mail indicando la modalidad del envio.
           </p>
           <button
             className="botonVolveral-inicio-comprafinalizada my-5"
