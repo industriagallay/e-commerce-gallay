@@ -62,21 +62,34 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get<Product[]>(`${apiUrl}/products`);
+        let response;
 
-        const filteredKnifeProducts = response.data.filter(
-          (product) => product.categories === "knife"
-        );
-
-        setProducts(filteredKnifeProducts);
-        setFilteredProducts(filteredKnifeProducts);
+        if (selectedFilter === "blade") {
+          response = await axios.get<Product[]>(`${apiUrl}/products`);
+          const filteredProducts = response.data.filter((product) =>
+            product.categories.includes("blade")
+          );
+          setProducts(filteredProducts);
+          setFilteredProducts(filteredProducts);
+        } else if (selectedFilter === "handle") {
+          response = await axios.get<Product[]>(`${apiUrl}/products`);
+          const filteredProducts = response.data.filter((product) =>
+            product.categories.includes("handle")
+          );
+          setProducts(filteredProducts);
+          setFilteredProducts(filteredProducts);
+        } else {
+          response = await axios.get<Product[]>(`${apiUrl}/products`);
+          setProducts(response.data);
+          setFilteredProducts(response.data);
+        }
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [selectedFilter]);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -204,7 +217,6 @@ const Home: React.FC = () => {
     if (!animationsCompleted) {
       const Homeimg_img = document.querySelector(".home__img img");
       const Hometitle = document.querySelector(".home__title");
-
       const Homeyear = document.querySelector(".home__year");
       const Homescroll = document.querySelector(".home__scroll");
       const Homeprimary = document.querySelector(".home__primary");
@@ -368,20 +380,16 @@ const Home: React.FC = () => {
                       <option value="" disabled>
                         Filtrar por...
                       </option>
-
-                      <option className="option-filter-vertical" value="3">
-                        Mayor Precio
+                      <option className="option-filter-vertical" value="">
+                        Mostrar Todos
                       </option>
-                      <option className="option-filter-vertical" value="4">
-                        Menor Precio
+                      <option className="option-filter-vertical" value="blade">
+                        Filtrar por solo Hoja
+                      </option>
+                      <option className="option-filter-vertical" value="handle">
+                        Filtrar por solo Cabo
                       </option>
                     </select>
-                    <button
-                      onClick={showAllProducts}
-                      className="show-all-button"
-                    >
-                      Mostrar Todos
-                    </button>
                   </div>
                 </div>
                 <div className="precioContainer">
