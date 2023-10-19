@@ -1,23 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap");
-.background-help-color-grid {
-  padding: 0.6rem;
-  margin-bottom: 5rem;
-  background-color: #03020e;
-}
-@media (max-width: 390px) {
-  .background-help-color-grid .preguntasFrecuentes {
-    font-size: 2rem;
-  }
-  .background-help-color-grid .parradopreguntasFrecuentes {
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #f1e312d2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 40px;
-  }
-}
+
 
 /*preguntas frecuentes titulo*/
 .preguntasFrecuentes {

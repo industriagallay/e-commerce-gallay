@@ -13,7 +13,7 @@ const Help: React.FC = () => {
 
   return (
     <div>
-      <div className="background-help-color-grid">
+      <div >
         <h1 className="preguntasFrecuentes animate__animated animate__fadeInTopLeft">
           Preguntas Frecuentes
           <p className="parradopreguntasFrecuentes">
