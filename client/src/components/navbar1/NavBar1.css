@@ -133,6 +133,7 @@ body {
   background-size: 100%;
   background: #ffffffd0;
   border-radius: 20%;
+  margin-right: 15px;
 }
 
 .navbar-links-container {
@@ -174,12 +175,12 @@ body {
   justify-content: flex-start;
   align-items: center;
   font-size: 1.2rem;
-  /* position: sticky; */
-  /* top: 0; */
+  /* position: sticky;
+  top: 0; */
   z-index: 999;
   flex-direction: row;
   flex-wrap: nowrap;
-  background-color: #000000;
+  background-color: rgb(0, 0, 0);
 }
 
 .navbar-links {
@@ -365,4 +366,33 @@ body {
 
 .button-iniciar-sesion:hover .button_lg_iniciar-sesion::after {
   background-color: #fff;
+}
+
+/****opacidad botonhamburguesa***/
+.navbar-links-container.active ul.navbar-links a {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-links-container.active ul.navbar-links a:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/***background iniciaer sedsion ***/
+
+.button-iniciar-sesion {
+  background-color: #000;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.button-iniciar-sesion:hover {
+  background-color: #22222298;
 }

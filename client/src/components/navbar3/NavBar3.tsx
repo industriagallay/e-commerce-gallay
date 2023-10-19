@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 
 const NavBar3: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
   const navigate = useNavigate();
 
   const toggleNav = () => {
@@ -25,7 +27,9 @@ const NavBar3: React.FC = () => {
     Cookies.remove("token");
     navigate("/");
   };
-
+  const buttonClass = `button-cerrar-sesion ${
+    isHovered ? "cerrarSesion-black" : "cerrarSesion-gray"
+  }`;
   return (
     <div>
       <div className="navbar-container">
@@ -106,11 +110,13 @@ const NavBar3: React.FC = () => {
                     </Link>
                   </li>
                 </ul>
-                <div className="btn-iniciar-sesion-landing">
-                  <Link to="/" className="button_text_cerrar-sesion">
+                <div className="btn-iniciar-sesion-landing cerrarSesion002">
+                  <Link to="/">
                     <button
-                      className="button-cerrar-sesion-custom"
+                      className={buttonClass}
                       onClick={handleLogout}
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
                       style={{ textDecoration: "none", color: "#ffffff" }}
                     >
                       Cerrar Sesión

@@ -15,7 +15,9 @@ interface NavBar2Props {
 
 const NavBar2: React.FC<NavBar2Props> = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   const navigate = useNavigate();
 
@@ -40,6 +42,9 @@ const NavBar2: React.FC<NavBar2Props> = () => {
       console.error("Error al cerrar sesión:", error);
     }
   };
+  const buttonClass = `button-cerrar-sesion ${
+    isHovered ? "cerrarSesion-black" : "cerrarSesion-gray"
+  }`;
 
   return (
     <div>
@@ -110,15 +115,17 @@ const NavBar2: React.FC<NavBar2Props> = () => {
                     </Link>
                   </li>
                 </ul>
-                <div className="btn-iniciar-sesion-landing">
+
+                <div className="btn-iniciar-sesion-landing cerrarSesion002">
                   <button
-                    className="button-cerrar-sesion"
+                    className={buttonClass}
                     onClick={handleLogout}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                   >
                     Cerrar Sesión
                   </button>
                 </div>
-
                 <div className="container-iconcart-carrito">
                   <Link className="icon-icon-carrito-1221" to="/carritocompra">
                     <FontAwesomeIcon
