@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { GiRocketThruster } from "react-icons/gi";
 import { IconContext } from "react-icons/lib";
-import "./NavBar1.css";
+import "./NavBar1.css"; // Asegúrate de importar tus estilos CSS
 
 const NavBar1: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -37,7 +37,7 @@ const NavBar1: React.FC = () => {
               </Link>
             </div>
             <button
-              className={`navbar-toggler ${isNavOpen ? "" : "collapsed"}`}
+              className={`navbar-toggler ${isNavOpen ? "active" : "collapsed"}`}
               onClick={toggleNav}
               type="button"
               data-bs-toggle="collapse"
