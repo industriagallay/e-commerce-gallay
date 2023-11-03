@@ -102,38 +102,38 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
     }
   };
 
-  const updateQuantity = (productId: string, newQuantity: number) => {
-    setCartItems((prevCartItems) =>
-      prevCartItems.map((item) => {
-        if (item.productId === productId) {
-          return { ...item, quantity: newQuantity };
-        }
-        return item;
-      })
-    );
-  };
+  // const updateQuantity = (productId: string, newQuantity: number) => {
+  //   setCartItems((prevCartItems) =>
+  //     prevCartItems.map((item) => {
+  //       if (item.productId === productId) {
+  //         return { ...item, quantity: newQuantity };
+  //       }
+  //       return item;
+  //     })
+  //   );
+  // };
 
-  const decrementQuantity = (productId: string) => {
-    setCartItems((prevCartItems) =>
-      prevCartItems.map((item) => {
-        if (item.productId === productId && item.quantity > 1) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      })
-    );
-  };
+  // const decrementQuantity = (productId: string) => {
+  //   setCartItems((prevCartItems) =>
+  //     prevCartItems.map((item) => {
+  //       if (item.productId === productId && item.quantity > 1) {
+  //         return { ...item, quantity: item.quantity - 1 };
+  //       }
+  //       return item;
+  //     })
+  //   );
+  // };
 
-  const incrementQuantity = (productId: string) => {
-    setCartItems((prevCartItems) =>
-      prevCartItems.map((item) => {
-        if (item.productId === productId) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      })
-    );
-  };
+  // const incrementQuantity = (productId: string) => {
+  //   setCartItems((prevCartItems) =>
+  //     prevCartItems.map((item) => {
+  //       if (item.productId === productId) {
+  //         return { ...item, quantity: item.quantity + 1 };
+  //       }
+  //       return item;
+  //     })
+  //   );
+  // };
 
   const calculateTotal = (cart: ICartItem[]) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -145,6 +145,17 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
         totalPrice,
       });
       setCartItems([]);
+
+      const updatedPurchaseResponse = await axios.get(
+        `${apiUrl}/purchases/${clientId}`
+      );
+
+      if (updatedPurchaseResponse.data.length > 0) {
+        const updatedPurchase = updatedPurchaseResponse.data[0];
+        setCartItems(updatedPurchase.products);
+      } else {
+        setCartItems([]);
+      }
 
       navigate("/compra-finalizada");
       window.location.reload();
@@ -230,7 +241,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
                     Cantidad: {item.quantity}
                   </p>
 
-                  <div className="input-group input-group-sm">
+                  {/* <div className="input-group input-group-sm">
                     <div className="input-group-prepend">
                       <button
                         className="btn btn-outline-secondarymenos"
@@ -258,7 +269,7 @@ const CarritoCompra: React.FC<ICarritoItemDataProps> = ({
                         +
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="input-group-appendcarritocompraupdate">
                     <button
                       className="btn btn-outline-secondaryeliminar"

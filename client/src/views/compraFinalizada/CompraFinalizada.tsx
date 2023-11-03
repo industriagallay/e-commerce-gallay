@@ -102,10 +102,7 @@ const CompraFinalizada: React.FC<ClienteIdCompraProps> = ({ clientId }) => {
   return (
     <div>
       {isLoading ? (
-        <div className="loader position-absolute">
-          Loading
-          <span></span>
-        </div>
+        <div className="loader position-absolute">Loading</div>
       ) : (
         <div className="compra-finalizada">
           <div className="container-texto-inicio-compraFinaliZada">
