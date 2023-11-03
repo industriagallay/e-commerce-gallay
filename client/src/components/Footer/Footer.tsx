@@ -24,11 +24,15 @@ const Footer: React.FC = () => {
           vos lo pedis nosotros lo hacemos
         </p>
         <div className="iconos-redes-sociales d-flex flex-wrap align-items-center justify-content-center">
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <i className="bi bi-facebook"></i>
-          </a>
           <Link
-            to=""
+            to="https://m.facebook.com/profile.php/?id=100043363862242"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="bi bi-facebook"></i>
+          </Link>
+          <Link
+            to="https://www.youtube.com/@industriagallay7557"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none", color: "#ffffff" }}
@@ -36,7 +40,7 @@ const Footer: React.FC = () => {
             <i className="bi bi-youtube"></i>
           </Link>
           <Link
-            to="mailto:alanabelpereyra322@gmail.com"
+            to="mailto:industriagallay@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none", color: "#ffffff" }}
@@ -44,7 +48,7 @@ const Footer: React.FC = () => {
             <i className="bi bi-envelope-at-fill"></i>
           </Link>
           <Link
-            to=""
+            to="https://www.instagram.com/industriagallay/?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none", color: "#ffffff" }}
