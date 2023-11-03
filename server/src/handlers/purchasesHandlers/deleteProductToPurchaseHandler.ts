@@ -6,8 +6,11 @@ const deleteProductToPurchaseHandler = async (req: Request, res: Response) => {
   const productId = req.params.productId;
 
   try {
-    const purchase = await Purchases.findOne({ idClient: clientId });
-    console.log(purchase);
+    // Buscar la compra actual del cliente que tiene el estado "inCart"
+    const purchase = await Purchases.findOne({
+      idClient: clientId,
+      status: "inCart",
+    });
 
     if (!purchase) {
       return res.status(404).json({ error: "Compra no encontrada" });
@@ -25,7 +28,6 @@ const deleteProductToPurchaseHandler = async (req: Request, res: Response) => {
 
     purchase.products.splice(productIndex, 1);
     await purchase.save();
-    console.log(purchase);
     res.json(purchase);
   } catch (error) {
     res

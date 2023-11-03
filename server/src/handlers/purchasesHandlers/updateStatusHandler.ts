@@ -4,8 +4,6 @@ import Purchases from "../../models/purchases";
 const updateStatusHandler = async (req: Request, res: Response) => {
   const purchasesId = req.params.purchasesId;
   const newStatus = req.body.status;
-  console.log("Request received with ID:", purchasesId);
-  console.log("New status:", newStatus);
 
   try {
     const purchase = await Purchases.findByIdAndUpdate(
@@ -13,7 +11,6 @@ const updateStatusHandler = async (req: Request, res: Response) => {
       { status: newStatus },
       { new: true }
     );
-    console.log("Updated purchase:", purchase);
     res.json(purchase);
   } catch (error) {
     console.error("Error updating status:", error);
