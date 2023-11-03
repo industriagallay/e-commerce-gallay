@@ -26,7 +26,6 @@ const Login: React.FC = () => {
     try {
       const response = await axios.post(`${apiUrl}/api/login`, formData);
 
-      console.log("isActive:", response.data.isActive);
 
       if (!response.data.isActive) {
         swal
