@@ -30,7 +30,6 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
   const [purchaseId, setPurchaseId] = useState<string | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [productsLoaded, setProductsLoaded] = useState<boolean>(false);
-  console.log(products);
   const navigate = useNavigate();
 
   const addToCaboHandler = async (product: Product) => {
@@ -99,7 +98,6 @@ const CreaTuCuchillo: React.FC<CreaTuCuchilloProps> = ({ clientId }) => {
         const copiedHandleProducts = handleProducts.map((product) => ({
           ...product,
         }));
-        console.log(handleProducts);
 
         setProducts(copiedHandleProducts);
         setProductsLoaded(true);

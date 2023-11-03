@@ -94,11 +94,10 @@ const UpdateProductBtn: React.FC<UpdateProductBtnProps> = ({
         ...data,
         backgroundImage: imageUrl,
       };
-      const response = await axios.put(
+      await axios.put(
         `${apiUrl}/products/put/${productData._id}`,
         dataWithImage
       );
-      console.log({ respuesta: response });
 
       swal.fire({
         position: "center",

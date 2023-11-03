@@ -34,7 +34,6 @@ const LandingPage: React.FC<LandingPageProps> = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get<Product[]>(`${apiUrl}/products`);
-        console.log({ a: response });
 
         const handleProducts = response.data.filter((product) =>
           product.categories.includes("knife")
