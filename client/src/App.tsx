@@ -135,7 +135,6 @@ const App = () => {
           path="eligetuhoja"
           element={<EligeTuHoja clientId={clientId} />}
         />
-        <Route path="/loader" element={<Loader />} />
         <Route path="/nohaybusqueda" element={<NoHayBusqueda />} />
         <Route path="/baneados" element={<Baneados />} />
         <Route path="/help" element={<Help />} />
@@ -172,6 +171,7 @@ const App = () => {
           path="/compra-finalizada"
           element={<CompraFinalizada clientId={clientId} />}
         />
+        <Route path="/loader" element={<Loader />} />
       </Routes>
       <Footer />
     </>
